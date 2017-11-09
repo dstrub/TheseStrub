@@ -1,0 +1,444 @@
+%% Use the standard UP-methodology class
+%% with French language.
+%%
+%% You may specify the option 'twoside' or 'oneside' for
+%% the document.
+%%
+%% See the documentation tex-upmethodology on
+%% http://www.arakhne.org/tex-upmethodology/
+%% for details about the macros that are provided by the class and
+%% to obtain the list of the packages that are already included. 
+ 
+\documentclass[french]{spimubphdthesis}
+
+%%--------------------
+%% The TeX code is entering with UTF8
+%% character encoding (Linux and MacOS standards)
+\usepackage[utf8]{inputenc}
+ 
+%%-------------------
+%% You want to use the NatBib extension
+\usepackage[]{natbib}
+
+%%--------------------
+%% Include the 'multibib' package to enable to
+%% have different types of bibliographies in the
+%% document (see at the end of this template for
+%% an example with a personnal bibliography and
+%% a general bibliography)
+%%
+%% Each bibliography defined with 'multibib'
+%% adds a chapter with the corresponding
+%% publications (in addition to the chapter for
+%% the standard/general bibliography).
+%% CAUTION:
+%% There is no standard way to do include this type of
+%% personnal bibliography.
+%% We propose to use 'multibib' package to help you,
+%% for example.
+%\usepackage{multibib}
+ 
+%% Define a "type" of bibliography, here the PERSONAL one,
+%% that is supported by 'multibib'.
+%\newcites{PERSO}{Liste de mes publications}
+ 
+%% To cite one of your PERSONAL papers with the style
+%% of the PERSONAL bibliography: \citePERSO{key}
+%% To force to show one of your PERSONAL papers into
+%% the PERSONAL bibliography, even if not cited in the
+%% text: \nocitePERSO{key}
+ 
+%% REMARK: When you are using 'multibib', you
+%% must compile the PERSONAL bibliography by hand.
+%% For example, the sequence of commands to run
+%% when you had defined the bibliography PERSO is:
+%%   $ pdflatex my_document.tex
+%%   $ bibtex my_document.aux
+%%   $ bibtex PERSO.aux
+%%   $ pdflatex my_document.tex
+%%   $ pdflatex my_document.tex
+%%   $ pdflatex my_document.tex
+ 
+%%--------------------
+%% Add here any other packages that are needed for your document.
+%\usepackage{eurosim}
+%\usepackage{amsmath}
+ \usepackage[]{natbib}
+
+\usepackage{minitoc}
+
+\usepackage{hyperref}
+
+\usepackage{booktabs}
+\usepackage{lscape}
+
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{0pt}%
+                                      {-3.25ex plus -1ex minus -.2ex}%
+                                      {1.5ex plus .2ex}%
+                                      {\normalfont\normalsize}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{11.1em}{5em}}
+\makeatother
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\setcounter{minitocdepth}{4}
+
+\let\subsubsubsection\paragraph
+\renewcommand{\theparagraph}{\thesubsubsection.\alph{paragraph}}
+
+\dominitoc
+
+%%--------------------
+%% Set the title, subtitle, defense date, and
+%% the registration number of the PhD thesis.
+%% The optional parameter is the subtitle of the PhD thesis.
+%% The first mandatory parameter is the title of the PhD thesis.
+%% The second mandatory parameter is the date of the PhD defense.
+%% The third mandatory parameter is the reference number given by
+%% the University Library after the PhD defense.
+\declarethesis[is the one]{This is the one}{17 septembre 2017}{42}
+ 
+%%--------------------
+%% Set the author of the PhD thesis
+\addauthor[david.strubel.pro@gmail.com]{David}{Strub}
+ 
+%%--------------------
+%% Add a member of the jury
+%% \addjury{Firstname}{Lastname}{Role in the jury}{Position}
+\addjury{Incroyable}{Hulk}{Rapporteur}{Professeur à  la Desert State University }
+\addjury{Super}{Man}{Examinateur}{Professeur à l'Université de Smallville}
+\addjury{Bat}{Fofi}{Directeur de thèse}{Professeur à l'Université de Gotham City}
+ 
+%%--------------------
+%% Change style of the table of the jury
+%% \Set{jurystyle}{put macros for the style}
+%\Set{jurystyle}{\small}
+ 
+%%--------------------
+%% Set the English abstract
+\thesisabstract[english]{This is the abstract in English abstract  of the thesis. }
+ 
+%%--------------------
+%% Set the English keywords. They only appear if
+%% there is an English abstract
+\thesiskeywords[english]{Keyword 1, Keyword 2}
+ 
+%%--------------------
+%% Set the French abstract
+%%\thesisabstract[french]{Ceci est le résumé en français}
+ 
+%%--------------------
+%% Set the French keywords. They only appear if
+%% there is an French abstract
+\thesiskeywords[french]{Mot-cl\'e 1, Mot-cl\'e 2}
+ 
+%%--------------------
+%% Change the layout and the style of the text of the "primary" abstract.
+%% If your document is written in French, the primary abstract is in French,
+%% otherwise it is in English.
+%\Set{primaryabstractstyle}{\tiny}
+ 
+%%--------------------
+%% Change the layout and the style of the text of the "secondary" abstract.
+%% If your document is written in French, the secondary abstract is in English,
+%% otherwise it is in French.
+%\Set{secondaryabstractstyle}{\tiny}
+ 
+%%--------------------
+%% Change the layout and the style of the text of the "primary" keywords.
+%% If your document is written in French, the primary keywords are in French,
+%% otherwise they are in English.
+%\Set{primarykeywordstyle}{\tiny}
+ 
+%%--------------------
+%% Change the layout and the style of the text of the "secondary" keywords.
+%% If your document is written in French, the secondary keywords are in English,
+%% otherwise they are in French.
+%\Set{secondarykeywordstyle}{\tiny}
+ 
+%%--------------------
+%% Change the speciality of the PhD thesis
+%\Set{speciality}{Informatique}
+ 
+%%--------------------
+%% Change the institution
+%\Set{universityname}{Universit\'e de Bourgogne}
+ 
+
+%%--------------------
+%% Clear the list of the laboratories
+\resetlaboratories
+
+%%--------------------
+%% Add the laboratory where the thesis was made
+%\addlaboratory{Laboratoire Waynes Industry}
+
+\addlaboratory{Laboratoire \'Electronique, Informatique et Image}
+
+%%--------------------
+%% Clear the list of the partner/sponsor logos
+\resetpartners
+
+%%--------------------
+%% Add the logos of the partners or the sponsors on the front page
+%\addpartner[image options]{image name}
+
+\addpartner{pdf/le2ilogo}
+\addpartner{pdf/cnrslogo}
+\addpartner{img/utp-logo}
+%%--------------------
+%% Change the header and the foot of the pages.
+%% You must include the package "fancyhdr" to
+%% have access to these macros.
+%% Left header
+%\lhead{}
+%% Center header
+%\chead{}
+%% Right header
+%\rhead{}
+%% Left footer
+%\lfoot{}
+%% Center footer
+%\cfoot{}
+%% Right footer
+%\rfoot{}
+ 
+%%--------------------
+% Declare several theorems
+\declareupmtheorem{mytheorem}{My Theorem}{List of my Theorems}
+
+%%--------------------
+%% Change the message on the backcover.
+%\Set{backcovermessage}{%
+%	Some text
+%}
+
+\begin{document}
+ 
+%%--------------------
+%% The following line does nothing until
+%% the class option 'nofrontmatter' is given.
+%\frontmatter
+
+%%--------------------
+%% The following line permits to add a chapter for "acknowledgements"
+%% at the beginning of the document. This chapter has not a chapter
+%% number (using the "star-ed" version of \chapter) to prevent it to
+%% be in the table of contents
+\chapter*{Remerciements}
+ ma famille  et plume toufia 
+%%--------------------
+%% Include a general table of contents
+\tableofcontents
+
+%%--------------------
+%% The content of the PhD thesis
+\mainmatter
+ 
+\part{Contexte et Problématiques}
+
+\chapter{Introduction}
+  
+\section{Context and motivation}
+
+Ce squelette d'écrit quelques éléments pouvant vous aider pour écrire votre ouvrage de thèse.
+Un plan typique d'une thèse scientifique est également proposé. ss\cite{Wang1996} 122* 
+teste cite \cite{118*}
+
+
+\section{scope and challenges}
+quelle son les point  bloquant  en qlq ligne 
+\section{Contribution }
+postionement de  camera :  problem formulation  
+						   GA 
+						   results 
+CPPP :  decoupe du problem
+		par plan
+		result and solution 
+\section{Organisation }
+
+\begin{emphbox}
+	do some things!
+\end{emphbox}
+
+
+%\chapter{chap1test}
+
+%\chapter{\'Etat de l'art}z
+
+\include{chap/StateOfArt}
+
+\include{chap/EvolutionAlg}
+\include{chap/chapFormulation}
+\include{chap/WaypointPositionning}
+\include{chap/CPPP}
+% Automatic Lettrine and Minitoc at the begining of the chapter.
+%
+% The following macros are formatting the text at the begining of a chapter according to the
+% standard format.
+%
+% \chapterintro               See \chapterintrotosection.
+%
+% \chapterintro*              Similar to \chapterintro, except that the minitoc will be ignored.
+%
+% \chapterintrotosection      transform to lettrine the first letter that is following this macro
+%                             until the next following \section macro.
+%                             YOU MUST type the \section macro
+%                             in the same file as the \chapterintrotosection macro.
+%                             AND
+%                             put a minitoc (if the minitoc package is included) just before
+%                             the next following \section macro.
+%
+% \chapterintrotoinput        transform to lettrine the first letter that is following this macro
+%                             until the next following \input macro.
+%                             YOU MUST type the \input macro
+%                             in the same file as the \chapterintrotoinput macro.
+%                             AND
+%                             put a minitoc (if the minitoc package is included) just before
+%                             the next following \input macro.
+%
+% \chapterintrotoinclude      transform to lettrine the first letter that is following this macro
+%                             until the next following \include macro.
+%                             YOU MUST type the \include macro
+%                             in the same file as the \chapterintrotoinclude macro.
+%                             AND
+%                             put a minitoc (if the minitoc package is included) just before
+%                             the next following \include macro.
+
+%\chapterintro*
+%\chapterintro
+%\chapterintrotosection
+%\chapterintrotoinput
+%\chapterintrotoinclude
+
+
+\section{Proposer une définition}
+
+La définition~\ref{def:unethese} illustre la proposition d'une définition.
+
+\begin{definition}[Une thèse] \label{def:unethese}
+Ouvrage présenté devant un jury universitaire pour l'obtention d'un doctorat.
+\end{definition}
+
+
+\section{Inclure un tableau}
+
+Le référencement de la table peut être réalisé à l'aide des macros:
+\begin{verbatim}
+\tabref{labelid}
+\tabpageref{labelid}
+\end{verbatim}
+
+\subsection{Exemple 2}
+
+La table \tabref{exampletable2} est un exemple de table avec 5 colonnes, et dans laquelle le titre de la table a été également ajouté en sommet.
+\begin{mtable}[ht]{.9\linewidth}{5}{|l|X|l|X|X|}{Titre de la table}{exampletable2}
+	\captionastitle % Affiche le titre de la figure en sommet de table
+	\tabularheader{Col1}{Col2}{Col3}{Col4}{Col5}
+	a & b & c & d & x \\
+	\hline
+	e & f & g & h & z \\
+\end{mtable}
+
+
+
+Vous pouvez placer un texte \textup{en exposant}. Vous pouvez placer un texte \textdown{en indice}.
+
+Vous pouvez mettre en avant \emph{un texte}, ou le mettre \Emph{encore plus en avant}.
+
+Vous pouvez formatter les noms de personnes de manière uniforme, comme par exemple \makename{Stéphane}{Galland} 
+
+
+
+
+ 
+%% Citation from the general bibliography
+%\cite{key}
+ 
+%% Citation from the PERSO bibliography
+%\citePERSO{key}
+ 
+
+
+\section{Détails de la contribution}
+
+\section{Conclusion}
+ 
+\section{Bilan}
+
+\section{Perpectives}
+ 
+%%--------------------
+%% Start the end of the thesis
+\backmatter
+ 
+%%--------------------
+%% Bibliography
+ 
+%% PERSONAL BIBLIOGRAPHY (use 'multibib')
+ 
+%% Change the style of the PERSONAL bibliography
+%\bibliographystylePERSO{phdthesisapa}
+ 
+%% Add the chapter with the PERSONAL bibliogaphy.
+%% The name of the BibTeX file may be the same as
+%% the one for the general bibliography.
+%\bibliographyPERSO{biblio.bib}
+ 
+%% Below, include a chapter for the GENERAL bibliography.
+%% It is assumed that the standard BibTeX tool/approach
+%% is used.
+ 
+%% GENERAL BIBLIOGRAPHY
+ 
+%% To cite one of your PERSONAL papers with the style
+%% of the PERSONAL bibliography: \cite{key}
+ 
+%% To force to show one of your PERSONAL papers into
+%% the PERSONAL bibliography, even if not cited in the
+%% text: \nocite{key}
+ 
+%% The following line set the style of
+%% the GENERAL bibliogaphy.
+%% The "phdthesisapa" is a "apalike" style with the following
+%% differences:
+%% a) The titles are output with the color of the institution.
+%% b) The name of the PhD thesis' author is underlined.
+\bibliographystyle{phdthesisapa}
+%% The following line may be used in place of the previous
+%% line if you prefer "numeric" citations.
+%\bibliographystyle{phdthesisnum}
+ 
+%% Link the GENERAL bibliogaphy to a BibTeX file.
+
+\bibliography{refManuel1}
+\bibliographystyle{unsrt}
+ 
+%%--------------------
+%% List of figures and tables
+ 
+%% Include a chapter with a list of all the figures.
+%% In French typograhic standard, this list must be at
+%% the end of the document.
+\listoffigures
+ 
+%% Include a chapter with a list of all the tables.
+%% In French typograhic standard, this list must be at
+%% the end of the document.
+\listoftables
+ 
+%%--------------------
+%% Include a list of definitions
+\listofdefinitions
+
+%%--------------------
+%% Appendixes
+\appendix
+\part{Annexes}
+ 
+\chapter{Premier chapitre des annexes}
+
+
+ 
+\end{document}
