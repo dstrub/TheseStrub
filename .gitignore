@@ -12,6 +12,8 @@
 *.fls
 *.out
 *.toc
+*.loe
+
 
 ## Intermediate documents:
 *.dvi
@@ -91,7 +93,7 @@
 
 # minitoc
 *.maf
-*.mtc
+*.mtc*
 *.mtc0
 
 # minted
