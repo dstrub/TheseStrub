@@ -447,16 +447,16 @@ to \ref{eq:A.coef}. Thanks to that the equation (\ref{eq:v})  can be reduced wit
 	\end{equation}
 
 Also reducing the number of  parameter, passing to the equation \ref{eq:v2} to \ref{eq:v} are really usefully to the optimisation problem. The reduction of the number of parameter will  greatly affect the optimisation process.\\
- Indeed in addition to reducing the time computation this simplification reduce the number of parameters to optimize.
-   
+ Indeed in addition to reduce the time computation, this simplification reduce the number of parameters to optimize.\\   
 
-Until know the camera projection as been addressed with only one camera. But we want to compute the coverage for a set of camera. \\
-The faster solution is based on the previous camera projection estimation and adapt to the location of each camera (by translate the rectangle to have the center of it at the $x$ and $y$ position) and compute the occupation grid.\\
+Until know the camera projection estimation as been addressed with only one camera. But we want to compute the coverage for a set of camera. \\
+The solution is based on the previous camera projection estimation and adapt to the location of each camera (by translate the rectangle to have the center of it at the $x$ and $y$ position) and compute the occupation grid.\\
 
-In order to win a  bit of time each point of the grid  already cover by a camera are note tested for the next cameras. This small modification will impact positively the computation time for the coverage estimation of a network of camera.   
+In order to win a bit of time each point of the grid already cover by a camera are note tested for the next cameras. This small modification will impact positively the computation time for the coverage estimation of a network of camera. That mean in the equation \ref{eq:sum sum v g} the value of $m$ decrease as $i$ increase. More exactly  the size of m decrease as  the area coverage increase.  
 \\
 
-In order to represent correctly the set of camera  and the parameter  to optimize, the precedent notation can be adapted to have a set of $V$  composed by $N$ cameras defined by their parameters $v$:
+\subparagraph*{ Representation of the parameters to optimize.\\ }
+In order to represent correctly the set of camera with the useful parameter to compute the camera projection , the precedent notation can be adapted to have a set of $V$ composed by $N$ cameras defined by their parameters $v$:
 
 	\begin{equation}\label{eq:V}
 		\begin{split}
@@ -465,16 +465,19 @@ In order to represent correctly the set of camera  and the parameter  to optimiz
 			\mbox{ and } v_i= (x_i,y_i,z_i,\gamma_i)
 		\end{split}
 	\end{equation}
-\noindent Where $N$ is the given number of cameras in the solution. Which is also the number of cameras in the set $V$. \\
-Therefore, $V$ represent a solution. But all the solution $V$ are not a possible solution for our problem. 
+\noindent Where $N$ is the given number of cameras in the network. Which is also the number of cameras in the set $V$. \\
+Therefore, $V$ represent a solution. $V$ contain all the position and orientation of the set of cameras for a predefined focal length, sensor size and map.\\% wish also include the potential constraint as  some restriction on the map.\\
+Obviously all the solution $V$ are not a "possible solution" for our problem. Some solution $V$ does not respect the set of $E$.
 
-So that the $V$ should respect all the constraints of $E$ (see Eq.\ref{eq:Vs}). Where $E$ is the set of constraints (describe later).
+So that the $V$ should respect all the constraints of $E$ (see Eq.\ref{eq:Vs}). Where $E$ is the set of constraints. Among the constraint few of them was already disused, as the occlusion,  the map restriction, the k-coverage, or some constraint more specific to the problems (as saw in chapter \ref{chap:stateOfTheArt}).\\
+ The  "possible solution" $Vs$ must take in consideration the set $E$ as :
 
 \begin{equation}\label{eq:Vs}
 Vs=V \mbox{ , iff } E(V)=\begin{cases}1, & \mbox{  iff } E_i(v)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
 \end{cases} 
 \end{equation}
 Where $Nc$ is the number of constraints need to be satisfied to have an acceptable response.\\
+That mean among all the possible combination of parameter $V$ only the one respect the constraint of the set $E$ in order to have an possible solution. where $Vs=V\subset E$.\\ !!!! to continue !!!!
 The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context, for example: the room shape and minimizing the altitude to have a best resolution, the orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. \\
 %%The use of an UAV to cover an area allow the simplification of coverage computation as well as the numbers of parameters to optimize.
 %% !!!!
@@ -515,7 +518,7 @@ The Problem of the search space is the propensity to increase rapidly as the are
  %  \begin{equation} \label{eq:SearchSpace}  \sum_{n=1}^N \sum_{x=1}^{W} \sum_{y=1}^{H} \sum_{z=1}^{)} \sum_{\gamma=1}^{2}Pc_i  - \sum_{k=1}^{E}Pc_i=Vs  \end{equation}
  In fact the size of the search space ( as Eq. \ref{eq:SearchSpace}) associate to the set of $N$ cameras (as Eq.\ref{eq:Combinaison}) make a exponential number of possible solution depending mainly then the size of the area and the number of the waypoints in the network. 
  Obviously in view of this behaviour the use of a deterministic solution based on a heuristic does not seem to be a good answer to have a efficient solution. In addition the number of possible solutions $|Vs|$ makes the computation of an optimal almost impossible due to the numerous local minima. This kind of problem can not be used with an algorithm dedicate to the research of global optimal solution but need to be used with an algorithm focusing of optimize the solution and return a acceptable solution.
- !!!! to continu!!!
+ !!!! to continue !!!!
 
 \section{From Journal Jirs}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
