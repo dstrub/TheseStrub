@@ -456,7 +456,7 @@ In order to win a bit of time each point of the grid already cover by a camera a
 \\
 
 \subparagraph*{ Representation of the parameters to optimize.\\ }
-In order to represent correctly the set of camera with the useful parameter to compute the camera projection , the precedent notation can be adapted to have a set of $V$ composed by $N$ cameras defined by their parameters $v$:
+In order to represent correctly the set of camera with the useful parameter to compute the camera projection, the precedent notation can be adapted to have a set of $V$ composed by $N$ cameras defined by their parameters $v$:
 
 	\begin{equation}\label{eq:V}
 		\begin{split}
@@ -465,20 +465,43 @@ In order to represent correctly the set of camera with the useful parameter to c
 			\mbox{ and } v_i= (x_i,y_i,z_i,\gamma_i)
 		\end{split}
 	\end{equation}
-\noindent Where $N$ is the given number of cameras in the network. Which is also the number of cameras in the set $V$. \\
-Therefore, $V$ represent a solution. $V$ contain all the position and orientation of the set of cameras for a predefined focal length, sensor size and map.\\% wish also include the potential constraint as  some restriction on the map.\\
+\noindent Where $N$ is the given number of cameras in the network. Which is also the number of cameras in the set $V$. The coordinate of a camera $v_i$ with are the $i$th camera of the network is defined  with $x_i, y_i, z_i,$ for the given room and $gamma_i$ the roll rotation (portrait or landscape). The other  useful parameters are common to all the set $V$  for each problem.\\
+Therefore, $V$ represent a solution. $V$ contain all individual positions and orientation of the set of cameras for a predefined focal length, sensor size and map depending then the problem.\\% wish also include the potential constraint as  some restriction on the map.\\
 Obviously all the solution $V$ are not a "possible solution" for our problem. Some solution $V$ does not respect the set of $E$.
 
-So that the $V$ should respect all the constraints of $E$ (see Eq.\ref{eq:Vs}). Where $E$ is the set of constraints. Among the constraint few of them was already disused, as the occlusion,  the map restriction, the k-coverage, or some constraint more specific to the problems (as saw in chapter \ref{chap:stateOfTheArt}).\\
- The  "possible solution" $Vs$ must take in consideration the set $E$ as :
+So that the $V$ should respect all the constraints of $E$ (see Eq.\ref{eq:Vs}). Where $E$ is the set of constraints. Among the constraint few of them was already disused, as the occlusion, the map restriction, the k-coverage, or some constraint more specific to the problems (as saw in chapter \ref{chap:stateOfTheArt}).\\
+ The "possible solution" $Vs$ must take in consideration the set $E$ as :
 
 \begin{equation}\label{eq:Vs}
 Vs=V \mbox{ , iff } E(V)=\begin{cases}1, & \mbox{  iff } E_i(v)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
 \end{cases} 
 \end{equation}
 Where $Nc$ is the number of constraints need to be satisfied to have an acceptable response.\\
-That mean among all the possible combination of parameter $V$ only the one respect the constraint of the set $E$ in order to have an possible solution. where $Vs=V\subset E$.\\ !!!! to continue !!!!
+That mean among all the possible combination of parameter $V$ only the one meet the constraint of the set $E$ in order to have an possible solution.  If we are considering  all the $V$ and all the $E$ as two subset $Vs$ is defined as $Vs=V\subset E$.\\ 
+
 The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context, for example: the room shape and minimizing the altitude to have a best resolution, the orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. \\
+
+\subsection{Constraint}
+
+Make the exhaustive list of all the constraint for the problem of cameras positioning is not really interesting and almost impossible. The constraint can be numerous and depend mainly of the problem formulation and the context. Like that few of them was briefly introduced in the previous section as in chapter \ref{chap:stateOfTheArt}, section \ref{sec:coverageEstimation},...\\
+
+The constraint considered in this work are : 
+\begin{itemize}
+	\item Fixes number of the cameras.
+	\item Fixes  parameters of camera.
+	\item No rotation  on  $\alpha$ and $\beta$ (pan and tilt).
+	\item Possible fixes altitude.
+	\item Altitude boundary  (not too hight, not too low).  	
+ 
+	\item The resolution.
+	\item The map boundary (rigid rectangle). 
+	\item To have some fix cam in the set. 
+
+	\item Non rectangle map with possible hole.
+
+\end{itemize} 
+
+
 %%The use of an UAV to cover an area allow the simplification of coverage computation as well as the numbers of parameters to optimize.
 %% !!!!
 %%Thanks to the simplification of the problem due to the used of an uav the parameters to optimize can be reduced. (as in eq: \ref{eq:v}
