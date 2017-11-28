@@ -433,7 +433,7 @@ The model of camera projection is greatly simplified by the UAV assumption (no p
 %The simplification by modelling all the cameras with a fix orientation and same ability (in order to have a rectangle projection onto the ground) 
 All this simplification helps the cost function to be fast and efficient. \\
 
-\subsection*{Parameter to optimize }
+\subsection*{Parameter to optimize }\label{sec:parameterToOptimize}
 % en raison de 
 By dint of the simplification presented previously the useful parameter of the camera formalized as a vector can be simplified too.\\
 To summarize, in order to compute the camera projection of one camera on to the floor. Where the floor is represented by a grid to discretize the area, and the camera is at altitude with a looking direction orthogonal to the floor.  Just few parameter are necessary  as showed in equation  \ref{eq:etaUpsilon} %{eq:WrHr1 , }
@@ -488,18 +488,27 @@ Make the exhaustive list of all the constraint for the problem of cameras positi
 The constraint considered in this work are : 
 \begin{itemize}
 	\item Fixes number of the cameras.
-	\item Fixes  parameters of camera.
+	\item Fixes parameters of camera.
 	\item No rotation  on  $\alpha$ and $\beta$ (pan and tilt).
 	\item Possible fixes altitude.
-	\item Altitude boundary  (not too hight, not too low).  	
+	\item Altitude boundary (not too hight, not too low).  	
  
 	\item The resolution.
 	\item The map boundary (rigid rectangle). 
 	\item To have some fix cam in the set. 
 
-	\item Non rectangle map with possible hole.
+	\item Non rectangle map with possible hole.\\
 
 \end{itemize} 
+
+One of the first constraint is the fix number of cameras. This permits us to focus on the fine optimisation (as in  [22*] where both are tested). The number of camera is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  \\
+
+Fixes parameters of camera and no rotation  on  $\alpha$ and $\beta$, as introduce previously some parameters of the camera are fix (see \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV is also an advantage for the optimization by simplify the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization.\\
+
+Fixes altitude. The fix altitude is a constraint usable in order to limit the number of  parameter to optimize. The use of this constraint is usable to reduce the Complexity (see \ref{sec:OptimizationComplexity}). 
+
+
+ 
 
 
 %%The use of an UAV to cover an area allow the simplification of coverage computation as well as the numbers of parameters to optimize.
@@ -521,7 +530,7 @@ The constraint considered in this work are :
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \subsection{Optimization complexity}
+ \subsection{Optimization complexity} \label{sec:OptimizationComplexity}
  
 %To cover an area with a certain amount of sensor many solutions can be possible.
 In spite of the simplification presented before, the problem stay complex. There exist many position for each camera to cover an area with certain amount of sensors. This number of position can be estimate as follow.\\   
