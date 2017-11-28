@@ -492,9 +492,9 @@ The constraint considered in this work are :
 	\item No rotation  on  $\alpha$ and $\beta$ (pan and tilt).
 	\item Possible fixes altitude.
 	\item Altitude boundary (not too hight, not too low).  	
- 
+	\item The map boundary (rigid rectangle).  
 	\item The resolution.
-	\item The map boundary (rigid rectangle). 
+
 	\item To have some fix cam in the set. 
 
 	\item Non rectangle map with possible hole.\\
@@ -507,7 +507,25 @@ Fixes parameters of camera and no rotation  on  $\alpha$ and $\beta$, as introdu
 
 Fixes altitude. The fix altitude is a constraint usable in order to limit the number of parameter to optimize. The use of this constraint is usable to reduce the Complexity (see \ref{sec:OptimizationComplexity}).  It is also useful for other assumption as a camera on the celling or for a submarine 66* \cite{66*}.\\
 
- Altitude boundary (not too hight, not too low).  	
+The altitude boundary. When the altitude is not fix  some limit must be fixed to avoid the extremely high and low altitude. The highest altitude will be fix depending then the UAV ability and local law. The lowest altitude have to be fix for the safety of the user under the UAV.  
+In practice the boundary of the $z$ is defined  with 
+ \begin{equation}
+   \inf z\leq A.Coef\leq \sup z  
+ \end{equation} 
+ Where $\sup z$ is the maximal altitude of the camera and $\inf z$ the minimum altitude. $A$ is the fix altitude  of a camera where the camera projection has been computed with $A=z$ with only $coef$  vary as introduced in Equation \ref{eq:A.coef}. \\ 
+ 
+ The map boundary is a constraint similar then the altitude boundary. Despite the shape of the map for an area to cover some maximum boundary can be done. In fact for any shape as complex as it, it is  possible to  encapsulated in a rectangle. The rectangle map boundary is defined by a width  $W$ and height $H$. The boundary on $x$ and $y$ are :
+ \begin{equation}
+  \begin{array}{lcl}
+  	0\leq x\leq W \\ 0\leq y\leq H 
+  \end{array} 
+ \end{equation}  
+ 
+ ............................
+Among the constraint listed  diferent priority and restriction exist. Indeed  the constraint can be considered in 2 sub class. 
+ Some of the constraints  presented are is called "hard constraint". The hard constraint limit the  possible solution  by  do not allowing  to have a answer $Vs$ with does not respect it. This hard constraint is  directly  used during the  optimisation process to prohibit   solution out of this boundary 
+ (represneted  by $E$)
+ 
  
 
 
