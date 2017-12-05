@@ -493,40 +493,78 @@ The constraint considered in this work are :
 	\item Possible fixes altitude.
 	\item Altitude boundary (not too hight, not too low).  	
 	\item The map boundary (rigid rectangle).  
-	\item The resolution.
+	\item Non rectangle map with possible hole.
+	\item To have some fix cameras in the set. 
 
-	\item To have some fix cam in the set. 
-
-	\item Non rectangle map with possible hole.\\
+	\item The resolution.\\
 
 \end{itemize} 
-
+\subparagraph{Fixes number of the cameras.}
 One of the first constraint is the fix number of cameras. This permits us to focus on the fine optimisation (as in  [22*] where both are tested). The number of camera is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  \\
 
+\subparagraph{Fixes parameters of camera and no rotation.}
 Fixes parameters of camera and no rotation  on  $\alpha$ and $\beta$, as introduce previously some parameters of the camera are fix (see \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV is also an advantage for the optimization by simplify the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization.\\
 
-Fixes altitude. The fix altitude is a constraint usable in order to limit the number of parameter to optimize. The use of this constraint is usable to reduce the Complexity (see \ref{sec:OptimizationComplexity}).  It is also useful for other assumption as a camera on the celling or for a submarine 66* \cite{66*}.\\
+\subparagraph{Fixes altitude.}
+ The fix altitude is a constraint usable in order to limit the number of parameter to optimize. The use of this constraint is usable to reduce the Complexity (see \ref{sec:OptimizationComplexity}).  It is also useful for other assumption as a camera on the celling or for a submarine 66* \cite{66*}.\\
 
-The altitude boundary. When the altitude is not fix  some limit must be fixed to avoid the extremely high and low altitude. The highest altitude will be fix depending then the UAV ability and local law. The lowest altitude have to be fix for the safety of the user under the UAV.  
+\subparagraph{The altitude boundary.}
+ When the altitude is not fix  some limit must be fixed to avoid the extremely high and low altitude. The highest altitude will be fix depending then the UAV ability and local law. The lowest altitude have to be fix for the safety of the user under the UAV.  
 In practice the boundary of the $z$ is defined  with 
- \begin{equation}
+ \begin{equation}\label{eq:boundaryZ}
    \inf z\leq A.Coef\leq \sup z  
  \end{equation} 
  Where $\sup z$ is the maximal altitude of the camera and $\inf z$ the minimum altitude. $A$ is the fix altitude  of a camera where the camera projection has been computed with $A=z$ with only $coef$  vary as introduced in Equation \ref{eq:A.coef}. \\ 
  
- The map boundary is a constraint similar then the altitude boundary. Despite the shape of the map for an area to cover some maximum boundary can be done. In fact for any shape as complex as it, it is  possible to  encapsulated in a rectangle. The rectangle map boundary is defined by a width  $W$ and height $H$. The boundary on $x$ and $y$ are :
+ \subparagraph{The map boundary.}
+ The map boundary is a constraint similar then the altitude boundary. Despite the shape of the map for an area to cover some maximum boundary can be done. In fact for any shape as complex as it, it is  possible to  encapsulated in a rectangle. The rectangle map boundary is defined by a width $W$ and height $H$. The boundary on $x$ and $y$ are :
  \begin{equation}
   \begin{array}{lcl}
   	0\leq x\leq W \\ 0\leq y\leq H 
   \end{array} 
  \end{equation}  
  
- ............................
-Among the constraint listed  diferent priority and restriction exist. Indeed  the constraint can be considered in 2 sub class. 
- Some of the constraints  presented are is called "hard constraint". The hard constraint limit the  possible solution  by  do not allowing  to have a answer $Vs$ with does not respect it. This hard constraint is  directly  used during the  optimisation process to prohibit   solution out of this boundary 
- (represneted  by $E$)
+By associating the altitude boundary (from Eq\ref{eq:boundaryZ}), a cube boundary limit the position of the cameras in the 3 dimensional space. 
+\begin{equation}\label{eq:3dBoundary}
+  \begin{array}{lclcl}
+  	0\leq x\leq W \\ 0\leq y\leq H  \\ \inf z\leq A.Coef\leq \sup z  
+  \end{array} 
+ \end{equation} 
  
+ \subparagraph{Non rectangle map with possible hole.}
+Despite the rectangle boundary of the area, the map to cover can be much more complex and can take any kind of shape. The shape of the area can be composed by hole. The figure \ref{fig:boundaryMap} illustrate the map complexity. The black part of the map are the zone with are out. That mean these sub-parts have not interest to be covered.
+ \begin{figure}[t!]
+\minipage{0.85\textwidth}
+   \includegraphics[width=\linewidth]{img/BoundaryMap2.png}
+  \caption{Map to cover with the map boundary in red (W and H size) in black the sub-part have no interest to  be covered.   
+}\label{fig:boundaryMap}
+  \endminipage\hfill
+\end{figure}
+To take in account this constraint the gird have been designed with removing some of this points.
+The grid $G$ is reduced in order to have only the points in the white sub-part. 
+Concretely this implementation is easier for the complex map and have also some advantage. \\
+Among the advantage the flexibility. The grid customization  allow the optimization to try some exotic solution, with example the camera on the black sub-part or  in a border of it.  Obviously  the exotic solution with a cameras position on the black side does not increase the coverage rate  but if the optimisation converge correctly no camera will be on the the black sub-part of the map (or small part of it).\\
+
+\subparagraph{Some fix cameras in the set.}
+To have some fix camera in the set, is an optional constraint. This allow to have few manual cameras position from an user or other algorithms.
+One case can be to have some specific area as the entrance where have to be surveyed.  
+To implement this constraint the solution applied during experiment (presented later) is to adapt the map by remove the point of the grid $G$ cover by the sub-set of fix cameras.\\
+
+\subparagraph{The resolution.}
+The resolution of the images is related then the sensor size (in px) and  the distance between the camera and the object filmed. In our case the sensor size is fixed by the properties of the camera mounted on the UAV and the object filmed is the floor of the area to cover. In this case the distance between the camera and floor is the altitude. \\
+The resolution constraint have to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be the lower possible.\\
+During the optimization a trade off between the altitude (and the related resolution) and the coverage rate have to be done $\min{\frac{\sum^n_{i=1}{A.coef_i}}{n}}$ and the coverage rate . In order to manage this trade off, the average altitude of the cameras position is included in the cost function (*******ajouté lien ver la partie******). 
  
+
+ 
+Among the constraint listed different priority and restriction exist. Indeed the constraint can be considered in 2 sub-class. 
+ Some of the constraints  presented are is called "hard constraint". The hard constraint limit the  possible solution  by  do not allowing  to have a answer $Vs$ with does not respect it. This hard constraint is  directly  used during the optimisation process to prohibit  any solution to be out of this boundary. This hard constraint  have to be integrate in the optimization process in order to  cannot  generate a solution with does not respect it. 
+ For example the 3D boundary as defined in Equation \ref{eq:3dBoundary} is an hard constr. 
+ (represented  by $E$)
+
+.\\............................\\
+ cost function  
+ $\max{\frac{\sum^m_{i=1}{g_i}}{m}}$, where $g_i = 1$ when the point of the grid $G$ coverer by the set of cameras
 
 
 %%The use of an UAV to cover an area allow the simplification of coverage computation as well as the numbers of parameters to optimize.
