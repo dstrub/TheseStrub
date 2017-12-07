@@ -557,10 +557,14 @@ During the optimization a trade off between the altitude (and the related resolu
  
 
  
-Among the constraint listed different priority and restriction exist. Indeed the constraint can be considered in 2 sub-class. 
- Some of the constraints  presented are is called "hard constraint". The hard constraint limit the  possible solution  by  do not allowing  to have a answer $Vs$ with does not respect it. This hard constraint is  directly  used during the optimisation process to prohibit  any solution to be out of this boundary. This hard constraint  have to be integrate in the optimization process in order to  cannot  generate a solution with does not respect it. 
- For example the 3D boundary as defined in Equation \ref{eq:3dBoundary} is an hard constr. 
- (represented  by $E$)
+Among the constraints listed different priority and restriction exist. Indeed the constraint can be considered in 2 sub-class. 
+ Some of the constraints presented are called "Hard constraint". \\
+ The hard constraint limit the possible solution by do not allowing to have a answer $Vs$ with does not respect it. This hard constraint is directly used during the optimisation process to prohibit any solution to be out of this boundary. This hard constraint have to be integrate in the optimization process in order to cannot  generate a solution with does not respect it. \\ 
+ For example the 3D boundary as defined in Equation \ref{eq:3dBoundary} is an hard constraint. Each cameras position must be inside the 3D boundary.
+ In the other case some constraint can be considered as "Soft constraint".\\ 
+ The soft constraints are some constraints  have to be minimized. If a small constraint is not fully respected  the solution can still be considered as acceptable and this small amount of error does not  affect so much the final ansewer. 
+ 
+ the soft constraint leave the posibility during the optimization to do some mistake in order to learn about it  
 
 .\\............................\\
  cost function  
