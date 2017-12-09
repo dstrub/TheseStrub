@@ -52,7 +52,7 @@ In order to estimate the coverage properly the area must be discretized. Once th
 %
 %The modelization of the grid is an important element and different solution has been proposed during the time with different advantage depending then the situation.\\
 
-\subsection{Grid}
+\subsection{Grid}\label{sec:Grid}
 
 
 %/!$\backslash$ \textbf{ ajouter une partie dedier  a [181*] qui propose une solution pour ajusté la densité en fonction  de la necesité de présision  (contour plus dense ) }
@@ -236,7 +236,7 @@ Once the area to cover is described by the grid, the next step is to verify for 
 To verify if each points of the grid is cover by a camera. It is primordial to talk about what is a camera, what kind of camera are appropriate and their projection model. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{ Cameras definition.}
+\subsection{ Cameras definition.}\label{sec:CamerasDefinition}
 
 The model of projection the more close then human view is the perspective projection. The perspective projection is also the more common and more especially in the field of  area coverage as in \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional  with a $360^{\circ}$ of field of view as [43*,150*,174*].  \\
 The pin hole or in Latin the "camera obscura"  is at the origin of the geometry model for the perspective projection .\\
@@ -557,7 +557,7 @@ During the optimization a trade off between the altitude (and the related resolu
  
 \paragraph*{Constraints types.}
  
-Among the constraints listed different priority and restriction exist. Indeed the constraint can be considered in 2 sub-class. \\
+Among the constraints listed different priority and restriction exist. Indeed the constraint can be considered in 2 sub-class. 
 \subparagraph{Hard Constraint.}
  Some of the constraints presented are called "Hard constraint". \\
  The hard constraint limit the possible solution by do not allowing to have a answer $Vs$ with does not respect it. This hard constraint is directly used during the optimisation process to prohibit any solution to be out of this boundary. This hard constraint have to be integrate in the optimization process in order to cannot  generate a solution with does not respect it. Consequently the hard constraint can slow down the generation of the individuals some times.\\ 
@@ -567,14 +567,30 @@ Among the constraints listed different priority and restriction exist. Indeed th
  In the other case some constraint can be considered as "Soft Constraint".\\ 
  The soft constraints is to minimize the set of error. If a soft constraint is not fully respected the solution can be considered as acceptable and this small amount of error does not affect so much the final answer. In this case the soft constraint is assimilate to small error. \\
  The soft constraint leave the possibility during the optimization to do some mistake in order to learn about it.  
- If the soft constraint is noted $\epsilon$ and the hard constraint are noted $ \varepsilon '$ like that the constraint set is $E=\epsilon+\varepsilon'$.
- The objective is to maximize the coverage of a set of cameras ($f(Vs)$) with respect the hard constraint $\varepsilon'$ and minimized the error form the soft constraint $\epsilon$
+ If the soft constraint is noted $\epsilon$ and the hard constraint are noted $ \varepsilon '$ like that the constraint set is $E=\epsilon+\varepsilon'$.\\
+ 
 % \begin{equation}
 % 	\max f(Vs) -\epsilon  \mbox{  } \forall Vs \subset \varepsilon'
 % \end{equation}
   \begin{equation}
  	\max f(Vs) - \min \epsilon  \mbox{  } \forall Vs \subset \varepsilon'
  \end{equation}
+ 
+The objective is to maximize the coverage of a set of cameras ($f(Vs)$) with respect the hard constraint $\varepsilon'$ and minimized the error form the soft constraint $\epsilon$.
+Concretely the soft constraint are commonly integrated in the Cost Function as can be the resolution. 
+
+
+\subsection{The cost function.}
+
+The cost function have the mission to estimate the quality of an answer. In our case an answer is the position  of a set of cameras. The cost function is essential in the process of optimization as that was introduced in the section \ref{sec:CostFunctionGA}.
+
+The cost function have to estimate the area cover by a set of camera in order to do that the area is discretized by a grid as in section \ref{sec:Grid}. \\
+The grid customization permit to introduce some of the soft constraint as the complex shape of the map by removing the point out of the are to cover. Also the fix cameras are added in the grid points as already cover area. \\
+The grid modification will allow the cameras position to cover the area already covered or removed form the grid. The consequence of it will be to reduce the coverage possibility. The optimization will have to minimized this error.
+
+To evaluate the coverage of a set of cameras is essential to can estimate the camera projection of each,    as detailed in the section \ref{sec:CamerasDefinition}. The area cover by the cameras are noted as in equation \ref{eq:PciK} (where $Pc\in G$).
+
+
 
 .\\............................\\
  cost function  
