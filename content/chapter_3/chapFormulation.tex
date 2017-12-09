@@ -508,7 +508,7 @@ Fixes parameters of camera and no rotation  on  $\alpha$ and $\beta$, as introdu
 \subparagraph{Fixes altitude.}
  The fix altitude is a constraint usable in order to limit the number of parameter to optimize. The use of this constraint is usable to reduce the Complexity (see \ref{sec:OptimizationComplexity}).  It is also useful for other assumption as a camera on the celling or for a submarine 66* \cite{66*}.\\
 
-\subparagraph{The altitude boundary.}
+\subparagraph{The altitude boundary.}\label{sec:altitudeBoundary}
  When the altitude is not fix  some limit must be fixed to avoid the extremely high and low altitude. The highest altitude will be fix depending then the UAV ability and local law. The lowest altitude have to be fix for the safety of the user under the UAV.  
 In practice the boundary of the $z$ is defined  with 
  \begin{equation}\label{eq:boundaryZ}
@@ -572,7 +572,7 @@ Among the constraints listed different priority and restriction exist. Indeed th
 % \begin{equation}
 % 	\max f(Vs) -\epsilon  \mbox{  } \forall Vs \subset \varepsilon'
 % \end{equation}
-  \begin{equation}
+  \begin{equation}\label{eq:constraintEpsilon}
  	\max f(Vs) - \min \epsilon  \mbox{  } \forall Vs \subset \varepsilon'
  \end{equation}
  
@@ -585,16 +585,68 @@ Concretely the soft constraint are commonly integrated in the Cost Function as c
 The cost function have the mission to estimate the quality of an answer. In our case an answer is the position  of a set of cameras. The cost function is essential in the process of optimization as that was introduced in the section \ref{sec:CostFunctionGA}.
 
 The cost function have to estimate the area cover by a set of camera in order to do that the area is discretized by a grid as in section \ref{sec:Grid}. \\
-The grid customization permit to introduce some of the soft constraint as the complex shape of the map by removing the point out of the are to cover. Also the fix cameras are added in the grid points as already cover area. \\
+The grid customization permit to introduce some of the soft constraint as the complex shape of the map by removing the point, out of the are to cover. Also the fix cameras are added in the grid points as already cover area. \\
 The grid modification will allow the cameras position to cover the area already covered or removed form the grid. The consequence of it will be to reduce the coverage possibility. The optimization will have to minimized this error.
 
-To evaluate the coverage of a set of cameras is essential to can estimate the camera projection of each,    as detailed in the section \ref{sec:CamerasDefinition}. The area cover by the cameras are noted as in equation \ref{eq:PciK} (where $Pc\in G$).
+To evaluate the coverage of a set of cameras is essential to can estimate the camera projection of each, as detailed in the section \ref{sec:CamerasDefinition}. The area cover by the j-Th camera are noted as in equation \ref{eq:PciK} (where $Pc\in G$). By iteratively repeated this for each cameras of the set the full area coverage is computed (as equation\ref{eq:sum sum v g}). 
+
+Based on, the  simplest cost function is the coverage estimation.
+\begin{equation}\label{eq:CostFBase}
+C =  \frac{\sum_{i=1}^N{Pc_i} }{m}   
+\end{equation}
+Where $N $is the number of cameras; 
+$m$ represents the number of points needed to describe the grid $G$ of the ground (as in \ref{eq:Grid}).\\
+
+This version of the cost function $C$ does not take in account the Resolution constraint. The resolution is  strongly link with the camera altitude $z$ (as show in \ref{sec:altitudeBoundary}).
+
+The altitude of the cameras network is used to estimate resolution. A criteria must be added in the cost function formula (equation \ref{eq:CostFBase}).  The average of the altitude $z$ is used and have to be include in the cost function.
+ \begin{equation}\label{eq:CostFResolutionPart1}
+\overline{z}= \frac{\sum_{i=1}^N z_i}{N}     
+\end{equation}
+
+ If the resolution is strongly related then the altitude the average of it $\overline{z}$ can be considered as a   $\epsilon$  in the equation \ref{eq:constraintEpsilon} and the equation \ref{eq:CostFBase} may be updated as : 
+ 
+ \begin{equation}\label{eq:CostFResBase}
+C =  \frac{\sum_{i=1}^N {Pc_i}}{m}  - \frac{\sum_{i=1}^N z}{N}     
+\end{equation}
+ 
+The equation \ref{eq:CostFResBase} is used a cost function of the optimisation. The consequence of it, is the optimization will try to minimize the average altitude and maximize the coverage with no priority. Concretely  by just applying this equation  \ref{eq:CostFResBase} the optimization will first minimize the average altitude by positioning all the cameras at the minimum altitude (with respect the hard constraint of altitude boundary) and in second time try to maximize the position (on $x$ and $y$) of the cameras. 
+
+In order to have an  priority  between the coverage and the altitude a weigh have to be made on the equation \ref{eq:CostFResBase}. The  weigh have to be chosen carefully.
+The weight have to be auto-adaptable depending then area covered. in order to give more priority to the coverage when the coverage rate is low and add importance to the average  when the area is already well  cover. The coverage have to stay the priority the resolution must be optimize in second time.
+The best solution  to do that is to   link the weight of the resolution criteria with the coverage rate.
+
+\begin{equation}\label{eq:CostFResPondere}
+  \sigma \times \sum_{i=1}^N {Pc_i} \times \frac{\sum_{i=1}^N z}{N}     
+\end{equation}
+Where $\sigma$ is a weighting coefficient at 0.06 to reduce the priority on the resolution criteria. 
+Based on it the  final cost function is : 
+
+\begin{equation}\label{eq:CostF}
+C =  \frac{\sum_{i=1}^N{Pc_i}  - \delta  \times \sum_{i=1}^N {Pc_i} \times \frac{\sum_{i=1}^N z}{N}  }{m}   
+\end{equation}
+
+Tanks to this formula a proposed answer $Vs$ can be evaluated and return the quality of the answer for the problem of maximization of the coverage and the minimization in the altitude in the second time.  The cost function integrate all the soft constraint either by the design of the grid or by the formula of $C$.\\
+
+The cost function presented is  the final one but the building of the it, was an incremental work and few version was test in term of weight, priority, and constraint. The one presented here is the more equilibrated.\\ 
+Despite that some of the work  presented in the following section are made with the basic cost function from the equation \ref{eq:CostFBase}. In this case the element composing $v$ can be reduced as only $v=(x,y,\gamma)$.\\
+
+The final and complete cost function $F()$ have as input a vector $Vs$ with are composed by all the cameras position of the network and map of the area to cover $G$ and will return an estimation of the answer quality.
+The value returned by the cost function will be essential for the optimization process in order to discriminate the best answer.  
+
+ 
+
+
+
+
+
+
+
+
 
 
 
 .\\............................\\
- cost function  
- $\max{\frac{\sum^m_{i=1}{g_i}}{m}}$, where $g_i = 1$ when the point of the grid $G$ coverer by the set of cameras
 
 
 %%The use of an UAV to cover an area allow the simplification of coverage computation as well as the numbers of parameters to optimize.
