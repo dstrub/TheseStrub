@@ -567,12 +567,13 @@ Among the constraints listed different priority and restriction exist. Indeed th
  In the other case some constraint can be considered as "Soft Constraint".\\ 
  The soft constraints is to minimize the set of error. If a soft constraint is not fully respected the solution can be considered as acceptable and this small amount of error does not affect so much the final answer. In this case the soft constraint is assimilate to small error. \\
  The soft constraint leave the possibility during the optimization to do some mistake in order to learn about it.  
- If the soft constraint is noted $\epsilon'$ and the hard constraint are noted $\epsilon''$ like that the constraint set is $E=\epsilon'+\epsilon''$.
- \begin{equation}
- 	\max f(Vs) -\epsilon'  \mbox{  } \forall Vs \subset \epsilon''
- \end{equation}
+ If the soft constraint is noted $\epsilon$ and the hard constraint are noted $ \varepsilon '$ like that the constraint set is $E=\epsilon+\varepsilon'$.
+ The objective is to maximize the coverage of a set of cameras ($f(Vs)$) with respect the hard constraint $\varepsilon'$ and minimized the error form the soft constraint $\epsilon$
+% \begin{equation}
+% 	\max f(Vs) -\epsilon  \mbox{  } \forall Vs \subset \varepsilon'
+% \end{equation}
   \begin{equation}
- 	\max f(Vs) - \min \epsilon'  \mbox{  } \forall Vs \subset \epsilon''
+ 	\max f(Vs) - \min \epsilon  \mbox{  } \forall Vs \subset \varepsilon'
  \end{equation}
 
 .\\............................\\
