@@ -4,7 +4,7 @@
 %The following chapter is focused on the problem formulation for cameras positioning.\\
 %Obviously formulation proposed in not the only one and some other have been proposed in the literature, mostly depending then the objectives. \\
 The formulation of the problem is essential in order to design an efficient cost function. The cost function is  used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
-This chapter present first, a formal definition  of the problem based on the literature and in the second time our formulation is proposed. The formulation proposed is  adapted to the problems of efficient coverage using camera mounted on UAV.
+This chapter present first, a formal definition  of the problem based on the literature and in the second time, our formulation is proposed. The formulation proposed is adapted to optimize the problems efficient cameras coverage using camera mounted on UAV.
 
 \section{ Coverage estimation. }
 
@@ -20,23 +20,42 @@ This chapter present first, a formal definition  of the problem based on the lit
 %Indeed before to find the position some assumption should be done to describe our problems.\\ 
 
 The term coverage denote the area visible by at least one camera. Also the area to cover represent all the area which must be control by at least one camera. 
-
+To have an efficient optimization, the estimation of the answer are essential. Here the first element to evaluate the answer is the area coverage by a set of cameras mounted on a UAV. 
+The area covered by the set of the cameras will be the based of the cost function. In the second time the cost function will be  updated by adding the  constraints due to the systems.\\
+ 
 Therefore the problem is formulated as:
 \begin{itemize}
 \item [-] Maximization of the coverage with a fix number of cameras.
-\item [-] Minimization of the constraints.\\  where the constraint can be for examples the complex shape of the area, the bound of the area, the altitude of the cameras,...
+\item [-] Minimization of the constraints.\\( as examples the complex shape of the area, the bound of the area, the altitude of the cameras,...)
 \end{itemize}
 
 %The problem needs to be formalized in order to clearly identify the complexity of the cameras positioning. 
 
+To estimate efficiently the area cover by a given set of cameras some point have to be clearly defined: 
+\begin{itemize}
+\item First part the area himself. How to represent the area. 
+\item Second part camera definition. 
+\item Third part is to add the constraint. 
+\end{itemize} 
 
-Due to this formulation, composed by the maximisation and minimization, the solution  have to evolve to a best  possible answer based on the cost function. Depending then the formulation of the area and the design of the cost function the ability to optimize a solution is greatly affected. 
-The positions of the cameras have to limit the number and the size of black
-holes to be exploitable. The black holes are the area not covered by the camera
-views. To do so a precise estimated of the part covered by the system of camera views is elemental.\\
+Thanks to the camera definition the area cover for one camera depending then this parameters can be computed.
+
+The area is at same time the more evident element and the one with propose the most variety of design.
+The area to cover have to be discretized  and this discrétization can be donne by diferent methode with a different sampling frequancy as is descripted in the folowing section. 
+   
+   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;to do;;;;;;;;;;;;;;;;;;
 
 
-In order to estimate the coverage properly the area must be discretized. Once the area discritezed it became easier to verifies if each point of the area are coverer by at least one camera of the network.
+
+%%%%%%%%%%%a
+%Due to this formulation, composed by the maximisation and minimization, the solution  have to evolve to a best  possible answer based on the cost function. Depending then the formulation of the area and the design of the cost function the ability to optimize a solution is greatly affected. 
+%The positions of the cameras have to limit the number and the size of black
+%holes to be exploitable. The black holes are the area not covered by the camera
+%views. To do so a precise estimated of the part covered by the system of camera views is elemental.\\
+%
+%
+%In order to estimate the coverage properly the area must be discretized. Once the area discritezed it became easier to verifies if each point of the area are coverer by at least one camera of the network.
+%%%%%%%%%%%%%%a
 %The coverage problem must be modelled properly. The different method to design the problem will affect the solution and the applicable resolve method. The following part will talk about it \\
 %The coverage problem must be modelled properly. The different method to design the problem will affect the solution and the applicable resolve method. \\
 %The first part is to estimate properly the coverage of the area. To do so many method have been developed most of them are based on the occupation grid $G$ of the area. \begin{equation}
@@ -678,181 +697,9 @@ The Problem of the search space is the propensity to increase rapidly as the are
  \end{equation} 
  Where $|Vs|$ is the number of possible solution for a set of $N$ cameras. %$|Vs|$ is the 
  %  \begin{equation} \label{eq:SearchSpace}  \sum_{n=1}^N \sum_{x=1}^{W} \sum_{y=1}^{H} \sum_{z=1}^{)} \sum_{\gamma=1}^{2}Pc_i  - \sum_{k=1}^{E}Pc_i=Vs  \end{equation}
- In fact the size of the search space ( as Eq. \ref{eq:SearchSpace}) associate to the set of $N$ cameras (as Eq.\ref{eq:Combinaison}) make a exponential number of possible solution depending mainly then the size of the area and the number of the waypoints in the network. 
- Obviously in view of this behaviour the use of a deterministic solution based on a heuristic does not seem to be a good answer to have a efficient solution. In addition the number of possible solutions $|Vs|$ makes the computation of an optimal almost impossible due to the numerous local minima. This kind of problem can not be used with an algorithm dedicate to the research of global optimal solution but need to be used with an algorithm focusing of optimize the solution and return a acceptable solution.
+ In fact the size of the search space ( as Eq. \ref{eq:SearchSpace}) associate to the set of $N$ cameras (as Eq.\ref{eq:Combinaison}) make a exponential number of possible solution depending mainly then the size of the area and the number of the waypoints in the network. \\
+ Obviously in view of this behaviour the use of a deterministic solution based on a heuristic does not seem to be a good answer to have a efficient solution. In addition the number of possible solutions $|Vs|$ makes the computation of an optimal almost impossible due to the numerous local minima. This kind of problem can not be used with an algorithm dedicate to the research of global optimal solution but need to be used with an algorithm focusing of optimize the solution and return a acceptable solution.\\
  !!!! to continue !!!!
-
-\section{From Journal Jirs}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\iffalse 
-\section*{ to delete}
- In the following article a vision sensor is employ to acquire the image of area to control. The vision sensor may be a common camera with different parameter as:
-% \begin{itemize}
-% \item Every camera has a position  in  $(x, y, z)$;
-% \item Every camera  has an  orientation  composing  to 3 degrees of freedom  pan$(\alpha$),  tilt$(\beta)$, roll$(\gamma)$, see Figure \ref{fig:PanTiltRoll}.
-% \item Every camera have different optical parameters and the more important to take in consideration  for coverage estimation is the focal length $f$ and the sensor size $s$(based on the formulation of Chrysostomou et al[82]). 
-% \end{itemize}
-% 
-%\begin{figure}[t!]
-%\minipage{0.65\textwidth}
-%   \includegraphics[width=\linewidth]{img/PanTiltRoll.png}
-%  \caption{ The rotation composed by 3 degrees of freedom on pan tilt roll$(\alpha,\beta,\gamma)$.}\label{fig:PanTiltRoll}
-%  \endminipage\hfill
-%\end{figure}
-
-In fact the different elements useful to define the cameras, can be stated as a set of parameters composed by :\\
-\begin{itemize}
-\item Three degrees of freedom of the sensor’s position: $(x, y, z)$;
-\item Three degrees of freedom of the sensor’s orientation: the pan, tilt, and swing angles: $(\alpha,\beta, \gamma)$ 
-\item optical parameters including: the focal length $f$ of the lens and the sensor size $s$.
-\end{itemize}
-All the parameter of the camera can be formalized as a vector :
-\begin{equation}\
-v=(x,y,z,\alpha ,\beta,\gamma,f,s)
-\end{equation}
-To model the set of the cameras using the precedent notation, a set $V$ composed by $N$ cameras defined by $v$ noted:
-%In order to cover an area a set of cameras (defined by their parameter $v$ ) are used. This set of camera is defined by $V$:
-%The problem of coverage is to optimize a set of parameters $v$, composed like in Eq.(\ref{eq:v}) for every cameras. 
-
-\begin{equation}
-\begin{split}
-V= \{v_i\} \mbox{  , } \forall i=[1;N] \mbox{ , } N\in \mathbb{N}^*
-\\
-\mbox{ and } v_i= (x_i,y_i,z_i,\alpha_i ,\beta_i,\gamma_i,f_i,s_i)
-\end{split}
-\end{equation}
-\noindent Where $N$ is the given number of cameras in the solution. Which is also the number of cameras in the set $V$. \\
-Therefore, $V$ represent a solution. But all the solution $V$ are not a possible solution for our problem. 
-
-So that the $V$ should respect all the constraints of $E$ (see Eq.\ref{eq:Vs}). Where $E$ is the set of constraints (describe later).
-%are not  noted as $Vs$ if   all the parameter of $v$ satisfies all the constraints of $E$.
-\begin{equation}
-Vs=V \mbox{ , iff } E(V)=\begin{cases}1, & \mbox{  iff } E_i(v)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
-\end{cases} 
-\end{equation}
-Where $Nc$ is the number of constraints need to be satisfied to have an acceptable response.\\
-The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context, for example: the room shape and minimizing the altitude to have a best resolution, the orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. \\
-
-\subsubsection{Coverage estimation} \label{sec:coverageEstimation}
-Considering the case where the camera is fixed on a UAV with a looking direction is orthogonal to the ground without any rotation from $\alpha$ and $\beta$, it is  possible to compute for a given altitude the ground area cover by one camera based on the given parameters of $v$, especially the focal $f$, the sensor$s$ and the altitude of the camera. Using this model with no rotation around the $\alpha$ and $\beta$ the camera projection onto the floor is always a rectangle projection as described in Figure \ref{fig:cam_proj}. The size of this rectangle is deduced from $ f ,s$ and the altitude $z$. 
-\begin{equation}
-s= [Sw ; Sh]  %\mbox{   } Sw,Sh \in \mathbb{N} 
-\end{equation}
-
-\noindent $Sw$, sensor size width. \\
-$Sh$, sensor size height.
-\begin{equation} 
-  \begin{split}
-	\alpha H = 2\times \tan^{-1} (\frac{Sw}{(2\times f)}  ) 
-    \\
-	\alpha V = (\frac{Sw}{Sh} )\times \alpha H
-  \end{split}
-\end{equation}
-Where $f$ is the focal length of the vision sensor and 
-$\alpha H$, $\alpha V$ are the angle of view horizontally and vertically from the camera.\\
-To estimate the width and height size of the projected rectangle onto the ground depending on the altitude $A$:
-\begin{equation}\label{eq:WrHr}
-	\begin{split}
-    	Wr= 2\times A\times\tan \alpha H
-        \\
-        Hr= 2\times A\times\tan \alpha V
-     \end{split}
-\end{equation} 
-Therefore a rectangle with the size $(Wr, Hr)$ for the width and height, can represent the projected  camera field of view. The size of $Wr$ and $Hr$ is directly linked to the coefficient $A$ ( for altitude). In the simple case $A $ is equal to  $z$ and $z$ is selected in a range given by the UAV ability or the user. The simplification by modelling all the cameras with a fix orientation and same ability (in order to have a rectangle projection onto the ground) helps the cost function to be fast and efficient. 
-
-Thanks to the simplification the element to optimize in order to have an efficient coverage can be limited to pass from Eq. (\ref{eq:v}) to  Eq.(\ref{eq:v2})  as presented: 
-\begin{equation}\label{eq:v2}
-v=(x,y,z,\gamma )
-\end{equation}
-
-\subsection{ Waypoint positioning formulation. }\label{WaypointPositiongForm}
-
-The goal of waypoint positioning is to manage the positioning of the fixed numbers of vision sensors in order to maximize the visual coverage. Indeed before finding the position some assumptions should be made.
-%Indeed to use the evolutionary algorithm to optimize the problem of coverage is essential to define the objectives and  design the cost function. 
-In the following, the coverage term denotes all parts of the floor visible by at least one camera. 
- Therefore, the problem is formulated as follows:
-\begin{itemize}
-\item [-] Maximization of the coverage with a fixed number of cameras.
-\item [-] Minimization of the constraints, for example, the complex shape of the area, the bound of the area, the altitude of the UAV,...
-\end{itemize}
-
-The problem needs to be formalized in order to clearly identify the complexity of the waypoint positioning.
-In this section, the waypoint to the position is considered as a set of camera views. \\
-The positions of the cameras views have to limit the number and the size of black holes to be exploitable. The black holes are the area not covered by the camera views. 
-To do so a precise estimated of the part covered by the system of camera views is elemental.
-\\To know if the area is covered by a minimum of one camera, the techniques calls for representing the area by numerous placed points at the height of the ground. This point can be distributed “randomly” or uniformly on the ground as presented by Van Den Hengel et al \cite{83*} or it can be distributed by following a basic pattern  such as a grid shape.  Let $G$ be the grid map of the area to cover and $G_i$ is the $i^{th}$  point of the grid: %The grid noted $G$ with $G_i$ is the specific point $i$ of the grid is noted by 
-\begin{equation}
-G=\begin{bmatrix}
- g_1 ...g_i ... g_m
-\end{bmatrix}  ,\mbox{ with }  m\in \mathbb{N}.
-\end{equation}
-
-\noindent Where $m$ is the number of points in the grid. The size of the grid is also an important factor affecting the precision, and computing complexity. If the value  of $m$ is too small, the coverage will be badly estimated. That will also affect the pose of the vision sensors. A value too high for $m$ will increase the complexity of the coverage estimate in terms of computation time and size of the search space and it will affect the camera pose. \\
-The value of $m$ should be chosen carefully, depending on the ability and the number of the cameras, the area size and the goal. \\
-%The solution the more used to design the $G$ stay the occupation grid. 
-The occupation grid has been widely employed and easily implemented for designing $G$  \cite{8*,137*,164*,141*,151*}.
-Every point of the grid $G$ should be covered at least by one camera. Consequently, a binary list of points is created to count the covered part of $G$ which is noted as $Pc$.
-\begin{equation}\label{eq:Pci}
-Pc_i= \begin{cases} 1, & \mbox{if } g_i\mbox{ is covered by $k$ cameras} \\ 0, & \mbox{otherwise}  \end{cases}
- \mbox{ , }k\geq 1
-\end{equation}
-  
-
-
-\noindent Where $k$ is the number of cameras used to cover the point $g_i$ (of the grid $G$). In our case $k=1$ but can be easily adapted according to the need. $k=1$ is to specify the area that has to be covered with as little overlap as possible.\\
-$Pc$ is the set of points covered by at least $k$ vision camera views, as in Eq.\eqref{eq:Pci}. \\
-
-The vision sensor or, more precisely, camera contains many parameters:
-\begin{itemize}
-\item Each camera has a position  in  $(x, y, z)$ in the Cartesian system.
-\item Each camera  has an  orientation with 3 degrees of freedom, pan$(\alpha$),  tilt$(\beta)$ and roll$(\gamma)$.
-\item Every camera has different optical parameters. Among these parameters, two of  most interesting are, the focal length $f$ and the sensor size $s$. 
-\end{itemize}
-
-%\begin{figure}[t!]
-%\centering
-%\minipage{0.65\textwidth}
-% 
-%   \includegraphics[width=\linewidth]{fig3.png}
-%  \label{fig:pan_tilt_Roll}
-%  \endminipage\hfill
-%  \caption{ The  rotation composed by 3 degrees of freedom on pan,  tilt, roll for $(\alpha,\beta , \gamma)$.}
-%\end{figure}
-In fact, the different elements used to define the camera poses, can be stated as a set of parameters.\\
- 
-\begin{equation}\label{eq:v}
-v=(x,y,z,\alpha ,\beta,\gamma,f,s)
-\end{equation}
-To cover an area, a set of cameras (defined by their parameter $v_i$ ) are used. This set of cameras is defined by $V$:
-%The problem of coverage is to optimize a set of parameters $v$, composed like in Eq.(\ref{eq:v}) for every cameras. 
-
-
-\begin{equation}\label{eq:V}
-\begin{split}
-V= \{v_i\} \mbox{  , } \forall i=1,...,N \mbox{ , } N\in \mathbb{N}^*
-\\
-\mbox{ and } v_i= (x_i,y_i,z_i,\alpha_i ,\beta_i,\gamma_i,f_i,s_i)
-\end{split}
-\end{equation}
-\noindent Where $N$ is the given number of cameras in the solution, which is also the number of cameras in the set $V$. \\
-Therefore, $V$ is a potential solution. However, all the potential solutions $V$ are not a possible solution to our problem. To become a feasible solution the $V$ should respect all the constraints of $E$ (see Eq.\ref{eq:Vs}). Where $E$ is the set of constraints (described later).
-%are not  noted as $Vs$ if   all the parameter of $v$ satisfies all the constraints of $E$.
-\begin{equation}\label{eq:Vs}
-Vs=V \mbox{ , iff } E(V)=\begin{cases}1, & \mbox{  iff } E_i(v)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
-\end{cases} 
-\end{equation}
-Where $Nc$ is the number of constraints needed to be satisfied to have an acceptable response.\\
-%The problem of monitoring an area and more specifically the problem of area coverage may contain many 
-The constraints depend on the environment and the context; for example: the room shape and the altitude minimization for good resolution, the orientation of the camera, the possible occlusion (obstacle), few fixes of camera position, priority area, strongly restricted zone, relief, etc. All these constraints are included in the set $E$. \\
-$Vs$ is a solution fulfilling all the constraints of $E$. The difference between $V$ and $Vs$ is the respect of the constraints $E$.%, a solution $V$ can be rejected as non possible solution (as out of the search space) when $Vs$ can be efficient enough to be the final solution.
-The set of solutions $Vs$ can be formulated with $ Vs\subset V  $ and $ Vs\subset E$, where $V$ is a set for the search space and $E$ is the set of constraints with $V \cap E = Vs$. 
-\fi
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Concerning the case of the camera is fixed UAV without any rotation from $\alpha$ and $\beta$  the following assumption may consider as true. 
-%Considering the case where the camera is fixed on UAV with a looking direction is orthogonal to the ground without any rotation from $\alpha$ and $\beta$ . 
-%The projection model of the camera is not explicitly taken into account, but the ground-projected visual field of view instead, as described in Figure \ref{fig:cam_proj}, with the focal $f$ and the sensor specificity $s$ are known and fixed. Therefore a rectangle can represent the projected field of view of the cameras. This simplification help the cost function to be fast and efficient. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%coverage estimation%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Coverage estimation.} \label{sec:coverageEstimation}
 
 
 
