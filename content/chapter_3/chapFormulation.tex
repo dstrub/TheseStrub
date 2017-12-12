@@ -4,7 +4,7 @@
 %The following chapter is focused on the problem formulation for cameras positioning.\\
 %Obviously formulation proposed in not the only one and some other have been proposed in the literature, mostly depending then the objectives. \\
 The formulation of the problem is essential in order to design an efficient cost function. The cost function is  used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
-This chapter present first, a formal definition  of the problem based on the literature and in the second time, our formulation is proposed. The formulation proposed is adapted to optimize the problems efficient cameras coverage using camera mounted on UAV.
+This chapter present first, a formal definition  of the problem based on the literature and in the second time, our formulation is proposed. The formulation proposed is adapted to optimize the problems of efficient cameras position for maximize the coverage, using camera mounted on UAV.
 
 \section{ Coverage estimation. }
 
@@ -19,15 +19,9 @@ This chapter present first, a formal definition  of the problem based on the lit
 %Where the main goal is to manage the positioning of the fix number of cameras in order to maximize the visual coverage. 
 %Indeed before to find the position some assumption should be done to describe our problems.\\ 
 
-The term coverage denote the area visible by at least one camera. Also the area to cover represent all the area which must be control by at least one camera. 
-To have an efficient optimization, the estimation of the answer are essential. Here the first element to evaluate the answer is the area coverage by a set of cameras mounted on a UAV. 
-The area covered by the set of the cameras will be the based of the cost function. In the second time the cost function will be  updated by adding the  constraints due to the systems.\\
- 
-Therefore the problem is formulated as:
-\begin{itemize}
-\item [-] Maximization of the coverage with a fix number of cameras.
-\item [-] Minimization of the constraints.\\( as examples the complex shape of the area, the bound of the area, the altitude of the cameras,...)
-\end{itemize}
+
+%To have an efficient optimization, the estimation of the answer are essential. Here the first element to evaluate the answer is the area coverage by a set of cameras mounted on a UAV. \\
+
 
 %The problem needs to be formalized in order to clearly identify the complexity of the cameras positioning. 
 
@@ -35,17 +29,24 @@ To estimate efficiently the area cover by a given set of cameras some point have
 \begin{itemize}
 \item First part the area himself. How to represent the area. 
 \item Second part camera definition. 
-\item Third part is to add the constraint. 
+\item Third part is to add the constraints. 
 \end{itemize} 
+ This 3 parts are discussed in the flowing sections. The area definition is discussed in the section \ref{sec:Grid} dedicate to the grid design. The camera definition is discussed in the section \ref{sec:CamerasCoverage} and the third about the constraints is discussed in the section \ref{sec:constraint}.\\
+Finally when the problem is clearly defined all the element of the different part can be integrate to have an efficient Cost function usable for the optimisation process.
 
-Thanks to the camera definition the area cover for one camera depending then this parameters can be computed.
-
-The area is at same time the more evident element and the one with propose the most variety of design.
-The area to cover have to be discretized  and this discrétization can be donne by diferent methode with a different sampling frequancy as is descripted in the folowing section. 
    
-   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;to do;;;;;;;;;;;;;;;;;;
-
-
+%;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; to do ;;;;;;;;;;;;;;;;;;
+%
+%The term coverage denote the area visible by at least one camera. Also the area to cover represent all the parts of the area which must be control by at least one camera. \\
+%
+%The area definition is primordial to the coverage estimation the folowing parts is focus on it . 
+%The area covered by the set of the cameras will be the based of the cost function. In the second time the cost function will be updated by adding the constraints due to the systems.\\
+% 
+%Therefore the problem is formulated as:
+%\begin{itemize}
+%\item [-] Maximization of the coverage with a fix number of cameras.
+%\item [-] Minimization of the constraints.\\( as examples the complex shape of the area, the bound of the area, the altitude of the cameras,...)
+%\end{itemize}
 
 %%%%%%%%%%%a
 %Due to this formulation, composed by the maximisation and minimization, the solution  have to evolve to a best  possible answer based on the cost function. Depending then the formulation of the area and the design of the cost function the ability to optimize a solution is greatly affected. 
@@ -76,7 +77,7 @@ The area to cover have to be discretized  and this discrétization can be donne 
 
 %/!$\backslash$ \textbf{ ajouter une partie dedier  a [181*] qui propose une solution pour ajusté la densité en fonction  de la necesité de présision  (contour plus dense ) }
 
-The first part is to estimate properly the coverage of the area. To do so many method have been developed most of them are based on the occupation grid $G$ of the area. 
+The first part is to estimate properly the area to cover. To do so many method have been developed most of them are based on the occupation grid $G$ of the area. 
 \begin{equation}\label{eq:Grid}
 	G=\begin{bmatrix}
 	 	g_1 ...g_i ... g_m
@@ -500,7 +501,7 @@ That mean among all the possible combination of parameter $V$ only the one meet 
 
 The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context, for example: the room shape and minimizing the altitude to have a best resolution, the orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. \\
 
-\subsection{Constraint}
+\section{Constraint}\label{sec:constraint}
 
 Make the exhaustive list of all the constraint for the problem of cameras positioning is not really interesting and almost impossible. The constraint can be numerous and depend mainly of the problem formulation and the context. Like that few of them was briefly introduced in the previous section as in chapter \ref{chap:stateOfTheArt}, section \ref{sec:coverageEstimation},...\\
 
@@ -574,7 +575,7 @@ The resolution of the images is related then the sensor size (in px) and  the di
 The resolution constraint have to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be the lower possible.\\
 During the optimization a trade off between the altitude (and the related resolution) and the coverage rate have to be done $\min{\frac{\sum^n_{i=1}{A.coef_i}}{n}}$ and the coverage rate . In order to manage this trade off, the average altitude of the cameras position is included in the cost function (*******ajouté lien ver la partie******). 
  
-\paragraph*{Constraints types.}
+\subsection{Constraints types.}
  
 Among the constraints listed different priority and restriction exist. Indeed the constraint can be considered in 2 sub-class. 
 \subparagraph{Hard Constraint.}
@@ -599,7 +600,7 @@ The objective is to maximize the coverage of a set of cameras ($f(Vs)$) with res
 Concretely the soft constraint are commonly integrated in the Cost Function as can be the resolution. 
 
 
-\subsection{The cost function.}
+\section{The cost function.}
 
 The cost function have the mission to estimate the quality of an answer. In our case an answer is the position  of a set of cameras. The cost function is essential in the process of optimization as that was introduced in the section \ref{sec:CostFunctionGA}.
 
@@ -679,7 +680,7 @@ The value returned by the cost function will be essential for the optimization p
 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \subsection{Optimization complexity} \label{sec:OptimizationComplexity}
+ \section{Optimization complexity} \label{sec:OptimizationComplexity}
  
 %To cover an area with a certain amount of sensor many solutions can be possible.
 In spite of the simplification presented before, the problem stay complex. There exist many position for each camera to cover an area with certain amount of sensors. This number of position can be estimate as follow.\\   
