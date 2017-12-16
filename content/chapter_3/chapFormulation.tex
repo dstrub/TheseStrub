@@ -95,7 +95,7 @@ The modelization of the grid is an important element and different solution has 
 \subsubsection*{Related work for the grid design}
 The following subsection is focused on the different  modelling the grid possibility, based in the literature. 
 
-\paragraph*{Sampling frequency} %Sampling frequency.\\
+\paragraph{Sampling frequency} %Sampling frequency.\\
 The occupation grid is use to discretize the area to cover. The discretization of the area can vary and the area can have a high level of discretization or low level. The level of sampling frequency has an effect on the problem formulation and moreover on the optimization.
 
 \subparagraph{High sampling frequency.}
@@ -147,7 +147,7 @@ In this other side the low sampling frequency may generate a bad estimation of t
 							 & Give more precision on the cameras poses& \tabularnewline \hline  
 	  \Emph{Low sampling frequency }	      	 & Faster computation 	& Bad coverage estimation				 	 	\tabularnewline \hline
  
-   \end{tabular} \caption{Sum-up of the low and high sampling frequancy adaventage or disadvantage. } \label{tab:GAsetting}
+   \end{tabular} \caption{Sum-up of the low and high sampling frequancy adaventage or disadvantage. } \label{tab:samplingFrequency}
  \end{table}
 % tableau auto généré   bug 
 %\begin{table}[]
@@ -164,26 +164,24 @@ In this other side the low sampling frequency may generate a bad estimation of t
 %\multicolumn{1}{|l|}{\cellcolor[HTML]{EFEFEF}\textbf{Low sampling frequency}} & Faster computation & Bad coverage estimation \\ \hline
 %\end{tabular}
 %\end{table}
+\subparagraph{Low or high sampling frequency}
+Finally the too low sampling frequency instead to win computation time, may affect the quality of coverage  estimation and consequently the answer. But, as explained the impact of a too high frequency in the solution have also some consequence as is summarize in the table \ref{tab:samplingFrequency} \\
+The density of the grid need to be adjusted depending then the goal and the precision required. One of the solution proposed in Zhao et al[22*] is to have a progressive refinement by increasing the grid density.
 
-Finally the too low sampling frequency instead to win computation time, may affect the quality of coverage  the estimation and consequently the answer. But, as explained the impact of a too high frequency in the solution have also some consequence as is summarize in the table \ref.... \\
-The density of the grid need to be adjusted depending then the goal and the precision required. One of the solution proposed in Zhao et al[22*] is to progressive refinement in grid density.
-
-
-% the quality of the coverage will be approximate. 
-
-%\subparagraph{Disadvantage of the  high sampling frequency.}
-////////////progressive sampling/////
-In Zhao et al [22*] the points $g_i$ of the grid $G$ are called targets and have to be covered. Despite a slow density of target at the beginning  the number of target increase slowly to have a better density and refine result. In[22*] the increasing frequency of target is applied to refine the solution and add more cameras  at eacg step of the optimisation for a better coverage.  \\
+%////////////progressive sampling/////
+In Zhao et al [22*]  despite a low density of point at the beginning, the number of point are increased slowly to have a better density and refine result. Also the increasing point frequency   is applied to refine the solution and add more cameras at each step of the optimisation to avoid the black hole and have a better coverage.  \\
 
 
-////////////camera pose estimation linked//////////////////////
-Also the frequency sampling is often link to the pose precision of the camera and the size of the search space. The search space represent the domain to optimize or can be defined by the set of all possible solutions in our case the search space is all the position for all the cameras. 
-Therefore increase the number of point in the grid will also increase in proportion the number of position possible for each cameras. The too high precision in the position of the camera will increase the complexity and some case where the value of $m$ is too high the optimization process cannot converge or find acceptable solution to the gain of the search space. \\ 
+%////////////camera pose estimation linked//////////////////////
+\subparagraph{Camera pose precision.}
+The frequency sampling is often link to the pose precision of the camera as discussed previously. %The search space represent the domain to optimize or can be defined by the set of all possible solutions in our case the search space is all the position for all the cameras. 
+Therefore increase the number of points will also increase in proportion the number of positions possible for each cameras. More the area is finely defined more is necessary to can slightly adjust the cameras position. Consequently the possible camera position and the search space also increase to finally allow a more refine solution but also more complex to optimize.
+ %The too high precision in the position of the camera will increase the complexity and some case where the value of $m$ is too high the optimization process cannot converge or find acceptable solution to the gain of the search space. \\ 
 
 
-\paragraph*{ Distribution}
-The distribution is an important factor to manage for design an occupation grid. The distribution is the method applied to describe the area to cover by the position of each point $g_i$.
-Different distribution can be use but commonly in the literature the grid pattern distribution and in a lesser extent the random distribution is applied (see Figure \ref{fig:GridVsRand}). \\
+\paragraph{ Distribution}
+The distribution is an important factor to manage for design an occupation grid. The distribution is how the  point of the grid are placed on the area to cover.
+Different distribution can be used, but commonly in the literature the grid pattern distribution and in a lesser extent the random distribution is applied (see Figure \ref{fig:GridVsRand}). \\
 \begin{figure}[t!]
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/GridVsRand.png}
@@ -192,11 +190,6 @@ Different distribution can be use but commonly in the literature the grid patter
 }\label{fig:GridVsRand}
   \endminipage\hfill
 \end{figure}
-The random distribution is less popular but it is used in [22*] in order to reduce the number of point in to the uniform grid pattern while maintaining the quality of the solution. In this case the random is use to select randomly the target when the precedent frequency of the grid was too high. So as to reduce size of the grid a random selection of the point of the grid is used. \\
-The solution proposed in [22*] is quiet specific. In the [83*] [171*] the random distribution is use to describe the area to cover. \\
-In Hoster et al [171*] the point of the grid are randomly distributed to describe all the area to cover. The advantage on this article is to use the random distribution in order to  manage the density of point in some specific region of the area. Especially By increasing the density of point on some specific zone of the area. the density increase allows to give more importance to this zone (see Figure \ref{fig:randomGridRef171})\\
-Indeed the higher density will affect the optimization process and the area with more density will be comparatively  more profitable to a low density area. The highest density will be cover in priority despite to an insufficient amount of cameras. This mechanism is even simplified due to the random distribution.
-
 %%%%% FIGURE  random distribution  form 171*
 \begin{figure}[t!]
 \minipage{0.65\textwidth}
@@ -207,20 +200,30 @@ Indeed the higher density will affect the optimization process and the area with
   \endminipage\hfill
 \end{figure}
 
-The hengel et al [83*] have test the random distribution and the uniform grid pattern distribution before to conclude the grid pattern and the random distribution propose globally the same result, when there is no priority zone in the area. Based on this observation hengel et al [83*] decide to use the uniform grid notably because of its simplicity of implementation.\\
+ In the [83*] [171*] the random distribution is use to describe the area to cover. \\
+In Hoster et al [171*] the point of the grid are randomly distributed to describe all the area to cover. The advantage on this article is to use the random distribution in order to manage the density of point in some specific region of the area. Especially By increasing the density of point on some specific zones of the area. The increased density allocate more importance to these zones (see Figure \ref{fig:randomGridRef171}).\\
+Indeed the higher density will affect the optimization process. The area with more density will be comparatively more profitable to a low density area. In these cases the zones with high density are cover in priority. This mechanism is even simplified due to the random distribution.
+
+The hengel et al [83*] have test the random distribution and the uniform grid pattern distribution before to conclude the grid pattern and the random distribution propose globally the same result, when there is no priority zone in the area. Based on this observation hengel et al [83*] decide to use the uniform grid notably because of its simplicity of implementation.
+
+%///////random distribution   for reduce the uniforme grid //////////
+The random distribution is less popular but in [22*] a hybrid distribution is proposed. The idea proposed is to reduce the number of point in the uniform grid when it have a to hight density. To reduce the number of points a random  selection is used. 
+
+
 
 \paragraph*{ Special modelization (3D  or 2D)}
 To design the occupation grid one other element should be taken in consideration, it is the spacial modeliszation. After deciding the useful density and the distribution of the grid, the position in the space of the point $g_i$ need to be studied.   %After the distribution of the grid, the special modelization is studied. 
-In fact depending then the problem the grid can be modelled differently in order to cover properly some specific region of interest. Commonly  the occupation grid is placed on the floor and calculate visibility only in 2D  [164*][150*][8*][170*][171*][22*] but depending then the context the grid have interest do describe a 3D space or a specific region.  
-Hegle et al[83*], calculates the visibility where it is relevant: for example, on the upper torso or head of the possible target rather than the floor. This article  propose a 2D grid but inside the 3d space in order to  characterize properly the volume by placing the grid at specific height.  \\
+In fact depending then the problem the grid can be modelled differently in order to cover properly area to control. Commonly the occupation grid is placed on the floor and calculate visibility only in 2D  by computing the  camera projection as in [164*][150*][8*][170*][171*][22*], but depending then the context the grid have interest do describe a 3D space.  
+Hegle et al[83*], calculates the visibility where it is relevant: for example, on the upper torso or head of the possible target rather than the floor. This article  propose a 2D grid but inside the 3D space in order to  characterize properly the volume by placing the grid at specific height.  
 
 In [82*] the grid is formalized in the full volumetric space by numerous “control Point” (as $g_i$) for control the area. The point of the grid are uniformly (or can be randomly) distributed along the axis of $x, y$ and $z$. Also in [87*] the grid are formulated in the volumetric space by using a uniform 3D grid distribution. The formulation proposed show the complexity even more important to use a 3 dimensional occupation grid and for practical reasons (mostly the inadequacy has computational power due to the increased complexity) the 3D grid is replaced by a 2D grid at a specific height to optimize the coverage. \\ 
-While an occupation grid designed to estimate the volume to cover along the $ x, y $ and $ z $ axes of the area already exists and his implementation is unusual due to the increasing complexity for the optimization process.  
-Nevertheless some solution was discussed [141*] [83*] to take into account the vplume of the area to cover which cannot be only limited to an occupation grid along the axes $ x $ and $ y $as a simple 2d grid placed on the floor.\\
-In [83*] is focus on estimate the area to cover inside a 3 level building. To estimate the coverage in the building the grid was placed at all the level. This solution is efficient in order to limit the number of point in the grid compare then a full volumetric description of the area and keep the 3 dimensional information by adding one layer for each level of the building.  \\
-The 3 dimensional grid can be exploit not only in term of described a volumetric space, as proposed before but also in term of relief on the map. 
-In [141*] propose a 2 dimensional grid adapted to the relief of the area to cover. This article are focused on cover a large outside area with an important relief. To estimate properly the area to cover a grid has been placed following the altitude of the relief. The area to cover is discretize by square of the grid with different altitude as Figure\ref{fig:grilleRef141}. Every square is use to describe the area to cover by a network of cameras.  
 
+While an occupation grid designed to estimate the volume to cover along the $ x, y $ and $ z $ axes of the area already exists. His implementation is unusual due to the increasing complexity for the optimization process.  
+Nevertheless some solution was discussed [141*]and [83*] to take into account the volume of the area to cover which cannot be only limited to an occupation grid along the axes $ x $ and $ y $as a simple 2D grid.
+
+In [83*] is focus on estimate the area to cover inside a 3 level building. To estimate the coverage in the building the grid was placed at each level. This solution is efficient in order to limit the number of points  compare then a full volumetric description of the area. Also this design allow to keep the 3 dimensional information by adding a layer at each level of the building.  
+
+In [141*] propose a 2 dimensional grid adapted to the relief of the area. This article are focused on cover a large outside area with an important relief. To estimate properly the area to cover a grid has been placed following the altitude of the relief as shown in Figure\ref{fig:grilleRef141}. 
 
 %%% figurir  from 141*
 \begin{figure}[t!]
