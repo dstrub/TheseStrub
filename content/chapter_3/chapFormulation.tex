@@ -233,41 +233,55 @@ In [141*] propose a 2 dimensional grid adapted to the relief of the area. This a
   \endminipage\hfill
 \end{figure}
 
-\paragraph*{ Zone of interest } 
-The zone of interest can be design by different manner depending then the goal. Manly 3 method can be discern.
+\paragraph*{ Zones of interest. } 
+Among the area to cover some zones may have a particular interest to be cover. These zones can be discriminate  by the grid design. 
+The zones of interest are designate by different manner depending then the goal. Manly 3 method can be discerned.
 \begin{itemize}
-	\item[-]	The multi coverage zone 
-	\item[-]	The priority zone  
-	\item[-]	Obstacle in the area
+	\item[-]	The multi coverage zone. 
+	\item[-]	The priority zone.  
+	\item[-]	Non-interesting zone.
 \end{itemize}
  
-This 3 method to design a zone of interest are not fully independent and can be associate in the same model [141*, 171*,84*].\\ 
 
-The multi coverage zone have to aim the control of a specific zone of the area by multiple cameras.  The multiple coverage may be called k coverage as in [174*]. Where k is the number of camera useful to cover this a zone. \\
+\subparagraph{The multi coverage zone.}
+The aim  of the multi coverage zone is to have on a specific zones of the area controlled by numerous cameras.  The multiple coverage may be called $k$-coverage as in [174*]. Where refer $k$ to the number of camera mandatory to cover the zones of interest. 
 Every points of the grid $G$ should be covered at least by one camera and for some specific zone of the area by $k$ cameras.\\
  Consequently a binary list of points is created to count the covered part of $G$ which are noted as $Pc$.
 
 \begin{equation}\label{eq:PciK}
 Pc_i= \begin{cases} 1, & \mbox{if } g_i\mbox{ is covered by $k_i$ cameras} \\ 0, & \mbox{otherwise}   \end{cases}k_i \in K
 \end{equation}
-Where $k_i$ is the number of camera use to cover the point $g_i$ of the grid. $K $ is the list of $k_i$ useful to cover the area associate to the point of the grid $g_i$ as in [82*]. \\%ajouté les reference 82 + kcoverage appellation.\\
+Where $k_i$ is the number of cameras use to cover the point $g_i$ of the grid. $K$ is the list of $k_i$ associate to the number of points in the grid. The list $K$ is initialized at one by default, except for the zones of interest where have to be superior to one as in [82*]. 
 
-The priority zone are the zone to cover in priority especially in the case where the number of cameras are not sufficient to fully cover the area. This priority of coverage can be expressed by different way. \\
-In the case where the grid is uniformly distributed a weighting may be fixed on the zone of the area to cover in priority [141*,84*]. This method was implemented in [141*]  to optimize the position of the camera on the road passing through the area to cover. \\
-In [171*] the weighting on the zone of interest is not did it on the point of the (uniform) grid. Instead the weight is done by increasing the frequency of point of the random grid distribution as in Figure \ref{fig:randomGridRef171}(b). Using this method the zone of interest are more dense and that push the optimization process to cover this area in priority (more density mean more interest on the cost function).\\
-The priority zone in the uniform grid distribution can be formulate as: 
+\subparagraph{The priority zones.}
+The zones to cover in priority are used especially in the case where the number of cameras are not sufficient to fully cover the area. This priority of coverage can be expressed by different way. \\
+In the case where the grid is uniformly distributed a weighting may be fixed on the zone of the area to cover in priority [141*,84*]. This method was implemented in [141*] to optimize the position of the camera on the road passing through the area to cover. \\
+In [171*] the weighting of the priority zone is made by increasing the sampling frequency of the zones thanks to random distrbution  as in Figure \ref{fig:randomGridRef171}(b). Using this method the zone of interest are more dense and that push the optimization process to cover this area in priority (more density mean more interest).\\
+Otherwise the priority zone in the uniform grid distribution can be formulate as: 
   \begin{equation}\label{eq:PciP}
 Pc_i= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered and  $p_i$ is the weight} \\ 0, & \mbox{otherwise}  \end{cases}
 \end{equation}
-Where $p_i$ is the weight of the point $g_i$ on the grid $G$. $P $ is the list of $p_i$ useful to the weighting of the area associate to the point of the grid $g_i$. \\
+Where $p_i$ is the weight of the point $g_i$ on the grid $G$. $P $ is the list of $p_i$ which contain the weighting of the area associate to the points of the grid $g_i$. \\
 
-Obstacle in the area, are the zones without interest. This zone are not strongly prohibited. That mean the zone considering as obstacle can be covered but their coverage or un-coverage does not affect the estimation of the coverage of the area. In the case of random grid distribution the obstacle zone have a frequency of control point null [141*]. For the uniform grid distribution the obstacle zone are remove to the list $Pc$. This method are currently used like in [22, 170, 141, 171, 84].
+\subparagraph{Non-interesting zone.}
+Non-interesting zones are the zones without interest to be covered noted $U$ with the set $U$ composed of points $g_i$. This zones are not strongly prohibited. That mean the zones considering as non-interesting can be covered but their coverage or un-coverage does not affect the estimation of the coverage of the area. In the case of random grid distribution the non-interesting zones have a sampling frequency null as in [141*]. For the uniform grid distribution the non-interesting zone are remove to the list $Pc$. This method are currently used like in [22, 170, 141, 171, 84]. 
+\begin{equation}\label{eq:setU}
+Pc=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intresting points} \}
+\end{equation}
 
+
+Finally  these methods use to design the zones of interest are not fully independent and can be associate in the same model as in  [141*, 171*,84*]. The combination of all these  zone of interest can be formulate as : 
+ \begin{align}\label{eq:PcFull}
+Pc_i= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered  by $k_i$ and  $p_i$ is the weight} \\ 0, & \mbox{otherwise}  \end{cases}
+\\ Pc=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intresting points} \}
+\end{align}
+
+   
 \paragraph*{Atypical design}  
 
-We saw previously the method to set up a classical occupation grid depending then the problem. Few other solution more atypical have been developed. On solution coming from the field of wireless sensor network is the topologies grid. 
- The topologies grid is clearly explained in Chakraborty et al[150*] the interest of this  methodologies is to reduce the number of point to cover, not related to the resolution wished  but by the sensor range. Indeed the size between the point of the grid has been defined by the size of the minimal range of the sensors thank to the relation of the point are defined as a topological relation. 
-Another atypical solution is to develop a grid composed by rectangles. Each rectangles may have different size adapted to the obstacle in the area. A rectangle is considered as covered if most of the area of the rectangle is cover by the cameras[170*]. This method is adapted to the area with obstacle as is show in the Figure \ref{fig:from170}
+Previously the method to set-up a classical occupation grid depending then the problem has been discussed. Few other solution more atypical have been developed. On solution coming from the field of wireless sensor network is the topologies grid. 
+ The topologies grid is clearly explained in Chakraborty et al[150*] the interest of this  methodologies is to reduce the number of points to cover. But in this case the number of point is not related to the resolution wished  but by the sensor range. Indeed the size between the point of the grid has been defined by the size of the minimal range of the sensors. The distance of the minimal sensor range are used as node for a topological relation. \\
+Another atypical solution is to develop a grid composed by rectangles. Each rectangles may have different size adapted to the obstacle in the area. A rectangle is considered as covered if most of the area of the rectangle is cover by the cameras as in [170*]. This method is adapted to the area with few obstacle as is show in the Figure \ref{fig:from170}.
 \begin{figure}[t!]
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/from170.png}
@@ -300,7 +314,7 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
 	 
 \subsubsection*{Our approach}
  Base on the different design the one finally adopted is a grid $G$ as in Eq \ref{eq:Grid} with an uniform repartition following the 2D grid pattern. The frequency adopted is fixed depending then the size of the area, the precision required and the area cover by one camera. The frequency adopted for the following par as to be considered as dense (high ).
-  The grid is placed on the floor of the area to control. Floor is always considered as flat without relief. The zone of interest can vary depending then the need of the experimentation, but the  design chosen is  flexible to apply if necessary the formulation form the Eq:\ref{eq:PciK}, \ref{eq:PciP} and also the obstacle as is presented in the precedent part with the suppression of the obstacle in the list of $Pc$.
+  The grid is placed on the floor of the area to control. Floor is always considered as flat without relief. The zone of interest can vary depending then the need of the experimentation, but the design chosen is flexible to apply if necessary the formulation form the Eq:\ref{eq:PcFull} with mostly $k=1$ and $p=1$, also a set $U$ is used to represent the obstacle as it was presented in eq \ref{eq:setU}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
