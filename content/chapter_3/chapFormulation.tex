@@ -32,7 +32,7 @@ To estimate efficiently the area cover by a given set of cameras some point have
 \item Third part is to add the constraints. \\
 \end{itemize} 
  This 3 parts are discussed in the flowing sections. The area definition is discussed in the section \ref{sec:Grid} dedicate to the grid design. The camera definition is discussed in the section \ref{sec:CamerasCoverage} and the third about the constraints is discussed in the section \ref{sec:constraint}.\\
-Finally when the problem is clearly defined all the element of the different part can be integrate to have an efficient Cost function usable for the optimisation process.
+Finally when the problem is clearly defined all the elements of the different parts are integrate to have an efficient cost function usable for the optimisation process.
 
    
 %;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; to do ;;;;;;;;;;;;;;;;;;
@@ -77,31 +77,31 @@ Finally when the problem is clearly defined all the element of the different par
 
 %/!$\backslash$ \textbf{ ajouter une partie dedier  a [181*] qui propose une solution pour ajusté la densité en fonction  de la necesité de présision  (contour plus dense ) }
 
-The first part is to estimate properly the area to cover. To do so many method have been developed most of them are based on the occupation grid $G$ of the area. 
+The first part is to estimate properly the area to cover. To do so many methods have been developed most of them are based on the occupation grid $G$ of the area. 
 \begin{equation}\label{eq:Grid}
 	G=\begin{bmatrix}
 	 	g_1 ...g_i ... g_m
 	\end{bmatrix}  , m\in \mathbb{N}
 \end{equation}
 Where $m$ is the number of points in the grid.
-The occupation grid is placed on the area to cover. At minima each point $g_i$ of the grid $G$ should be cover by a camera. Consequently a list of points is created to listed the covered part of $G$ which are noted as $Pc$.
+The occupation grid is placed on the area to cover. At minima each point $g_i$ of the grid $G$ should be covered by a camera. Consequently a list of points is created to enumerate the covered part of $G$ which are noted as $Pc$.
 \begin{equation}\label{eq:Pci}
 g_i \in Pc \mbox{ IFF } g_i \mbox{ is coverd. }
 \end{equation}
 
 
-The modelization of the grid is an important element and different solution has been proposed during the time with different advantage depending then the situation.\\
+The modelization of the grid is an important element and a different solution has been proposed during the time with different advantage depending then the situation.\\
 
-\subsubsection*{Related work for the grid design}
+\subsubsection{How to design an occupation grid. }%Related work for the grid design
 The following subsection is focused on the different  modelling the grid possibility, based in the literature. 
 
 \paragraph{Sampling frequency} %Sampling frequency.\\
-The occupation grid is use to discretize the area to cover. The discretization of the area can vary and the area can have a high level of discretization or low level. The level of sampling frequency has an effect on the problem formulation and moreover on the optimization.
+The occupation grid is used to discretize the area to cover. The discretization of the area can vary and the area can get a high level of discretization or low level. The level of sampling frequency has a bearing on the problem formulation and moreover on the optimization.
 
 \subparagraph{High sampling frequency.}
-The high level of discretization or high sampling frequency have some advantage and disadvantage.
+The high level of discretization or high sampling frequency has some advantage and disadvantage.
  
-The high sampling frequency of an area is characterized by a big amount of point $g_i$ for describe the area. The big amount mean to have an important density of point $g_i$ and consequently the value of $m$ is high. 
+The high sampling frequency of an area is characterized by a big amount of point $g_i$ for describing the area. The big amount mean to have an important density of point $g_i$ and consequently the value of $m$ is high. 
 
 %\begin{equation}
 %	G=\begin{bmatrix}
@@ -113,18 +113,18 @@ The high sampling frequency of an area is characterized by a big amount of point
 % \subparagraph{Advantage of the  high sampling frequency.}
 %////////////high sampling advantage////
 The advantage of it, is to have a better estimation of the coverage. More the area is finely discretize more the estimation of the coverage will be sharp. In \citep{171*horster2006} an example of high frequency sampling is given in order to have sharp estimation of the area. \\
-The high sampling frequency allow the cameras position to be much more accurate and make a very small adjustment.
+The high sampling frequency allows the cameras position to be much more accurate and make a very small adjustment.
 
 %////////////high sampling disadvantage////\\
 
-On another side the disadvantage to have a too high sampling frequency is the time computation. Rather to refine the solution the too high level of discretization of the area will make the optimization too long and more complex. Indeed to control the coverage, it is necessary to control if each points of the grid are covered by a camera.  
+On another side, the disadvantage to have a too high sampling frequency is the time computation. Rather to refine the solution the too high level of discretization of the area will make the optimization too long and more complex. Indeed to control the coverage, it is necessary to control if each point of the grid is covered by a camera.  
 \begin{equation} 
 	\sum^m \sum^n \mbox{test of coverage}
 \end{equation}
 
-Where $m$ is the number of point in the grid and $n$ the number of camera. 
+Where $m$ is the number of points in the grid and $n$ the number of camera. 
  More the size of the grid is high more unity test of coverage (see in section \ref{sec:CamerasCoverage}) must be done, and that at each step of the optimization process.  Consequently the size of the grid will greatly affect the time computation.  \\
-Also the high sampling frequency will affect the positioning of the cameras pose. In fact more area is finely represented more freedom have to be done to pose and adjust each cameras. 
+Also the high sampling frequency will affect the positioning of the cameras pose. In fact, more area is finely represented more freedom has to be done to pose and adjust each camera. 
 
 
 %////////////////////////////////////
@@ -132,9 +132,9 @@ Also the high sampling frequency will affect the positioning of the cameras pose
 %In fact the quality of the coverage estimation affect the positioning optimization. %A bad estimation of the area coverage due to the bad level of discretization will impact the quality of the answer and the precision of the cameras position by returned a approximate coverage rate. 
 \subparagraph{Low sampling frequency.}
 %///////////////////advantage of the low sampling///////
-At the opposite a lower sampling frequency can be a good solution to upgrade the convergence speed of the optimization process as that was presented in \cite{8*zhou2011}. In Zhou et al \cite{8*zhou2011} a small value of $m$ is chosen to have a real time solution for small area and just few cameras ( up to  20). 
+At the opposite a lower sampling frequency can be a good solution to upgrade the convergence speed of the optimization process as that was presented in \cite{8*zhou2011}. In Zhou et al \cite{8*zhou2011} a small value of $m$ is chosen to have a real time solution for small area and just few cameras (up to  20). 
 %////////////low sampling disadvantage////
-In this other side the low sampling frequency may generate a bad estimation of the area covered due to the too low density of point in the grid. The low density of point may give an approximated view of the area covered and some black hole can appear between the point of the grid. This black hole can be too small to be detected because of the low density of point. In this case the optimization cannot take in account this black hole and the solution given after an optimisation will be in a real environment not good as aspect. \\
+In this other side, the low sampling frequency may generate a bad estimation of the area covered due to the too low density of points in the grid. The low density of points may give an approximated view of the area covered and some black hole can appear between the point of the grid. This black hole can be too small to be detected because of the low density of point. In this case, the optimization cannot take in account this black hole and the solution given after an optimisation will be in a real environment not good as aspect. \\
 
 
 
@@ -165,11 +165,11 @@ In this other side the low sampling frequency may generate a bad estimation of t
 %\end{tabular}
 %\end{table}
 \subparagraph{Low or high sampling frequency}
-Finally the too low sampling frequency instead to win computation time, may affect the quality of coverage  estimation and consequently the answer. But, as explained the impact of a too high frequency in the solution have also some consequence as is summarize in the table \ref{tab:samplingFrequency} \\
-The density of the grid need to be adjusted depending then the goal and the precision required. One of the solution proposed in Zhao et al \citep{22*zhao2008}  is to have a progressive refinement by increasing the grid density.
+Finally the too low sampling frequency, instead to win computation time, may affect the quality of coverage  estimation and consequently the answer. But, as explained the impact of a too high frequency in the solution has also some consequence as is summarized in the table \ref{tab:samplingFrequency} \\
+The density of the grid needs to be adjusted depending than the goal and the precision required. One of the solutions proposed in Zhao et al \citep{22*zhao2008}  is to have a progressive refinement by increasing the grid density.
 
 %////////////progressive sampling/////
-In Zhao et al \citep{22*zhao2008}  despite a low density of point at the beginning, the number of point are increased slowly to have a better density and refine result. Also the increasing point frequency   is applied to refine the solution and add more cameras at each step of the optimisation to avoid the black hole and have a better coverage.  \\
+Zhao et al \citep{22*zhao2008}  despite a low density of points at the beginning, the number of points are increased slowly to have a better density and refine results. Also the increasing point frequency   is applied to refine the solution and add more cameras at each step of the optimisation to avoid the black hole and has a better coverage.  \\
 
 
 %////////////camera pose estimation linked//////////////////////
