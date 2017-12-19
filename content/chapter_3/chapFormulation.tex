@@ -337,8 +337,10 @@ To verify if each points of the grid is covered by a camera. It is primordial to
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{ Cameras definition.}\label{sec:CamerasDefinition}
 
-The  projection model closet to the human view is the perspective projection. The perspective projection is also the more common and more especially in the field of area coverage as in \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional with a $360^{\circ}$ of field of view as \citep{43*erdem2006,150*chakrabarty2002,174*zhang2016}. The following sections are focus on the cameras perspective.  \\
-The pin hole or in Latin the "camera obscura"  is at the origin of the geometry model for the perspective projection.\\
+The projection model closet to the human view is the perspective projection. The perspective projection is also the more common and more especially in the field of area coverage as in example \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional with a $360^{\circ}$ of field of view as \citep{43*erdem2006,150*chakrabarty2002,174*zhang2016}. 
+Here we are only focus on the cameras perspective due to its wide use.  \\
+
+The pin hole or in Latin the "camera obscura" is at the origin of the geometry model for the perspective projection.\\
 \begin{figure}[t!]
 \begin{center}
  \minipage{0.65\textwidth}
@@ -347,8 +349,8 @@ The pin hole or in Latin the "camera obscura"  is at the origin of the geometry 
   \endminipage\hfill
 \end{center}
 \end{figure} 
- The pin hole model is commonly composed by box (or chamber) hermetically closed to light excepted by a small pin hole on the middle of front side. All the ray of light reflected by the object of the world and passing by the small hole are projected onto the back side of the box. Each rays of light passing by the hole are  projected on the plan (inside the box). This plan became the reversed image and can be recorded by a film or a digital sensor. 
- Due to the simplicity of the pin hole model (no lens, no mirror) the calibration and camera projection  estimation is simplified.\\
+ The pin hole model is commonly composed by box (or chamber) hermetically closed to light, excepted by a small pin hole on the middle of front side. All the ray of light reflected by the object of the world and passing by the small hole are projected onto the back side of the box. Each rays of light passing by the hole are  projected on the plan (inside the box). This plan became the reversed image of the world and can be recorded by a film or a digital sensor. 
+ Due to the simplicity of the pin hole model the calibration and camera projection estimation is simplified.\\
   Based on it the camera projection is dependent then few parameters intrinsic ( as focal length, sensor size,...) and extrinsic (as the position $x,y,z$ and orientation $\alpha,\beta,\gamma$) . 
   
  
@@ -356,7 +358,7 @@ The pin hole or in Latin the "camera obscura"  is at the origin of the geometry 
 \begin{center}
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/PanTiltRoll.png}
-  \caption{ The rotation composed by 3 degrees of freedom on pan tilt roll$(\alpha,\beta,\gamma)$.}\label{fig:PanTiltRoll}
+  \caption{The rotation composed by 3 degrees of freedom on pan tilt roll$(\alpha,\beta,\gamma)$.}\label{fig:PanTiltRoll}
   \endminipage\hfill
   \end{center}
 \end{figure}
@@ -364,17 +366,17 @@ The pin hole or in Latin the "camera obscura"  is at the origin of the geometry 
 In fact the useful elements to define the projection of a camera perspective, can be stated as a set of parameters composed by :\\
 \begin{itemize}
 \item Three degrees of freedom of the sensor’s position: $(x, y, z)$;
-\item Three degrees of freedom of the sensor’s orientation: the pan, tilt, and swing angles: $(\alpha,\beta, \gamma)$ 
-\item Optical parameters including: the focal length $f$ of the lens, the sensor size $s$,  $ u_{0}$ and $v_0 $  which would be ideally in the centre of the image. $\sigma_{uv}$ represents the skew coefficient between the x and the y axis.
+\item Three degrees of freedom of the sensor’s orientation: with the  the rotation in pan, tilt, and swing angles: $(\alpha,\beta, \gamma)$ 
+\item Optical parameters including: the focal length $f$ of the lens, the sensor size $s$, $ u_{0}$ and $v_0 $  which would be ideally in the centre of the image. $\sigma_{uv}$ represents the skew coefficient between the $x$ and the $y$ axis.
 \end{itemize}
 $s$ is composed by two element $Sw$ and $Sh$ for the size on width and height (also called scale factor).\\
 
-The useful parameters of the camera can be formalized as a vector :
+Among the parameters of the camera only the some of them are useful to estimate the projection. They can be formalized as a vector:
 \begin{equation}\label{eq:v}
 v=(x,y,z,\alpha ,\beta,\gamma,f,s,u_0,v_0,\sigma_{uv})
 \end{equation}
 
-Each element of the vector $v$ are necessary to compute the camera projection on to each individual point of the discretized floor. 
+Each element of the vector $v$ are used to compute the camera projection on the discretized floor. 
 \iffalse 
 To model the set of the cameras using the precedent notation, a set $V$ composed by $N$ cameras defined by $v$ noted:
 \begin{equation}\label{eq:V}
@@ -452,11 +454,10 @@ $$
 \subsubsection{Coverage estimation in the literature}
 
 %To estimate the coverage of a set of camera $V$  the cameras projection of each $v_i$ has to be computed individually.
- In order to compute the camera projection onto a grid the Pin Hole model is used with the parameters of the vector $v$.\\
- 
-The detail to estimate the camera projection on to the floor based on the pin hole model and the parameters $v$, has been detailed numerous times as in  [193* ,181*, 165*]. In [193* ,181*, 165*] the camera projection is used to estimate if a point is visible by a camera, for each point of the grid. These articles handles the classical camera projection (with the 6DoF in 193* and 5DoF in 181*),in order to estimate the 2D projection of the camera onto the floor. 
-In the 193* the camera projection has been compute for several rotation and consider all the DoF. In this case the projection can have numerous shapes ( mostly parallelogram shape).
-In 181* the  model of camera projection is begin to be simplified by assuming some of the parameter are fixed and do not need to be recompute at each time.  \\
+ In order to compute the camera projection onto a grid the pin hole model is used with the parameters of the vector $v$.\\
+The detail to estimate the camera projection on to the floor based on the pin hole model and the parameters $v$, has been detailed numerous times as in \cite{193*fu2014,181*wang2017,165*jiang2010}. In \cite{193*fu2014,181*wang2017,165*jiang2010} the camera projection is used to estimate if a point is visible by a camera, for each point of the grid. These articles handles the classic camera projection (with the 6DoF in \citep{193*fu2014} and 5DoF in \citep{181*wang2017}),in order to estimate the 2D projection of the camera onto the floor. 
+In the \citep{193*fu2014} the camera projection has been compute for several rotation and consider all the DoF. In this case the projection can have numerous shapes ( mostly parallelogram shape).
+In \citep{181*wang2017} the  model of camera projection is begin to be simplified by assuming some of the parameter are fixed and do not need to be recompute at each time.  \\
 In 165* the model of camera projection is used to compute one time for a fix pan and roll in order to have an coverage estimation usable in a 2D map. The camera projection is finally simplified by using a kind of triangle shape.
  Also Some of them [181*,165*,141*] include the object occlusion. To detected the part of the area occluded the solution commonly proposed( as in [181*]) is to check  if the line between the camera and the points cover by the camera is intersected by at least one object of the scene. 
   Despite the simplicity of the computation numerous operation have to be done to compute the camera projection onto the floor. \\
