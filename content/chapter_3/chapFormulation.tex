@@ -455,38 +455,37 @@ $$
 
 %To estimate the coverage of a set of camera $V$  the cameras projection of each $v_i$ has to be computed individually.
  In order to compute the camera projection onto a grid the pin hole model is used with the parameters of the vector $v$.\\
-The detail to estimate the camera projection on to the floor based on the pin hole model and the parameters $v$, has been detailed numerous times as in \cite{193*fu2014,181*wang2017,165*jiang2010}. In \cite{193*fu2014,181*wang2017,165*jiang2010} the camera projection is used to estimate if a point is visible by a camera, for each point of the grid. These articles handles the classic camera projection (with the 6DoF in \citep{193*fu2014} and 5DoF in \citep{181*wang2017}),in order to estimate the 2D projection of the camera onto the floor. 
-In the \citep{193*fu2014} the camera projection has been compute for several rotation and consider all the DoF. In this case the projection can have numerous shapes ( mostly parallelogram shape).
-In \citep{181*wang2017} the  model of camera projection is begin to be simplified by assuming some of the parameter are fixed and do not need to be recompute at each time.  \\
-In 165* the model of camera projection is used to compute one time for a fix pan and roll in order to have an coverage estimation usable in a 2D map. The camera projection is finally simplified by using a kind of triangle shape.
- Also Some of them [181*,165*,141*] include the object occlusion. To detected the part of the area occluded the solution commonly proposed( as in [181*]) is to check  if the line between the camera and the points cover by the camera is intersected by at least one object of the scene. 
-  Despite the simplicity of the computation numerous operation have to be done to compute the camera projection onto the floor. \\
+The detail to estimate the camera projection on to the floor, based on the pin hole model and the parameters ($v$), has been detailed numerous times as in \cite{193*fu2014,181*wang2017,165*jiang2010}. In \cite{193*fu2014,181*wang2017,165*jiang2010} the camera projection is used to estimate if a point is visible by a camera, for each point of the grid. These articles handles the classic camera projection (with the 6DoF in \citep{193*fu2014} and 5DoF in \citep{181*wang2017}), both are used to estimate the 2D projection of the camera onto the floor. \\
+In the \citep{193*fu2014} the camera projection has been compute for several rotations for all the DoF. In this case the projection can have numerous shapes (mostly parallelogram shape).
+In \citep{181*wang2017} the model of camera projection begin to be simplified by assuming some fixed parameters. The fix parameters allow more efficiency by economize part of projection computation of the camera at each time.  \\
+In \citep{165*jiang2010} the model of camera projection is used to compute one time for a fix pan and roll in order to have an coverage estimation usable in a 2D map. The camera projection is finally simplified by using a kind of triangle shape.\\
+ Some of them as \citep{165*jiang2010,181*wang2017,141*akbarzadeh2013} include the object occlusion. To detected the part of the area occluded by an object, the solution commonly proposed (as is well explain in  \citep{181*wang2017}) is to check the line  made between a point covered ($g_i \in Pc$) and his camera. If this line is intersected by at least one object of the scene, the point $g_i$ cannot be considered any-more as covered. 
+%  Despite the simplicity of the computation numerous operation have to be done to compute the camera projection onto the floor. \\
 
-To go further other model inspired by the pin hole model have been used as [87* 141* 146* 194*]. These model are inherited for the camera projection and adapted to feet their problems. In order to simplify the estimate of the area covered by a set of cameras. \\
-In [87*, 194*] the camera is considered to be placed on the floor with a fix pan (almost parallel to the floor). Therefore the camera projection is simplified by a isosceles triangle where the focal length shape of it.\\
-Also in 141* the camera projection is simplified in order to have a kind of isosceles triangle shape with  
-consider the depth of view of the camera.\\
-In 146* thanks to a fix pan and focal length, the camera projection is simplified in order to estimate the size of the projection. In 146* once the size of cameras projection estimate the sweep is designed  in consequence, in order to minimize the overlap and  have full coverage of the area.   \\
+To go further other model and formulation inspired by the pin hole model have been proposed as \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010}. These model are inherited for the camera projection and adapted to feet their problems. \\
+In \cite{87*morsly2012,194*fu2010} the camera is considered to be placed on the floor with a fix pan (with the looking direction almost parallel to the floor). Therefore the camera projection is simplified by a isosceles triangle where the shape depend to the focal length.\\
+In \citep{141*akbarzadeh2013} the camera projection is also simplified in order to have a kind of isosceles triangle shape with consider the depth of view of the camera.\\
+In \citep{146*li2011} thanks to a fix pan and focal length, the camera projection is simplified in order to have a rectangle projection onto the ground. The sweep is designed consequently to the size of the camera projection, in order to minimize the overlap and have full coverage of the area.  
 
 
-One of the common point of the method present  ([87* 141* 146* 194*][22,33,193* ,181*, (165*)]) is the computation of a camera projection on to a grid. The computations necessary to estimate if a point of the area is cover are not considered as really greedy (in time). But have to be done to each point $g_j$ of the grid and for each camera $v_i$ of the network.
+One of the common point of the method present  in \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010,22*zhao2008,33*reddy2012,193*fu2014,181*wang2017}  (165*) is the computation of a camera projection on to a grid. The computations necessary to estimate if a point of the area is cover are not considered as really greedy (in time). But have to be done to each point $g_j$ of the grid and for each camera $v_i$ of the network.
 	\begin{equation} \label{eq:sum sum v g}
 		\sum_{j=1}^{m}\sum_{i=1}^{n}f( v_i,g_j)
 	\end{equation}
-Where $n$ the number of cameras in the network; $m$ the number of  point in the grid; \\
-The equation \ref{eq:sum sum v g} do not  take in account the occlusion by few obstacle $Obj$. If we add the occlusion  by $k$ object. 
+Where $n$ the number of cameras in the network; $m$ the number of point in the grid; \\
+This equation (Equation \ref{eq:sum sum v g}) do not take in account the occlusion by few obstacle $Obj$. If we add the potential occlusion by $k$ object: 
 	\begin{equation}
 		 \sum_{k=1}^{k}\sum_{j=1}^{m}\sum_{i=1}^{n}f( v_i,g_j,Obj_k)
 	\end{equation} 
  
-The function  $f(...)$ in charge to compute a camera projection will be called for each camera, in order to evaluate the complete coverage of the area. This numerous call will greatly increase the time computation of the coverage.  It is even worst when numerous cameras projection ($n$)have to be computed at each turn of a long optimisation process.\\
-In this condition the efficiency of the function $f()$ in charge then compute the coverage estimation is primordial.
+The function $f(...)$ in charge to compute a camera projection will be called  in the worst case for each camera, in order to evaluate the complete coverage of the area. This numerous call will greatly increase the time computation of the coverage. It is even worst when numerous cameras projection ($n$)have to be computed at each turn of a long optimisation process.\\
+In this condition the efficiency of the function $f()$ in charge then compute the coverage estimation is primordial, due to the numerous call.
 
 
 
 \subsubsection{coverage estimation optimization}
 Design a efficient cost function in order to reduce the time computation and estimate correctly the area covered is primordial for the optimisation process. \\
-  The computation of the camera projection can be minimized with some basic assumption depending then the problem.\\
+  The computation of the camera projection can be minimized with some basic assumption depending then the problems.\\
   
 Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotation around the axis of $\alpha$ (pan) and $\beta$ (tilt). It is  possible to compute for a given altitude the area covered by one camera, based on the given parameters. Especially the focal $f$, the altitude of the cameras and the sensor size $s$. Where $s$ is composed of $Sw$ sensor size width and $Sh$, sensor size height ($s= [Sw ; Sh]$). \\
 
