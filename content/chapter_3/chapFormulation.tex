@@ -483,13 +483,12 @@ In this condition the efficiency of the function $f()$ in charge then compute th
 
 
 
-\subsubsection{coverage estimation optimization}
-Design a efficient cost function in order to reduce the time computation and estimate correctly the area covered is primordial for the optimisation process. \\
-  The computation of the camera projection can be minimized with some basic assumption depending then the problems.\\
-  
-Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotation around the axis of $\alpha$ (pan) and $\beta$ (tilt). It is  possible to compute for a given altitude the area covered by one camera, based on the given parameters. Especially the focal $f$, the altitude of the cameras and the sensor size $s$. Where $s$ is composed of $Sw$ sensor size width and $Sh$, sensor size height ($s= [Sw ; Sh]$). \\
-
-This model with no rotation around $\alpha$ and $\beta$ and a looking direction to floor permit to estimate the camera FoV projected onto the floor. The camera projection is always a rectangle as described in Figure \ref{fig:cam_proj}. To estimate the shape of the rectangle with is deduced from the ratio of $s$ and the size of this rectangle with is deduced from $ f ,s ,A$. Where $A$ is the altitude where $A$ is the difference between the camera and the grid position, considered to be equal to $z$.  
+\subsubsection{coverage estimation optimization} 
+Design an efficient cost function is necessary to reduce the time computation and estimate the area covered. A good estimation of the area covered is primordial for the optimisation process. 
+  The computation of a camera projection have to be minimized with some basic assumption depending then the problems.\\
+Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotations in $\alpha$ (pan) and $\beta$ (tilt). It is possible to compute for a given altitude the area covered by one camera, based on the given parameters. Especially the focal length $f$, the altitude of the cameras and the sensor size $s$. Where $s$ is composed of $Sw$ sensor size width and $Sh$, sensor size height ($s= [Sw ; Sh]$). 
+In this model the camera projection is always a rectangle as described in Figure \ref{fig:cam_proj}. To estimate the shape of the rectangle with is deduced from the ratio of $s$ and the size of this rectangle with is deduced from $(f ,s ,A)$. Where $A$ is the altitude. The altitude is the distance between the grid and the cameras, in the simple case $A$ is considered to be equal to $z$, when the grid is on the floor.  \\
+The basic computation to estimate the size of a camera projection :
 
 %\begin{equation}
 %s= [Sw ; Sh]  %\mbox{   } Sw,Sh \in \mathbb{N} 
@@ -504,8 +503,7 @@ This model with no rotation around $\alpha$ and $\beta$ and a looking direction 
 		\upsilon = (\frac{Sw}{Sh} )\times \eta
  	 \end{split}
 	\end{equation}
-Where $f$ is the focal length of the camera and 
-$\eta$, $\upsilon$ are the horizontal and vertical camera fields of view.\\
+Where $\eta$, $\upsilon$ are the horizontal and vertical camera fields of view.\\
 Estimating the width and height of the rectangle projected on the ground depend on the altitude $A$ :
 	\begin{equation}\label{eq:WrHr1}
 		\begin{split}
@@ -522,7 +520,7 @@ Estimating the width and height of the rectangle projected on the ground depend 
  	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid is placed on the floor to discretize 	the area covered.}\label{fig:cam_proj}
 	\end{figure*}
 
-Therefore, the size of the rectangle projected onto the floor is $(Wr,Hr)$ for the width and height. The values of $Wr$ and $Hr$ are directly linked to the altitude of the camera. In the simple case and in the initialization, $A$ is equal to $z$ (see Eq:\ref{eq:V})  and $z$ is selected in a range given by the UAV or the user. \\
+Therefore, the size of the rectangle projected onto the floor is $(Wr,Hr)$ for the width and height. The values of $Wr$ and $Hr$ are directly linked to the altitude of the camera. In the simple case and in the initialization, $A$ is equal to $z$  and $z$ is selected in a range given by the UAV or the user. \\
 Once the couple $(Wr,Hr)$ as been computed for a $A=z$ it is easier to change the altitude of the camera. The rectangle projection will be affected in proportion.
 	\begin{equation}\label{eq:A.coef}
 		\begin{split}
@@ -530,15 +528,14 @@ Once the couple $(Wr,Hr)$ as been computed for a $A=z$ it is easier to change th
     		f(A.Coef)=f(z)= (Wr.Coef,Hr.Coef)      
     	 \end{split} 
 	\end{equation}
-Therefore, to any altitude $z$ is existing $A.Coef$ where the size of the camera projection onto the floor is $(Wr.coef, Hr.coef)$. Thanks to this the eq: \ref{eq:etaUpsilon} and eq: \ref{eq:WrHr1} have to be compute once  for a given focal length $f$  and sensor $s$ with an simple $A$. With this simple $Coef$ the size of camera projection can be easily simplified in order to limit the useless computation.
-
-The model of camera projection is greatly simplified by the UAV assumption (no pan, no tilt and fix focal length). That permits to consider  the camera projection as a simple rectangle with a size directly related to the altitude (by using a simple coefficient $Coef$).\\
+Therefore, to any altitude $z$ is existing $A.Coef$ where the size of the camera projection onto the floor is $(Wr.coef, Hr.coef)$. Thanks to this the eq: \ref{eq:etaUpsilon} and eq: \ref{eq:WrHr1} have to be compute once  for a given focal length $f$ and sensor $s$ with an simple $A=z$. Adding simple $Coef$ the size of camera projection can be easily simplified in order to limit the useless computation (only 2 multiplication instead then equation \ref{fig:cam_proj} and \ref{eq:etaUpsilon}.
+The model of camera projection is greatly simplified by the UAV assumption (fix pan, tilt and focal length). That permits to consider the camera projection as a simple rectangle with a size directly related to the altitude (by using a simple coefficient $Coef$).\\
 %The simplification by modelling all the cameras with a fix orientation and same ability (in order to have a rectangle projection onto the ground) 
 All this simplification helps the cost function to be fast and efficient. \\
 
-\subsection*{Parameter to optimize }\label{sec:parameterToOptimize}
+\subsection{Parameter to optimize }\label{sec:parameterToOptimize}
 % en raison de 
-By dint of the simplification presented previously the useful parameter of the camera formalized as a vector can be simplified too.\\
+By dint of the simplification presented previously the useful parameters of the camera formalized as a vector can be simplified too.\\
 To summarize, in order to compute the camera projection of one camera on to the floor. Where the floor is represented by a grid to discretize the area, and the camera is at altitude with a looking direction orthogonal to the floor.  Just few parameter are necessary  as showed in equation  \ref{eq:etaUpsilon} %{eq:WrHr1 , }
 to \ref{eq:A.coef}. Thanks to that the equation (\ref{eq:v})  can be reduced with keeping only the position of the camera and the roll as:
 	\begin{equation}\label{eq:v2}
