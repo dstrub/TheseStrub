@@ -535,9 +535,9 @@ All this simplification helps the cost function to be fast and efficient. \\
 
 \subsection{Parameter to optimize }\label{sec:parameterToOptimize}
 % en raison de 
-By dint of the simplification presented previously the useful parameters of the camera formalized as a vector can be simplified too.\\
-To summarize, in order to compute the camera projection of one camera on to the floor. Where the floor is represented by a grid to discretize the area, and the camera is at altitude with a looking direction orthogonal to the floor.  Just few parameter are necessary  as showed in equation  \ref{eq:etaUpsilon} %{eq:WrHr1 , }
-to \ref{eq:A.coef}. Thanks to that the equation (\ref{eq:v})  can be reduced with keeping only the position of the camera and the roll as:
+By dint of the simplification presented previously the vector of parameters (\ref{eq:v}) can be simplified too.\\
+To summarize,  the computation of  one camera  projection onto the floor, where the floor is represented by a grid for the area to cover, and the camera is in altitude with a looking direction orthogonal to the floor.  Just few parameter are necessary  as showed in equation  \ref{eq:etaUpsilon} %{eq:WrHr1 , }
+to \ref{eq:A.coef}. Thanks to that the equation (\ref{eq:v}) can be reduced with keeping only the position of the camera and the roll as:
 	\begin{equation}\label{eq:v2}
 		v=(x,y,z,\gamma )
 	\end{equation}
@@ -546,71 +546,72 @@ to \ref{eq:A.coef}. Thanks to that the equation (\ref{eq:v})  can be reduced wit
 		v=(x,y,A.coef,\gamma )
 	\end{equation}
 
-Also reducing the number of  parameter, passing to the equation \ref{eq:v2} to \ref{eq:v} are really usefully to the optimisation problem. The reduction of the number of parameter will  greatly affect the optimisation process.\\
- Indeed in addition to reduce the time computation, this simplification reduce the number of parameters to optimize.\\   
+Reducing the number of  parameter, passing to the equation \ref{eq:v} to \ref{eq:v2} are really usefully to the optimisation of the problem. The reduction of the number of parameter will  greatly affect the optimisation process.\\
+ Indeed, in addition to reduce the time computation, this simplification reduce the number of parameters to optimize.   
 
-Until know the camera projection estimation as been addressed with only one camera. But we want to compute the coverage for a set of camera. \\
-The solution is based on the previous camera projection estimation and adapt to the location of each camera (by translate the rectangle to have the center of it at the $x$ and $y$ position) and compute the occupation grid.\\
+Until know the camera projection estimation as been addressed with only one camera. But we want to compute the coverage for a set of cameras. \\
+The solution is based on the previous estimation for the camera projection, but adapt to the location of each camera. By  positioning the rectangle projection to have the center of it at the $x$ and $y$ position and compute the occupation grid.\\
 
-In order to win a bit of time each point of the grid already cover by a camera are note tested for the next cameras. This small modification will impact positively the computation time for the coverage estimation of a network of camera. That mean in the equation \ref{eq:sum sum v g} the value of $m$ decrease as $i$ increase. More exactly  the size of m decrease as  the area coverage increase.  
+In order to win a bit of time, each point of the grid already cover by a camera are note tested for the next cameras. This small modification will impact positively the computation time for the coverage estimation of a network of camera. That mean in the equation \ref{eq:sum sum v g} the value of $m$ decrease as $i$ increase. More exactly  the size of $m$ decrease as  the area coverage increase.  
 \\
 
-\subparagraph*{ Representation of the parameters to optimize.\\ }
-In order to represent correctly the set of camera with the useful parameter to compute the camera projection, the precedent notation can be adapted to have a set of $V$ composed by $N$ cameras defined by their parameters $v$:
+\subparagraph{Representation of the parameters to optimize. \\}
+
+Until know the camera formulation is adapted to one camera, to represent the problem we need a set of cameras. The precedent notation can be extended to have a set of $V$ composed by $n$ cameras defined by the parameters of $v$:
 
 	\begin{equation}\label{eq:V}
 		\begin{split}
-			V= \{v_i\} \mbox{  , } \forall i=[1;N] \mbox{ , } N\in \mathbb{N}^*
+			V= \{v_i\} \mbox{  , } \forall i=[1;n] \mbox{ , } n\in \mathbb{N}^*
 				\\
 			\mbox{ and } v_i= (x_i,y_i,z_i,\gamma_i)
 		\end{split}
 	\end{equation}
-\noindent Where $N$ is the given number of cameras in the network. Which is also the number of cameras in the set $V$. The coordinate of a camera $v_i$ with are the $i$th camera of the network is defined  with $x_i, y_i, z_i,$ for the given room and $gamma_i$ the roll rotation (portrait or landscape). The other  useful parameters are common to all the set $V$  for each problem.\\
-Therefore, $V$ represent a solution. $V$ contain all individual positions and orientation of the set of cameras for a predefined focal length, sensor size and map depending then the problem.\\% wish also include the potential constraint as  some restriction on the map.\\
-Obviously all the solution $V$ are not a "possible solution" for our problem. Some solution $V$ does not respect the set of $E$.
+\noindent Where $n$ is the given number of cameras in the network. The coordinate of a camera $v_i$ with are the $i$th camera of the network is defined  with $x_i, y_i, z_i,$ for a given room and $\gamma_i$ the roll rotation (portrait or landscape). The parameters not contained in $V$ and used to compute the cameras projection are  identical for all the set $V$, and are fixed at the beginning of the optimization.\\
+Therefore, $V$ represent a solution. $V$ contain all individual positions and orientation of the set of cameras for a predefined focal length, sensor size and map depending then the problem.% wish also include the potential constraint as  some restriction on the map.\\
+Obviously all the solution $V$ are not a "possible solution" for our problem. Some solution $V$ does not respect the set of constraint noted $E$.
 
-So that the $V$ should respect all the constraints of $E$ (see Eq.\ref{eq:Vs}). Where $E$ is the set of constraints. Among the constraint few of them was already disused, as the occlusion, the map restriction, the k-coverage, or some constraint more specific to the problems (as saw in chapter \ref{chap:stateOfTheArt}).\\
+So that the $V$ should respect the constraints of the set $E$ (see Eq.\ref{eq:Vs}). Among the constraint few of them was already disused, as the occlusion, the map restriction, the k-coverage, or some constraint more specific to the problems (as saw in chapter \ref{chap:stateOfTheArt}).\\
  The "possible solution" $Vs$ must take in consideration the set $E$ as :
 
 \begin{equation}\label{eq:Vs}
-Vs=V \mbox{ , iff } E(V)=\begin{cases}1, & \mbox{  iff } E_i(v)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
+Vs=V \mbox{ , iff } E(V)=\begin{cases}1, & \mbox{  iff } E_i(V)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
 \end{cases} 
 \end{equation}
-Where $Nc$ is the number of constraints need to be satisfied to have an acceptable response.\\
-That mean among all the possible combination of parameter $V$ only the one meet the constraint of the set $E$ in order to have an possible solution.  If we are considering  all the $V$ and all the $E$ as two subset $Vs$ is defined as $Vs=V\subset E$.\\ 
+Where $E_i(V)$ is the function applied to verify  the $i$th constrain of the set $E$ on the solution $V$. $Nc$ is the number of constraints need to be satisfied to have an acceptable solution.
+That mean among all the possibles combination of parameters $V$ only the one intersect the set of the constraint $E$ are an possible solution.  If we are considering  all the $V$ and all the $E$ as two subset $Vs$ is defined as $Vs=V\subset E$. 
 
-The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context, for example: the room shape and minimizing the altitude to have a best resolution, the orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. \\
+The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context. As example: the room shape, minimizing  the altitude,  have  the best resolution, orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. 
+The constraint have to be defined depending then the problems and the goal.
 
 \section{Constraint}\label{sec:constraint}
 
-Make the exhaustive list of all the constraint for the problem of cameras positioning is not really interesting and almost impossible. The constraint can be numerous and depend mainly of the problem formulation and the context. Like that few of them was briefly introduced in the previous section as in chapter \ref{chap:stateOfTheArt}, section \ref{sec:coverageEstimation},...\\
+Make the exhaustive list of all the constraints for the problem of cameras positioning is not really interesting and almost impossible. The constraint can be numerous and depend mainly of the problem formulation and the context. Like that few of them was briefly introduced in the previous section as in chapter \ref{chap:stateOfTheArt}, section \ref{sec:coverageEstimation},... This part are focus on the list fo the constraint used in our case and detail their design.
 
 The constraint considered in this work are : 
 \begin{itemize}
-	\item Fixes number of the cameras.
-	\item Fixes parameters of camera.
+	\item Fix number of the cameras.
+	\item Fix parameters of camera.
 	\item No rotation  on  $\alpha$ and $\beta$ (pan and tilt).
-	\item Possible fixes altitude.
+	\item Possible fix altitude.
 	\item Altitude boundary (not too hight, not too low).  	
 	\item The map boundary (rigid rectangle).  
-	\item Non rectangle map with possible hole.
+	\item Non rectangles map with possible holes.
 	\item To have some fix cameras in the set. 
-
 	\item The resolution.\\
 
 \end{itemize} 
 \subparagraph{Fixes number of the cameras.}
-One of the first constraint is the fix number of cameras. This permits us to focus on the fine optimisation (as in  [22*] where both are tested). The number of camera is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  \\
+One of the first constraint is the fix number of cameras. This constraint as some other detailed latter are  useful to simplified and restrict the possibility of the problem. This constraint permits us to focus on the fine optimisation (as in \citep{22*zhao2008} where both are tested). The number of camera is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  \\
 
-\subparagraph{Fixes parameters of camera and no rotation.}
-Fixes parameters of camera and no rotation  on  $\alpha$ and $\beta$, as introduce previously some parameters of the camera are fix (see \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV is also an advantage for the optimization by simplify the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization.\\
+\subparagraph{Fixes parameters of camera and no rotations.}
+Fixes parameters of camera and no rotation on  $\alpha$ and $\beta$, as introduce previously some parameters of the camera are fix (section \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV is also an advantage for the optimization by simplify the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization.\\
 
 \subparagraph{Fixes altitude.}
- The fix altitude is a constraint usable in order to limit the number of parameter to optimize. The use of this constraint is usable to reduce the Complexity (see \ref{sec:OptimizationComplexity}).  It is also useful for other assumption as a camera on the celling or for a submarine 66* \cite{66*}.\\
+ The fix altitude is a constraint usable in order to limit the number of parameter to optimize. The use of this constraint is usable to reduce the complexity (see section \ref{sec:OptimizationComplexity}). It is also useful for other assumption as a camera on the celling or for a submarine 66* \cite{66*}. This constraint is an optional constraint and are not commonly used in the experiment presented in the following section.   \\
 
 \subparagraph{The altitude boundary.}\label{sec:altitudeBoundary}
  When the altitude is not fix  some limit must be fixed to avoid the extremely high and low altitude. The highest altitude will be fix depending then the UAV ability and local law. The lowest altitude have to be fix for the safety of the user under the UAV.  
-In practice the boundary of the $z$ is defined  with 
+In practice the boundary of the $z$ is defined with :
  \begin{equation}\label{eq:boundaryZ}
    \inf z\leq A.Coef\leq \sup z  
  \end{equation} 
