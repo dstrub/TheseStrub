@@ -11,7 +11,7 @@ During the previous section the problem was already discussed as an optimization
 
 
 
-\section{PSO and Random Selection }(explication and def 
+\section{PSO and Random Selection }
 
 The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is an stochastic algorithms form the family of evolutionary algorithms (see \ref{chap:EA}). 
 The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 [148* bis]. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it append here form the bird flocking,fish schooling and swarming theory. These animals working in group to find food. 
@@ -20,6 +20,31 @@ The swarm composed by numerous individuals became smarter and more efficient to 
 The algorithm proposed by Russel Eberhart and James Kennedy in [148* bis] are directly inspired by these behaviours.
 
 The methodologies used is to consider each individual or also called particles as a solution of the problems. The problems is optimized at each iteration. To do that each solution must be comparable and quantifiable. At each iteration, each particle have to be tested by a cost function in order to discriminate the best particles of the swarm. The cost function and the design of it has been detailed in the section \ref{chap:formulation}.
+When the best particle is found at the end of an iteration, the other particles of set try to change their initial direction to converge to the best. 
+Indeed the power of this algorithm is to have a very basic individuals behaviour. 
+Each particles are guided by 3 behaviours.
+ \begin{itemize}
+ \item  This own velocity $V_k$. 
+ \item  This own best solution $P_i$.
+ \item  The best solution $P_g$.
+\end{itemize}  
+
+To have :
+\begin{equation}
+\begin{split}
+ V_{k+1}= \omega V_k +b1(P_i -X_k)+b2(P_g-X_k)
+\\
+\mbox{ and } \\ X_{k+1}=X_k+V_{k+1}
+\end{split}
+\end{equation}
+
+Where $\omega$ is the inertia. $b1$ is random value between 0 and $\phi_p$ and b2 is random value between 0 and $\phi_g$. $\phi_g$ and $\phi_p$  are the scaling factor to search away from the particle’s best known position (Default: 0.5). 
+
+
+-the initial dispersion of the particles 
+- size swarm
+- stoping criteria 
+- inconvenient 
 
 
 148 origine de PSO. 
