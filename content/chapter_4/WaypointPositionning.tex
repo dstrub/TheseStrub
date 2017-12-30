@@ -30,7 +30,7 @@ Each particles are guided by 3 behaviours.
 \end{itemize}  
 
 To have :
-\begin{equation}
+\begin{equation} \label{eq:PSO}
 \begin{split}
  V_{k+1}= \omega V_k +b1(P_i -X_k)+b2(P_g-X_k)
 \\
@@ -40,10 +40,25 @@ To have :
 
 Where $\omega$ is the inertia. $b1$ is random value between 0 and $\phi_p$ and b2 is random value between 0 and $\phi_g$. $\phi_g$ and $\phi_p$  are the scaling factor to search away from the particle’s best known position (Default: 0.5). 
 
+Thanks to this basic behaviour of the particles the swarm can coverage to an global solution. 
+To have an efficient  solution  just few parameters must be set-up.  
+The more important are the inertia of the particles and the size of the swarm.\\
+The inertia  will globally  help the particles to keep  their  initial velocity. The consequences of the high value of inertia is to explore more the search space and therefore the convergence will be longer. \\
+The size of the swarm  have an impact on the  convergence time (in number of iteration) and the also time computation. Indeed a big amount of particles in the swarm  mean more exploration of the search space at each iteration but also more comparison to find the best particles (the comparison may have a non negligible computation time). 
+The swarm size is commonly fixed but can be as the population in the GA ( see section \ref{sec:Population} ) dynamically adjusted during the optimization process. 
+Other criteria as  $\phi_g$ and $\phi_i$ are minor but can be useful to fine adjust the PSO.
 
--the initial dispersion of the particles 
-- size swarm
-- stoping criteria 
+Finally to summarize the PSO is efficient in term of optimization despite a very basic behaviour of each particles. Each particles have this own velocity defined part way by the random and controlled by a global parameters the inertia.
+
+ The power of PSO is at same time this efficiency to solve the optimization problem and this simplicity of use. In fact the PSO need at minima only few element to work properly : a cost function, an inertia parameters and the size of the swarm.
+
+
+
+
+
+-the initial dispersion of the particles \\
+- size swarm \\
+- stoping criteria \\
 - inconvenient 
 
 
