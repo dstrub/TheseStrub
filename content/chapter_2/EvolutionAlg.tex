@@ -97,7 +97,7 @@ Since the late 90s the research of EA have been focused on the multi objective e
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{ General formulation of  EA. }
+\subsection{ General formulation of  EA. }\label{sec:GeneralEAform}
 
  The EA is vast and many type of algorithms exist in this family, despite that a global formulation is proposed.\\
  Most of the EA have to optimize one or several problems using an iterative process to evolve towards a best solution. The EA can be formulated as the optimization of a parametres vector. Where each element of the vector ($\vec{x}$) is one input or a dimension to optimize. \begin{equation}
@@ -450,7 +450,7 @@ Even the cost of this function must be the most accurate, in some cases like in 
 \subsubsection{Population }\label{sec:Population}
 The population gathers a number N of solutions (or individuals) from the same generation. The individual can be represented into one or  more chromosomes(instead to have redundancy as in \cite{ 121*ronald1997}). Commonly each individual is composed by one chromosome. Therefore the two terms are regularly inverted in the literature.\\
 At every generation most or all the population is renewed (by using the selection and operator). Indeed the population can have an effect on the convergence and the result of the EA and different strategy or set up exist. About the population 2 main points need to be studied : the first is the initial population and the 2nd is the size of the population.  
-\subparagraph{Initialisation of the population.}
+\subparagraph{Initialisation of the population.}\label{sec:initPOP}
 Initialization of the population is one of the fundamental questions may affect the convergence of the problems. There are mainly 2 common proposed solutions with one using the full random generation or  using efficient and already approved heuristic.\\
 
  The method is based on heuristic involved a perfect knowledge  of the problem and can not be applied  for all the problem. The advantage of using heuristic, it can give very good starting individuals at the beginning the optimizations and also used the heuristic may give a solution more respectful of the constraint of the problem, obtusely if the problem include many constraints hard to satisfy. \\
@@ -609,7 +609,7 @@ But the rate of the operator can be adapted depending then the searched space, t
 
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Setting and  set-up} 
+\subsubsection{Setting and  set-up} \label{sec:Setting and  set-up}
 
 The previous section introduce the different aspect of the GA and give the key to understand the different element and the mechanism of the genetic algorithm. Besides the GA explication is appear many primordial  choice  to set-up properly the algorithm. Part of their choice are interdependent and the connection between the different parameter can make the set-up tricky.
 Also the GA has been studied for decades and many variant were developed over the time to make the GA more efficient. That give even more choice but no general set-up have been formulated.
