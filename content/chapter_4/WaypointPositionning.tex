@@ -72,8 +72,8 @@ Finally to summarize the PSO is efficient in term of optimization despite a very
 The random selection (named RS) is a very basic algorithm. It is used as a reference points for the comparison of different algorithms. The RS does not use a complex meta-heuristic and is perfect to compare the efficiency of the other algorithm.
 
 The random selection works by randomly generate numerous solutions. Among the solutions randomly generated the best solution is kept as the global optimized solution.
-Indeed the RS is used as a reference points for the other algorithms. If  the RS get a similar result with the same amount of the cost function call, the algorithm compared can be considered as not more efficient then a simple random solution. 
-The RS is used to the search for the optimization algorithms and this appropriate parameters as the reference point and evaluate the efficiency.
+Indeed the RS is used as a reference points for the other algorithms. If the RS get a similar result with the same amount of the cost function call, the algorithm compared can be considered as not more efficient then a simple random solution. 
+The RS is used to the search for the optimization algorithms and this appropriate parameters as the reference point and evaluate the efficiency of the chosen algorithms.
 
 
   
@@ -87,18 +87,20 @@ PSO[84 8 33 143] 87 193* 194* 200* 201*
 
 \section{Algorithm comparison }\label{sec:GAvsPSO} 
 %
-To solve the problem of cameras  position (or waypoints) the possible algorithms usable are varied as that was discussed in the chapter \ref{chap:stateOfTheArt} (see the sum-up tables \ref{tab:sum-up1} and \ref{tab:sum-up2}).
-Among the algorithms tested in the literature the EA appear as the more suitable to have an appropriate answer despite the numerous constraints. The EA is a vast family of algorithms and one of the more used for our problem is the PSO (see \ref{tab:sum-up2}). The PSO give good result in many case but after more investigation the GA are under estimate and base on the work of \citep{78*boeringer2004}  the PSO and the GA have to be investiget to our problems. 
-
---------to finish-----\\ (plus de détaille sur 78* avec GA PSO + transition vers  l'experimentation + integration du RS)\\
-
-The PSO and GA have been compared 
-The GA 
-158* 161* = GA PSO mimetic  conclusion les GA est plus long  le mimetic et  une solution intermedaire entre GA et PSO.
-78*= Comparaison entre PSO et algo génétique GA  les avantage  et les cas d’utilisation pratique.
-Papyer détatille  avec des plusier experience comparative  conclusion ouverte sur le choix mais la conlution et que le PSO offre plus de posibilité d’amélioration de par sa simplicité de mise en place et sa « récente utilisation » 
+To solve the problem of cameras position (or waypoints) the possible usable algorithms are varied as that was discussed in the chapter \ref{chap:stateOfTheArt} (see the sum-up tables \ref{tab:sum-up1} and \ref{tab:sum-up2}).
+Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints. The EA is a vast family of algorithms and one of the more used for our problem is the PSO (see \ref{tab:sum-up2}). The PSO give good result in many case. In the EA family the GA is one of the founders and was one of the more popular due to this great flexibility and efficiency.
+ After more investigation the GA is under estimate for the problem of camera position.
+ Base on the work of Boeringer et al in \citep{78*boeringer2004}78*, where the PSO and the GA have been conscientiously compared. The conclusion in \citep{78*boeringer2004} is relatively open and highlights the similarity of result between two algorithms. An experimentation have to be done to find the best algorithms for the problem of cameras position in a complex environment. 
 
 
+
+%The PSO and GA have been compared 
+%The GA 
+%158* 161* = GA PSO mimetic  conclusion les GA est plus long  le mimetic et  une solution intermedaire entre GA et PSO.
+%78*= Comparaison entre PSO et algo génétique GA  les avantage  et les cas d’utilisation pratique.
+%Papyer détatille  avec des plusier experience comparative  conclusion ouverte sur le choix mais la conlution et que le PSO offre plus de posibilité d’amélioration de par sa simplicité de mise en place et sa « récente utilisation » 
+
+\subsection{Designe of experiment.}
 \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px)}{fig:Rooms_shapes} \centering
 \mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room}{subfig:r1}
 \hspace{1cm}
@@ -108,11 +110,12 @@ Papyer détatille  avec des plusier experience comparative  conclusion ouverte s
 \mfigure{width=.4\linewidth}{img/fig7-d.png}{Room L}{subfig:r4}
 \mfigure{width=.4\linewidth}{img/fig7-e2.png}{Big room L}{subfig:r5}
 \end{mfigures}
+--------to finish-----\\ (+ integration du RS)\\
 
 To find the best coverage, many experiments have been used to compare PSO and GA. PSO is easier to implement and runs faster, but GA is more flexible and generic thanks to the many tunable parameters. 
-The following subsections will provide a comparison between PSO and GA and give an overview of our method, which is based on GA. The comparison demonstrates the overall advantage of the latter over the former.\\
-In the literature, the PSO was often used \cite{8*zhou2011,33*reddy2012}, mostly because of the simplicity of its implementation. However, it is interesting to compare the algorithm with the GA. The two algorithms are from the same family (both are stochastic and from evolutionary algorithms).\\
-To compare and evaluate their performance, we tested them in different scenarios depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where: 
+The following subsections will provide a comparison between PSO and GA with using RS a reference .% and give an overview of our method, which is based on GA. The comparison demonstrates the overall advantage of the latter over the former.\\
+%In the literature, the PSO was often used \cite{8*zhou2011,33*reddy2012}, mostly because of the simplicity of its implementation. However, it is interesting to compare the algorithm with the GA. The two algorithms are from the same family (both are stochastic and from evolutionary algorithms).\\
+To compare and evaluate their performance, we tested them in different scenarios. The scenarios have been  design to have different shape and size. The shape of the room have been design to estimate the number of cameras but due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where: 
 
 
 
@@ -127,33 +130,46 @@ To compare and evaluate their performance, we tested them in different scenarios
 \end{itemize}
 
 
-The design of the experiments in Table \ref{table:table1} has been set up to identify the most efficient algorithm for the positioning of a set of waypoints with maximum coverage. 
+The design of the experiments in Table \ref{table:table1} has been set up to identify the most efficient algorithm for the positioning of a set of cameras with maximum coverage depending then the numerous case. 
+The Design of Experiments (DOE) have been made to take in account the  shapes, sizes, some constraint as the fix altitude and that many size of the set of cameras.
 
-\begin{table}[!htb]
-\begin{tabular}{|l|l|l|l|l|l|}
+
+\begin{table} [!htb]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
   \hline
-  \multicolumn{2}{|l|}{z=1 } &\multicolumn{2}{|c|}{GA}  & \multicolumn{2}{|c|}{PSO} \\  \hline
-  \multicolumn{2}{|c|}{ } & GT & NW & GT & NW\\ \hline
-  Room &  120x80 & 16 &20 & 16 & 20\\ \cline{2-6}
-     &  240x160 & 64 &70 & 64 & 70 \\ \hline
-  Room U &  120x80 & 12 &20 & 12 & 20\\ \hline
-  \multicolumn{2}{|l|}{z=2 } &\multicolumn{2}{|c|}{GA}  & \multicolumn{2}{|c|}{PSO} \\  \hline
- Room &  120x80 & 4 &10 & 4 & 10\\ \cline{2-6}
-     &  240x160 & 16 &20 & 16 & 20 \\ \hline
- Room L&  120x80 & 3 &10 & 3 & 10\\ \cline{2-6}
-     &  240x160 & 15 &20 & 15 & 20 \\ \hline
+  \multicolumn{2}{|l|}{z=1 } &\multicolumn{2}{|c|}{GA}  & \multicolumn{2}{|c|}{PSO} & \multicolumn{2}{|c|}{RS}  \\  \hline
+  \multicolumn{2}{|c|}{ } & GT & NC & GT & NC & GT & NC\\ \hline
+  Room &  120x80 & 16 &20 & 16 & 20 & 16 & 20\\ \cline{2-8}
+     &  240x160 & 64 &70 & 64 & 70 & 64 & 70 \\ \hline
+  Room U &  120x80 & 12 &20 & 12 & 20 & 12 & 20\\ \hline
+  \multicolumn{2}{|l|}{z=2 } &\multicolumn{2}{|c|}{GA}  & \multicolumn{2}{|c|}{PSO}& \multicolumn{2}{|c|}{RS}  \\  \hline
+ Room &  120x80 & 4 &10 & 4 & 10 & 4 & 10\\ \cline{2-8}
+     &  240x160 & 16 &20 & 16 & 20 & 16 & 20 \\ \hline
+ Room L&  120x80 & 3 &10 & 3 & 10 & 3 & 10\\ \cline{2-8}
+     &  240x160 & 15 &20 & 15 & 20 & 15 & 20 \\ \hline
+  
 \end{tabular}
 \caption{Design of the experiment for comparing the efficiency of PSO and GA in different conditions.  (GT is Ground Truth and NW is Number of Waypoints).}\label{table:table1}
+
 \end{table}
 
-The Ground Truth (GT) is the minimum number of waypoints required to fully cover a given area. The size of the area has been selected so that the GT can be easily estimated. 
+The Ground Truth (GT) is the minimum number of cameras required to fully cover a given area. The size of the area has been selected so that the GT can be easily estimated. 
+NW is the maximum Number of cameras (or Waypoint) used for the experiments.  
+At each experiment a solution is computed for a number of cameras from 1  to NW. To compare the different algorithms fairly, only 10 000 calls of the cost function are allowed for each optimization.
+The optimization have been executed 8 time for each optimization process. 8 times is the minimu number of test have to be done to can have a usable average despite the hight volatility due to the random of the algorithms.\\ % 420*8 =3 360 test.
 
-NW is the maximum Number of Waypoints (or camera views) used for the experiments.  
-At each experiment a solution is computed for a number of waypoints from 1  to NW. To compare the different algorithms fairly, only 10 000 calls of the cost function are allowed for each set of waypoints.\\
 
-\subsubsection{ Analysis of the result.}
+\subsection{ Analysis of the result.}
 
-After performing the experiments (see Table \ref{table:table1}), it appears that the GA and PSO algorithms are close in performance. In some cases, GA is much more efficient (see Figure \ref{fig:bigRz1}) particularly in the case where the search space is large (big room and big number of cameras),  as the example in Figure \ref{fig:bigRz1}. Instead, PSO is more effective for optimizing small areas (see Figure \ref{fig:RLz2} ).
+After performing the several experiments (see Table \ref{table:table1}), it appears that the GA and PSO algorithms are close in performance in numerous case. Among several experiment of the DoE some particularity appear despite the globally close result of GA and PSO. Also as expected the RS is always the worst solution.
+ In the following subsection  just few experiment are taken to illustrate some interesting phenomena specific to the GA and PSO for our problems.
+
+In the case where the search space is large and numerous dimension have to be optimized the GA appear globally more efficient as in Figure \ref{fig:bigRz1}. In contrary in this case (big room with z=1) the PSO give a very bad answer close then simple RS.
+%What is appearing in some case as in Figure \ref{fig:bigRz1} is the  GA is much more efficient where the search space is large (big room and big number of cameras),  as the example in Figure \ref{fig:bigRz1}. 
+ Instead, PSO is more effective for optimizing small areas as in Figure \ref{fig:RLz2}. In the small room in L shape with a $z$ between 1/2 and 2, the PSO reach quickly (quicker then the 10 000 calls) to the optimal solution. Where here the optimal solution is known and equal to GT. In the same case the GA  propose an optimized solution (compared then the RS) but far from the PSO.
+ 
+-------- ajouté un exemple entre 2 forme diferante qui on un resulta proche ------------ file Grafig roomShape.txt
+ 
 This efficiency can be explained by the small variation of the solution introduced by the PSO. 
 
 However, this small variation is not enough to find an optimized solution in a big search space that occurs when many cameras are required or when the local minimum is deeper.
@@ -174,10 +190,11 @@ Although the variety of solutions introduced by the GA allows the escape from lo
    \endminipage\hfill
 \end{figure}
 
- Following the comparison of the 2 algorithms, the GA seems more suited for finding UAV waypoints especially if it navigates in a large room or an outdoor scene.
+ Following the comparison of the 2 algorithms, the GA seems more suited for finding UAV waypoints especially if it navigates in a large room or  outdoor scenes.
 Furthermore, our comparative study demonstrates that the GA is less dependent on the shape of the area to cover. \\
+------------------
 According to the previous results, the genetic algorithm will be used during future work with no restriction at the convergence point to optimize the positioning of the waypoints in the bigger areas seen in Section  \ref{coverageOutDoor} such as in Figure \ref{subfig:satimg+mask}.\\
-
+---------------
 
 fill with the jirs 
 	\subsection{DoF Design of Experiment}
