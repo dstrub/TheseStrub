@@ -166,13 +166,21 @@ After performing the several experiments (see Table \ref{table:table1}), it appe
 
 In the case where the search space is large and numerous dimension have to be optimized the GA appear globally more efficient as in Figure \ref{fig:bigRz1}. In contrary in this case (big room with z=1) the PSO give a very bad answer close then simple RS.
 %What is appearing in some case as in Figure \ref{fig:bigRz1} is the  GA is much more efficient where the search space is large (big room and big number of cameras),  as the example in Figure \ref{fig:bigRz1}. 
- Instead, PSO is more effective for optimizing small areas as in Figure \ref{fig:RLz2}. In the small room in L shape with a $z$ between 1/2 and 2, the PSO reach quickly (quicker then the 10 000 calls) to the optimal solution. Where here the optimal solution is known and equal to GT. In the same case the GA  propose an optimized solution (compared then the RS) but far from the PSO.
+ Instead, PSO is more effective for optimizing small areas as in Figure \ref{fig:RLz2}. In the small room in L shape with a $z$ between 1/2 and 2, the PSO reach quickly (quicker then the 10 000 calls) to the optimal solution. Where here the optimal solution is known and equal to GT. In the same case the GA propose an optimized solution (compared then the RS) but far from the PSO.
  
--------- ajouté un exemple entre 2 forme diferante qui on un resulta proche ------------ file Grafig roomShape.txt
+ This efficiency can be explained by the small variation of the solution introduced by the PSO. However, this small variation is not enough to find an optimized solution in a big search space that occurs when many cameras are required or when the local minimum is deeper. The PSO appear really efficient in a relatively small search space where the number of dimension to optimize is not to high.
+ On the other hand the variety  introduced by the GA allows the escape from local minima. This variety is helpfully  in the big search space in order to explore quickly a wide part of it. The variety introduced by the GA became an handicap for a more fine optimization. That explain the bad result obtained during the experiment is a small room. Variety of the GA negatively affect the accuracy of the solution and may require a further optimization step to refine. 
  
-This efficiency can be explained by the small variation of the solution introduced by the PSO. 
+-------- ajouté un exemple entre 2 forme differente qui on un resulta proche ------------ file Grafig roomShape.txt-----\\
+The DoE have been design with different shape in order to see the impact of it on the algorithms. What is appearing during the experiment is the low impact of the shape on the result of the algorithms. The experiment made in the small room (120X80) and the small room in L shape with a z between [1/2; 2](see Figure !!! and Figure !!!). The graphics (see Figure !!! and Figure !!!)  present a similar result, proof of the small impact of the shape on the algorithms.
+ This small impact can be explained by the use of meta-heuristic (as PSO and GA) and not by the use of an heuristic  much more dependent of the shape (and the constraint). 
+ 
+Thanks to that we know the twos algorithms can be used for a more complex shape as that will be presented in the following experiment.
+---------------------------------------------------------------
+ 
 
-However, this small variation is not enough to find an optimized solution in a big search space that occurs when many cameras are required or when the local minimum is deeper.
+
+
 Although the variety of solutions introduced by the GA allows the escape from local minima, it can negatively affect the accuracy of the solution and may require a further optimization step to refine. 
 
 \begin{figure}
@@ -190,16 +198,16 @@ Although the variety of solutions introduced by the GA allows the escape from lo
    \endminipage\hfill
 \end{figure}
 
- Following the comparison of the 2 algorithms, the GA seems more suited for finding UAV waypoints especially if it navigates in a large room or  outdoor scenes.
-Furthermore, our comparative study demonstrates that the GA is less dependent on the shape of the area to cover. \\
-------------------
-According to the previous results, the genetic algorithm will be used during future work with no restriction at the convergence point to optimize the positioning of the waypoints in the bigger areas seen in Section  \ref{coverageOutDoor} such as in Figure \ref{subfig:satimg+mask}.\\
----------------
+% Following the comparison of the 2 algorithms, the GA seems more suited for finding UAV waypoints especially if it navigates in a large room or  outdoor scenes.
+%Furthermore, our comparative study demonstrates that the GA is less dependent on the shape of the area to cover. \\
+%------------------
+%According to the previous results, the genetic algorithm will be used during future work with no restriction at the convergence point to optimize the positioning of the waypoints in the bigger areas seen in Section  \ref{coverageOutDoor} such as in Figure \ref{subfig:satimg+mask}.\\
+%---------------
 
-fill with the jirs 
-	\subsection{DoF Design of Experiment}
-	\subsection{Result}
-	\subsection{Explication}
+%fill with the jirs 
+%	\subsection{DoF Design of Experiment}
+%	\subsection{Result}
+%	\subsection{Explication}
 
 \section{Hybrid GA PSO}
  76* 77* 78*
