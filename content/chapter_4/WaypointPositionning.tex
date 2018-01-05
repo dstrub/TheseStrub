@@ -222,10 +222,10 @@ Thanks to that we know the two algorithms can be used for a more complex shape a
 % \item les resultats
 % \end{itemize}
 Thanks to the experiment done and presented in the previous section (see \ref{sec:GAvsPSO}) the GA and PSO are two algorithms efficient and complementary to solve the problem of camera positioning in the complex and potentially vast area.
-  To summarize the previous comparison, it is  difficult to rank the two algorithms in all the environments. GA and PSO have both advantages depending on the area and the number of cameras. GA is better in the big search space and several dimension to optimize when PSO is efficient to refined  faster the solution.
- The hybridization can be the solution to optimize the camera positions in all the condition. The aims of the hybridization is to exploit the better of both algorithms, trying to further refine the solution 77*\cite{c13}.
+  To summarize the previous comparison, it is difficult to rank the two algorithms in all the environments. GA and PSO have both advantages depending on the area and the number of cameras. GA is better in the big search space and several dimension to optimize. When PSO is efficient to refined faster the solution.
+ The hybridization can be the solution to optimize the camera positions in all the condition. The aims of the hybridization is to exploit the better of both algorithms, trying to further refine the solution. 
 
-  
+   77*\cite{c13}.
 \subsubsection{The different hybridization}
 
 In Premalatha al et 76*  propose tree different solution to hybrid the GA and PSO: 
@@ -244,17 +244,28 @@ Based on the previous experiment the  GA operated efficiently  and required to d
 solution.  %(PHRASE A REVOIR). 
 In this case the GA can be a very good initial guess for the PSO. \\
 
+In Shi et al 77*\cite{c13} the hybrid PSO GA was studied for 6 different problems listed F1 to F6. The 6 problem have a global optimal knew.  In this article [77*] the different problems are used to demonstrate the efficiency of hybrid PSO GA and search the appropriate set up for the parameters. One of the interesting aspect presented in [77*] is the importance to find optimized parameters to each algorithms. 
+The parameters of the algorithms have to be adapted to the hybridization.
+ In our case the GAPSO is used with in a first time a GA and a PSO next to refine the solution. In this case the GA have to introduce even more variety in order to be more efficient. Consequently the GA have to be modified to have a mutation ratio higher.   
 
-%the GA and PSO in the precedent subsection. That mean GA and PSO are configure for have the best result depending to the condition and cost function is use a same number of time by the 3 different  algorithms. The hybridation is compare with the  GA and PSO  in fig ??
 
 
 \subsubsection{Experimentation}
 To compare the efficiency of the hybridization GAPSO to the GA, one experimentation is proposed.
 The experimentation followed the rule fixed during the comparison as in Table \ref{table:table1}. %\\
-It appears the big room in L shape as the Figure \ref{fig:Rooms_shapes}.e is the most suitable to test the hybridization. % (POURQUOI ???).
+It appears the big room in L shape as the Figure \ref{fig:Rooms_shapes}.e is the most suitable to test the hybridization.  % (POURQUOI ???).
 The L shape room proposes a big search space which can requires a big amount of cameras to cover it. This configuration is the most likely to be improved on different situation, also closer to a realistic configuration.\\
-The proposed experiment use the GA for 100 generations and the GA solution as a initialization for the PSO. Also the PSO is lock at 100 iterations. %(C'EST L'EXPERIMENTATION QUI PROPOSE ?). \\%Finally the GAPSO are used for an amount around 20000 call of the cost function or the GA use onnly 10000call but the result of GA wiht 20 000 call are similaire then the 10000 (show fig). like that the encreasing is due to the hibridization and not to the morte time computation allowed. 
- \subsubsection{Result}
+The proposed experiment use the GA for a maximum of 100 generations and the GA solution as a initialization for the PSO. Also the PSO is lock at 100 iterations. %(C'EST L'EXPERIMENTATION QUI PROPOSE ?). \\%Finally the GAPSO are used for an amount around 20000 call of the cost function or the GA use onnly 10000call but the result of GA wiht 20 000 call are similaire then the 10000 (show fig). like that the encreasing is due to the hibridization and not to the morte time computation allowed. 
+The set-up of the GA have been slightly change by increasing the mutation ratio and the PSO is also adapted by reduce the inertia. Also a dynamic inertia can be efficient few test was quickly made to test with a mush slower inertia with a small increment  of it at each iteration. This method does not give a significant gain and was preferred to a PSO with a slightly lower inertia parameter (around 0.4).
+\begin{figure}[t]
+\minipage{0.85\textwidth}
+  \includegraphics[width=\linewidth]{img/GAPSO_GA_PSO3.eps}
+  \caption{comparison between GA PSO and the hybridization of GAPSO.
+}\label{fig:GAPSO}
+  \endminipage\hfill
+\end{figure}
+
+ \subsubsection{Result and comment}
   
 %\begin{figure}[t]
 %\minipage{0.95\textwidth}
@@ -263,19 +274,24 @@ The proposed experiment use the GA for 100 generations and the GA solution as a 
 %}\label{fig:GAPSO}
 %  \endminipage\hfill
 %\end{figure}
-\begin{figure}[t]
-\minipage{0.85\textwidth}
-  \includegraphics[width=\linewidth]{img/GAPSO_GA_PSO3.eps}
-  \caption{comparison between GA PSO and the hybridization of GAPSO.
-}\label{fig:GAPSO}
-  \endminipage\hfill
-\end{figure}
-	It appears in the Figure \ref{fig:GAPSO} the hybridization of GAPSO increases slightly the percentage of coverage%(around 0.0002 and 0.107 point of percentage)
-. This refinement is due to the PSO ability to optimize the local solution. As we saw previously the GA is efficient in the big search space and with a big amount of dimension to optimize, but the solution gives the GA need some local adjustment to be better. The GA has few limitation to go deeper in the optimization process but this weakness is partially corrected by the hybridization. The principal advantage hybridization is the ability to keep the benefit of both algorithms. The Figure \ref{fig:GAPSO} show that the GAPSO proposes most of the time the best solution or equal to the best solution by combining the advantage of both algorithms. 
-	\subsection{memetic ???}
-		\subsubsection{DoF}
-		\subsubsection{Result}
-		\subsubsection{Conclusion}
+
+The big room in L shape was used to perform a simple GA and a simple PSO as introduce previously and the GAPSO as explained just before. In the Figure \ref{fig:GAPSO} it is appearing the hybridization of GAPSO increases slightly the percentage of coverage.%(around 0.0002 and 0.107 point of percentage)
+This graphic can be split in 2 part, the left side with a relatively low number of cameras to pose (until 15) and the right part with more cameras. To remember in this experiment for each cameras is defined in x y and z that mean for 15 cameras 45 dimensions have to be optimized.
+The too side of the graphic show efficiency  of the different algorithms and confirmed  the mechanism of GA and PSO.
+The PSO is more efficient in the beginning when the numbers of dimension to optimize is reduced. Otherwise as we saw previously the GA is efficient in the big search space and with a big amount of dimension to optimize the GA is became better than the PSO in the right part of the graphic \ref{fig:GAPSO}. 
+The GAPSO propose a solution in the left part of the graphic \ref{fig:GAPSO} equal or a bite better then the PSO. In the right part of the graphic \ref{fig:GAPSO} the GAPSO propose a solution more refine then the simple GA. This refinement is due to the PSO ability to optimize the solution from the first optimization (GA). 
+
+Finally the biggest advantage of the GAPSO is to propose  most of the time the best solution and some time slightly better by combining the advantage of both algorithms. 
+The GAPSO can reduce the limitation of the GA and help to go deeper in the optimization process.The GAPSO  beside to upgrade the solution initially proposed by a simple GA or PSO offer more flexibility and allow only one solution to be efficient for the big or small search space despite the number of dimension to optimize.
+Despite these great advantage (better solution and more flexibility).
+The principal inconvenient of the GAPSO is due to this double convergence. In fact with an hybrid GAPSO as we decide to use a GA have to be executed until a convergence or almost and in the second time optimize with a PSO.  Obviously this implementation increase the time of computation.
+ 
+   
+% This refinement is due to the PSO ability to optimize the local solution. As we saw previously the GA is efficient in the big search space and with a big amount of dimension to optimize, but the solution gives the GA need some local adjustment to be better. The GA has few limitation to go deeper in the optimization process but this weakness is partially corrected by the hybridization. The principal advantage hybridization is the ability to keep the benefit of both algorithms. The Figure \ref{fig:GAPSO} show that the GAPSO proposes most of the time the best solution or equal to the best solution by combining the advantage of both algorithms. 
+%	\subsection{memetic ???}
+%		\subsubsection{DoF}
+%		\subsubsection{Result}
+%		\subsubsection{Conclusion}
 		
 \section{Experiment}
 	\subsection{No obstacle }
