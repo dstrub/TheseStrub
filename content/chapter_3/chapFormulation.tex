@@ -3,8 +3,8 @@
 \minitoc
 %The following chapter is focused on the problem formulation for cameras positioning.\\
 %Obviously formulation proposed in not the only one and some other have been proposed in the literature, mostly depending then the objectives. \\
-The formulation of the problem is essential in order to design an efficient cost function. The cost function is  used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
-This chapter present first, a formal definition  of the problem based on the literature and in the second time, our formulation is proposed. The formulation proposed is adapted to optimize the problems of efficient cameras position for maximize the coverage, using camera mounted on UAV.
+The problem formulation is  essential to design an efficient cost function. The cost function is used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
+This chapter present first, a formal definition of the problem based on the literature and in the second time, our formulation is proposed. The formulation proposed is adapted to optimize the problems with evolutionary algorithm to have an efficient cameras position for maximize the coverage, using camera mounted on UAV.
 
 \section{ Coverage estimation. }
 
@@ -27,12 +27,12 @@ This chapter present first, a formal definition  of the problem based on the lit
 
 To estimate efficiently the area cover by a given set of cameras some point have to be clearly defined: 
 \begin{itemize}
-\item First part the area himself. How to represent the area. 
-\item Second part camera definition. 
-\item Third part is to add the constraints. \\
+\item The area himself. How to represent the area. 
+\item The camera definition. 
+\item The constraints added to the systems. \\
 \end{itemize} 
- This 3 parts are discussed in the flowing sections. The area definition is discussed in the section \ref{sec:Grid} dedicate to the grid design. The camera definition is discussed in the section \ref{sec:CamerasCoverage} and the third about the constraints is discussed in the section \ref{sec:constraint}.\\
-Finally when the problem is clearly defined all the elements of the different parts are integrate to have an efficient cost function usable for the optimisation process.
+ This 3 parts are discussed in the flowing sections. The area definition is discussed in the section \ref{sec:Grid} dedicate to the grid design. The camera definition is discussed in the section \ref{sec:CamerasCoverage} and the third part discuss about the constraints in \ref{sec:constraint}.\\
+Finally when the problem is clearly defined all the elements of the different parts are integrate to have an efficient cost function usable for the optimisation process in \ref{sec:costFun}.
 
    
 %;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; to do ;;;;;;;;;;;;;;;;;;
@@ -77,7 +77,7 @@ Finally when the problem is clearly defined all the elements of the different pa
 
 %/!$\backslash$ \textbf{ ajouter une partie dedier  a [181*] qui propose une solution pour ajusté la densité en fonction  de la necesité de présision  (contour plus dense ) }
 
-The first part is to estimate properly the area to cover. To do so many methods have been developed most of them are based on the occupation grid $G$ of the area. 
+The first part is to estimate properly the area to cover. To do so many methods have been developed most of them are based on an occupation grid $G$ of the area. The occupation grid  is a sample discretization of the area with numerous point.
 \begin{equation}\label{eq:Grid}
 	G=\begin{bmatrix}
 	 	g_1 ...g_i ... g_m
@@ -483,7 +483,7 @@ In this condition the efficiency of the function $f()$ in charge then compute th
 
 
 
-\subsubsection{coverage estimation optimization} 
+\subsubsection{Coverage estimation optimization} 
 Design an efficient cost function is necessary to reduce the time computation and estimate the area covered. A good estimation of the area covered is primordial for the optimisation process. 
   The computation of a camera projection have to be minimized with some basic assumption depending then the problems.\\
 Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotations in $\alpha$ (pan) and $\beta$ (tilt). It is possible to compute for a given altitude the area covered by one camera, based on the given parameters. Especially the focal length $f$, the altitude of the cameras and the sensor size $s$. Where $s$ is composed of $Sw$ sensor size width and $Sh$, sensor size height ($s= [Sw ; Sh]$). 

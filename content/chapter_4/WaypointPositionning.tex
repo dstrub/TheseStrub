@@ -1,17 +1,17 @@
-\chapter{Waypoints positioning} 
+\chapter{Waypoints positioning.} 
 \minitoc
-To remind, the main objective is to propose a efficient path to can cover an area using a camera mounted on a UAV. In the solution proposed here is to in the first time, focus on optimize the position of a cameras set to fully cover an area. When a optimized position of the cameras set is found the position can be used as waypoints for an UAVs path. Indeed find an optimized position for each camera of a given set is primordial. The following section are dedicated to the optimization of it in order to have an efficient solution to place the waypoints.
+To remind, the main objective is to propose a efficient path to can cover an area using a camera mounted on a UAV. The solution proposed here, is to focus on optimizing the position of a cameras set to fully cover an area in a first time. When set of optimized cameras pose is found the position can be used as waypoints for an UAVs path. Indeed find an optimized position for each camera of a given set is primordial. The following section are dedicated to the optimization of it. 
 
 
 
 
 %\section{An optimization problem.}
 
-During the previous section the problem was already discussed as an optimization problem. The formulation of the problem was presented to can apply some optimization problems and also the complexity of the problem was disused in the section \ref{sec:OptimizationComplexity}.
+During the previous section the problem was discussed as an optimization problem. The formulation of the problem was presented  and  the complexity of the problem was disused in the section \ref{sec:OptimizationComplexity}. Thanks to this preliminary result the folowing section is only focuse on the optimization process. 
 
 
 
-\section{PSO. }
+\section{PSO.}
 
 The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is an stochastic algorithms form the family of evolutionary algorithms (see \ref{chap:EA}). 
 The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 [148* bis]. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it append here form the bird flocking, fish schooling and swarming theory. These animals working in group to find food. 
@@ -67,7 +67,7 @@ Finally to summarize the PSO is efficient in term of optimization despite a very
 - inconvenient 
 
 
-\section{Random selection }
+\section{Random selection.}
 
 The random selection (named RS) is a very basic algorithm. It is used as a reference points for the comparison of different algorithms. The RS does not use a complex meta-heuristic and is perfect to compare the efficiency of the other algorithm.
 
@@ -85,7 +85,7 @@ PSO[84 8 33 143] 87 193* 194* 200* 201*
 
 228*(hibrid) 161* 158* 78 GA VS PSO
 
-\section{Algorithm comparison }\label{sec:GAvsPSO} 
+\section{Algorithm comparison.}\label{sec:GAvsPSO} 
 %
 To solve the problem of cameras position (or waypoints) the possible usable algorithms are varied as that was discussed in the chapter \ref{chap:stateOfTheArt} (see the sum-up tables \ref{tab:sum-up1} and \ref{tab:sum-up2}).
 Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints. The EA is a vast family of algorithms and one of the more used for our problem is the PSO (see \ref{tab:sum-up2}). The PSO give good result in many case. In the EA family the GA is one of the founders and was one of the more popular due to this great flexibility and efficiency.
@@ -209,7 +209,7 @@ Thanks to that we know the two algorithms can be used for a more complex shape a
 %	\subsection{Result}
 %	\subsection{Explication}
 
-\section{Hybrid GA PSO}
+\section{Hybrid GA PSO.}
 % ref: 76* 77* 
  
 
@@ -226,7 +226,7 @@ Thanks to the experiment done and presented in the previous section (see \ref{se
  The hybridization can be the solution to optimize the camera positions in all the condition. The aims of the hybridization is to exploit the better of both algorithms, trying to further refine the solution. 
 
    77*\cite{c13}.
-\subsubsection{The different hybridization}
+\subsubsection{The different hybridization.}
 
 In Premalatha al et 76*  propose tree different solution to hybrid the GA and PSO: 
 \begin{itemize}
@@ -250,7 +250,7 @@ The parameters of the algorithms have to be adapted to the hybridization.
 
 
 
-\subsubsection{Experimentation}
+\subsubsection{Experimentation.}
 To compare the efficiency of the hybridization GAPSO to the GA, one experimentation is proposed.
 The experimentation followed the rule fixed during the comparison as in Table \ref{table:table1}. %\\
 It appears the big room in L shape as the Figure \ref{fig:Rooms_shapes}.e is the most suitable to test the hybridization.  % (POURQUOI ???).
@@ -265,7 +265,7 @@ The set-up of the GA have been slightly change by increasing the mutation ratio 
   \endminipage\hfill
 \end{figure}
 
- \subsubsection{Result and comment}
+ \subsubsection{Result and comment.}
   
 %\begin{figure}[t]
 %\minipage{0.95\textwidth}
