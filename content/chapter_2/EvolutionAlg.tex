@@ -117,7 +117,7 @@ Thus, the search space of the problem is defined by the boundary of each dimensi
 \end{equation}
  Where  $\vec{X}$ is the global optimum solution. \\
  The cost function $f(\vec{x})$  is unique for each problem and have to be redesigned for  each problematic. 
-Depending then the problem, the global solution is unknown and the best is to tends to this supposed global optimum solution. 
+Depending on the problem, the global solution is unknown and the best is to tends to this supposed global optimum solution. 
 Optimize a solution $\vec{x}$ is not always enough to solve efficiently the problem. 
 The solution proposed have to respect the constraint linked to the problem. The constraint can be various depending than the problem. As example one naive constraint is the boundary of the search space. To reach a set of $m$ constrain $E$ must be taken in consideration.
 % But optimize a solution $\vec{x}$ depending on the fitness function is not enough to reach to the global optimized solution $\vec{X}$. To reach it a the set of $m$ constrain $E$ must be taken in consideration.
@@ -273,7 +273,7 @@ The GA became popular at the late 80s and early 90s, particularly with Goldberg 
 Whether GA is a relatively recent algorithm, it was largely studied during many years and has progressed tremendously. To follow the evolution of the GA  the survey  written in \cite{74*srinivas1994} for the Simple Genetic Algorithm (SGA) are a good point to understand the progress before 1994. 
 
 In this article \cite{74*srinivas1994} the author begins to explain the SGA and the significance of the natural selection with the possible modification to adduce. 
-Also the GA improvement  in term of performance is discussed. The SGA is parametrizable depending then the implementation. That give a big importance of the problem formulation and the consequences on the solution.
+Also the GA improvement  in term of performance is discussed. The SGA is parametrizable depending on the implementation. That give a big importance of the problem formulation and the consequences on the solution.
 %Also the author discusses the research that have focused on improving GA performance including the distribution and the parallelization of the GA as well as the importance to encode properly the solution and the consequence on the solution. The encoding is the methodologies used to represent the parameters of the problem to optimize.\\  % a revoir ajouté les ref  de  l'article 
  This survey is  relatively hold (from 1994) and other more recent are rather focused on the Multi Objective Evolutionary Algorithms (MOEA), which include many different shapes of Genetic algorithms customized to satisfy the multi objective problems \cite{75*zhou2011}. \\
 Although the papers are concerned about the multi objectives and many references are made to highlight the recent advance on this field with different types of adaptation. The evolutionary algorithm, like the multi objectives evolutionary algorithm decomposition (MOEA/D) \cite{114*zhang2007}. To decomposed the problem into sub-problems and each sub-problems are weighted by the neighbouring relation between the sub-problems then aggregated.  \\ 
@@ -356,7 +356,7 @@ Real coding or integer coding is considering every genome of the chromosome as a
 \subparagraph*{Tree coding }(\cite{ 113*mais2010, 123*owais2008, 131*walters1995}).   
 The tree coding use the tree representation to take care of the hierarchy but this method is not really popular and not flexible to any case. The advantage of tree coding is this ability to go farer then a combinatory representation.  An example in \cite{131*walters1995}, the tree coding is used with the GA to optimize new network telephone or gas/ water pipeline where the relation between the element are primordial. In \cite{131*walters1995} present the interest of tree coding for  the intrusion detection system. 
 \\\\
-The 4 coding method presented are not the only potential coding, there are the more commune and the roots of other coding   and many other have been developed and studied with direct or indirect coding to feet  with specific problem. Thereby in the literature a survey are dedicated to the encoding chromosome for the GA \cite{121*ronald1997}. The survey \cite{121*ronald1997} propose to explain and find a robust coding usable depending then the problems. 
+The 4 coding method presented are not the only potential coding, there are the more commune and the roots of other coding   and many other have been developed and studied with direct or indirect coding to feet  with specific problem. Thereby in the literature a survey are dedicated to the encoding chromosome for the GA \cite{121*ronald1997}. The survey \cite{121*ronald1997} propose to explain and find a robust coding usable depending on the problems. 
 \\
 
 %\begin{table}
@@ -469,7 +469,7 @@ The first point is to find the appropriated size depending on the problem. Indee
 Like that, chose the appropriate the size of the population is not trivial at all. To find the best size of a static population only one way, is to do several experiments and compare the results, like did it in \cite{71*grefenstette1986}.
 
  The population can also be adapted dynamically or auto-adapt the size of the population during the optimization. Commonly the number individuals in the population need to be important during the first generation but close to the convergence the population can be reduced for win time.
-  In \cite{133*schwefel1984}, the size is fixed by probability. It can also be fixed by a linear equation or even more complex, in function of the progress of the cost function and the variety of solution see in \cite{70*arabas1994}. The population have an important part in the convergence computation, depending then if the size of the population is static, dynamic or auto adapted the convergence can be faster with more or less quality for the solution. The convergence is studied in the \cite{109*cerf1995}. But the convergence is not only link by the population size but also the selection, the coding and the operator choice are an important aspect of the GA like is showed in \cite{71*grefenstette1986,77*shi2005}.  
+  In \cite{133*schwefel1984}, the size is fixed by probability. It can also be fixed by a linear equation or even more complex, in function of the progress of the cost function and the variety of solution see in \cite{70*arabas1994}. The population have an important part in the convergence computation, depending on if the size of the population is static, dynamic or auto adapted the convergence can be faster with more or less quality for the solution. The convergence is studied in the \cite{109*cerf1995}. But the convergence is not only link by the population size but also the selection, the coding and the operator choice are an important aspect of the GA like is showed in \cite{71*grefenstette1986,77*shi2005}.  
 
 
 
@@ -579,8 +579,8 @@ The mutation operator have to aim to add diversity by mutate some random allele 
 This 2 principals operators need to be choose carefully and in most of the case redesigned.
 The redesign of the operator is essential in many occasion.
 One of the first reason to redesign part of the operator is to fit well to the problem. A example is the mutation redesigned to explore the search space with a logic of close neighbour as in \cite{68*muhlenbein1989}.\\
-The second reason is link to the chromosome coding. Depending then the chromosome coding chosen (binary, combinatorics, real, ...) the operator have to be adapted. An example is to modify the mutation and crossover to preserve the genomes in the real coding. The same operator can not be used for combinatoric coding or binary.\\
-The third is more rare but in some case the operator have to be adapted depending then the selection mode chosen. An example is  given in  \cite{65*thierens1994} with the crossover and the mutation for a elitist selection. \\
+The second reason is link to the chromosome coding. Depending on the chromosome coding chosen (binary, combinatorics, real, ...) the operator have to be adapted. An example is to modify the mutation and crossover to preserve the genomes in the real coding. The same operator can not be used for combinatoric coding or binary.\\
+The third is more rare but in some case the operator have to be adapted depending on the selection mode chosen. An example is  given in  \cite{65*thierens1994} with the crossover and the mutation for a elitist selection. \\
 Also one other reason to redesign the operators is to have operator fitting  to some of the hard constraint to the problem. In order to have operator able to create children respectful to some hard constraint of the problems.
 
 
@@ -604,7 +604,7 @@ Finding the  best rate for every operators became a real challenge. The best sol
 
  To conclude on the operators, they are an important factor to evolve generation after generation.  The operator have to keep the diversity  in order to have an efficient converge (not premature and not to late). The question of the diversity introduce by the operator was been studied in  \cite{80*serpell2010,95*miller1995} \cite{113*mais2010}. 
  It is appearing one good static configuration to keep diversity \cite{64*matsui1999} of chromosome is to have crossover mutation with height rate of crossover and small rate of mutation. 
-But the rate of the operator can be adapted depending then the searched space, the convergence and other element. Some research was done on adapted the dynamically the rate of the operator depending too many external factor or using probability like is discussed in  \cite{110*eiben2003,133*schwefel1984,94*srinivas1994}
+But the rate of the operator can be adapted depending on the searched space, the convergence and other element. Some research was done on adapted the dynamically the rate of the operator depending too many external factor or using probability like is discussed in  \cite{110*eiben2003,133*schwefel1984,94*srinivas1994}
 
 
 	
@@ -634,7 +634,7 @@ To set-up properly a GA few question need to be posed as in the table \ref{tab:G
 	Population	: 			 & What size?  	    					\tabularnewline \cline{2-2}  
 							 & What initialisation? (random or heuristic) \tabularnewline \hline  
 	  Selection mode      	 & what choice of selection mode? 				 	    \tabularnewline \cline{2-2}
-        				 	 & And depending then the mode chosen what set-up? \tabularnewline \cline{2-2}
+        				 	 & And depending on the mode chosen what set-up? \tabularnewline \cline{2-2}
         					 & As for tournament selection the size pool, the wheel repartition for roulette wheel or the number of parent selected for elitist...  	\tabularnewline \hline
       						 & What operators to use?	  	  		\tabularnewline \cline{2-2}
       	operators			 &	What implementation choice (customized operator or not)?	\tabularnewline \cline{2-2}

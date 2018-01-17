@@ -3,13 +3,13 @@
 \minitoc
 %The following chapter is focused on the problem formulation for cameras positioning.\\
 %Obviously formulation proposed in not the only one and some other have been proposed in the literature, mostly depending then the objectives. \\
-The problem formulation is  essential to design an efficient cost function. The cost function is used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
-This chapter present first, a formal definition of the problem based on the literature and in the second time, our formulation is proposed. The formulation proposed is adapted to optimize the problems with evolutionary algorithm to have an efficient cameras position for maximize the coverage, using camera mounted on UAV.
+The problem formulation is essential to design an efficient cost function. The cost function is used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
+This chapter present first, a formal definition of the problem based on the literature. In the second time, our formulation is proposed. The formulation proposed is adapted to optimize the problems with evolutionary algorithm to have an efficient cameras position for maximizing the coverage, using a camera mounted on UAV.
 
 \section{ Coverage estimation. }
 
 
- The question in this section is to estimate the covered area depending then the cameras parameters.\\
+This section is focused on how to estimate the covered area depending on the cameras parameters.\\
 
 %What should be control by the video surveillance? \\
 %One aim of the video surveillance is to detect some anomaly in the area for that the number of black hole need to be reduce. A black hole is zone not cover by the system of video surveillance. Estimate the part cover by the system of video surveillance is primordial to limit the size and the number of black hole. 
@@ -25,14 +25,14 @@ This chapter present first, a formal definition of the problem based on the lite
 
 %The problem needs to be formalized in order to clearly identify the complexity of the cameras positioning. 
 
-To estimate efficiently the area cover by a given set of cameras some point have to be clearly defined: 
+To estimate efficiently the area covered by a given set of cameras some point have to be clearly defined: 
 \begin{itemize}
 \item The area himself. How to represent the area. 
 \item The camera definition. 
 \item The constraints added to the systems. \\
 \end{itemize} 
- This 3 parts are discussed in the flowing sections. The area definition is discussed in the section \ref{sec:Grid} dedicate to the grid design. The camera definition is discussed in the section \ref{sec:CamerasCoverage} and the third part discuss about the constraints in \ref{sec:constraint}.\\
-Finally when the problem is clearly defined all the elements of the different parts are integrate to have an efficient cost function usable for the optimisation process in \ref{sec:costFun}.
+ This 3 parts are discussed in the following sections. The area definition is discussed in the section \ref{sec:Grid} dedicate to the grid design. The camera definition is discussed in the section \ref{sec:CamerasCoverage} and the third part discuss about the constraints in the section \ref{sec:constraint}.\\
+Finally when the problem is clearly defined all the different elements are integrated to have an efficient cost function usable for the optimisation process in \ref{sec:costFun}.
 
    
 %;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; to do ;;;;;;;;;;;;;;;;;;
@@ -77,23 +77,23 @@ Finally when the problem is clearly defined all the elements of the different pa
 
 %/!$\backslash$ \textbf{ ajouter une partie dedier  a [181*] qui propose une solution pour ajusté la densité en fonction  de la necesité de présision  (contour plus dense ) }
 
-The first part is to estimate properly the area to cover. To do so many methods have been developed most of them are based on an occupation grid $G$ of the area. The occupation grid  is a sample discretization of the area with numerous point.
+The first part is tantamount to estimate properly the area to cover. To do so many methods have been developed most of them are based on an occupation grid $G$ of the area. The occupation grid  is a sample discretization of the area with numerous points.
 \begin{equation}\label{eq:Grid}
 	G=\begin{bmatrix}
 	 	g_1 ...g_i ... g_m
 	\end{bmatrix}  , m\in \mathbb{N}
 \end{equation}
-Where $m$ is the number of points in the grid.
-The occupation grid is placed on the area to cover. At minima each point $g_i$ of the grid $G$ should be covered by a camera. Consequently a list of points is created to enumerate the covered part of $G$ which are noted as $Pc$.
+Where $m$ is equal to the number of points in the grid.
+The occupation grid is placed on the area to cover. At minima each point $g_i$ of the grid $G$ should be covered by a camera. Consequently a list of points is set up to enumerate the covered part of $G$ which are noted as $Pc$.
 \begin{equation}\label{eq:Pci}
 g_i \in Pc \mbox{ IFF } g_i \mbox{ is coverd. }
 \end{equation}
 
 
-The design of the grid is an important element and a different solution has been proposed during the time with different advantage depending then the situation.\\
+The design of the grid is an important element of the problem formulation. Different solution has been proposed during the time with different advantage depending on the situation.\\
 
 \subsubsection{How to design an occupation grid. }%Related work for the grid design
-The following subsection is focused on the different  modelling the grid possibility, based in the literature. 
+The following subsection is focused on the different  modelling the grid possibility, based on the literature. 
 
 \paragraph{Sampling frequency.} %Sampling frequency.\\
 The occupation grid is used to discretize the area to cover. The discretization of the area can vary and the area can get a high level of discretization or low level. The level of sampling frequency has a bearing on the problem formulation and moreover on the optimization.
@@ -166,7 +166,7 @@ In this other side, the low sampling frequency may generate a bad estimation of 
 %\end{table}
 \subparagraph{Low or high sampling frequency}
 Finally the too low sampling frequency, instead to win computation time, may affect the quality of coverage  estimation and consequently the answer. But, as explained the impact of a too high frequency in the solution has also some consequence as is summarized in the table \ref{tab:samplingFrequency} \\
-The density of the grid needs to be adjusted depending than the goal and the precision required. One of the solutions proposed in Zhao et al \citep{22*zhao2008}  is to have a progressive refinement by increasing the grid density.
+The density of the grid has to be adjusted depending than the goal and the precision required. One of the solutions proposed in Zhao et al \citep{22*zhao2008}  is to have a progressive refinement by increasing the grid density.
 
 %////////////progressive sampling/////
 Zhao et al \citep{22*zhao2008}  despite a low density of points at the beginning, the number of points are increased slowly to have a better density and refine results. Also the increasing point frequency   is applied to refine the solution and add more cameras at each step of the optimisation to avoid the black hole and has a better coverage.  \\
@@ -175,7 +175,7 @@ Zhao et al \citep{22*zhao2008}  despite a low density of points at the beginning
 %////////////camera pose estimation linked//////////////////////
 \subparagraph{Camera pose precision.}
 The frequency sampling is often linked to the pose precision of the camera as discussed previously. %The search space represent the domain to optimize or can be defined by the set of all possible solutions in our case the search space is all the position for all the cameras. 
-Therefore increase the number of points will also increase in proportion the number of positions possible for each cameras. More the area is finely defined more is necessary to can slightly adjust the cameras positions. Consequently the possible camera position and the search space are increase to finally allow a more refine solution but also more complex to optimize.
+Therefore increase the number of points will also increase in proportion the number of positions possible for each cameras. More the area is finely defined more is necessary to can slightly adjust the cameras positions. Consequently the possible camera position and the search space are increased to finally allow a more refine solution but also more complex to optimize.
  %The too high precision in the position of the camera will increase the complexity and some case where the value of $m$ is too high the optimization process cannot converge or find acceptable solution to the gain of the search space. \\ 
 
 
@@ -211,21 +211,21 @@ Indeed the higher density will affect the optimization process. The area with mo
 The hengel et al \cite{83*van2009} have tested the random distribution and the uniform grid pattern distribution before to conclude the grid pattern and the random distribution proposes globally the same result, when there is no priority zone in the area. Based on this observation hengel et al \cite{83*van2009} decide to use the uniform grid notably because of its simplicity of implementation.
 
 %///////random distribution   for reduce the uniforme grid //////////
-The random distribution is less popular but in \cite{22*zhao2008} a hybrid distribution is proposed. The idea proposed is to reduce the number of point in the uniform grid when it has a to hight density. To reduce the number of points in a random  selection is used. 
+The "random distribution" is less popular but in \cite{22*zhao2008} a hybrid distribution is proposed. The idea proposed is to reduce the number of points in the uniform grid when it has a to hight density. To reduce the number of points in a random  selection is used. 
 
 
 
-\paragraph*{ Special modeling (3D  or 2D)}
-To design the occupation grid, one other element should be taken in consideration. It is the spacial modeling. After deciding the useful density and the distribution of the grid, the position in the space of the point $g_i$ need to be studied.  
-In fact depending then the problem the grid can be modelled differently in order to properly cover the area to control. Commonly the occupation grid is placed on the floor and calculate visibility only in 2D  by computing the  camera projection as in \textbf{[164*]} \citep{164*valente2013,150*chakrabarty2002,8*zhou2011,170*yabuta2008,171*horster2006,22*zhao2008}, but depending then the context the grid have interest do describe a 3D space.  
+\paragraph*{ Special modelling (3D  or 2D)}
+To design the occupation grid, one other element should be taken in consideration. It is the spacial modelling. After deciding the useful density and the distribution of the grid, the position in the space of the point $g_i$ need to be studied.  
+In fact depending on the problem the grid can be modelled differently in order to properly cover the area to control. Commonly the occupation grid is placed on the floor and calculate visibility only in 2D  by computing the  camera projection as in \textbf{[164*]} \citep{164*valente2013,150*chakrabarty2002,8*zhou2011,170*yabuta2008,171*horster2006,22*zhao2008}, but depending on the context the grid have interest do describe a 3D space.  
 Hegle et al\cite{83*van2009}, calculates the visibility, where it is relevant: for example, on the upper torso or head of the possible target rather than the floor. This article  proposes a 2D grid but inside the 3D space in order to  characterize properly the volume by placing the grid at a specific height.  
 
-In \cite{82*chrysostomou2012} the grid is formalized in the full volumetric space by numerous “control points” (as $g_i$) to control the area. The points of the grid are uniformly (or can be randomly) distributed along the axis of $x, y$ and $z$. Also in \cite{87*morsly2012} the grid are formulated in the volumetric space by using a uniform 3D grid distribution. The formulation proposed show the complexity even more important to use a 3 dimensional occupation grid and for practical reasons (mostly the inadequacy has computational power due to the increased complexity) the 3D grid is replaced by a 2D grid at a specific height to optimize the coverage. \\ 
+In \cite{82*chrysostomou2012} the grid is formalized in the full volumetric space by numerous “control points” (as $g_i$) to control the area. The points of the grid is uniformly (or can be randomly) distributed along the axis of $x, y$ and $z$. Also in \cite{87*morsly2012} the grid are formulated in the volumetric space by using a uniform 3D grid distribution. The formulation proposed show the complexity even more important to use a 3 dimensional occupation grid and for practical reasons (mostly the inadequacy has computational power due to the increased complexity) the 3D grid is replaced by a 2D grid at a specific height to optimize the coverage. \\ 
 
-While an occupation grid designed to estimate the volume to cover along the $ x, y $ and $ z $ axes of the area already exists. His implementation is unusual due to the increasing complexity of the optimization process.  
+While an occupation grid designed to estimate the volume cover along the $ x, y $ and $ z $ axes of the area already exist. His implementation is unusual due to the increasing complexity of the optimization process.  
 Nevertheless some solution was discussed \citep{141*akbarzadeh2013,83*van2009} to take into account the volume of the area to cover which cannot be only limited to an occupation grid along the axes $ x $ and $ y $as a simple 2D grid.
 
-In \cite{83*van2009} is focussed on estimating the area to cover inside a 3 level of a building. To estimate the coverage in the building the grid was placed at each level. This solution is efficient in order to limit the number of points compares then a full volumetric description of the area. Also this design allows to keep the 3 dimensional information by adding a layer at each level of the building.  
+In \cite{83*van2009} is focussed on estimating the area to cover inside a 3 levels of a building. To estimate the coverage in the building the grid was placed at each level. This solution is efficient in order to limit the number of points compares then a full volumetric description of the area. Also this design allows to keep the 3 dimensional information by adding a layer at each level of the building.  
 
 In \citep{141*akbarzadeh2013} propose a 2D grid adapted to the relief of the area. This article are focused on covering a large outside area with an important relief. To estimate properly the area to cover a grid has been placed following the altitude of the relief as showed in Figure\ref{fig:grilleRef141}. 
 
@@ -250,7 +250,7 @@ The zones of interest are designate by different manner depending than the goal.
  
 
 \subparagraph{The multi coverage zone.}
-The aim  of the multi coverage zone is to have on a specific zone of the area controlled by numerous cameras.  The multiple coverage may be called $k$-coverage as in \cite{174*zhang2016}. Where refers $k$ to the number of cameras mandatory to cover the zones of interest. 
+The aim  of the multi coverage zone is to have on a specific zone of the area controlled by numerous cameras.  Multiple coverage may be called $k$-coverage as in \cite{174*zhang2016}. Where refers $k$ to the number of cameras mandatory to cover the zones of interest. 
 Every points of the grid $G$ should be covered at least by one camera and for some specific zone of the area by $k$ cameras.\\
  Consequently a binary list of points is created to count the covered part of $G$ which are noted as $Pc$.
 
@@ -270,7 +270,7 @@ Pc_i= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered and  $p_i$ is the w
 Where $p_i$ is the weight of the point $g_i$ on the grid $G$. $P $ is the list of $p_i$ which contain the weighting of the area associate to the points of the grid $g_i$. \\
 
 \subparagraph{Non-interesting zone.}
-Non-interesting zones are the zones without interest to be covered noted $U$ with the set $U$ composed of points $g_i$. These zones are not strongly prohibited. That mean the zones considering as non-interesting can be covered but their coverage or un-coverage has no impact on the estimation of the coverage of the area. In the case of random grid, distribution the non-interesting zones have a sampling frequency null as in \citep{141*akbarzadeh2013}. For uniform grid distribution in the non-interesting zones are removed to the list $Pc$. This method is currently used like in \cite{22*zhao2008,170*yabuta2008,141*akbarzadeh2013,171*horster2006,84*xu2011} . 
+Non-interesting zones are the zones without interest to be covered noted $U$, with the set $U$ composed of points $g_i$. These zones are not strongly prohibited. That mean the zones considering as non-interesting can be covered but their coverage or un-coverage has no impact on the estimation of the coverage of the area. In the case of random grid, distribution the non-interesting zones have a sampling frequency null as in \citep{141*akbarzadeh2013}. For uniform grid distribution in the non-interesting zones are removed to the list $Pc$. This method is currently used like in \cite{22*zhao2008,170*yabuta2008,141*akbarzadeh2013,171*horster2006,84*xu2011} . 
 \begin{equation}\label{eq:setU}
 Pc=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intresting points} \}
 \end{equation}
@@ -285,7 +285,7 @@ Pc_i= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered  by $k_i$ and  $p_i
    
 \paragraph*{Atypical design}  
 
-Previously the method to set-up a classical occupation grid depending then the problem has been discussed. Few other solutions more atypical have been developed. On solution coming from the field of wireless sensor network is the topologies grid. 
+Previously the method to set-up a classical occupation grid depending on the problem has been discussed. Few other solutions more atypical have been developed. On solution coming from the field of wireless sensor network is the topologies grid. 
  The topologies grid is clearly explained in Chakraborty et al \cite{150*chakrabarty2002} the interest of these methodologies is to reduce the number of points to cover. But in this case the number of points is not related to the resolution wished  but by the sensor range. Indeed the size between the point of the grid has been defined by the size of the minimum range of the sensors. The distance of the minimum sensor range are used as nodes for a topological relation. \\
 Another atypical solution is to develop a grid composed by rectangles. Each rectangle may have different size adapted to the obstacle in the area. A rectangle is considered as covered if most of the area of the rectangle is covered by the cameras as in \citep{170*yabuta2008}. This method is adapted to the area with few obstacles as is shown in the Figure \ref{fig:from170}.
 \begin{figure}[t!]
@@ -323,7 +323,7 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
 	 
 \subsubsection*{Our approach}
  Base on the different design the one finally adopted is a grid $G$ as in Eq \ref{eq:Grid} with an uniform repartition following the 2D grid pattern. The frequency adopted is fixed depending than the size of the area, the precision required and the cameras property. The frequency adopted for the following part as to be considered as dense (high sampling frequency).
-  The grid is placed on the floor of the area to control. Floor is always considered as flat without relief. The zone of interest can vary depending then the need of the experimentation, but the design chosen is flexible to apply if necessary the formulation form the Eq:\ref{eq:PcFull} with mostly $k=1$ and $p=1$, also a set $U$ is used to represent the non-interesting zone as it was presented in eq \ref{eq:setU}.
+  The grid is placed on the floor of the area to control. Floor is always considered as flat without relief. The zone of interest can vary depending on the need of the experimentation, but the design chosen is flexible to apply if necessary the formulation form the Eq:\ref{eq:PcFull} with mostly $k=1$ and $p=1$, also a set $U$ is used to represent the non-interesting zone as it was presented in eq \ref{eq:setU}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -337,8 +337,8 @@ To verify if each points of the grid is covered by a camera. It is primordial to
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{ Cameras definition.}\label{sec:CamerasDefinition}
 
-The projection model closet to the human view is the perspective projection. The perspective projection is also the more common and more especially in the field of area coverage as in example \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional with a $360^{\circ}$ of field of view as \citep{43*erdem2006,150*chakrabarty2002,174*zhang2016}. 
-Here we are only focus on the cameras perspective due to its wide use.  \\
+The closest projection model to the human view is the perspective projection. The perspective projection is also the more common and more especially in the field of area coverage as in example \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional with a $360^{\circ}$ of field of view as \citep{43*erdem2006,150*chakrabarty2002,174*zhang2016}. 
+Here we are only focussing  on the camera perspective due to its wide use.  \\
 
 The pin hole or in Latin the "camera obscura" is at the origin of the geometry model for the perspective projection.\\
 \begin{figure}[t!]
@@ -349,9 +349,9 @@ The pin hole or in Latin the "camera obscura" is at the origin of the geometry m
   \endminipage\hfill
 \end{center}
 \end{figure} 
- The pin hole model is commonly composed by box (or chamber) hermetically closed to light, excepted by a small pin hole on the middle of front side. All the ray of light reflected by the object of the world and passing by the small hole are projected onto the back side of the box. Each rays of light passing by the hole are  projected on the plan (inside the box). This plan became the reversed image of the world and can be recorded by a film or a digital sensor. 
- Due to the simplicity of the pin hole model the calibration and camera projection estimation is simplified.\\
-  Based on it the camera projection is dependent then few parameters intrinsic ( as focal length, sensor size,...) and extrinsic (as the position $x,y,z$ and orientation $\alpha,\beta,\gamma$) . 
+ The pin hole model is commonly composed by box (or chamber) hermetically closed to light, excepted by a small pin hole on the middle of the front side. All the ray of light reflected by the object of the world and passing by the small hole are projected onto the back side of the box. Each ray of light passing by the hole is  projected on the plan (inside the box). This plan became the reversed image of the world and can be recorded by a film or a digital sensor. 
+ Due to the simplicity of the pin hole model, the calibration and camera projection estimation is simplified.\\
+  Based on it, the camera projection is dependent then few parameters intrinsic (as focal length, sensor size,...) and extrinsic (as the position $x,y,z$ and orientation $\alpha,\beta,\gamma$). 
   
  
 \begin{figure}[t!]
@@ -363,15 +363,15 @@ The pin hole or in Latin the "camera obscura" is at the origin of the geometry m
   \end{center}
 \end{figure}
 
-In fact the useful elements to define the projection of a camera perspective, can be stated as a set of parameters composed by :\\
+In fact the useful elements to define the projection of a camera perspective, can be stated as a set of parameters composed by:\\
 \begin{itemize}
 \item Three degrees of freedom of the sensor’s position: $(x, y, z)$;
 \item Three degrees of freedom of the sensor’s orientation: with the  the rotation in pan, tilt, and swing angles: $(\alpha,\beta, \gamma)$ 
-\item Optical parameters including: the focal length $f$ of the lens, the sensor size $s$, $ u_{0}$ and $v_0 $  which would be ideally in the centre of the image. $\sigma_{uv}$ represents the skew coefficient between the $x$ and the $y$ axis.
+\item Optical parameters including: the focal length $f$ of the lens, the sensor size $s$, $u_{0}$ and $v_0 $  which would be ideally in the centre of the image. $\sigma_{uv}$ represents the skew coefficient between the $x$ and the $y$ axis.
 \end{itemize}
-$s$ is composed by two element $Sw$ and $Sh$ for the size on width and height (also called scale factor).\\
+$s$ is composed by two elements $Sw$ and $Sh$ for the size of width and height (also called  the scale factor).\\
 
-Among the parameters of the camera only the some of them are useful to estimate the projection. They can be formalized as a vector:
+Among the parameters of the camera, only  some of them are useful to estimate the projection. They can be formalized as a vector:
 \begin{equation}\label{eq:v}
 v=(x,y,z,\alpha ,\beta,\gamma,f,s,u_0,v_0,\sigma_{uv})
 \end{equation}
@@ -456,36 +456,36 @@ $$
 %To estimate the coverage of a set of camera $V$  the cameras projection of each $v_i$ has to be computed individually.
  In order to compute the camera projection onto a grid the pin hole model is used with the parameters of the vector $v$.\\
 The detail to estimate the camera projection on to the floor, based on the pin hole model and the parameters ($v$), has been detailed numerous times as in \cite{193*fu2014,181*wang2017,165*jiang2010}. In \cite{193*fu2014,181*wang2017,165*jiang2010} the camera projection is used to estimate if a point is visible by a camera, for each point of the grid. These articles handles the classic camera projection (with the 6DoF in \citep{193*fu2014} and 5DoF in \citep{181*wang2017}), both are used to estimate the 2D projection of the camera onto the floor. \\
-In the \citep{193*fu2014} the camera projection has been compute for several rotations for all the DoF. In this case the projection can have numerous shapes (mostly parallelogram shape).
-In \citep{181*wang2017} the model of camera projection begin to be simplified by assuming some fixed parameters. The fix parameters allow more efficiency by economize part of projection computation of the camera at each time.  \\
-In \citep{165*jiang2010} the model of camera projection is used to compute one time for a fix pan and roll in order to have an coverage estimation usable in a 2D map. The camera projection is finally simplified by using a kind of triangle shape.\\
- Some of them as \citep{165*jiang2010,181*wang2017,141*akbarzadeh2013} include the object occlusion. To detected the part of the area occluded by an object, the solution commonly proposed (as is well explain in  \citep{181*wang2017}) is to check the line  made between a point covered ($g_i \in Pc$) and his camera. If this line is intersected by at least one object of the scene, the point $g_i$ cannot be considered any-more as covered. 
+In  \citep{193*fu2014}, the camera projection has been computed for several rotations for all the DoF. In this case, the projection can have numerous shapes (mostly parallelogram shape).
+In \citep{181*wang2017}, the model of camera projection begins to be simplified by assuming some fixed parameters. The fix parameters allow more efficient by economizing part of projection computation of the camera at each time.  \\
+In \citep{165*jiang2010}, the model of camera projection is used to compute one time for a fix pan and roll in order to have a coverage estimation use in a 2D map. The camera projection is finally simplified by using a kind of triangle shape.\\
+ Some of them as \citep{165*jiang2010,181*wang2017,141*akbarzadeh2013} include the object occlusion. To detected the part of the area occluded by an object, the solution commonly proposed (as is well explain in  \citep{181*wang2017}) is to check the line made between a point covered ($g_i \in Pc$) and his camera. If this line is intersected by at least one object in the scene, the point $g_i$ cannot be considered any-more as covered. 
 %  Despite the simplicity of the computation numerous operation have to be done to compute the camera projection onto the floor. \\
 
-To go further other model and formulation inspired by the pin hole model have been proposed as \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010}. These model are inherited for the camera projection and adapted to feet their problems. \\
-In \cite{87*morsly2012,194*fu2010} the camera is considered to be placed on the floor with a fix pan (with the looking direction almost parallel to the floor). Therefore the camera projection is simplified by a isosceles triangle where the shape depend to the focal length.\\
-In \citep{141*akbarzadeh2013} the camera projection is also simplified in order to have a kind of isosceles triangle shape with consider the depth of view of the camera.\\
+To go further other model and formulation inspired by the pin hole model has been proposed as \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010}. These models are inherited for the camera projection and adapted to fit their problems. \\
+In \cite{87*morsly2012,194*fu2010} the camera is considered to be placed on the floor with a fix pan (with the looking direction almost parallel to the floor). Therefore the camera projection is simplified by an isosceles triangle where the shape depends on the focal length.\\
+In \citep{141*akbarzadeh2013} the camera projection is also simplified in order to have a kind of isosceles triangle shape with considering the depth of view of the camera.\\
 In \citep{146*li2011} thanks to a fix pan and focal length, the camera projection is simplified in order to have a rectangle projection onto the ground. The sweep is designed consequently to the size of the camera projection, in order to minimize the overlap and have full coverage of the area.  
 
 
-One of the common point of the method present  in \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010,22*zhao2008,33*reddy2012,193*fu2014,181*wang2017}  (165*) is the computation of a camera projection on to a grid. The computations necessary to estimate if a point of the area is cover are not considered as really greedy (in time). But have to be done to each point $g_j$ of the grid and for each camera $v_i$ of the network.
+One of the common point of the method present in \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010,22*zhao2008,33*reddy2012,193*fu2014,181*wang2017}  (165*) is the computation of a camera projection on to a grid. The computations necessary to estimate, if a point of the area is cover are not considered as really greedy (in time). But have to be done to each point $g_j$ of the grid and for each camera $v_i$ of the network.
 	\begin{equation} \label{eq:sum sum v g}
 		\sum_{j=1}^{m}\sum_{i=1}^{n}f( v_i,g_j)
 	\end{equation}
 Where $n$ the number of cameras in the network; $m$ the number of point in the grid; \\
-This equation (Equation \ref{eq:sum sum v g}) do not take in account the occlusion by few obstacle $Obj$. If we add the potential occlusion by $k$ object: 
+This equation (Equation \ref{eq:sum sum v g}) does not take in account the occlusion by few obstacle $Obj$. If we add the potential occlusion by $k$ object: 
 	\begin{equation}
 		 \sum_{k=1}^{k}\sum_{j=1}^{m}\sum_{i=1}^{n}f( v_i,g_j,Obj_k)
 	\end{equation} 
  
-The function $f(...)$ in charge to compute a camera projection will be called  in the worst case for each camera, in order to evaluate the complete coverage of the area. This numerous call will greatly increase the time computation of the coverage. It is even worst when numerous cameras projection ($n$)have to be computed at each turn of a long optimisation process.\\
-In this condition the efficiency of the function $f()$ in charge then compute the coverage estimation is primordial, due to the numerous call.
+The function $f(...)$ in charge to compute a camera projection will be called in the worst case for each camera, in order to evaluate the complete coverage of the area. This numerous call will greatly increase the time computation of the coverage. It is even worst when numerous cameras projection ($n$) has to be computed at each turn of a long optimisation process.\\
+In this condition the efficiency of the function $f()$ in charge then, computes the coverage estimation is primordial, due to the numerous call.
 
 
 
 \subsubsection{Coverage estimation optimization} 
-Design an efficient cost function is necessary to reduce the time computation and estimate the area covered. A good estimation of the area covered is primordial for the optimisation process. 
-  The computation of a camera projection have to be minimized with some basic assumption depending then the problems.\\
+Design an efficient cost function is necessary to reduce the time computation and estimates the area covered. A good estimation of the area covered is primordial for the optimisation process. 
+  The computation of a camera projection have to be minimized with some basic assumption depending on the problems.\\
 Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotations in $\alpha$ (pan) and $\beta$ (tilt). It is possible to compute for a given altitude the area covered by one camera, based on the given parameters. Especially the focal length $f$, the altitude of the cameras and the sensor size $s$. Where $s$ is composed of $Sw$ sensor size width and $Sh$, sensor size height ($s= [Sw ; Sh]$). 
 In this model the camera projection is always a rectangle as described in Figure \ref{fig:cam_proj}. To estimate the shape of the rectangle with is deduced from the ratio of $s$ and the size of this rectangle with is deduced from $(f ,s ,A)$. Where $A$ is the altitude. The altitude is the distance between the grid and the cameras, in the simple case $A$ is considered to be equal to $z$, when the grid is on the floor.  \\
 The basic computation to estimate the size of a camera projection :
@@ -536,7 +536,7 @@ All this simplification helps the cost function to be fast and efficient. \\
 \subsection{Parameter to optimize }\label{sec:parameterToOptimize}
 % en raison de 
 By dint of the simplification presented previously the vector of parameters (\ref{eq:v}) can be simplified too.\\
-To summarize,  the computation of  one camera  projection onto the floor, where the floor is represented by a grid for the area to cover, and the camera is in altitude with a looking direction orthogonal to the floor.  Just few parameter are necessary  as showed in equation  \ref{eq:etaUpsilon} %{eq:WrHr1 , }
+To summarize,  the computation of one camera projection onto the floor, where the floor is represented by a grid for the area to cover, and the camera is in altitude with a looking direction orthogonal to the floor. Just few parameter are necessary  as showed in equation  \ref{eq:etaUpsilon} %{eq:WrHr1 , }
 to \ref{eq:A.coef}. Thanks to that the equation (\ref{eq:v}) can be reduced with keeping only the position of the camera and the roll as:
 	\begin{equation}\label{eq:v2}
 		v=(x,y,z,\gamma )
@@ -546,18 +546,18 @@ to \ref{eq:A.coef}. Thanks to that the equation (\ref{eq:v}) can be reduced with
 		v=(x,y,A.coef,\gamma )
 	\end{equation}
 
-Reducing the number of  parameter, passing to the equation \ref{eq:v} to \ref{eq:v2} are really usefully to the optimisation of the problem. The reduction of the number of parameter will  greatly affect the optimisation process.\\
+Reducing the number of  parameters, passing to the equation \ref{eq:v} to \ref{eq:v2} are really usefully to the optimisation of the problem. The reduction of the number of parameter will greatly affect the optimisation process.\\
  Indeed, in addition to reduce the time computation, this simplification reduce the number of parameters to optimize.   
 
-Until know the camera projection estimation as been addressed with only one camera. But we want to compute the coverage for a set of cameras. \\
-The solution is based on the previous estimation for the camera projection, but adapt to the location of each camera. By  positioning the rectangle projection to have the center of it at the $x$ and $y$ position and compute the occupation grid.\\
+Until now the camera projection estimation as was addressed with only one camera. But we want to compute the coverage for a set of cameras. \\
+The solution is based on the previous estimation for the camera projection, but adapts to the location of each camera. By  positioning the rectangle projection to have the center of it at the $x$ and $y$ position and compute the occupation grid.\\
 
 In order to win a bit of time, each point of the grid already cover by a camera are note tested for the next cameras. This small modification will impact positively the computation time for the coverage estimation of a network of camera. That mean in the equation \ref{eq:sum sum v g} the value of $m$ decrease as $i$ increase. More exactly  the size of $m$ decrease as  the area coverage increase.  
 \\
 
 \subparagraph{Representation of the parameters to optimize. \\}
 
-Until know the camera formulation is adapted to one camera, to represent the problem we need a set of cameras. The precedent notation can be extended to have a set of $V$ composed by $n$ cameras defined by the parameters of $v$:
+Until now, the camera formulation is adapted to one camera, to represent the problem we need a set of cameras. The precedent notation can be extended to have a set of $V$ composed by $n$ cameras defined by the parameters of $v$:
 
 	\begin{equation}\label{eq:V}
 		\begin{split}
@@ -567,30 +567,30 @@ Until know the camera formulation is adapted to one camera, to represent the pro
 		\end{split}
 	\end{equation}
 \noindent Where $n$ is the given number of cameras in the network. The coordinate of a camera $v_i$ with are the $i$th camera of the network is defined  with $x_i, y_i, z_i,$ for a given room and $\gamma_i$ the roll rotation (portrait or landscape). The parameters not contained in $V$ and used to compute the cameras projection are  identical for all the set $V$, and are fixed at the beginning of the optimization.\\
-Therefore, $V$ represent a solution. $V$ contain all individual positions and orientation of the set of cameras for a predefined focal length, sensor size and map depending then the problem.% wish also include the potential constraint as  some restriction on the map.\\
+Therefore, $V$ represents a solution. $V$ contain all individual positions and orientations of the set of cameras for a predefined focal length, sensor size and map depending on the problem.% wish also include the potential constraint as  some restriction on the map.\\
 Obviously all the solution $V$ are not a "possible solution" for our problem. Some solution $V$ does not respect the set of constraint noted $E$.
 
 So that the $V$ should respect the constraints of the set $E$ (see Eq.\ref{eq:Vs}). Among the constraint few of them was already disused, as the occlusion, the map restriction, the k-coverage, or some constraint more specific to the problems (as saw in chapter \ref{chap:stateOfTheArt}).\\
- The "possible solution" $Vs$ must take in consideration the set $E$ as :
+ The "possible solution" $Vs$ must take in consideration with the set $E$ as :
 
 \begin{equation}\label{eq:Vs}
 Vs=V \mbox{ , iff } E(V)=\begin{cases}1, & \mbox{  iff } E_i(V)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
 \end{cases} 
 \end{equation}
-Where $E_i(V)$ is the function applied to verify  the $i$th constrain of the set $E$ on the solution $V$. $Nc$ is the number of constraints need to be satisfied to have an acceptable solution.
+Where $E_i(V)$ is the function applied to verify  the $i$th constrains of the set $E$ on the solution $V$. $Nc$ is the number of constraints needs to be satisfied to have an acceptable solution.
 That mean among all the possibles combination of parameters $V$ only the one intersect the set of the constraint $E$ are an possible solution.  If we are considering  all the $V$ and all the $E$ as two subset $Vs$ is defined as $Vs=V\subset E$. 
 
-The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context. As example: the room shape, minimizing  the altitude,  have  the best resolution, orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. 
-The constraint have to be defined depending then the problems and the goal.
+The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context. As example: the room shape, minimizing  the altitude,  have the best resolution, orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. 
+The constraint have to be defined depending on the problems and the goal.
 
 \section{Constraint}\label{sec:constraint}
 
-Make the exhaustive list of all the constraints for the problem of cameras positioning is not really interesting and almost impossible. The constraint can be numerous and depend mainly of the problem formulation and the context. Like that few of them was briefly introduced in the previous section as in chapter \ref{chap:stateOfTheArt}, section \ref{sec:coverageEstimation},... This part are focus on the list fo the constraint used in our case and detail their design.
+Make the exhaustive list of all the constraints for the problem of cameras positioning is not really interesting and almost impossible. The constraint can be numerous and depend mainly of the problem formulation and the context. Like that few of them was briefly introduced in the previous section as in chapter \ref{chap:stateOfTheArt}, section \ref{sec:coverageEstimation},... This part is focus on the list of the constraint used in our case and detail their design.
 
 The constraint considered in this work are : 
 \begin{itemize}
 	\item Fix number of the cameras.
-	\item Fix parameters of camera.
+	\item Fix parameters of the camera.
 	\item No rotation  on  $\alpha$ and $\beta$ (pan and tilt).
 	\item Possible fix altitude.
 	\item Altitude boundary (not too hight, not too low).  	
@@ -601,16 +601,16 @@ The constraint considered in this work are :
 
 \end{itemize} 
 \subparagraph{Fixes number of the cameras.}
-One of the first constraint is the fix number of cameras. This constraint as some other detailed latter are  useful to simplified and restrict the possibility of the problem. This constraint permits us to focus on the fine optimisation (as in \citep{22*zhao2008} where both are tested). The number of camera is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  
+One of the first constraint is the fix number of cameras. This constraint as some others (detailed latter) are  useful to simplify and restrict the possibility of the problem. This constraint permits us to focus on the fine optimisation (as in \citep{22*zhao2008} where both are tested). The number of cameras is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  
 
 \subparagraph{Fixes parameters of camera and no rotations.}
-Fixes parameters of camera and no rotation on  $\alpha$ and $\beta$, as introduce previously some parameters of the camera are fix (section \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV is also an advantage for the optimization by simplify the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization.
+Fixes parameters of the cameras and no rotations ($\alpha$ and $\beta$) has been introduced previously (section \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV are also an advantage for the optimization by simplifying the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization.
 
 \subparagraph{Fixes altitude.}
- The fix altitude is a constraint usable in order to limit the number of parameter to optimize. The use of this constraint is usable to reduce the complexity (see section \ref{sec:OptimizationComplexity}). It is also useful for other assumption as a camera on the celling or for a submarine 66* \cite{66*}. This constraint is an optional constraint and are not commonly used in the experiment presented in the following section.   
+ The fix altitude is a constraint use in order to limit the number of parameters to optimize. The use of this constraint is used to reduce the complexity (see section \ref{sec:OptimizationComplexity}). It is also useful for other assumptions, as a camera on the celling or for a submarine 66* \cite{66*}. This constraint is an optional constraint and is not commonly used in the experiment presented in the following section.   
 
 \subparagraph{The altitude boundary.}\label{sec:altitudeBoundary}
- When the altitude is not fix some limit must be chosen to avoid the extremely high and low altitude. The highest altitude will be fix depending then the UAV ability and other restriction as the laws. The lowest altitude have to be fixed for the safety of the user under the UAV.  
+ When the altitude is not fixed some limit must be chosen to avoid the extremely high and low altitude. The highest altitude will be fixed depending on the UAV ability and other restrictions as the laws. The lowest altitude has to be fixed for the safety of the user under the UAV.  
 In practice the boundary of the $z$ is defined with :
  \begin{equation}\label{eq:boundaryZ}
    \inf z\leq A.Coef\leq \sup z  
@@ -618,7 +618,7 @@ In practice the boundary of the $z$ is defined with :
  Where $\sup z$ is the maximal altitude of the camera and $\inf z$ the minimum altitude. $A$ is the fix altitude  of a camera where the camera projection has been computed with $A=z$ with only $coef$ vary as introduced in Equation \ref{eq:A.coef}. 
  
  \subparagraph{The map boundary.}
-The map boundary is a constraint similar then the altitude boundary. Despite the shape of an area to cover some maximum boundary can be done. In fact for any shape as complex as it, it is  possible to encapsulated in a rectangle. The rectangle map boundary is defined by a width $W$ and height $H$. The boundary on $x$ and $y$ are :
+The map boundary is a constraint similar then the altitude boundary. Despite the shape of an area to cover some maximum boundary can be made. In fact for any shape as complex as it, it is  possible to encapsulate in a rectangle. The rectangle map boundary is defined by a width $W$ and height $H$. The boundary on $x$ and $y$ are:
  \begin{equation}
   \begin{array}{lcl}
   	0\leq x\leq W \\
@@ -626,7 +626,7 @@ The map boundary is a constraint similar then the altitude boundary. Despite the
   \end{array} 
  \end{equation}  
  
-By associating the altitude boundary (from Eq\ref{eq:boundaryZ}), a cube boundary limit the position of the cameras in the 3 dimensional spaces. 
+By associating the altitude boundary (from Eq\ref{eq:boundaryZ}), a cube boundary limits the position of the cameras in the 3 dimensional spaces. 
 \begin{equation}\label{eq:3dBoundary}
   \begin{array}{lclcl}
   	0\leq x\leq W \\ 0\leq y\leq H  \\ \inf z\leq A.Coef\leq \sup z  
@@ -643,19 +643,19 @@ Despite the rectangle boundary of the area, the map to cover can be much more co
   \endminipage\hfill
   \end{center}
 \end{figure}
-To take in account this constraint the gird have been designed with removing some of this points.
-The grid $G$ is reduced in order to have only the points in the white sub-part. In this example each white pixel of the map are points of the grid. 
-Concretely this implementation is easier for the complex map and have also some advantage. \\
-Among the advantage, the flexibility of the grid customization. That allow the optimization to try some exotic solutions, as allowing the camera  position on the black sub-part or in a border of it during the optimization.  Obviously the exotic solution with a cameras position on the black side does not increase the coverage rate  but if the optimisation converge correctly no camera will be on the the black sub-part of the map (or small part of it).
+To take in account this constraint the gird has been designed with removing some of this points.
+The grid $G$ is reduced in order to have only the points in the white sub-part. In this example each white pixel of the map is points of the grid. 
+Concretely this implementation is easier for the complex map and has also some advantage. \\
+Among the advantage, the flexibility of the grid customization. That allows the optimization to try some exotic solutions, as allowing the camera  position on the black sub-part or in a border of it during the optimization.  Obviously the exotic solution with a cameras position on the black side does not increase the coverage rate  but if the optimisation converge correctly no camera will be on the the black sub-part of the map (or small part of it).
 
 \subparagraph{Some fix cameras in the set.}
-Having some fix cameras position in the set of cameras, is an optional constraint. This allow to have few manual cameras position from an user or other algorithms.
+Having some fix cameras position in the set of cameras, is an optional constraint. This allows to have few manual cameras position from an user or other algorithms.
 One case can be to have some specific area as the entrance where have to be surveyed by a cameras dedicated to.  
-To implement this constraint the solution applied during the experiments (presented later) is to adapt the map by remove the point of the grid $G$ cover by the sub-set of fix cameras.
+To implement this constraint the solution applied during the experiments (presented later) is to adapt the map by removing the point of the grid $G$ cover by the sub-set of fix cameras (as if these points of the grid was covered).
 
 \subparagraph{The resolution.}
-The resolution of the images is related then the sensor size (in px) and the distance between the camera and the object filmed. In our case the sensor size is fixed by the properties of the camera mounted on the UAV and the object filmed is the floor of the area to cover. In this case the distance between the camera and floor is the altitude. \\
-The resolution constraint have to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be the lower possible.\\
+The resolution of the images is related then the sensor size (in px) and the distance between the camera and the object filmed. In our case, the sensor size is fixed by the properties of the camera mounted on the UAV and the object filmed is the floor of the area to cover. In this case, the distance between the camera and floor is the altitude. \\
+The resolution constraint has to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be the lower possible.\\
 Considering only the resolution constraint as minimizing the average altitude of the cameras is harmful for the coverage optimization.
 Consequently, during the optimization a trade off between the altitude (and the related resolution) and the coverage rate have to be done $\min{\frac{\sum^n_{i=1}{A.coef_i}}{n}}$ and the coverage rate. In order to manage this trade off, the average altitude of the cameras is included in the cost function (see section  \ref{sec:costFun}).  
  
@@ -665,13 +665,13 @@ Among the constraints listed different priorities and restrictions exist. Indeed
 
 \subparagraph{Hard Constraint.}
  Some of the constraints presented are called "Hard constraint". \\
- The hard constraint limit the possible solution by do not allowing the solution with does not respect it. This hard constraint is directly used during in the optimisation process to prohibit any solution to be out of this boundary. This hard constraint have to be integrate in the optimization process in order to cannot generate a solution with does not respect it. Consequently the hard constraint can some times slow down the generation of the individuals.\\ 
- For example the 3D boundary as defined in Equation \ref{eq:3dBoundary} is an hard constraint. Each cameras position must be inside the 3D boundary.\\
+ The hard constraints limit the possible solution by do not allowing the solution with does not respect it. This hard constraint is directly used during in the optimisation process to prohibit any solution to be out of this boundary. This hard constraint has to be integrate in the optimization process in order to cannot generate a solution with does not respect it. Consequently the hard constraint can some times slow down the generation of the individuals.\\ 
+ For example, the 3D boundary as defined in Equation \ref{eq:3dBoundary} is a hard constraint. Each cameras position must be inside the 3D boundary.\\
  
  \subparagraph{Soft Constraint.}
- In the other case some constraint can be considered as "Soft Constraint".\\ 
- The soft constraints is to minimize the set of error. If a soft constraint is not fully respected the solution can be considered as acceptable and this small amount of error does not affect so much the final answer. In this case the soft constraint is assimilate to small acceptable error. \\
- The soft constraint leave the possibility during the optimization to do some mistake in order to learn about it.  
+ In the other case, some constraint can be considered as "Soft Constraint".\\ 
+ The soft constraints has to minimize the set of error. If a soft constraint is not fully respected the solution can be considered as acceptable and this small amount of error does not affect so much the final answer. In this case the soft constraint is assimilate to small acceptable error. \\
+ The soft constraint leaves the possibility during the optimization to do some mistake in order to learn about it.  
  If the soft constraint is noted $\epsilon$ and the hard constraint are noted $ \varepsilon '$ like that the constraint set is $E=\epsilon+\varepsilon'$.\\
  
 % \begin{equation}
@@ -681,19 +681,19 @@ Among the constraints listed different priorities and restrictions exist. Indeed
  	\max f(Vs) - \min \epsilon  \mbox{  } \forall Vs \subset \varepsilon'
  \end{equation}
  
-The objective is to maximize the coverage of a set of cameras ($f(Vs)$) with respect the hard constraint $\varepsilon'$ and minimized the error form the soft constraint $\epsilon$.
-Concretely the soft constraint are commonly integrated in the Cost Function as can be the resolution or the fix number of the cameras by the grid design. 
+The objective is to maximize the coverage of a set of cameras ($f(Vs)$) with respect the hard constraints $\varepsilon'$ and minimized the error form the soft constraints $\epsilon$.
+Concretely the soft constraints are commonly integrated in the Cost Function as can be the resolution or the fix number of the cameras by the grid design. 
 
 
 \section{The cost function.} \label{sec:costFun}
 
-The cost function have the mission to estimate the quality of an answer. In our case an answer is the position  of a set of cameras. The cost function is essential in the process of optimization as that was introduced in the section \ref{sec:CostFunctionGA}.
+The cost function has the mission to estimate the quality of an answer. In our case, an answer is the position  of a set of cameras. The cost function is essential in the process of optimization as that was introduced in the section \ref{sec:CostFunctionGA}.
 
-The cost function have to estimate the area cover by a set of camera in order to do that the area is discretized by a grid as in section \ref{sec:Grid}. \\
-The grid customization permit to introduce some of the soft constraint as the complex shape of the map by removing the point out of the are to cover. Also the fix cameras are added in the grid points as already cover area. \\
-The grid modification will allow the cameras position to cover the area already covered or removed form the grid. The consequence of it will be to reduce the coverage rate possibility. The optimization will have to minimized this error.
+The cost function has to estimate the area cover by a set of cameras in order to do that the area is discretized by a grid as in section \ref{sec:Grid}. \\
+The grid customization permit to introduce some of the soft constraint as the complex shape of the map by removing the point out of the area to cover. Also the fix cameras are added in the grid points as already cover area. \\
+The grid modification will allow the cameras position to cover the area already covered and removed form the grid. The consequence of it will be to reduce the coverage rate possibility. The optimization will have to minimized this error.
 
-To evaluate the coverage of a set of cameras is essential to can estimate the camera projection of each, as detailed in the section \ref{sec:CamerasDefinition}. The area cover by the j-Th camera are noted as in equation \ref{eq:PciK} (where $Pc\in G$). By iteratively repeated this for each cameras of the set the full area coverage is computed (as equation\ref{eq:sum sum v g}). 
+To evaluate the coverage of a set of cameras is essential to can estimate the cameras projection of each, as detailed in the section \ref{sec:CamerasDefinition}. The area cover by the $j$-Th camera is noted as in equation \ref{eq:PciK} (where $Pc\in G$). By iteratively repeated this for each camera of the set the full area coverage is computed (as equation\ref{eq:sum sum v g}). 
 
 Based on, the  simplest cost function is the coverage estimation.
 \begin{equation}\label{eq:CostFBase}
@@ -703,8 +703,8 @@ Where $N$ is the number of cameras;
 $m$ represent the number of points needed to describe the grid $G$ (as in Equation \ref{eq:Grid}); $Vs$ is the solution with respect the hard constraint.
 The cost function $C(Vs)$ give the quality of the solution $Vs$.
 
-This version of the cost function $C(Vs)$ does not take in account the resolution constraint. The resolution is  strongly link with the camera altitude $z$ (as show in \ref{sec:altitudeBoundary}).
- A criteria must be added in the cost function formula of the Equation \ref{eq:CostFBase}. The average of the altitude $z$ is used and have to be include in the cost function.
+This version of the cost function $C(Vs)$ does not take in account the resolution constraint. The resolution is  strongly linked with the camera altitude $z$ (as show in \ref{sec:altitudeBoundary}).
+ A criteria must be added in the cost function formula of the Equation \ref{eq:CostFBase}. The average of the altitude $z$ is used and have to be included in the cost function.
  \begin{equation}\label{eq:CostFResolutionPart1}
 \overline{z}= \frac{\sum_{i=1}^N z_i}{N}     
 \end{equation}
@@ -715,11 +715,11 @@ This version of the cost function $C(Vs)$ does not take in account the resolutio
 C =  \frac{\sum_{i=1}^N {Pc_i}}{m}  - \frac{\sum_{i=1}^N z}{N}     
 \end{equation}
  
-The equation \ref{eq:CostFResBase} is used in the cost function to add the resolution constraint. The consequence of it, is the optimization will try to minimize the average altitude and maximize the coverage with no priority. Concretely  by just applying this equation  \ref{eq:CostFResBase} the optimization will first minimize the average altitude by positioning all the cameras at the minimum altitude (with respect the hard constraint of altitude boundary) and in second time try to maximize the position (on $x$ and $y$) of the cameras. 
+The equation \ref{eq:CostFResBase} is used in the cost function to add the resolution constraint. The consequence of it, is the optimization will try to minimize the average altitude and maximize the coverage with no priority. Concretely by just applying this equation  \ref{eq:CostFResBase} the optimization will first minimize the average altitude by positioning all the cameras at the minimum altitude (with respect the hard constraint of altitude boundary) and in second time try to maximize the position (on $x$ and $y$) of the cameras. 
 
-In order to have an  priority  between the coverage and the altitude a weigh have to be made on the equation \ref{eq:CostFResBase}. The weigh have to be chosen carefully.
-The weight have to be auto-adaptable depending then area covered. In order to give more priority to the coverage when the coverage rate is low and add importance to the resolution  when the area is already well cover. The coverage have to stay the priority the resolution must be optimize in second time.
-The best solution to do that, is to  link the weight of the resolution criteria with the coverage rate.
+In order to have a priority  between the coverage and the altitude a weigh has to be made on the equation \ref{eq:CostFResBase}. The weigh have to be chosen carefully.
+The weight has to be auto-adaptable depending on area covered. In order to give more priority to the coverage when the coverage rate is low and add importance to the resolution when the area is already well covered. The coverage has to stay the priority the resolution must be optimized in a second time.
+The best solution to do that, is to link the weight of the resolution criteria with the coverage rate.
 
 \begin{equation}\label{eq:CostFResPondere}
   \sigma \times \sum_{i=1}^N {Pc_i} \times \frac{\sum_{i=1}^N z}{N}     
@@ -731,13 +731,13 @@ Based on it the final cost function is:
 C(Vs) =  \frac{\sum_{i=1}^N{Pc_i}  - \delta  \times \sum_{i=1}^N {Pc_i} \times \frac{\sum_{i=1}^N z}{N}  }{m}   
 \end{equation}
 
-Tanks to this formula, a proposed answer $Vs$ can be evaluated and return the quality of the solution for the problem of the coverage maximisation and the minimization of the altitude in the second time. The cost function integrate all the soft constraint either by the design of the grid or by the formula of $C()$.
+Thanks to this formula, a proposed answer $Vs$ can be evaluated and returns the quality of the solution for the problem of the coverage maximisation and the minimization of the altitude in the second time. The cost function integrate all the soft constraint either by the design of the grid or by the formula of the cost function $C()$.
 
-The cost function presented is the final one but the building of it was an incremental work and few version was test in term of weight, priority, and constraint. The one presented here is the more equilibrated.\\ 
-Despite that some of the work  presented in the following section are made with the basic cost function from the equation \ref{eq:CostFBase}. In this case the element composing $v$ can be reduced as only $v=(x,y,\gamma)$.\\
+The cost function presented is the final one, but the building of it was an incremental work and numerous version was test in term of weight, priority, and constraint. The one presented here is the more equilibrated.\\ 
+Despite that some of the work  presented in the following section are made with the basic cost function from the equation \ref{eq:CostFBase}. In this case, the element composing $v$ can be reduced as only $v=(x,y,\gamma)$.\\
 
-The final and complete cost function $C(Vs)$ have as input a vector $Vs$ with are composed by all the cameras position and orientation of the network. It is also composed by the map of the area to cover $G$ where G include the soft constraint as the room shape, the fix camera. The constraint of resolution is added by use the average altitude in the equation \ref{eq:CostF}.
-The value returned by the cost function $C(Vs)$ is the quality of a solution to our problems of coverage using an UAV.
+The final and complete cost function $C(Vs)$ have as input a vector $Vs$ with are composed by all the cameras position and orientation of the network. It is also composed by the map of the area to cover $G$ where $G$ include the soft constraints as the room shape, the fix camera. The constraint of resolution is added by using the average altitude in the equation \ref{eq:CostF}.
+The value is returned by the cost function $C(Vs)$ is the quality of a solution to our problems of coverage using an UAV.
 
 
 
@@ -766,14 +766,14 @@ The value returned by the cost function $C(Vs)$ is the quality of a solution to 
  \section{Optimization complexity} \label{sec:OptimizationComplexity}
  
 %To cover an area with a certain amount of sensor many solutions can be possible.
-In spite of the simplification presented before, the problem stay complex. There exist many position for each camera to cover an area with a certain amount of sensors. This number of position can be estimate as follow.\\   
+In spite of the simplification presented before, the problem stays complex. There exist many positions for each camera to cover an area with a certain amount of sensors. This number of position can be estimated as follows.\\   
 Each camera defined by the position on $x, y, z $ and $ \gamma$ can be set anywhere in the search space named $Sp$ : 
 \begin{equation}\label{eq:SearchSpace}
  Sp=(W\times H \times ( \max(A)-\min(A)) \times 2 )  Sp \in E 
 \end{equation}
-Where $W$ and $H$ are the size as width and height of the area to cover, $\max(A)-\min(A)$  is the range  of possible altitude. 2 is to define the roll $\gamma$, as the rectangle projection is horizontal or vertical ( landscape or portrait). The search space $Sp$ allows to take in consideration some strong constraint $E$ like the boundary of the area or the restriction in the degree of freedoms.
+Where $W$ and $H$ are the size as width and height of the area to cover, $\max(A)-\min(A)$  is the range  of possible altitude. 2 is to define the roll $\gamma$, as the rectangle projection is horizontal or vertical (landscape or portrait). The search space $Sp$ allows to take in consideration some strong constraint $E$ like the boundary of the area or the restriction in the degree of freedoms.
 
-The problem of the search space is the propensity to increase rapidly as the area grow. This phenomena is accentuate by the size of the set of cameras $N$.
+The problem of the search space is the propensity to increase rapidly as the area grows. This phenomena is accentuated by the size of the set of cameras $N$.
 %It is possible to express the size of the search space as a succession of product for estimate the number of feasible position on $x, y, z $ and $ \gamma$ for each combination of the set cameras : 
 %\overset{N}{\underset{Sp}{e}
  \begin{equation} \label{eq:Combinaison}
@@ -781,8 +781,8 @@ The problem of the search space is the propensity to increase rapidly as the are
  \end{equation} 
  Where $|Vs|$ is the number of possible solution for a set of $N$ cameras in the worst case. %$|Vs|$ is the 
  %  \begin{equation} \label{eq:SearchSpace}  \sum_{n=1}^N \sum_{x=1}^{W} \sum_{y=1}^{H} \sum_{z=1}^{)} \sum_{\gamma=1}^{2}Pc_i  - \sum_{k=1}^{E}Pc_i=Vs  \end{equation}
- In fact the size of the search space ( as Eq. \ref{eq:SearchSpace}) associate to the set of $N$ cameras (as Eq.\ref{eq:Combinaison}) make a exponential number of possible solution depending mainly then the size of the area and the number of the cameras in the network. \\
- Obviously in view of this behaviour the use of a deterministic solution based on a heuristic does not seem to be a good answer to have a efficient solution. In addition the number of possible solutions $|Vs|$ makes the computation of an optimal almost impossible due to the numerous local minima. This kind of problem can not be used with an algorithm dedicate to the research of global optimal solution but need to be used with an algorithm focusing of optimize the solution and returning a acceptable solution.\\
+ In fact the size of the search space ( as Eq. \ref{eq:SearchSpace}) associate to the set of $N$ cameras (as Eq.\ref{eq:Combinaison}) make an exponential number of possible solution depending mainly then the size of the area and the number of the cameras in the network. \\
+ Obviously in view of this behaviour the use of a deterministic solution based on a heuristic does not seem to be a good answer to have an efficient solution. In addition the number of possible solutions $|Vs|$ makes the computation of an optimal almost impossible due to the numerous local minima. This kind of problem can not be used with an algorithm dedicate to the research of global optimal solution but need to be used with an algorithm focusing of optimizing the solution and returning an acceptable solution.\\
  The formulation of the problem is primordial in order to reduce the size of the search space and give a chance to the optimization to converge.
 
 
