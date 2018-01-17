@@ -217,7 +217,7 @@ The "random distribution" is less popular but in \cite{22*zhao2008} a hybrid dis
 
 \paragraph*{ Special modelling (3D  or 2D)}
 To design the occupation grid, one other element should be taken in consideration. It is the spacial modelling. After deciding the useful density and the distribution of the grid, the position in the space of the point $g_i$ need to be studied.  
-In fact depending on the problem the grid can be modelled differently in order to properly cover the area to control. Commonly the occupation grid is placed on the floor and calculate visibility only in 2D  by computing the  camera projection as in \textbf{[164*]} \citep{164*valente2013,150*chakrabarty2002,8*zhou2011,170*yabuta2008,171*horster2006,22*zhao2008}, but depending on the context the grid have interest do describe a 3D space.  
+In fact depending on the problem the grid can be modelled differently in order to properly cover the area to control. Commonly the occupation grid is placed on the floor and calculate visibility only in 2D  by computing the  camera projection as in  \citep{164*valente2013,150*chakrabarty2002,8*zhou2011,170*yabuta2008,171*horster2006,22*zhao2008}, but depending on the context the grid have interest do describe a 3D space.  
 Hegle et al\cite{83*van2009}, calculates the visibility, where it is relevant: for example, on the upper torso or head of the possible target rather than the floor. This article  proposes a 2D grid but inside the 3D space in order to  characterize properly the volume by placing the grid at a specific height.  
 
 In \cite{82*chrysostomou2012} the grid is formalized in the full volumetric space by numerous “control points” (as $g_i$) to control the area. The points of the grid is uniformly (or can be randomly) distributed along the axis of $x, y$ and $z$. Also in \cite{87*morsly2012} the grid are formulated in the volumetric space by using a uniform 3D grid distribution. The formulation proposed show the complexity even more important to use a 3 dimensional occupation grid and for practical reasons (mostly the inadequacy has computational power due to the increased complexity) the 3D grid is replaced by a 2D grid at a specific height to optimize the coverage. \\ 
@@ -276,7 +276,7 @@ Pc=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intr
 \end{equation}
 
 
-Finally  these methods use to design the zones of interest are not fully independent and can be associate with the same model as in \cite{141*akbarzadeh2013,171*horster2006,84*xu2011} [141*, 171*,84*]. The combination of all these  zones of interest can be formulated as : 
+Finally  these methods use to design the zones of interest are not fully independent and can be associate with the same model as in \cite{141*akbarzadeh2013,171*horster2006,84*xu2011}. The combination of all these  zones of interest can be formulated as : 
  \begin{align}\label{eq:PcFull}
 Pc_i= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered  by $k_i$ and  $p_i$ is the weight} \\ 0, & \mbox{otherwise}  \end{cases}
 \\ Pc=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intresting points} \}
@@ -312,7 +312,7 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
 \cite{141*akbarzadeh2013}       &	 X	 &	     & 	2D grid on relief 		  &  		 		 & X \tabularnewline \hline
    \cite{150*chakrabarty2002}   &	 X	 &	     & 	  	 					  & Topologies sensor&	\tabularnewline \hline
      \cite{164*valente2013} 
-     \textbf{[164*]} &	 X	 	&	     &overlap by shifting of z  &  				 &	\tabularnewline \hline
+     &	 X	 	&	     &overlap by shifting of z  &  				 &	\tabularnewline \hline
       \cite{170*yabuta2008}     &	 .	 & 	     &		  					  &For zone 
      															segmentation 	 & X \tabularnewline \hline
       \cite{171*horster2006}    &	  	 &	 X   & 	  	 					  &  		 	 	 & X \tabularnewline \hline
@@ -468,7 +468,7 @@ In \citep{141*akbarzadeh2013} the camera projection is also simplified in order 
 In \citep{146*li2011} thanks to a fix pan and focal length, the camera projection is simplified in order to have a rectangle projection onto the ground. The sweep is designed consequently to the size of the camera projection, in order to minimize the overlap and have full coverage of the area.  
 
 
-One of the common point of the method present in \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010,22*zhao2008,33*reddy2012,193*fu2014,181*wang2017}  (165*) is the computation of a camera projection on to a grid. The computations necessary to estimate, if a point of the area is cover are not considered as really greedy (in time). But have to be done to each point $g_j$ of the grid and for each camera $v_i$ of the network.
+One of the common point of the method present in \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010,22*zhao2008,33*reddy2012,193*fu2014,181*wang2017,165*jiang2010}   is the computation of a camera projection on to a grid. The computations necessary to estimate, if a point of the area is cover are not considered as really greedy (in time). But have to be done to each point $g_j$ of the grid and for each camera $v_i$ of the network.
 	\begin{equation} \label{eq:sum sum v g}
 		\sum_{j=1}^{m}\sum_{i=1}^{n}f( v_i,g_j)
 	\end{equation}
@@ -483,7 +483,7 @@ In this condition the efficiency of the function $f()$ in charge then, computes 
 
 
 
-\subsubsection{Coverage estimation optimization} 
+\subsubsection{Coverage estimation optimization} \label{sec:coverageEstimation}
 Design an efficient cost function is necessary to reduce the time computation and estimates the area covered. A good estimation of the area covered is primordial for the optimisation process. 
   The computation of a camera projection have to be minimized with some basic assumption depending on the problems.\\
 Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotations in $\alpha$ (pan) and $\beta$ (tilt). It is possible to compute for a given altitude the area covered by one camera, based on the given parameters. Especially the focal length $f$, the altitude of the cameras and the sensor size $s$. Where $s$ is composed of $Sw$ sensor size width and $Sh$, sensor size height ($s= [Sw ; Sh]$). 
@@ -607,7 +607,7 @@ One of the first constraint is the fix number of cameras. This constraint as som
 Fixes parameters of the cameras and no rotations ($\alpha$ and $\beta$) has been introduced previously (section \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV are also an advantage for the optimization by simplifying the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization.
 
 \subparagraph{Fixes altitude.}
- The fix altitude is a constraint use in order to limit the number of parameters to optimize. The use of this constraint is used to reduce the complexity (see section \ref{sec:OptimizationComplexity}). It is also useful for other assumptions, as a camera on the celling or for a submarine 66* \cite{66*}. This constraint is an optional constraint and is not commonly used in the experiment presented in the following section.   
+ The fix altitude is a constraint use in order to limit the number of parameters to optimize. The use of this constraint is used to reduce the complexity (see section \ref{sec:OptimizationComplexity}). It is also useful for other assumptions, as a camera on the celling or for a submarine  \cite{66*galceran2013}. This constraint is an optional constraint and is not commonly used in the experiment presented in the following section.   
 
 \subparagraph{The altitude boundary.}\label{sec:altitudeBoundary}
  When the altitude is not fixed some limit must be chosen to avoid the extremely high and low altitude. The highest altitude will be fixed depending on the UAV ability and other restrictions as the laws. The lowest altitude has to be fixed for the safety of the user under the UAV.  
