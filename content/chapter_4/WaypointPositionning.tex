@@ -1,34 +1,34 @@
 \chapter{Waypoints positioning.} 
 \minitoc
-To remind, the main objective is to propose a efficient path to can cover an area using a camera mounted on a UAV. The solution proposed here, is to focus on optimizing the position of a cameras set to fully cover an area in a first time. When set of optimized cameras pose is found the position can be used as waypoints for an UAVs path. Indeed find an optimized position for each camera of a given set is primordial. The following section are dedicated to the optimization of it. 
+To remind, the main objective is to propose an efficient path to can cover an area using a camera mounted on an UAV. The solution proposed here, is to focus on optimizing the position of a cameras set to fully cover an area in a first time. When set of optimized cameras pose is found the position can be used as waypoints for an UAVs path. Indeed find an optimized position for each camera of a given set is primordial. The following sections are dedicated to the optimization of it. 
 
 
 
 
 %\section{An optimization problem.}
 
-During the previous section the problem was discussed as an optimization problem. The formulation of the problem was presented  and  the complexity of the problem was disused in the section \ref{sec:OptimizationComplexity}. Thanks to this preliminary result the folowing section is only focuse on the optimization process. 
+During the previous sections, the problem was discussed as an optimization problem. The formulation of the problem was presented  and  the complexity of the problem was disused in the section \ref{sec:OptimizationComplexity}. Thanks to this preliminary result the following section is only focused on the optimization process. 
 
 
 
 \section{PSO.}
 
-The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is an stochastic algorithms form the family of evolutionary algorithms (see \ref{chap:EA}). 
-The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 [148* bis]. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it append here form the bird flocking, fish schooling and swarming theory. These animals working in group to find food. 
-The direction to take is not decide by one leader, but by all individuals of the swarm by relaying just few informations as what quantities of food their found. 
+The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is an stochastic algorithms from the family of evolutionary algorithms (see  chapter \ref{chap:EA}). 
+The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 [148* bis]. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it appends here from the bird flocking, fish schooling and swarming theory. These are animals working in a group to find food. 
+The direction to take is not decided by one leader, but by all individuals of the swarm by relaying just few informations as what quantities of food their found. 
 The swarm composed by numerous individuals became smarter and more efficient to reach their objective. 
-The algorithm proposed by Russel Eberhart and James Kennedy in [148* bis] are directly inspired by these behaviours.
+The algorithm proposed by Russel Eberhart and James Kennedy in [148* bis] \cite{148*eberhart1995} are directly inspired by these behaviours.
 
-The methodologies used is to consider each individual or also called particles as a solution of the problems. The problems is optimized at each iteration. To do that each solution must be comparable and quantifiable. At each iteration, each particle have to be tested by a cost function in order to discriminate the best particles of the swarm. The cost function and the design of it has been detailed in the section \ref{chap:formulation}.
-When the best particle is found at the end of an iteration, the other particles of set try to change their initial direction to converge more or less quickly to the actual best. 
-Indeed the power of this algorithm is to have a very basic individuals behaviour to guide the particles. 
-Each particles are guided by 3 behaviours.
+The methodologies used, is to examine each individual or also called particles as a solution of the problems. The problem is optimized at each iteration. To do that each solution must be comparable and quantifiable. At each iteration, each particle has to be tested by a cost function in order to discriminate the best particles of the swarm. The cost function and the design of it has been detailed in the chapter \ref{chap:formulation}.
+When the best particle is found at the end of an iteration, the other particles of set, try to change their initial direction to converge more or less quickly to the actual best. 
+Indeed the power of this algorithm is to obtain a very basic individuals behaviour to guide the particles. 
+Each particle is guided by 3 behaviours.
  \begin{itemize}
  \item  This own velocity $V_k$. 
  \item  This own best solution $P_i$.
  \item  The best solution $P_g$.
 \end{itemize}  
-Here the velocity represent the useful speed of the particle to converge to the best solution. More the velocity is high more the step at each iteration will be long. 
+Here the velocity represents the useful speed of the particle to converge to the best solution. More the velocity is high more the step at each iteration will be long. 
 The behaviour of the particles $X_k$ are modelled by the following equation to obtain the new position $X_{k+1}$ :
 \begin{equation} \label{eq:PSO}
 \begin{split}
@@ -40,38 +40,39 @@ The behaviour of the particles $X_k$ are modelled by the following equation to o
 
 Where $\omega$ is the inertia. $b1$ is random value between 0 and $\phi_p$ and $b2$ is random value between 0 and $\phi_g$. $\phi_g$ and $\phi_p$  are the scaling factor to search away from the particles is best known position (Default: 0.5). 
 
-Thanks to this basic behaviour of the particles the swarm can coverage to an global solution. 
+Thanks to this basic behaviour of the particles the swarm can coverage to a global solution. 
 To have an efficient optimization just few parameters must be set-up for the PSO.  
 The more important are the inertia of the particles, the size of the swarm and the initial dispersion.
 \begin{itemize}
-\item The inertia  will globally  help the particles to keep  their  initial velocity. The consequences of the high value of inertia is to explore more the search space and therefore the convergence will be longer. 
-\item The size of the swarm  have an impact on the convergence time (in number of iteration) and the also time computation. Indeed a big amount of particles in the swarm  mean more exploration of the search space at each iteration, but also more comparison to find the best particles (the comparison may have a non negligible computation time). 
+\item The inertia will globally  help the particles to keep their initial velocity. The consequences of the high value of inertia is to explore more the search space and therefore the convergence will be longer. 
+\item The size of the swarm  have an impact on the convergence time (in number of iteration) and the also time computation. Indeed a big amount of particles in the swarm  means more exploration of the search space at each iteration, but also more comparison to find the best particles (the comparison may have a non negligible computation time). 
 The swarm size is commonly fixed but can be as the population in the GA (see section \ref{sec:Population} ) dynamically adjusted during the optimization process. 
 
 
-\item The initial dispersion of the swarm can be a decisive element as the population for the GA (see in \ref{sec:initPOP}). For the PSO the use of an heuristic to initialize all the particles of the swarm is not recommended due to this important risk to converge prematurely in a local minimum. The random dispersion appear  as the more appropriate. 
-\item Other criteria as $\phi_g$ and $\phi_i$ are minor but can be useful to fine adjust the PSO.
+\item The initial dispersion of the swarm can be a decisive element as the population for the GA (see in \ref{sec:initPOP}). For the PSO the use of an heuristic to initialize all the particles of the swarm is not recommended due to this important risk to converge prematurely in a local minimum. The random dispersion appear  as the more appropriate for a global optimization. On the other hand the fast convergence and the PSO ability to climb the hill to go out of the local minima can be used in order to refine an other optimized solution. The principal risk is to optimize around the initial dispersion and  do not explore correctly the search space.  
+\item Other criteria as $\phi_g$ and $\phi_i$ are minor but can be useful to   have a realy fine adjusted PSO.
 \end{itemize}
 
-Finally to summarize the PSO is efficient in term of optimization despite a very basic behaviour of each particles. Each particles have this own velocity defined part way by the random and controlled by a global parameters the inertia.
- The power of PSO is at same time this efficiency to solve the optimization problem and this simplicity of use. In fact the PSO need at minima  few element to work properly : a cost function, an inertia parameters and the size of the swarm. These efficiency and simplicity of use explain this popularity during the last decade.
+Finally to summarize the PSO is efficient in term of optimization despite a very basic behaviour of each particles. Each particles have this own velocity defined part way by the random and controlled by a global parameters; the inertia.
+ The power of PSO is at same time this efficiency to solve the optimization problem and this simplicity of use. In fact the PSO need at minima  few element to work properly:
+ a cost function, an inertia parameters and the size of the swarm. These efficiency and simplicity of use explain this popularity during the last decade.
  
 
 
 
 
 
--the initial dispersion of the particles \\
+%-the initial dispersion of the particles \\
 %- size swarm \\
 %- stopping criteria \\
-- inconvenient 
+%- inconvenient 
 
 
 \section{Random selection.}
 
 The random selection (named RS) is a very basic algorithm. It is used as a reference points for the comparison of different algorithms. The RS does not use a complex meta-heuristic and is perfect to compare the efficiency of the other algorithm.
 
-The random selection works by randomly generate numerous solutions. Among the solutions randomly generated the best solution is kept as the global optimized solution.
+The random selection works by randomly generate numerous solutions. Among the solutions randomly generated the best solution is kept as the optimized global solution. The RS allows to look through the search space by randomly try different  possible solution. The search space exploration by the RS is only made by random sampling with any optimization method. 
 Indeed the RS is used as a reference points for the other algorithms. If the RS get a similar result with the same amount of the cost function call, the algorithm compared can be considered as not more efficient then a simple random solution. 
 The RS is used to the search for the optimization algorithms and this appropriate parameters as the reference point and evaluate the efficiency of the chosen algorithms.
 
@@ -88,8 +89,8 @@ PSO[84 8 33 143] 87 193* 194* 200* 201*
 \section{Algorithm comparison.}\label{sec:GAvsPSO} 
 %
 To solve the problem of cameras position (or waypoints) the possible usable algorithms are varied as that was discussed in the chapter \ref{chap:stateOfTheArt} (see the sum-up tables \ref{tab:sum-up1} and \ref{tab:sum-up2}).
-Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints. The EA is a vast family of algorithms and one of the more used for our problem is the PSO (see \ref{tab:sum-up2}). The PSO give good result in many case. In the EA family the GA is one of the founders and was one of the more popular due to this great flexibility and efficiency.
- After more investigation the GA is under estimate for the problem of camera position.
+Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints of our problem. The EA is a vast family of algorithms and one of the more used for our problem is the PSO (see \ref{tab:sum-up2}). The PSO give good result in many case. In the EA family the GA is one of the founders and was one of the more popular due to this great flexibility and efficiency.
+ After more investigation the GA is under estimate for the problem of camera positioning unlike the PSO (see \citep{33*reddy2012,8*zhou2011,84*xu2011,143*maji2015,193*fu2014,194*fu2010}).
  Base on the work of Boeringer et al in \citep{78*boeringer2004}78*, where the PSO and the GA have been conscientiously compared. The conclusion in \citep{78*boeringer2004} is relatively open and highlights the similarity of result between two algorithms. An experimentation have to be done to find the best algorithms for the problem of cameras position in a complex environment. 
 
 
@@ -113,7 +114,7 @@ Among the algorithms studied in the literature the EA family appear as the more 
 --------to finish-----\\ (+ integration du RS)\\
 
 To find the best coverage, many experiments have been used to compare PSO and GA. PSO is easier to implement and runs faster, but GA is more flexible and generic thanks to the many tunable parameters. 
-The following subsections will provide a comparison between PSO and GA with using RS a reference .% and give an overview of our method, which is based on GA. The comparison demonstrates the overall advantage of the latter over the former.\\
+The following subsections will provide a comparison between PSO and GA with using RS as a reference.% and give an overview of our method, which is based on GA. The comparison demonstrates the overall advantage of the latter over the former.\\
 %In the literature, the PSO was often used \cite{8*zhou2011,33*reddy2012}, mostly because of the simplicity of its implementation. However, it is interesting to compare the algorithm with the GA. The two algorithms are from the same family (both are stochastic and from evolutionary algorithms).\\
 To compare and evaluate their performance, we tested them in different scenarios. The scenarios have been  design to have different shape and size. The shape of the room have been design to estimate the number of cameras but due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where: 
 
@@ -130,8 +131,8 @@ To compare and evaluate their performance, we tested them in different scenarios
 \end{itemize}
 
 
-The design of the experiments in Table \ref{table:table1} has been set up to identify the most efficient algorithm for the positioning of a set of cameras with maximum coverage depending on the numerous case. 
-The Design of Experiments (DOE) have been made to take in account the  shapes, sizes, some constraint as the fix altitude and that many size of the set of cameras.
+The design of the experiments in Table \ref{table:table1} has been set up to identify the most efficient algorithm for the positioning of a set of cameras with maximum coverage depending on the numerous cases. 
+The Design of Experiments (DOE) have been made to take in account; the  shapes, sizes, some constraint as the fix altitude and  many size of the set of cameras. The DOE has been designed to highlight the impact of the constraints on the optimization process with the GA and PSO.
 
 
 \begin{table} [!htb]
@@ -155,8 +156,8 @@ The Design of Experiments (DOE) have been made to take in account the  shapes, s
 
 The Ground Truth (GT) is the minimum number of cameras required to fully cover a given area. The size of the area has been selected so that the GT can be easily estimated. 
 NW is the maximum Number of cameras (or Waypoint) used for the experiments.  
-At each experiment a solution is computed for a number of cameras from 1  to NW. To compare the different algorithms fairly, only 10 000 calls of the cost function are allowed for each optimization.
-The optimization have been executed 8 time for each optimization process. 8 times is the minimu number of test have to be done to can have a usable average despite the hight volatility due to the random of the algorithms.\\ % 420*8 =3 360 test.
+At each experiment a solution is computed for a number of cameras from 1 to NW. To compare the different algorithms fairly, only 10 000 calls of the cost function are allowed for each optimization.
+The optimization have been executed 8 times for each optimization process. 8 times is the minimum number of test has to be done to can have a usable average despite the hight volatility due to the randomness of the algorithms.\\ % 420*8 =3 360 test.
 
 
 \subsection{ Analysis of the result.}
