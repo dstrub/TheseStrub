@@ -277,15 +277,15 @@ The set-up of the GA have been slightly change by increasing the mutation ratio 
 %\end{figure}
 
 The big room in L shape was used to perform a simple GA and a simple PSO as introduce previously and the GAPSO as explained just before. In the Figure \ref{fig:GAPSO} it is appearing the hybridization of GAPSO increases slightly the percentage of coverage.%(around 0.0002 and 0.107 point of percentage)
-This graphic can be split in 2 part, the left side with a relatively low number of cameras to pose (until 15) and the right part with more cameras. To remember in this experiment for each cameras is defined in x y and z that mean for 15 cameras 45 dimensions have to be optimized.
+This graphic can be split in 2 part, the left side with a relatively low number of cameras to pose (until 15) and the right part with more cameras. To remember in this experiment for each cameras is defined in x, y and z that mean for 15 cameras 45 dimensions have to be optimized.
 The too side of the graphic show efficiency  of the different algorithms and confirmed  the mechanism of GA and PSO.
 The PSO is more efficient in the beginning when the numbers of dimension to optimize is reduced. Otherwise as we saw previously the GA is efficient in the big search space and with a big amount of dimension to optimize the GA is became better than the PSO in the right part of the graphic \ref{fig:GAPSO}. 
 The GAPSO propose a solution in the left part of the graphic \ref{fig:GAPSO} equal or a bite better then the PSO. In the right part of the graphic \ref{fig:GAPSO} the GAPSO propose a solution more refine then the simple GA. This refinement is due to the PSO ability to optimize the solution from the first optimization (GA). 
 
-Finally the biggest advantage of the GAPSO is to propose  most of the time the best solution and some time slightly better by combining the advantage of both algorithms. 
+Finally the biggest advantage of the GAPSO is to propose most of the time the best solution and some time slightly better by combining the advantage of both algorithms. 
 The GAPSO can reduce the limitation of the GA and help to go deeper in the optimization process.The GAPSO  beside to upgrade the solution initially proposed by a simple GA or PSO offer more flexibility and allow only one solution to be efficient for the big or small search space despite the number of dimension to optimize.
 Despite these great advantage (better solution and more flexibility).
-The principal inconvenient of the GAPSO is due to this double convergence. In fact with an hybrid GAPSO as we decide to use a GA have to be executed until a convergence or almost and in the second time optimize with a PSO.  Obviously this implementation increase the time of computation.
+The principal inconvenient of the GAPSO is due to this double convergence. In fact with an hybrid GAPSO as we decide to use a GA have to be executed until a convergence or almost and in the second time optimize with a PSO. Obviously this implementation increase the time of computation.
  
    
 % This refinement is due to the PSO ability to optimize the local solution. As we saw previously the GA is efficient in the big search space and with a big amount of dimension to optimize, but the solution gives the GA need some local adjustment to be better. The GA has few limitation to go deeper in the optimization process but this weakness is partially corrected by the hybridization. The principal advantage hybridization is the ability to keep the benefit of both algorithms. The Figure \ref{fig:GAPSO} show that the GAPSO proposes most of the time the best solution or equal to the best solution by combining the advantage of both algorithms. 
@@ -295,13 +295,79 @@ The principal inconvenient of the GAPSO is due to this double convergence. In fa
 %		\subsubsection{Conclusion}
 		
 \section{Experiment}
+	
 	\subsection{No obstacle }
 	\subsection{Rectangle obstacle}
+	The simulated room is 30 $\times$ 28 m$^2$ which corresponds more or less to a large lecture hall or even an outdoor area. The areas in red (figure \ref{fig:final_room2} c)represents the zones which do not require coverage. Every camera can cover a 4 $\times$ 3 m$^2$  when $z$ is equal to one. The $z$ factor can be equal at $[0.5, 1, 1.5]$, and the cameras can turn  at 90$^{\circ}$. All of these parameters are taken into account in order to compute the waypoints and the GA was used but without any lock to the convergence. 
+ROS is used to execute the path and send navigation commands to the robot.
+% refer to : https://en.wikipedia.org/wiki/Screw_theory#Twist
+
+These messages contain the linear and angular velocity values needed to control the robot's position and orientation. This process is to make the transition from simulation to real world UAV straightforward. The number of waypoints is set depending on the area covered by the cameras projection figure \ref{fig:cam_proj}. The trajectory built from these waypoints is done by sub-sampling the space between these 3D points coordinates.\\
+In our experiments, V-REP \cite{Vrep} is used to simulate the hardware of the UAV and all its mounted sensors like camera which is the core sensor. 
+% It was also used to build the room as explained in more details in the next subsection (\ref{experiment}). 
+In order to ease the deployment of the algorithms on a real platform, we chose ROS \cite{ROS} as the implementation framework to command the simulated UAV.
+ This experiment follow the pipeline showed in the figure \ref{fig:pipeline} with the two different optimization parts.\\
+ 
+\begin{mfigures}[!]{  Room Coverage.}{fig:Rooms_shapes} \centering
+\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room.}{subfig:satimg+mask}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/room_full.png}{room in V-rep.}{subfig:satimgMask}
+\mfigure{width=.4\linewidth}{img/mosaic2.png}{Room mosaicing.}{subfig:satimgcoverage}
+\hspace{1cm}
+
+\tabsimupose
+\end{mfigures}
+
+
+
+
+
 	\subsubsection{With mask}
 	\subsection{For big area}
 		\subsubsection{map 1}
 		\subsubsection{map2 torcy}
 		\subsubsection{map3 calvisson}
+		
+		A much bigger area involves the increasing of the search space and the increasing of the complexity. 
+In the following example figure \ref{subfig:satimgMask} the satellite images are used to define the area to control (in white)  by the UAV. \\
+In order to cover the big area the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. But the GA associate to the adapted cost function allows on the example figure \ref{subfig:satimgcoverage} much more waypoints to be placed and optimized, compared to the literature for example, in \cite{c10,c11}. In the figure \ref{subfig:satimgcoverage} and \ref{subfig:satimgNoncover} the area is covered by 110 waypoints for 98.26$\%$ of coverage and the convergence are achieved after 170501 generations.\\
+
+\subsubsection{outdore simulationmap4 fey}\label{fig:Rooms_shapes}
+\begin{mfigures}[!]{  Optimization of the waypoint pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoint position, (d) is the representation of the black hole.}{fig:Rooms_shapes} \centering
+\mfigure{width=.4\linewidth}{img/calvisson2+mask.png}{The area to cover taken form satellite images.}{subfig:satimg+mask}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/calvisson2mask.png}{The mask of the area to cover.}{subfig:satimgMask}
+\mfigure{width=.4\linewidth}{img/zcalvisson2result1cout_98_260375_gen_170501_Ncam_110.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverage}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/calvisson3cover.png}{The final mosaic images}{subfig:satimgNoncover}
+\tabsimupose
+\end{mfigures}
+
+		
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{outdore simulationmap4 fey}\label{fig:Rooms_shapes}
+\begin{mfigures}[!]{ Optimization of the waypoints poses with a vast outside area and just a few  black holes.}{fig:Rooms_shapes} \centering
+\mfigure{width=.4\linewidth}{img/fig12-a2.png}{The area to cover taken form satellite images.}{subfig:satimg+mask}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/fig12-b2.png}{The mask of the area to cover.}{subfig:satimgMask}
+\mfigure{width=.4\linewidth}{img/fig12-c2.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverage}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/fig12-d4.png}{The final mosaic images}{subfig:satimgNoncover}
+\tabsimupose
+\end{mfigures}
+
+
+  
+% \hspace*{\fill}\subfloat[][]{\tabsimupose} 
+ 
+
+The solution proposed is robust for a big outdoor area with a non-convex shape. 
+ A much bigger area involves increasing the search space and increasing the complexity. 
+In the following example, shown in Figure \ref{subfig:satimgMask}, the satellite images are used to denote the area to control (in white). \\
+
+To cover the big area, the solution is to use a bigger focal length or higher altitude to have a wide area covered at each waypoint, thus keeping few waypoints to control the area with smaller resolution. However the GA associated with the adapted cost function allows  (as in  Figure \ref{subfig:satimgcoverage}) many more waypoints to be placed and optimized in order to keep an acceptable image resolution of the area compared to the literature, for example, in \cite{8*,33*}. In Figure \ref{subfig:satimgcoverage} and \ref{subfig:satimgNoncover}, the area is covered by 80 waypoints for a 98.48$\%$ coverage rate, with an average $z$ at 0.95 and convergence is achieved after 4856 generations. \\
 		
 
 
