@@ -101,7 +101,7 @@ Among the algorithms studied in the literature the EA family appear as the more 
 %78*= Comparaison entre PSO et algo génétique GA  les avantage  et les cas d’utilisation pratique.
 %Papyer détatille  avec des plusier experience comparative  conclusion ouverte sur le choix mais la conlution et que le PSO offre plus de posibilité d’amélioration de par sa simplicité de mise en place et sa « récente utilisation » 
 
-\subsection{Designe of experiment.}
+\subsection{Designe of experiment.}\label{sec:DoE}
 \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px)}{fig:Rooms_shapes} \centering
 \mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room}{subfig:r1}
 \hspace{1cm}
@@ -294,24 +294,47 @@ The principal inconvenient of the GAPSO is due to this double convergence. In fa
 %		\subsubsection{Result}
 %		\subsubsection{Conclusion}
 		
-\section{Experiment}
+\section{Going further, more experiment.}
+
+The previous section with the different experiments shown the efficiency of the GA for the vast areas and the flexibility offer by the hybridised GAPSO (with a  small refinement of the solution). The experiments made until know was focused on different area relatively simple the next step is to increase the difficulty of the scene. The increased complexity is made by adding: 
+\begin{itemize}
+\item More obstacle.
+\item Hole.
+\item Increase size of the area.
+\item Increase the search space by adding more parameters(as the roll). 
+\item add new constraint (as  some fix cameras).
+\end{itemize} 
+The following section present the results obtained by increase step by step the difficulty. 
+
+	\subsection{Rectangle obstacle.}
+	\begin{mfigures}[!]{Indoor area coverage using V-rep to simulate a realistic environment.}{fig:RoomsVrep} \centering
+\mfigure{width=.4\linewidth}{img/room_full.png}{Room in V-rep.}{subfig:VrepRoom}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room.}{subfig:WaypointPose}
+\mfigure{width=.4\linewidth}{img/mosaic2.png}{Reconstructed room based on the waypoints positions.}{subfig:satimgcoverage}
+\hspace{1cm}
+
+\tabsimuposeVrep
+\end{mfigures}
+	Thanks to the result obtained an experiment is made using a similar size then the big room with L shape. The room try to be more realistic and is design with much more obstacle. The room is design to be realistic with an simulation tool dedicate to robotic in order to illustrate the first realistic experiments.
+	     
+	The simulated room is 15 $\times$ 14 m$^2$ which corresponds more or less to a large lecture hall. The areas in red (see Figure \figref{subfig:VrepRoom})represents the zones which do not require coverage. Every camera can cover a 4 $\times$ 3 m$^2$  when $z$ is equal to one. The $z$ factor can be equal at $[0.5, 1, 1.5]$, and the cameras can turn  at 90$^{\circ}$. All of these parameters are taken into account in order to compute the waypoints and only the GA was used. The GA is applied until this convergence. 
 	
-	\subsection{No obstacle }
-	\subsection{Rectangle obstacle}
-	The simulated room is 30 $\times$ 28 m$^2$ which corresponds more or less to a large lecture hall or even an outdoor area. The areas in red (figure \ref{fig:final_room2} c)represents the zones which do not require coverage. Every camera can cover a 4 $\times$ 3 m$^2$  when $z$ is equal to one. The $z$ factor can be equal at $[0.5, 1, 1.5]$, and the cameras can turn  at 90$^{\circ}$. All of these parameters are taken into account in order to compute the waypoints and the GA was used but without any lock to the convergence. 
-ROS is used to execute the path and send navigation commands to the robot.
+	The waypoints positioning after the GA give a solution well optimized. Not perfect but good enough with a limited number of cameras. The solution obtained is comparable to the experiment made previously (see \ref{sec:DoE}) as aspect despite the increasing number of obstacle. This confirm again the ability of adaptation of the EA optimization and encourage us to go a bit further. 
+
+%%%%%%%%%%%%%%%%%%% for the  path plan%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % refer to : https://en.wikipedia.org/wiki/Screw_theory#Twist
 
-These messages contain the linear and angular velocity values needed to control the robot's position and orientation. This process is to make the transition from simulation to real world UAV straightforward. The number of waypoints is set depending on the area covered by the cameras projection figure \ref{fig:cam_proj}. The trajectory built from these waypoints is done by sub-sampling the space between these 3D points coordinates.\\
-In our experiments, V-REP \cite{Vrep} is used to simulate the hardware of the UAV and all its mounted sensors like camera which is the core sensor. 
-% It was also used to build the room as explained in more details in the next subsection (\ref{experiment}). 
-In order to ease the deployment of the algorithms on a real platform, we chose ROS \cite{ROS} as the implementation framework to command the simulated UAV.
- This experiment follow the pipeline showed in the figure \ref{fig:pipeline} with the two different optimization parts.\\
+%These messages contain the linear and angular velocity values needed to control the robot's position and orientation. This process is to make the transition from simulation to real world UAV straightforward. The number of waypoints is set depending on the area covered by the cameras projection figure \ref{fig:cam_proj}. The trajectory built from these waypoints is done by sub-sampling the space between these 3D points coordinates.\\
+%In our experiments, V-REP \cite{Vrep} is used to simulate the hardware of the UAV and all its mounted sensors like camera which is the core sensor. 
+%% It was also used to build the room as explained in more details in the next subsection (\ref{experiment}). 
+%In order to ease the deployment of the algorithms on a real platform, we chose ROS \cite{ROS} as the implementation framework to command the simulated UAV.
+% This experiment follow the pipeline showed in the figure \ref{fig:pipeline} with the two different optimization parts.\\
  
-\begin{mfigures}[!]{  Room Coverage.}{fig:Rooms_shapes} \centering
+\begin{mfigures}[!]{  Room Coverage.}{fig:RoomsVrep} \centering
 \mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room.}{subfig:satimg+mask}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/room_full.png}{room in V-rep.}{subfig:satimgMask}
+\mfigure{width=.4\linewidth}{img/room_full.png}{room in V-rep.}{subfig:VrepRoom}
 \mfigure{width=.4\linewidth}{img/mosaic2.png}{Room mosaicing.}{subfig:satimgcoverage}
 \hspace{1cm}
 
@@ -320,6 +343,51 @@ In order to ease the deployment of the algorithms on a real platform, we chose R
 
 
 
+	\subsection{rectangle obstalce}
+%	C:\Users\stru\Documents\python\hold on\satelit Imag
+%	C:\Users\stru\Documents\python\Complex room\sat LEII
+
+%	C:\Users\stru\Documents\python\hold on\map 120 to compute\cam40X40 minNmbCamCover100=98cam exec 1h
+%	C:\Users\stru\Documents\python\satelite img\barrientosMap
+%	C:\Users\stru\Documents\python\camfix 	
+The previous experiment shown the efficiency of the GA for the vast areas. The experiments made until know was focused on different area relatively simple the next step is to increase the difficulty of the scene. The  increased complexity of map was made by adding more polygon  and  hole in the map.
+
+only GA 
+z size  0.5 1 1.5 1.75
+waypoint snap
+camera size 31x24 px
+\begin{mfigures}[!]
+{Coverage area from satellite images with 75 cameras for a coverage of $76.39\%$ using the the GA.}{fig:TorcyMap} \centering
+\mfigure{width=.4\linewidth}{img/LE2Imap.png}{The area to cover taken form satellite images.}{subfig:Le2iCube}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/EmptyCubRoom.png}{The mask of the area to cover.}{subfig:satimgMask}
+\mfigure{width=.4\linewidth}{img/LE2I_GAevolvTurnComplex76_47481899.png}{Area cover by the network of cameras using the GA.}{subfig:satimgcoverage}
+\hspace{1cm}
+\tabsimupose
+\end{mfigures}	
+
+	
+	\subsection{small size  obstacle.}
+
+%from VISAP EVOLUTIONRY ALGORITHM FOR POSITIONING CAMERAS NETWORKS MOUNTED ON UAV torcy map
+The outdoor experiment helping to show the efficiency of GA in a bigger area and in a realistic environment. In the Figure \ref{fig:outdoor86}.a the area to control is extracted form satellite images. From the Satellite images the shape of the area to cover are selected (see Figure \ref{fig:outdoor86}.b )and the GA are performed to optimize the position of the cameras network the result are in visible in Figure \ref{fig:outdoor86}.c. 
+The optimized cameras poses cover $86\%$ of the area with 35 cameras and the GA converge after 88 generation.
+By using the position of the cameras a mosaic is compute by using the image from the mosaic in order to visualize the result as in Figure \ref{fig:outdoor86}.c.
+
+
+\begin{mfigures}[!]
+{Coverage area from satellite images with 25 cameras for $90.76\%$ of coverage using the GA and $92.81\%$ of coverage using the GAPSO.}{fig:TorcyMap} \centering
+\mfigure{width=.4\linewidth}{img/torcy3.png}{The area to cover taken form satellite images.}{subfig:satimg+mask}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/torcy4.png}{The mask of the area to cover.}{subfig:satimgMask}
+\mfigure{width=.4\linewidth}{img/Torcyz90GANcam25.png}{Area cover by the network of cameras using the GA $90.76\%$.}{subfig:satimgcoverage}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/TorcyGAPSO_hybridCout_92Ncam_25.png}{Area cover by the network of
+cameras using the GAPSO $92.81\%$.}{subfig:satimgNoncover}
+\tabsimupose
+\end{mfigures}
+
+	
 
 
 	\subsubsection{With mask}
