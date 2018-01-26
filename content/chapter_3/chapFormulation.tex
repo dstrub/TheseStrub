@@ -269,7 +269,7 @@ Pc_i= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered and  $p_i$ is the w
 \end{equation}
 Where $p_i$ is the weight of the point $g_i$ on the grid $G$. $P $ is the list of $p_i$ which contain the weighting of the area associate to the points of the grid $g_i$. \\
 
-\subparagraph{Non-interesting zone.}
+\subparagraph{Non-interesting zone.}\label{subsec:obstacleZone}
 Non-interesting zones are the zones without interest to be covered noted $U$, with the set $U$ composed of points $g_i$. These zones are not strongly prohibited. That mean the zones considering as non-interesting can be covered but their coverage or un-coverage has no impact on the estimation of the coverage of the area. In the case of random grid, distribution the non-interesting zones have a sampling frequency null as in \citep{141*akbarzadeh2013}. For uniform grid distribution in the non-interesting zones are removed to the list $Pc$. This method is currently used like in \cite{22*zhao2008,170*yabuta2008,141*akbarzadeh2013,171*horster2006,84*xu2011} . 
 \begin{equation}\label{eq:setU}
 Pc=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intresting points} \}
@@ -633,7 +633,7 @@ By associating the altitude boundary (from Eq\ref{eq:boundaryZ}), a cube boundar
   \end{array} 
  \end{equation} 
  
- \subparagraph{Non rectangle map with possible hole.}
+ \subparagraph{Non rectangle map with possible hole.} \label{subPara:MapConstraintAndObstacle}
 Despite the rectangle boundary of the area, the map to cover can be much more complex than a simple rectangle and can take any kind of shape. Also the shape of the area can be composed by holes. The figure \ref{fig:boundaryMap} illustrate the map complexity. The black part of the map are the zone with are out. That mean these sub-parts have not interest to be covered.
  \begin{figure}[t!]
  \begin{center}

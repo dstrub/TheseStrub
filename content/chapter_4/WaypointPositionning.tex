@@ -310,17 +310,19 @@ The following section present the results obtained by increase step by step the 
 	\begin{mfigures}[!]{Indoor area coverage using V-rep to simulate a realistic environment.}{fig:RoomsVrep} \centering
 \mfigure{width=.4\linewidth}{img/room_full.png}{Room in V-rep.}{subfig:VrepRoom}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room.}{subfig:WaypointPose}
-\mfigure{width=.4\linewidth}{img/mosaic2.png}{Reconstructed room based on the waypoints positions.}{subfig:satimgcoverage}
+\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room.}{subfig:WaypointPoseVrep}
+\mfigure{width=.4\linewidth}{img/mosaic2.png}{Reconstructed room based on the waypoints positions.}{subfig:mosaicSceneVrep}
 \hspace{1cm}
 
 \tabsimuposeVrep
 \end{mfigures}
-	Thanks to the result obtained an experiment is made using a similar size then the big room with L shape. The room try to be more realistic and is design with much more obstacle. The room is design to be realistic with an simulation tool dedicate to robotic in order to illustrate the first realistic experiments.
+	Thanks to the result obtained an experiment is made using a slightly bigger size then the big room (Figure \ref{fig:Rooms_shapes}). The environment of this experiment try to be more realistic and the room is design with more obstacle. 
+	The obstacle are added in the map as non interesting area to cover as explained in  section \ref{subPara:MapConstraintAndObstacle}. Also this room design is the first not designed in order to have perfect ground trough unlike the previous room design (Figure \ref{fig:Rooms_shapes}).
+	To have a more realistic experiment a simulation tool dedicate to robotics is used to illustrate the result. 
 	     
-	The simulated room is 15 $\times$ 14 m$^2$ which corresponds more or less to a large lecture hall. The areas in red (see Figure \figref{subfig:VrepRoom})represents the zones which do not require coverage. Every camera can cover a 4 $\times$ 3 m$^2$  when $z$ is equal to one. The $z$ factor can be equal at $[0.5, 1, 1.5]$, and the cameras can turn  at 90$^{\circ}$. All of these parameters are taken into account in order to compute the waypoints and only the GA was used. The GA is applied until this convergence. 
+	The simulated room is 15 $\times$ 14 m$^2$ which corresponds more or less to a large lecture hall. The areas in red (see Figure \figref{subfig:VrepRoom})represents the zones which do not require coverage. Every camera can cover a 4 $\times$ 3 m$^2$,  when $z$ is equal to one. The $z$ factor can be equal at $[0.5, 1, 1.5]$, and the cameras can turn  at 90$^{\circ}$ to have the image in portrait or landscape. All of these parameters are taken into account in order to compute the waypoints and only the GA was used. The GA is applied until this convergence. 
 	
-	The waypoints positioning after the GA give a solution well optimized. Not perfect but good enough with a limited number of cameras. The solution obtained is comparable to the experiment made previously (see \ref{sec:DoE}) as aspect despite the increasing number of obstacle. This confirm again the ability of adaptation of the EA optimization and encourage us to go a bit further. 
+	The waypoints positioning after running the GA give a solution well optimized (see Figure \figref{subfig:WaypointPoseVrep}). Not perfect but good enough with a limited number of cameras to offer a  mosaic image of the scene with no to much black hole (see Figure \figref{subfig:mosaicSceneVrep}). The solution obtained is comparable to the experiment made previously (see \ref{sec:DoE}) as aspect, despite the increasing number of obstacle and size of the search space. This confirm again the ability of adaptation of the EA optimization and more exactly the GA. These result encourage us to go a bit further. 
 
 %%%%%%%%%%%%%%%%%%% for the  path plan%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % refer to : https://en.wikipedia.org/wiki/Screw_theory#Twist
@@ -331,63 +333,66 @@ The following section present the results obtained by increase step by step the 
 %In order to ease the deployment of the algorithms on a real platform, we chose ROS \cite{ROS} as the implementation framework to command the simulated UAV.
 % This experiment follow the pipeline showed in the figure \ref{fig:pipeline} with the two different optimization parts.\\
  
-\begin{mfigures}[!]{  Room Coverage.}{fig:RoomsVrep} \centering
-\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room.}{subfig:satimg+mask}
-\hspace{1cm}
-\mfigure{width=.4\linewidth}{img/room_full.png}{room in V-rep.}{subfig:VrepRoom}
-\mfigure{width=.4\linewidth}{img/mosaic2.png}{Room mosaicing.}{subfig:satimgcoverage}
-\hspace{1cm}
-
-\tabsimupose
-\end{mfigures}
 
 
 
-	\subsection{rectangle obstalce}
+
+	\subsection{Rectangle obstacles with hole}
 %	C:\Users\stru\Documents\python\hold on\satelit Imag
 %	C:\Users\stru\Documents\python\Complex room\sat LEII
 
 %	C:\Users\stru\Documents\python\hold on\map 120 to compute\cam40X40 minNmbCamCover100=98cam exec 1h
 %	C:\Users\stru\Documents\python\satelite img\barrientosMap
 %	C:\Users\stru\Documents\python\camfix 	
-The previous experiment shown the efficiency of the GA for the vast areas. The experiments made until know was focused on different area relatively simple the next step is to increase the difficulty of the scene. The  increased complexity of map was made by adding more polygon  and  hole in the map.
-
-only GA 
-z size  0.5 1 1.5 1.75
-waypoint snap
-camera size 31x24 px
 \begin{mfigures}[!]
-{Coverage area from satellite images with 75 cameras for a coverage of $76.39\%$ using the the GA.}{fig:TorcyMap} \centering
+{Coverage area from satellite images with 75 cameras for a coverage of $76.39\%$ using the the GA.}{fig:Le2iCubeMap} \centering
 \mfigure{width=.4\linewidth}{img/LE2Imap.png}{The area to cover taken form satellite images.}{subfig:Le2iCube}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/EmptyCubRoom.png}{The mask of the area to cover.}{subfig:satimgMask}
-\mfigure{width=.4\linewidth}{img/LE2I_GAevolvTurnComplex76_47481899.png}{Area cover by the network of cameras using the GA.}{subfig:satimgcoverage}
+\mfigure{width=.4\linewidth}{img/LE2I_GAevolvTurnComplex76_47481899.png}{Area cover by the network of cameras using the GA.}{subfig:IUTCoverage}
 \hspace{1cm}
-\tabsimupose
+\tabsimuposeIUTcube
 \end{mfigures}	
+
+The previous experiment shown the efficiency of the GA despite numerous obstacle and bigger room. The following experiment try to push a bite more the optimization process using only the GA. The increased complexity of map was made by adding much more polygon and also hole in the map. In fact until know all the obstacle was added around the bounding of the area. Add Obstacle in the middle to create a hole in the area increase significantly the complexity of the coverage estimation.
+To simulate a realistic environment the map is designed manually based on a satellite images (see Figure \figref{subfig:Le2iCube}). Each rectangle obstacle has been placed to reproduce the satellite images. 
+
+The result obtained by the GA optimization (see Figure \figref{subfig:IUTCoverage}) show one more time the adaptation power of the GA to the complex scene. The total coverage of the area is around $76.5\%$ for 75 waypoints. The answer proposed is not perfect and can be improved in order to reduce some overlap and black hole. The important number of dimension to optimize ($75\time 4$) and the increased size of the area (twice bigger then previously) mark the limit of the simple GA optimization.\\
+	The more interesting aspect of this experiment is to show the efficiency of the GA in a real complex environment. The solution proposed can be considered as good for the purpose of the challenge (obstacle, hole, numerous waypoints to pose estimate, vast area,...). 
+  
+%only GA 
+%z size  0.5 1 1.5 1.75
+%waypoint snap
+%camera size 31x24 px
 
 	
 	\subsection{small size  obstacle.}
 
-%from VISAP EVOLUTIONRY ALGORITHM FOR POSITIONING CAMERAS NETWORKS MOUNTED ON UAV torcy map
-The outdoor experiment helping to show the efficiency of GA in a bigger area and in a realistic environment. In the Figure \ref{fig:outdoor86}.a the area to control is extracted form satellite images. From the Satellite images the shape of the area to cover are selected (see Figure \ref{fig:outdoor86}.b )and the GA are performed to optimize the position of the cameras network the result are in visible in Figure \ref{fig:outdoor86}.c. 
-The optimized cameras poses cover $86\%$ of the area with 35 cameras and the GA converge after 88 generation.
-By using the position of the cameras a mosaic is compute by using the image from the mosaic in order to visualize the result as in Figure \ref{fig:outdoor86}.c.
-
-
 \begin{mfigures}[!]
 {Coverage area from satellite images with 25 cameras for $90.76\%$ of coverage using the GA and $92.81\%$ of coverage using the GAPSO.}{fig:TorcyMap} \centering
-\mfigure{width=.4\linewidth}{img/torcy3.png}{The area to cover taken form satellite images.}{subfig:satimg+mask}
+\mfigure{width=.4\linewidth}{img/torcy3.png}{The area to cover taken form satellite images.}{subfig:satimgTorcy}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/torcy4.png}{The mask of the area to cover.}{subfig:satimgMask}
-\mfigure{width=.4\linewidth}{img/Torcyz90GANcam25.png}{Area cover by the network of cameras using the GA $90.76\%$.}{subfig:satimgcoverage}
+\mfigure{width=.4\linewidth}{img/torcy4.png}{The mask of the area to cover.}{subfig:satimgMaskTorcy}
+\mfigure{width=.4\linewidth}{img/Torcyz90GANcam25.png}{Area cover by the network of cameras using the GA $90.76\%$.}{subfig:coverageGATorcy}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/TorcyGAPSO_hybridCout_92Ncam_25.png}{Area cover by the network of
-cameras using the GAPSO $92.81\%$.}{subfig:satimgNoncover}
-\tabsimupose
+cameras using the GAPSO $92.81\%$.}{subfig:coverageGAPSOTorcy}
+\tabsimuposeTorcy
 \end{mfigures}
 
-	
+
+Based on the limitation of the map design and the necessity to go one step further the paradigm have to evolve.
+The solution proposed to represent the area until know, was to add rectangle obstacle by remove the corresponding point in the grid (as explained in \ref{subsec:obstacleZone}). The prime advantage to use rectangle obstacle was in the coding implementation. This facility becomes a lock for the more complex area and is not user friendly. The solution chosen for the flowing experimentation is to use a simple mask of the are to cover. The mask represent in the white side the area to cover and in black the non interesting zone (also called obstacles, see \figref{subfig:satimgMaskTorcy}). This solution is finally more "user friendly"  and do not change the fundamental of the occupation grid (each white pixel of the mask is a point of the grid to cover). 
+ 
+%from VISAP EVOLUTIONRY ALGORITHM FOR POSITIONING CAMERAS NETWORKS MOUNTED ON UAV torcy map
+
+For this first experiments with the mask, a smaller area is chosen with a small amount of camera necessary. In the Figure \figref{subfig:satimgTorcy} the area to control is extracted form satellite images to have a mask (see\figref{subfig:satimgMaskTorcy}).
+First, the GA is performed to optimize the position of the waypoints the result are in visible in Figure \figref{subfig:coverageGATorcy}. 
+
+The optimized waypoints positioning, cover $90.76\%$ of the area with 25 cameras and the GA converge after just 67 generation. The solution given by the simple GA is already good despise the complexity of the map. Although can be refined by apply the a PSO. The PSO is used with a initialisation from the first optimisation. 
+Finally the result presented in the Figure \figref{subfig:coverageGAPSOTorcy} shown a much more refined  coverage with significant reduction in the amount of black hole and overlap (coverage is over $92.81\%$). 
+
+
 
 
 	\subsubsection{With mask}
