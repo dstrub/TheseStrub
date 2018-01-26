@@ -366,7 +366,7 @@ The result obtained by the GA optimization (see Figure \figref{subfig:IUTCoverag
 %camera size 31x24 px
 
 	
-	\subsection{small size  obstacle.}
+	\subsection{Using mask to describe the area.}
 
 \begin{mfigures}[!]
 {Coverage area from satellite images with 25 cameras for $90.76\%$ of coverage using the GA and $92.81\%$ of coverage using the GAPSO.}{fig:TorcyMap} \centering
@@ -390,23 +390,16 @@ For this first experiments with the mask, a smaller area is chosen with a small 
 First, the GA is performed to optimize the position of the waypoints the result are in visible in Figure \figref{subfig:coverageGATorcy}. 
 
 The optimized waypoints positioning, cover $90.76\%$ of the area with 25 cameras and the GA converge after just 67 generation. The solution given by the simple GA is already good despise the complexity of the map. Although can be refined by apply the a PSO. The PSO is used with a initialisation from the first optimisation. 
-Finally the result presented in the Figure \figref{subfig:coverageGAPSOTorcy} shown a much more refined  coverage with significant reduction in the amount of black hole and overlap (coverage is over $92.81\%$). 
+Finally the result presented in the Figure \figref{subfig:coverageGAPSOTorcy} shown a much more refined  coverage with significant reduction in the amount of black hole and overlap (coverage is over $92.8\%$). 
+
+The main result of this experiment was to evaluate if the modification of the paradigm by the grid customization may had a signification impact on the waypoint positioning. The conclusion of this experiment is,  in fact not, the GAPSO hybridization is robust and flexible despite the strong constraint due to the non geometric example.  
+Thanks to that the size and the number of waypoints can be increased. 
 
 
-
-
-	\subsubsection{With mask}
 	\subsection{For big area}
-		\subsubsection{map 1}
-		\subsubsection{map2 torcy}
+	
 		\subsubsection{map3 calvisson}
-		
-		A much bigger area involves the increasing of the search space and the increasing of the complexity. 
-In the following example figure \ref{subfig:satimgMask} the satellite images are used to define the area to control (in white)  by the UAV. \\
-In order to cover the big area the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. But the GA associate to the adapted cost function allows on the example figure \ref{subfig:satimgcoverage} much more waypoints to be placed and optimized, compared to the literature for example, in \cite{c10,c11}. In the figure \ref{subfig:satimgcoverage} and \ref{subfig:satimgNoncover} the area is covered by 110 waypoints for 98.26$\%$ of coverage and the convergence are achieved after 170501 generations.\\
-
-\subsubsection{outdore simulationmap4 fey}\label{fig:Rooms_shapes}
-\begin{mfigures}[!]{  Optimization of the waypoint pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoint position, (d) is the representation of the black hole.}{fig:Rooms_shapes} \centering
+\begin{mfigures}[!]{ Optimization of the waypoint pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoint position, (d) is the representation of the black hole.}{fig:Rooms_shapes} \centering
 \mfigure{width=.4\linewidth}{img/calvisson2+mask.png}{The area to cover taken form satellite images.}{subfig:satimg+mask}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/calvisson2mask.png}{The mask of the area to cover.}{subfig:satimgMask}
@@ -414,13 +407,19 @@ In order to cover the big area the solution can be to use a bigger focal or high
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/calvisson3cover.png}{The final mosaic images}{subfig:satimgNoncover}
 \tabsimupose
-\end{mfigures}
+\end{mfigures}		
+		A much bigger area involves the increasing of the search space and the increasing of the complexity. 
+In the following example figure \ref{subfig:satimgMask} the satellite images are used to define the area to control (in white) by the UAV. \\
+In order to cover the big area the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. But the GA associate to the adapted cost function allows on the example figure \ref{subfig:satimgcoverage} much more waypoints to be placed and optimized, compared to the literature for example, in \cite{c10,c11}. In the figure \ref{subfig:satimgcoverage} and \ref{subfig:satimgNoncover} the area is covered by 110 waypoints for 98.26$\%$ of coverage and the convergence are achieved after 170501 generations.\\
+
+		\subsubsection{outdoor fey}\label{sec:fey_map}
+
 
 		
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{outdore simulationmap4 fey}\label{fig:Rooms_shapes}
+\subsubsection{2bis}\label{fig:Rooms_shapes}
 \begin{mfigures}[!]{ Optimization of the waypoints poses with a vast outside area and just a few  black holes.}{fig:Rooms_shapes} \centering
 \mfigure{width=.4\linewidth}{img/fig12-a2.png}{The area to cover taken form satellite images.}{subfig:satimg+mask}
 \hspace{1cm}
