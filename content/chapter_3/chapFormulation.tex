@@ -1,12 +1,27 @@
-\chapter{Formulation}\label{chap:formulation}
+\chapter{Problem modelisation}\label{chap:formulation}
 % comit 21-11-2017
 \minitoc
+
+%----------- newPlane  ----------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section { The map}
+%	\subsection{...}
+%	\subsection{...}
+%\section{Camera definition}
+%
+%\section{Cost Function}
+%	\subsection{Constraint}
+%	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %The following chapter is focused on the problem formulation for cameras positioning.\\
 %Obviously formulation proposed in not the only one and some other have been proposed in the literature, mostly depending then the objectives. \\
 The problem formulation is essential to design an efficient cost function. The cost function is used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
 This chapter present first, a formal definition of the problem based on the literature. In the second time, our formulation is proposed. The formulation proposed is adapted to optimize the problems with evolutionary algorithm to have an efficient cameras position for maximizing the coverage, using a camera mounted on UAV.
 
-\section{ Coverage estimation. }
+%\section{ Coverage estimation }
 
 
 This section is focused on how to estimate the covered area depending on the cameras parameters.\\
@@ -72,7 +87,7 @@ Finally when the problem is clearly defined all the different elements are integ
 %
 %The modelization of the grid is an important element and different solution has been proposed during the time with different advantage depending then the situation.\\
 
-\subsection{Grid}\label{sec:Grid}
+\section{The map}\label{sec:Grid}
 
 
 %/!$\backslash$ \textbf{ ajouter une partie dedier  a [181*] qui propose une solution pour ajusté la densité en fonction  de la necesité de présision  (contour plus dense ) }
@@ -92,13 +107,13 @@ g_i \in Pc \mbox{ IFF } g_i \mbox{ is coverd. }
 
 The design of the grid is an important element of the problem formulation. Different solution has been proposed during the time with different advantage depending on the situation.\\
 
-\subsubsection{How to design an occupation grid. }%Related work for the grid design
+\subsection{How to design an occupation grid }%Related work for the grid design
 The following subsection is focused on the different  modelling the grid possibility, based on the literature. 
 
-\paragraph{Sampling frequency.} %Sampling frequency.\\
+\subsubsection{Sampling frequency} %Sampling frequency.\\
 The occupation grid is used to discretize the area to cover. The discretization of the area can vary and the area can get a high level of discretization or low level. The level of sampling frequency has a bearing on the problem formulation and moreover on the optimization.
 
-\subparagraph{High sampling frequency.}
+\paragraph*{High sampling frequency}
 The high level of discretization or high sampling frequency has some advantage and disadvantage.
  
 The high sampling frequency of an area is characterized by a big amount of point $g_i$ for describing the area. The big amount mean to have an important density of point $g_i$ and consequently the value of $m$ is high. 
@@ -118,11 +133,12 @@ The high sampling frequency allows the cameras position to be much more accurate
 %////////////high sampling disadvantage////\\
 
 On another side, the disadvantage to have a too high sampling frequency is the time computation. Rather to refine the solution the too high level of discretization of the area will make the optimization too long and more complex. Indeed to control the coverage, it is necessary to control if each point of the grid is covered by a camera.  
-\begin{equation} 
-	\sum^m \sum^n \mbox{test of coverage}
-\end{equation}
+%\begin{equation} 
+%	\sum^m \sum^n \mbox{test of coverage}
+%\end{equation}
 
-Where $m$ is the number of points in the grid and $n$ the number of camera. 
+%Where $m$ is the number of points in the grid and $n$ the number of camera. 
+That mean the number of the test to estimate the coverage of each point of the grid, for a set of cameras  is $m\times n$. Where $m$ is the number of points in the grid and $n$ the number of camera. 
  More the size of the grid is high more unity test of coverage (see in section \ref{sec:CamerasCoverage}) must be done, and that at each step of the optimization process.  Consequently the size of the grid will greatly affect the time computation.  \\
 Also the high sampling frequency will affect the positioning of the cameras pose. In fact, more area is finely represented more freedom has to be done to pose and adjust each camera. 
 
@@ -130,7 +146,7 @@ Also the high sampling frequency will affect the positioning of the cameras pose
 %////////////////////////////////////
 
 %In fact the quality of the coverage estimation affect the positioning optimization. %A bad estimation of the area coverage due to the bad level of discretization will impact the quality of the answer and the precision of the cameras position by returned a approximate coverage rate. 
-\subparagraph{Low sampling frequency.}
+\paragraph*{Low sampling frequency.}
 %///////////////////advantage of the low sampling///////
 At the opposite a lower sampling frequency can be a good solution to upgrade the convergence speed of the optimization process as that was presented in \cite{8*zhou2011}. In Zhou et al \cite{8*zhou2011} a small value of $m$ is chosen to have a real time solution for small area and just few cameras (up to  20). 
 %////////////low sampling disadvantage////
@@ -164,7 +180,7 @@ In this other side, the low sampling frequency may generate a bad estimation of 
 %\multicolumn{1}{|l|}{\cellcolor[HTML]{EFEFEF}\textbf{Low sampling frequency}} & Faster computation & Bad coverage estimation \\ \hline
 %\end{tabular}
 %\end{table}
-\subparagraph{Low or high sampling frequency}
+\paragraph*{Low or high sampling frequency}
 Finally the too low sampling frequency, instead to win computation time, may affect the quality of coverage  estimation and consequently the answer. But, as explained the impact of a too high frequency in the solution has also some consequence as is summarized in the table \ref{tab:samplingFrequency} \\
 The density of the grid has to be adjusted depending than the goal and the precision required. One of the solutions proposed in Zhao et al \citep{22*zhao2008}  is to have a progressive refinement by increasing the grid density.
 
@@ -179,7 +195,7 @@ Therefore increase the number of points will also increase in proportion the num
  %The too high precision in the position of the camera will increase the complexity and some case where the value of $m$ is too high the optimization process cannot converge or find acceptable solution to the gain of the search space. \\ 
 
 
-\paragraph{ Distribution}
+\subsubsection{ Distribution}
 The distribution is an important factor to manage to design an occupation grid. The distribution is how the  points of the grid are placed on the area to cover.
 Different distribution can be used, but commonly in the literature the grid pattern distribution and in a lesser extent the random distribution is applied (see Figure \ref{fig:GridVsRand}). \\
 \begin{figure}[t!]
@@ -215,7 +231,7 @@ The "random distribution" is less popular but in \cite{22*zhao2008} a hybrid dis
 
 
 
-\paragraph*{ Special modelling (3D  or 2D)}
+\subsubsection{ Special modelling (3D  or 2D)}
 To design the occupation grid, one other element should be taken in consideration. It is the spacial modelling. After deciding the useful density and the distribution of the grid, the position in the space of the point $g_i$ need to be studied.  
 In fact depending on the problem the grid can be modelled differently in order to properly cover the area to control. Commonly the occupation grid is placed on the floor and calculate visibility only in 2D  by computing the  camera projection as in  \citep{164*valente2013,150*chakrabarty2002,8*zhou2011,170*yabuta2008,171*horster2006,22*zhao2008}, but depending on the context the grid have interest do describe a 3D space.  
 Hegle et al\cite{83*van2009}, calculates the visibility, where it is relevant: for example, on the upper torso or head of the possible target rather than the floor. This article  proposes a 2D grid but inside the 3D space in order to  characterize properly the volume by placing the grid at a specific height.  
@@ -239,7 +255,7 @@ In \citep{141*akbarzadeh2013} propose a 2D grid adapted to the relief of the are
   \end{center}
 \end{figure}
 
-\paragraph*{Zones of interest.} 
+\subsubsection{Zones of interest.} 
 Among the area to cover some zones may have a particular interest to be covered. These zones can be discriminate, by the grid design. 
 The zones of interest are designate by different manner depending than the goal. Manly 3 methods can be discerned.
 \begin{itemize}
@@ -249,7 +265,7 @@ The zones of interest are designate by different manner depending than the goal.
 \end{itemize}
  
 
-\subparagraph{The multi coverage zone.}
+\subparagraph{The multi coverage zone}
 The aim  of the multi coverage zone is to have on a specific zone of the area controlled by numerous cameras.  Multiple coverage may be called $k$-coverage as in \cite{174*zhang2016}. Where refers $k$ to the number of cameras mandatory to cover the zones of interest. 
 Every points of the grid $G$ should be covered at least by one camera and for some specific zone of the area by $k$ cameras.\\
  Consequently a binary list of points is created to count the covered part of $G$ which are noted as $Pc$.
@@ -283,7 +299,7 @@ Pc_i= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered  by $k_i$ and  $p_i
 \end{align}
 
    
-\paragraph*{Atypical design}  
+\subsubsection{Atypical design}  
 
 Previously the method to set-up a classical occupation grid depending on the problem has been discussed. Few other solutions more atypical have been developed. On solution coming from the field of wireless sensor network is the topologies grid. 
  The topologies grid is clearly explained in Chakraborty et al \cite{150*chakrabarty2002} the interest of these methodologies is to reduce the number of points to cover. But in this case the number of points is not related to the resolution wished  but by the sensor range. Indeed the size between the point of the grid has been defined by the size of the minimum range of the sensors. The distance of the minimum sensor range are used as nodes for a topological relation. \\
@@ -321,7 +337,7 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
    \end{tabular}
  \end{center}
 	 
-\subsubsection*{Our approach}
+\subsection{Our approach}
  Base on the different design the one finally adopted is a grid $G$ as in Eq \ref{eq:Grid} with an uniform repartition following the 2D grid pattern. The frequency adopted is fixed depending than the size of the area, the precision required and the cameras property. The frequency adopted for the following part as to be considered as dense (high sampling frequency).
   The grid is placed on the floor of the area to control. Floor is always considered as flat without relief. The zone of interest can vary depending on the need of the experimentation, but the design chosen is flexible to apply if necessary the formulation form the Eq:\ref{eq:PcFull} with mostly $k=1$ and $p=1$, also a set $U$ is used to represent the non-interesting zone as it was presented in eq \ref{eq:setU}.
 
@@ -582,8 +598,8 @@ That mean among all the possibles combination of parameters $V$ only the one int
 
 The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context. As example: the room shape, minimizing  the altitude,  have the best resolution, orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. 
 The constraint have to be defined depending on the problems and the goal.
-
-\section{Constraint}\label{sec:constraint}
+\section{Cost Function}
+\subsection{Constraint}\label{sec:constraint}
 
 Make the exhaustive list of all the constraints for the problem of cameras positioning is not really interesting and almost impossible. The constraint can be numerous and depend mainly of the problem formulation and the context. Like that few of them was briefly introduced in the previous section as in chapter \ref{chap:stateOfTheArt}, section \ref{sec:coverageEstimation},... This part is focus on the list of the constraint used in our case and detail their design.
 
@@ -659,7 +675,7 @@ The resolution constraint has to maximize the resolution. In order to maximize t
 Considering only the resolution constraint as minimizing the average altitude of the cameras is harmful for the coverage optimization.
 Consequently, during the optimization a trade off between the altitude (and the related resolution) and the coverage rate have to be done $\min{\frac{\sum^n_{i=1}{A.coef_i}}{n}}$ and the coverage rate. In order to manage this trade off, the average altitude of the cameras is included in the cost function (see section  \ref{sec:costFun}).  
  
-\subsection{Constraints types.}
+\subsubsection{Constraints types.}
  
 Among the constraints listed different priorities and restrictions exist. Indeed the constraint can be considered in 2 sub-class. 
 
@@ -685,7 +701,7 @@ The objective is to maximize the coverage of a set of cameras ($f(Vs)$) with res
 Concretely the soft constraints are commonly integrated in the Cost Function as can be the resolution or the fix number of the cameras by the grid design. 
 
 
-\section{The cost function.} \label{sec:costFun}
+\subsection{The cost function implementation} \label{sec:costFun}
 
 The cost function has the mission to estimate the quality of an answer. In our case, an answer is the position  of a set of cameras. The cost function is essential in the process of optimization as that was introduced in the section \ref{sec:CostFunctionGA}.
 
