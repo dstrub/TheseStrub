@@ -1,4 +1,4 @@
-\chapter{Waypoints positioning.} 
+\chapter{Waypoints positioning } 
 \minitoc
 To remind, the main objective is to propose an efficient path to can cover an area using a camera mounted on an UAV. The solution proposed here, is to focus on optimizing the position of a cameras set to fully cover an area in a first time. When set of optimized cameras pose is found the position can be used as waypoints for an UAVs path. Indeed find an optimized position for each camera of a given set is primordial. The following sections are dedicated to the optimization of it. 
 
@@ -11,7 +11,7 @@ During the previous sections, the problem was discussed as an optimization probl
 
 
 
-\section{PSO.}
+\section{PSO }
 
 The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is an stochastic algorithms from the family of evolutionary algorithms (see  chapter \ref{chap:EA}). 
 The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 [148* bis]. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it appends here from the bird flocking, fish schooling and swarming theory. These are animals working in a group to find food. 
@@ -68,7 +68,7 @@ Finally to summarize the PSO is efficient in term of optimization despite a very
 %- inconvenient 
 
 
-\section{Random selection.}
+\section{Random selection }
 
 The random selection (named RS) is a very basic algorithm. It is used as a reference points for the comparison of different algorithms. The RS does not use a complex meta-heuristic and is perfect to compare the efficiency of the other algorithm.
 
@@ -86,7 +86,7 @@ PSO[84 8 33 143] 87 193* 194* 200* 201*
 
 228*(hibrid) 161* 158* 78 GA VS PSO
 
-\section{Algorithm comparison.}\label{sec:GAvsPSO} 
+\section{Algorithm comparison }\label{sec:GAvsPSO} 
 %
 To solve the problem of cameras position (or waypoints) the possible usable algorithms are varied as that was discussed in the chapter \ref{chap:stateOfTheArt} (see the sum-up tables \ref{tab:sum-up1} and \ref{tab:sum-up2}).
 Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints of our problem. The EA is a vast family of algorithms and one of the more used for our problem is the PSO (see \ref{tab:sum-up2}). The PSO give good result in many case. In the EA family the GA is one of the founders and was one of the more popular due to this great flexibility and efficiency.
@@ -101,7 +101,7 @@ Among the algorithms studied in the literature the EA family appear as the more 
 %78*= Comparaison entre PSO et algo génétique GA  les avantage  et les cas d’utilisation pratique.
 %Papyer détatille  avec des plusier experience comparative  conclusion ouverte sur le choix mais la conlution et que le PSO offre plus de posibilité d’amélioration de par sa simplicité de mise en place et sa « récente utilisation » 
 
-\subsection{Designe of experiment.}\label{sec:DoE}
+\subsection{Designe of experiment }\label{sec:DoE}
 \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px)}{fig:Rooms_shapes} \centering
 \mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room}{subfig:r1}
 \hspace{1cm}
@@ -160,7 +160,7 @@ At each experiment a solution is computed for a number of cameras from 1 to NW. 
 The optimization have been executed 8 times for each optimization process. 8 times is the minimum number of test has to be done to can have a usable average despite the hight volatility due to the randomness of the algorithms.\\ % 420*8 =3 360 test.
 
 
-\subsection{ Analysis of the result.}
+\subsection{ Analysis of the result }
 
 \begin{figure}[!]
 \minipage{0.99\textwidth}
@@ -210,7 +210,7 @@ Thanks to that we know the two algorithms can be used for a more complex shape a
 %	\subsection{Result}
 %	\subsection{Explication}
 
-\section{Hybrid GA PSO.}
+\section{Hybrid GA PSO }
 % ref: 76* 77* 
  
 
@@ -227,7 +227,7 @@ Thanks to the experiment done and presented in the previous section (see \ref{se
  The hybridization can be the solution to optimize the camera positions in all the condition. The aims of the hybridization is to exploit the better of both algorithms, trying to further refine the solution. 
 
    77*\cite{c13}.
-\subsubsection{The different hybridization.}
+\subsubsection{The different hybridization }
 
 In Premalatha al et 76*  propose tree different solution to hybrid the GA and PSO: 
 \begin{itemize}
@@ -251,7 +251,7 @@ The parameters of the algorithms have to be adapted to the hybridization.
 
 
 
-\subsubsection{Experimentation.}
+\subsubsection{Experimentation }
 To compare the efficiency of the hybridization GAPSO to the GA, one experimentation is proposed.
 The experimentation followed the rule fixed during the comparison as in Table \ref{table:table1}. %\\
 It appears the big room in L shape as the Figure \ref{fig:Rooms_shapes}.e is the most suitable to test the hybridization.  % (POURQUOI ???).
@@ -266,7 +266,7 @@ The set-up of the GA have been slightly change by increasing the mutation ratio 
   \endminipage\hfill
 \end{figure}
 
- \subsubsection{Result and comment.}
+ \subsubsection{Result and comment }
   
 %\begin{figure}[t]
 %\minipage{0.95\textwidth}
@@ -294,7 +294,7 @@ The principal inconvenient of the GAPSO is due to this double convergence. In fa
 %		\subsubsection{Result}
 %		\subsubsection{Conclusion}
 		
-\section{Going further, more experiment.}
+\section{Going further, more experiment }
 
 The previous section with the different experiments shown the efficiency of the GA for the vast areas and the flexibility offer by the hybridised GAPSO (with a  small refinement of the solution). The experiments made until know was focused on different area relatively simple the next step is to increase the difficulty of the scene. The increased complexity is made by adding: 
 \begin{itemize}
@@ -306,7 +306,7 @@ The previous section with the different experiments shown the efficiency of the 
 \end{itemize} 
 The following section present the results obtained by increase step by step the difficulty. 
 
-	\subsection{Rectangle obstacle.}
+	\subsection{Rectangle obstacle }
 	\begin{mfigures}[!]{Indoor area coverage using V-rep to simulate a realistic environment.}{fig:RoomsVrep} \centering
 \mfigure{width=.4\linewidth}{img/room_full.png}{Room in V-rep.}{subfig:VrepRoom}
 \hspace{1cm}
@@ -366,7 +366,7 @@ The result obtained by the GA optimization (see Figure \figref{subfig:IUTCoverag
 %camera size 31x24 px
 
 	
-	\subsection{Using mask to describe the area.}
+	\subsection{Using mask to describe the area }
 
 \begin{mfigures}[!]
 {Coverage area from satellite images with 25 cameras for $90.76\%$ of coverage using the GA and $92.81\%$ of coverage using the GAPSO.}{fig:TorcyMap} \centering
@@ -399,18 +399,19 @@ Thanks to that the size and the number of waypoints can be increased.
 	\subsection{For big area}
 	
 		\subsubsection{map3 calvisson}
-\begin{mfigures}[!]{ Optimization of the waypoint pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoint position, (d) is the representation of the black hole.}{fig:Rooms_shapes} \centering
-\mfigure{width=.4\linewidth}{img/calvisson2+mask.png}{The area to cover taken form satellite images.}{subfig:satimg+mask}
+\begin{mfigures}[!]{ Optimization of the waypoint pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoint position, (d) is the representation of the black hole.}{fig:CalvissonExp} \centering
+\mfigure{width=.4\linewidth}{img/calvisson2+mask.png}{The area to cover taken form satellite images.}{subfig:satimgCalvisson}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/calvisson2mask.png}{The mask of the area to cover.}{subfig:satimgMask}
-\mfigure{width=.4\linewidth}{img/zcalvisson2result1cout_98_260375_gen_170501_Ncam_110.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverage}
+\mfigure{width=.4\linewidth}{img/calvisson2mask.png}{The mask of the area to cover.}{subfig:satimgMaskCalvisson}
+\mfigure{width=.4\linewidth}{img/zcalvisson2result1cout_98_260375_gen_170501_Ncam_110.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverageCalvisson}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/calvisson3cover.png}{The final mosaic images}{subfig:satimgNoncover}
+\mfigure{width=.4\linewidth}{img/calvisson3cover.png}{The final mosaic images}{subfig:satimgNoncoverCalvisson}
 \tabsimupose
 \end{mfigures}		
 		A much bigger area involves the increasing of the search space and the increasing of the complexity. 
-In the following example figure \ref{subfig:satimgMask} the satellite images are used to define the area to control (in white) by the UAV. \\
-In order to cover the big area the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. But the GA associate to the adapted cost function allows on the example figure \ref{subfig:satimgcoverage} much more waypoints to be placed and optimized, compared to the literature for example, in \cite{c10,c11}. In the figure \ref{subfig:satimgcoverage} and \ref{subfig:satimgNoncover} the area is covered by 110 waypoints for 98.26$\%$ of coverage and the convergence are achieved after 170501 generations.\\
+In the following example figure \figref{subfig:satimgMaskCalvisson} the satellite images are used to define the area to control (in white). \\
+
+In order to cover the big area the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. But the GA associate to the adapted cost function allows on the example figure \figref{subfig:satimgcoverageCalvisson} much more waypoints to be placed and optimized, compared to the literature for example, in \citep{8*zhou2011,33*reddy2012}. In the figure \figref{subfig:satimgcoverageCalvisson} and \figref{subfig:satimgNoncoverCalvisson} the area is covered by 110 waypoints for 98.26$\%$ of coverage and the convergence are achieved after 170501 generations.\\
 
 		\subsubsection{outdoor fey}\label{sec:fey_map}
 

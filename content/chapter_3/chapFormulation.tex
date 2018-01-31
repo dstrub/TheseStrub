@@ -18,13 +18,16 @@
 
 %The following chapter is focused on the problem formulation for cameras positioning.\\
 %Obviously formulation proposed in not the only one and some other have been proposed in the literature, mostly depending then the objectives. \\
-The problem formulation is essential to design an efficient cost function. The cost function is used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
-This chapter present first, a formal definition of the problem based on the literature. In the second time, our formulation is proposed. The formulation proposed is adapted to optimize the problems with evolutionary algorithm to have an efficient cameras position for maximizing the coverage, using a camera mounted on UAV.
 
-%\section{ Coverage estimation }
+The problem formulation has to translate the objective with all this problematic into a simple formulation usable for different optimization algorithms. 
+The objective here is to find the position for a set of cameras or waypoints. The position of this set of waypoints has to be optimized in order to cover most of the area. The area may be a vast and complex zone.
+A good formulation is essential to design an efficient cost function. The cost function is used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
+This chapter present  a formal definition of the problem based on the literature and  our proposed formulation. The formulation proposed is adapted to optimize the problems with evolutionary algorithm to have an efficient cameras position for maximizing the coverage, depending then many constraint as using a camera mounted on UAV.
+
+%\section{Coverage estimation }
 
 
-This section is focused on how to estimate the covered area depending on the cameras parameters.\\
+The following section is focused on how to estimate the covered area depending on the cameras parameters.\\
 
 %What should be control by the video surveillance? \\
 %One aim of the video surveillance is to detect some anomaly in the area for that the number of black hole need to be reduce. A black hole is zone not cover by the system of video surveillance. Estimate the part cover by the system of video surveillance is primordial to limit the size and the number of black hole. 
@@ -107,11 +110,11 @@ g_i \in Pc \mbox{ IFF } g_i \mbox{ is coverd. }
 
 The design of the grid is an important element of the problem formulation. Different solution has been proposed during the time with different advantage depending on the situation.\\
 
-\subsection{How to design an occupation grid }%Related work for the grid design
+\subsection{How to design a grid map }%Related work for the grid design
 The following subsection is focused on the different  modelling the grid possibility, based on the literature. 
 
 \subsubsection{Sampling frequency} %Sampling frequency.\\
-The occupation grid is used to discretize the area to cover. The discretization of the area can vary and the area can get a high level of discretization or low level. The level of sampling frequency has a bearing on the problem formulation and moreover on the optimization.
+The grid map is used to discretize the area to cover. The discretization of the area can vary and the area can get a high level of discretization or low level. The level of sampling frequency has a bearing on the problem formulation and moreover on the optimization.
 
 \paragraph*{High sampling frequency}
 The high level of discretization or high sampling frequency has some advantage and disadvantage.
@@ -136,9 +139,8 @@ On another side, the disadvantage to have a too high sampling frequency is the t
 %\begin{equation} 
 %	\sum^m \sum^n \mbox{test of coverage}
 %\end{equation}
-
 %Where $m$ is the number of points in the grid and $n$ the number of camera. 
-That mean the number of the test to estimate the coverage of each point of the grid, for a set of cameras  is $m\times n$. Where $m$ is the number of points in the grid and $n$ the number of camera. 
+That mean the number of the test to estimate the coverage of each point of the grid, for a set of cameras is $m\times n$. Where $m$ is the number of points in the grid and $n$ the number of camera. \\
  More the size of the grid is high more unity test of coverage (see in section \ref{sec:CamerasCoverage}) must be done, and that at each step of the optimization process.  Consequently the size of the grid will greatly affect the time computation.  \\
 Also the high sampling frequency will affect the positioning of the cameras pose. In fact, more area is finely represented more freedom has to be done to pose and adjust each camera. 
 
@@ -314,22 +316,36 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
 \end{figure}
 
 \newcolumntype{M}[6]{>{\raggedright}m{#1}}
+
 \paragraph*{Grid sum up}
- tableau for summarize  the grid modeling
+
+The following paragraph surmise the different way to represent the area. The area represented has to be covered by set of cameras. the grid map may be used to represent different aspect  and constraint of the problems. The map representation  take an crucial role  in the  area coverage. The design aborted  previously  are summarized here in this table. This table show the  more important aspect of each grid representation  in different paper.
+
+%\begin{table}[h]
+%\begin{tikzpicture}
+%\begin{tabular}{|c|cccc|c|}
+%\hline
+% & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $h(x)$ \\ \hline
+%1 & 1 & 0 & 1 & 1 & 13.25 \\
+%2 &  &  &  &  &  \\
+%\vdots &  &  &  &  &  \\
+%N &  &  &  &  &  \\ \hline
+%\end{tabular}
+
  \begin{center}
-   \begin{tabular}{ l | m{0.1\linewidth} | m{0.1\linewidth} | m{0.187\linewidth} | m{0.187\linewidth} | m{0.187\linewidth} |  }
+   \begin{tabular}{ l | m{0.1\linewidth} | m{0.1\linewidth} | m{0.187\linewidth} | m{0.147\linewidth} | m{0.115\linewidth}   }
      \hline
      ref & grid pattern & grid random  & volumetric space & Sampling frequency &Zone of interest \tabularnewline \hline 
-	 \cite{8*zhou2011}   		&	 X	 &	     & 	   						  & For real-time    & X \tabularnewline   \hline 	
-	 \cite{22*zhao2008}  		&	 X	 &	 X   & 	   						  & Incremental	 	 & X \tabularnewline \hline     
-	 \cite{82*chrysostomou2012} &	 X	 &	     &	3D grid					  &  				 & X \tabularnewline \hline
-       \citep{83*van2009} 		&	 X	 &	 X   & 	2D grid at each level  	  &  				 &	\tabularnewline \hline
-    \cite{87*morsly2012} 	 	&	 X	 &	     &  Superposition of 2D grid  &  	Adaptable	 &	\tabularnewline \hline
-\cite{141*akbarzadeh2013}       &	 X	 &	     & 	2D grid on relief 		  &  		 		 & X \tabularnewline \hline
-   \cite{150*chakrabarty2002}   &	 X	 &	     & 	  	 					  & Topologies sensor&	\tabularnewline \hline
-     \cite{164*valente2013} 
+	 \cite{8*zhou2011} zhou2011  		&	 X	 &	     & 	   						  & For real-time    & X \tabularnewline   \hline 	
+	 \cite{22*zhao2008} zhao2008 		&	 X	 &	 X   & 	   						  & Incremental	 	 & X \tabularnewline \hline     
+	 \cite{82*chrysostomou2012} chrysostomou2012 &	 X	 &	     &	3D grid					  &  				 & X \tabularnewline \hline
+       \citep{83*van2009} van2009 		&	 X	 &	 X   & 	2D grid at each level  	  &  				 &	\tabularnewline \hline
+    \cite{87*morsly2012} morsly2012	 	&	 X	 &	     &  Superposition of 2D grid  &  	Adaptable	 &	\tabularnewline \hline
+\cite{141*akbarzadeh2013} akbarzadeh2013       &	 X	 &	     & 	2D grid on relief 		  &  		 		 & X \tabularnewline \hline
+   \cite{150*chakrabarty2002} chakrabarty2002   &	 X	 &	     & 	  	 					  & Topologies sensor&	\tabularnewline \hline
+     \cite{164*valente2013} valente2013
      &	 X	 	&	     &overlap by shifting of z  &  				 &	\tabularnewline \hline
-      \cite{170*yabuta2008}     &	 .	 & 	     &		  					  &For zone 
+      \cite{170*yabuta2008} yabuta2008     &	 .	 & 	     &		  					  &For zone 
      															segmentation 	 & X \tabularnewline \hline
       \cite{171*horster2006}    &	  	 &	 X   & 	  	 					  &  		 	 	 & X \tabularnewline \hline
       \cite{174*zhang2016}      &	  	 	&	     & 	 	 					  & 				 & X \tabularnewline \hline
@@ -337,6 +353,54 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
    \end{tabular}
  \end{center}
 	 
+%\end{tikzpicture}
+%
+%\end{table}		 
+table test
+%\begin{tabular}{ccc}
+%\hline
+%a&b&c\\
+%\hline
+%\end{tabular}
+%\quad
+%\begin{tabular}{ccc}
+%\hline
+%d&e&f\\
+%\hline
+%\end{tabular}
+
+ahzehazeh
+\begin{table}[h]
+
+\begin{tikzpicture}
+\node (a) at (0,0){
+\begin{tabular}{|c|cccc|c|}
+\hline
+ & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $h(x)$ \\ \hline
+1 & 1 & 0 & 1 & 1 & 13.25 \\
+2 &  &  &  &  &  \\
+\vdots &  &  &  &  &  \\
+N &  &  &  &  &  \\ \hline
+\end{tabular}};
+\node[yshift=-2cm] (b) at (a.south) 
+{
+\begin{tabular}{|c|cccc|c|}
+\hline
+ & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $h(x)$ \\ \hline
+1 & 1 & 0 & 1 & 1 & 13.25 \\
+2 &  &  &  &  &  \\
+\vdots &  &  &  &  &  \\
+N &  &  &  &  &  \\ \hline
+\end{tabular}
+};
+\draw[->,ultra thick](a)--(b);
+\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
+\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2);
+\end{tikzpicture}
+\label{my-label}
+\end{table}	
+eeeeeeeeee 
+ 
 \subsection{Our approach}
  Base on the different design the one finally adopted is a grid $G$ as in Eq \ref{eq:Grid} with an uniform repartition following the 2D grid pattern. The frequency adopted is fixed depending than the size of the area, the precision required and the cameras property. The frequency adopted for the following part as to be considered as dense (high sampling frequency).
   The grid is placed on the floor of the area to control. Floor is always considered as flat without relief. The zone of interest can vary depending on the need of the experimentation, but the design chosen is flexible to apply if necessary the formulation form the Eq:\ref{eq:PcFull} with mostly $k=1$ and $p=1$, also a set $U$ is used to represent the non-interesting zone as it was presented in eq \ref{eq:setU}.
@@ -356,12 +420,12 @@ To verify if each points of the grid is covered by a camera. It is primordial to
 The closest projection model to the human view is the perspective projection. The perspective projection is also the more common and more especially in the field of area coverage as in example \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional with a $360^{\circ}$ of field of view as \citep{43*erdem2006,150*chakrabarty2002,174*zhang2016}. 
 Here we are only focussing  on the camera perspective due to its wide use.  \\
 
-The pin hole or in Latin the "camera obscura" is at the origin of the geometry model for the perspective projection.\\
+The pin hole or in Latin the "camera obscura" (see Figure\ref{fig:cameraObscura}) is at the origin of the geometry model for the perspective projection.\\
 \begin{figure}[t!]
 \begin{center}
  \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/PinholeCam.png}
-  \caption{ Pin hole camera model.}\label{fig:PanTiltRoll}
+  \caption{ Pin hole camera model.}\label{fig:cameraObscura}
   \endminipage\hfill
 \end{center}
 \end{figure} 
