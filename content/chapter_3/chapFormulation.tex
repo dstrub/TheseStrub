@@ -102,12 +102,18 @@ The first part is tantamount to estimate properly the area to cover. To do so ma
 	\end{bmatrix}  , m\in \mathbb{N}
 \end{equation}
 Where $m$ is equal to the number of points in the grid.
-The occupation grid is placed on the area to cover. At minima each point $g_i$ of the grid $G$ should be covered by a camera. Consequently a list of points is set up to enumerate the covered part of $G$ which are noted as $Pc$.
+The occupation grid is placed on the area to cover. At minima each point $g_i$ of the grid $G$ should be covered by a camera (as in Figure \ref{fig:cam_projOnGrid}). Consequently a list of points is set up to enumerate the covered part of $G$ which are noted as $Pc$.
 \begin{equation}\label{eq:Pci}
 g_i \in Pc \mbox{ IFF } g_i \mbox{ is coverd. }
 \end{equation}
 
-
+\begin{figure*}[t!]
+		\centering
+		\minipage{0.85\textwidth}
+  		\includegraphics[width=\linewidth]{img/CamProjectOnGrid.png}
+  
+ 	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid $G$ is placed on the floor to discretize the area covered with numerous grid point $g_i$. The point cover by the camera $Pc$ are noted in red}\label{fig:cam_projOnGrid}
+\end{figure*}
 The design of the grid is an important element of the problem formulation. Different solution has been proposed during the time with different advantage depending on the situation.\\
 
 \subsection{How to design a grid map }%Related work for the grid design
@@ -431,7 +437,7 @@ The pin hole or in Latin the "camera obscura" (see Figure\ref{fig:cameraObscura}
 \end{figure} 
  The pin hole model is commonly composed by box (or chamber) hermetically closed to light, excepted by a small pin hole on the middle of the front side. All the ray of light reflected by the object of the world and passing by the small hole are projected onto the back side of the box. Each ray of light passing by the hole is  projected on the plan (inside the box). This plan became the reversed image of the world and can be recorded by a film or a digital sensor. 
  Due to the simplicity of the pin hole model, the calibration and camera projection estimation is simplified.\\
-  Based on it, the camera projection is dependent then few parameters intrinsic (as focal length, sensor size,...) and extrinsic (as the position $x,y,z$ and orientation $\alpha,\beta,\gamma$). 
+%  Based on it, the camera projection is dependent then few parameters intrinsic (as focal length, sensor size,...) and extrinsic (as the position $x,y,z$ and orientation $\alpha,\beta,\gamma$). 
   
  
 \begin{figure}[t!]
@@ -443,17 +449,17 @@ The pin hole or in Latin the "camera obscura" (see Figure\ref{fig:cameraObscura}
   \end{center}
 \end{figure}
 
-In fact the useful elements to define the projection of a camera perspective, can be stated as a set of parameters composed by:\\
+%In fact the useful elements to define the projection of a camera perspective, can be stated as a set of parameters composed by:\\
 \begin{itemize}
 \item Three degrees of freedom of the sensor’s position: $(x, y, z)$;
 \item Three degrees of freedom of the sensor’s orientation: with the  the rotation in pan, tilt, and swing angles: $(\alpha,\beta, \gamma)$ 
-\item Optical parameters including: the focal length $f$ of the lens, the sensor size $s$, $u_{0}$ and $v_0 $  which would be ideally in the centre of the image. $\sigma_{uv}$ represents the skew coefficient between the $x$ and the $y$ axis.
+\item Optical parameters including: the focal length $f$ of the lens, the sensor size $Sw\times Sh$, $u_{0}$ and $v_0 $  which would be ideally in the centre of the image. $\sigma_{uv}$ represents the skew coefficient between the $x$ and the $y$ axis.
 \end{itemize}
-$s$ is composed by two elements $Sw$ and $Sh$ for the size of width and height (also called  the scale factor).\\
+%$s$ is composed by two elements $Sw$ and $Sh$ for the size of width and height (also called  the scale factor).\\
 
 Among the parameters of the camera, only  some of them are useful to estimate the projection. They can be formalized as a vector:
 \begin{equation}\label{eq:v}
-v=(x,y,z,\alpha ,\beta,\gamma,f,s,u_0,v_0,\sigma_{uv})
+v=(x,y,z,\alpha ,\beta,\gamma,f,Sw\times Sh,u_0,v_0,\sigma_{uv})
 \end{equation}
 
 Each element of the vector $v$ are used to compute the camera projection on the discretized floor. 
@@ -566,7 +572,7 @@ In this condition the efficiency of the function $f()$ in charge then, computes 
 \subsubsection{Coverage estimation optimization} \label{sec:coverageEstimation}
 Design an efficient cost function is necessary to reduce the time computation and estimates the area covered. A good estimation of the area covered is primordial for the optimisation process. 
   The computation of a camera projection have to be minimized with some basic assumption depending on the problems.\\
-Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotations in $\alpha$ (pan) and $\beta$ (tilt). It is possible to compute for a given altitude the area covered by one camera, based on the given parameters. Especially the focal length $f$, the altitude of the cameras and the sensor size $s$. Where $s$ is composed of $Sw$ sensor size width and $Sh$, sensor size height ($s= [Sw ; Sh]$). 
+Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotations in $\alpha$ (pan) and $\beta$ (tilt). It is possible to compute for a given altitude the area covered by one camera, based on the given parameters. Especially the focal length $f$, the altitude of the cameras and the sensor size $Sw\times Sh$. 
 In this model the camera projection is always a rectangle as described in Figure \ref{fig:cam_proj}. To estimate the shape of the rectangle with is deduced from the ratio of $s$ and the size of this rectangle with is deduced from $(f ,s ,A)$. Where $A$ is the altitude. The altitude is the distance between the grid and the cameras, in the simple case $A$ is considered to be equal to $z$, when the grid is on the floor.  \\
 The basic computation to estimate the size of a camera projection :
 

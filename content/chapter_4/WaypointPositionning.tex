@@ -165,7 +165,8 @@ The optimization have been executed 8 times for each optimization process. 8 tim
 \begin{figure}[!]
 \minipage{0.99\textwidth}
   \includegraphics[width=\linewidth]{img/fig8.png}
-  \caption{ Comparison of eight solutions given by the GA, with eight solutions given by PSO algorithms with a fixed altitude ($z$ equal to 1) in the big room 240x160. The ground truth for this room equals to 64.}\label{fig:bigRz1}
+  \caption{ Comparison of eight solutions given by the GA, with eight solutions given by PSO algorithms with a fixed altitude ($z$ equal to 1) in the big room $240\times160$. The ground truth for this room equals to 64.}
+  \label{fig:bigRz1}
    \endminipage\hfill
 \end{figure}
 %
@@ -173,7 +174,7 @@ The optimization have been executed 8 times for each optimization process. 8 tim
 \begin{figure}[!]
 \minipage{0.99\textwidth}
   \includegraphics[width=\linewidth]{img/fig9.png}
-  \caption{Comparison of eight solutions given by the GA, with eight solutions given by PSO algorithms with a Z between [1/2; 2] in the room with L shape 120x80 and ground truth equal to 15.}\label{fig:RLz2}
+  \caption{Comparison of eight solutions given by the GA, with eight solutions given by PSO algorithms with a Z between $[1/2; 2]$ in the room with L shape $120\times80$ and ground truth equal to 15.}\label{fig:RLz2}
    \endminipage\hfill
 \end{figure}
 After performing the several experiments (see Table \ref{table:table1}), it appears that the GA and PSO algorithms are close in performance in numerous case. Among several experiment of the DoE some particularity appear despite the globally close result of GA and PSO. Also as expected the RS is always the worst solution.
@@ -306,7 +307,7 @@ The previous section with the different experiments shown the efficiency of the 
 \end{itemize} 
 The following section present the results obtained by increase step by step the difficulty. 
 
-	\subsection{Rectangle obstacle }
+	\subsection{Rectangle obstacle } \label{sec:expRectObstacle}
 	\begin{mfigures}[!]{Indoor area coverage using V-rep to simulate a realistic environment.}{fig:RoomsVrep} \centering
 \mfigure{width=.4\linewidth}{img/room_full.png}{Room in V-rep.}{subfig:VrepRoom}
 \hspace{1cm}
@@ -337,7 +338,7 @@ The following section present the results obtained by increase step by step the 
 
 
 
-	\subsection{Rectangle obstacles with hole}
+	\subsection{Rectangle obstacles with hole}\label{sec:RecObstacleHole}
 %	C:\Users\stru\Documents\python\hold on\satelit Imag
 %	C:\Users\stru\Documents\python\Complex room\sat LEII
 
@@ -366,7 +367,7 @@ The result obtained by the GA optimization (see Figure \figref{subfig:IUTCoverag
 %camera size 31x24 px
 
 	
-	\subsection{Using mask to describe the area }
+	\subsection{Using mask to describe the area }\label{sec:maskGAPSO}
 
 \begin{mfigures}[!]
 {Coverage area from satellite images with 25 cameras for $90.76\%$ of coverage using the GA and $92.81\%$ of coverage using the GAPSO.}{fig:TorcyMap} \centering
@@ -382,18 +383,24 @@ cameras using the GAPSO $92.81\%$.}{subfig:coverageGAPSOTorcy}
 
 
 Based on the limitation of the map design and the necessity to go one step further the paradigm have to evolve.
-The solution proposed to represent the area until know, was to add rectangle obstacle by remove the corresponding point in the grid (as explained in \ref{subsec:obstacleZone}). The prime advantage to use rectangle obstacle was in the coding implementation. This facility becomes a lock for the more complex area and is not user friendly. The solution chosen for the flowing experimentation is to use a simple mask of the are to cover. The mask represent in the white side the area to cover and in black the non interesting zone (also called obstacles, see \figref{subfig:satimgMaskTorcy}). This solution is finally more "user friendly"  and do not change the fundamental of the occupation grid (each white pixel of the mask is a point of the grid to cover). 
+The solution proposed to represent the area until know, was to add rectangles obstacles by remove the corresponding points of the grid (as explained in \ref{subsec:obstacleZone}). The prime advantage to use rectangles obstacles was in the coding implementation. 
+This facility becomes a lock for the more complex area. In addition, it is reveal not user friendly.\\
+ The solution chosen for the flowing experimentation is to use a binary mask of the are to cover. The mask represent in the white side the area to cover and in black the non interesting zone (also called obstacles, see \figref{subfig:satimgMaskTorcy}). This solution is finally more "user friendly"  and do not change the fundamental of the occupation grid (each white pixel of the mask is a point of the grid to cover). 
  
 %from VISAP EVOLUTIONRY ALGORITHM FOR POSITIONING CAMERAS NETWORKS MOUNTED ON UAV torcy map
 
-For this first experiments with the mask, a smaller area is chosen with a small amount of camera necessary. In the Figure \figref{subfig:satimgTorcy} the area to control is extracted form satellite images to have a mask (see\figref{subfig:satimgMaskTorcy}).
-First, the GA is performed to optimize the position of the waypoints the result are in visible in Figure \figref{subfig:coverageGATorcy}. 
+For this first experiments with the binary mask, a smaller area is chosen, with a small amount of cameras necessary to fully cover it. In the Figure \figref{subfig:satimgTorcy} the area to control is extracted form satellite images to have a mask (see\figref{subfig:satimgMaskTorcy}). 
 
-The optimized waypoints positioning, cover $90.76\%$ of the area with 25 cameras and the GA converge after just 67 generation. The solution given by the simple GA is already good despise the complexity of the map. Although can be refined by apply the a PSO. The PSO is used with a initialisation from the first optimisation. 
+Among the experiment presented until know (\ref{sec:RecObstacleHole} and \ref{sec:expRectObstacle}) only the GA was employ  for the optimization. The last experiment with bigger area and complex area shape composed by hole begin show the limiting use of a single GA. This observation is confirmed and is getting bigger for the area more complex as the one from a complex map designed according to a satellite images ( as  Figure \figref{subfig:satimgTorcy} and \figref{subfig:satimgMaskTorcy})
+
+Consequently, the GA is performed  firstly to optimize the position of the waypoints the result are in visible in Figure \figref{subfig:coverageGATorcy}. 
+
+The optimized waypoints positioning, cover $90.76\%$ of the area with 25 cameras and the GA converge after just 67 generation. The solution given by the single GA is already good enough despise the complexity of the map. Although can be refined by apply a PSO. The PSO is used with a initialisation from the first optimisation. 
 Finally the result presented in the Figure \figref{subfig:coverageGAPSOTorcy} shown a much more refined  coverage with significant reduction in the amount of black hole and overlap (coverage is over $92.8\%$). 
 
-The main result of this experiment was to evaluate if the modification of the paradigm by the grid customization may had a signification impact on the waypoint positioning. The conclusion of this experiment is,  in fact not, the GAPSO hybridization is robust and flexible despite the strong constraint due to the non geometric example.  
-Thanks to that the size and the number of waypoints can be increased. 
+The main result of this experiment was to evaluate if the modification of the paradigm by the grid customization may had a signification impact on the waypoint positioning. The conclusion of this experiment is, in fact not so much when the GAPSO is applied. The experiment  allow also to evaluate the improvement made  by the GAPSO. The GAPSO hybridization is robust and flexible despite the strong constraint due to the non geometric area.  
+
+Thanks to this tries the size of the area to cover and the number of waypoints can be increased. The next experiment has to test the boundary of the GAPSO optimization in term of size and number of cameras.
 
 
 	\subsection{For big area}
@@ -408,10 +415,13 @@ Thanks to that the size and the number of waypoints can be increased.
 \mfigure{width=.4\linewidth}{img/calvisson3cover.png}{The final mosaic images}{subfig:satimgNoncoverCalvisson}
 \tabsimupose
 \end{mfigures}		
-		A much bigger area involves the increasing of the search space and the increasing of the complexity. 
-In the following example figure \figref{subfig:satimgMaskCalvisson} the satellite images are used to define the area to control (in white). \\
 
-In order to cover the big area the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. But the GA associate to the adapted cost function allows on the example figure \figref{subfig:satimgcoverageCalvisson} much more waypoints to be placed and optimized, compared to the literature for example, in \citep{8*zhou2011,33*reddy2012}. In the figure \figref{subfig:satimgcoverageCalvisson} and \figref{subfig:satimgNoncoverCalvisson} the area is covered by 110 waypoints for 98.26$\%$ of coverage and the convergence are achieved after 170501 generations.\\
+Based on the last experiment (\ref{sec:maskGAPSO}) a much bigger area with much more waypoints to pose estimate are presented here. The goal is to see the boundary of the optimization when the slider  are pushed to the maximum.
+		A much bigger area involves the increasing of the search space and the increasing of the complexity. 
+In the following example figure \figref{subfig:satimgMaskCalvisson} the satellite images are used to define the area to control (in white). The area proposed here is the biggest never tested yet here. The grid is composed by almost 1 million of points with more than 616 thousand of point to cover ( number of with pixel). 
+
+In order to cover the big area the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. Althouth the GAPSO associate to the adapted cost function allows on the example figure \figref{subfig:satimgcoverageCalvisson} much more waypoints to be placed and optimized, compared to the literature for example, in \citep{8*zhou2011,33*reddy2012}. In the figure \figref{subfig:satimgcoverageCalvisson} and \figref{subfig:satimgNoncoverCalvisson} the area is covered by 110 waypoints for 98.26$\%$ of coverage. To reach this coverage rate the GA convergence are achieved after 170501 generations. \\
+ This important number of generation to reach the convergence with the GA in a first time, before to proceed to a PSO optimization. That show at same time the great efficiency of GAPSO to optimize the position for numerous waypoint in a big search space  with propose a really good answer. This great optimization is conditionally upon to an important time of convergence. This show the limit of the GAPSO due to the important number of generation and consequently important time computation (few hours with a core i7). 
 
 		\subsubsection{outdoor fey}\label{sec:fey_map}
 
@@ -436,7 +446,7 @@ In order to cover the big area the solution can be to use a bigger focal or high
 % \hspace*{\fill}\subfloat[][]{\tabsimupose} 
  
 
-The solution proposed is robust for a big outdoor area with a non-convex shape. 
+As demonstrate before  with the experimentation presented the solution proposed is robust for a big outdoor area with a non-convex shape. 
  A much bigger area involves increasing the search space and increasing the complexity. 
 In the following example, shown in Figure \ref{subfig:satimgMask}, the satellite images are used to denote the area to control (in white). \\
 
