@@ -430,14 +430,14 @@ In order to cover the big area the solution can be to use a bigger focal or high
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{2bis}\label{fig:Rooms_shapes}
+
 \begin{mfigures}[!]{ Optimization of the waypoints poses with a vast outside area and just a few  black holes.}{fig:Rooms_shapes} \centering
-\mfigure{width=.4\linewidth}{img/fig12-a2.png}{The area to cover taken form satellite images.}{subfig:satimg+mask}
+\mfigure{width=.4\linewidth}{img/fig12-a2.png}{The area to cover taken form satellite images.}{subfig:satimgFley}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/fig12-b2.png}{The mask of the area to cover.}{subfig:satimgMask}
-\mfigure{width=.4\linewidth}{img/fig12-c2.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverage}
+\mfigure{width=.4\linewidth}{img/fig12-b2.png}{The mask of the area to cover.}{subfig:satimgMaskFley}
+\mfigure{width=.4\linewidth}{img/fig12-c2.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverageFley}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/fig12-d4.png}{The final mosaic images}{subfig:satimgNoncover}
+\mfigure{width=.4\linewidth}{img/fig12-d4.png}{The final mosaic images}{subfig:satimgNoncoverFley}
 \tabsimupose
 \end{mfigures}
 
@@ -446,11 +446,12 @@ In order to cover the big area the solution can be to use a bigger focal or high
 % \hspace*{\fill}\subfloat[][]{\tabsimupose} 
  
 
-As demonstrate before  with the experimentation presented the solution proposed is robust for a big outdoor area with a non-convex shape. 
- A much bigger area involves increasing the search space and increasing the complexity. 
-In the following example, shown in Figure \ref{subfig:satimgMask}, the satellite images are used to denote the area to control (in white). \\
+As demonstrate before with the previous experimentation the GAPSO is robust for a big outdoor area with a non-convex shape. This experiment show one more time for a similar area in term of size (a bit slower) with  less cameras. The objective is to increase the difficulty  by adding  an more complex shape of the area to cover. To do that an area with several sub-parts composed by small space and hole has been selected.
+During this experimentation a high coverage rate is required (we aspect more than 95%) 
 
-To cover the big area, the solution is to use a bigger focal length or higher altitude to have a wide area covered at each waypoint, thus keeping few waypoints to control the area with smaller resolution. However the GA associated with the adapted cost function allows  (as in  Figure \ref{subfig:satimgcoverage}) many more waypoints to be placed and optimized in order to keep an acceptable image resolution of the area compared to the literature, for example, in \cite{8*,33*}. In Figure \ref{subfig:satimgcoverage} and \ref{subfig:satimgNoncover}, the area is covered by 80 waypoints for a 98.48$\%$ coverage rate, with an average $z$ at 0.95 and convergence is achieved after 4856 generations. \\
+In the following example, shown in Figure \figref{subfig:satimgFley}, the satellite images are used to denote the area to control (in white). \\
+
+ However the GA associated with the adapted cost function allows  (as in Figure \figref{subfig:satimgcoverageFley}) many more waypoints to be placed and optimized in order to keep an acceptable image resolution of the area compared to the literature, for example, in \cite{8*,33*}. In Figure \figref{subfig:satimgcoverageFley} and \figref{subfig:satimgNoncoverFley}, the area is covered by 80 waypoints for a 98.48$\%$ coverage rate, with an average $z$ at 0.95 and  the GA convergence is achieved after 4856 generations before an PSO optimization. \\
 		
 
 
