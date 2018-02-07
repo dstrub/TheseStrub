@@ -405,31 +405,7 @@ Thanks to this tries the size of the area to cover and the number of waypoints c
 
 	\subsection{For big area}
 	
-		\subsubsection{map3 calvisson}
-\begin{mfigures}[!]{ Optimization of the waypoint pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoint position, (d) is the representation of the black hole.}{fig:CalvissonExp} \centering
-\mfigure{width=.4\linewidth}{img/calvisson2+mask.png}{The area to cover taken form satellite images.}{subfig:satimgCalvisson}
-\hspace{1cm}
-\mfigure{width=.4\linewidth}{img/calvisson2mask.png}{The mask of the area to cover.}{subfig:satimgMaskCalvisson}
-\mfigure{width=.4\linewidth}{img/zcalvisson2result1cout_98_260375_gen_170501_Ncam_110.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverageCalvisson}
-\hspace{1cm}
-\mfigure{width=.4\linewidth}{img/calvisson3cover.png}{The final mosaic images}{subfig:satimgNoncoverCalvisson}
-\tabsimupose
-\end{mfigures}		
-
-Based on the last experiment (\ref{sec:maskGAPSO}) a much bigger area with much more waypoints to pose estimate are presented here. The goal is to see the boundary of the optimization when the slider  are pushed to the maximum.
-		A much bigger area involves the increasing of the search space and the increasing of the complexity. 
-In the following example figure \figref{subfig:satimgMaskCalvisson} the satellite images are used to define the area to control (in white). The area proposed here is the biggest never tested yet here. The grid is composed by almost 1 million of points with more than 616 thousand of point to cover ( number of with pixel). 
-
-In order to cover the big area the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. Althouth the GAPSO associate to the adapted cost function allows on the example figure \figref{subfig:satimgcoverageCalvisson} much more waypoints to be placed and optimized, compared to the literature for example, in \citep{8*zhou2011,33*reddy2012}. In the figure \figref{subfig:satimgcoverageCalvisson} and \figref{subfig:satimgNoncoverCalvisson} the area is covered by 110 waypoints for 98.26$\%$ of coverage. To reach this coverage rate the GA convergence are achieved after 170501 generations. \\
- This important number of generation to reach the convergence with the GA in a first time, before to proceed to a PSO optimization. That show at same time the great efficiency of GAPSO to optimize the position for numerous waypoint in a big search space  with propose a really good answer. This great optimization is conditionally upon to an important time of convergence. This show the limit of the GAPSO due to the important number of generation and consequently important time computation (few hours with a core i7). 
-
 		\subsubsection{outdoor fey}\label{sec:fey_map}
-
-
-		
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \begin{mfigures}[!]{ Optimization of the waypoints poses with a vast outside area and just a few  black holes.}{fig:Rooms_shapes} \centering
 \mfigure{width=.4\linewidth}{img/fig12-a2.png}{The area to cover taken form satellite images.}{subfig:satimgFley}
@@ -438,14 +414,68 @@ In order to cover the big area the solution can be to use a bigger focal or high
 \mfigure{width=.4\linewidth}{img/fig12-c2.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverageFley}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/fig12-d4.png}{The final mosaic images}{subfig:satimgNoncoverFley}
-\tabsimupose
+\tabsimuposeFley
 \end{mfigures}
+
+
+Based on the last experiment (\ref{sec:maskGAPSO}) a much bigger area with much more waypoints to pose estimate are presented here. The goal is to see the boundary of the optimization when the slider  are pushed to the maximum.
+		A much bigger area involves the increasing of the search space and the increasing of the complexity. 
+In the following example figure \figref{subfig:satimgMaskFley} the satellite images are used to define the area to control (in white).  The size of the area has been increased to has a grid composed by almost half million points with near to 200 thousand points to cover. 
+The objective is to increase the difficulty in this experiment. In addition to the increased size of the area to cover, the shape of it has been complicated. To do that an area with several sub-parts composed by small space and hole has been selected.
+During this experimentation a high coverage rate is required (we aspect more than $95\%$). 
+%File name :C:\Users\stru\Documents\python\newMap  champ\fley71390RMask.png
+%Size is : 895 x 502
+%Nmb point to cover: 194497
+%Nmb point to non cover: 253397
+%total:447894
+%/!\ The image given is not a falide mask dif : -1396
+
+In order to cover the big area, the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. Althouth the GAPSO associate to the adapted cost function allows on the example Figure \figref{subfig:satimgcoverageFley} more waypoints to be placed and optimized. 
+ In the Figure \figref{subfig:satimgcoverageFley} and \figref{subfig:satimgNoncoverFley} the area is covered by 80 waypoints for 98.48$\%$ of coverage. To reach this coverage rate the GA convergence are achieved after 4856 generations. The important number of necessary generation before the convergence of the GA and a similar  increasing time computation of the PSO, allow us to glimpse the limits of the GAPSO for the too big search space with numerous waypoints to pose estimate. Despite this potential future limitation the answer of the GAPSO is relatively fast and efficient.\\
+ 
+
+		\subsubsection{map3 calvisson}
+\begin{mfigures}[!]{ Optimization of the waypoint pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoint position, (d) is the representation of the black hole.}{fig:CalvissonExp} \centering
+\mfigure{width=.4\linewidth}{img/calvisson2+mask.png}{The area to cover taken form satellite images.}{subfig:satimgCalvisson}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/calvisson2mask.png}{The mask of the area to cover.}{subfig:satimgMaskCalvisson}
+\mfigure{width=.4\linewidth}{img/zcalvisson2result1cout_98_260375_gen_170501_Ncam_110.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverageCalvisson}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/calvisson3cover.png}{The final mosaic images}{subfig:satimgNoncoverCalvisson}
+\tabsimuposeCalvisson
+\end{mfigures}	
+
+The precedent experiment (see \ref{sec:fey_map}) show the efficiency and flexibility of the GAPSO  to the big map with lote of waypoint in a really complex area. Despite an important increasing time of computation the GAPSO can use to go even more futher  and try to touch the boundary.  
+
+For this  experiment, the area proposed here is the biggest never tested yet here. The grid is composed by almost 1 million of points with more than 616 thousand of point to cover (number of white pixel). The number of waypoints to cover this vast area has  been increased to reach  the  110 waypoints. The number of waypoints to  place and optimize, is the mush more important compared to the literature for example, in \citep{8*zhou2011,33*reddy2012}.
+The GAPSO is executed with success and the final coverage is  over $98.26\%$.  
+	 To reach this coverage rate the GA convergence is achieved after 170501 generations. \\
+	 This important number of generation to reach the convergence with the GA in a first time, before to proceed to a PSO optimization. That show at same time the great efficiency of GAPSO to optimize the position for numerous waypoint in a big search space with propose a really good answer. This great optimization is conditionally upon to an important time of convergence. This show the limit of the GAPSO due to the important number of generation and consequently important time computation (few hours with a core i7).  
+	 To nuanced the really important time useful to reach the double convergence (GA and PSO) the context of the experiment has to be highlight. In Fact the area to cover is important but  also the coverage rate respected is also an important factor because more this coverage rate is important more a fine tuning of the numerous parameters of the solution must be done.
+	
+	\subsection{Waypoint positioning conclusion} 
+	
+Among the numerous experiment done the GAPSO appear as a good solution to optimize the position and orientation of numerous waypoints (or cameras)  in a vast and complex map.
+In the first time the GA appear efficient enough  for the  optimization in the big room  but after more experimentation the single GA appear weak to finally refine the solution.  The contribution of PSO was essential to have a more refine solution and also allow more flexibility especially for the number of waypoint is restricted.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\begin{mfigures}[!]{ Optimization of the waypoints poses with a vast outside area and just a few  black holes.}{fig:Rooms_shapes} \centering
+%\mfigure{width=.4\linewidth}{img/fig12-a2.png}{The area to cover taken form satellite images.}{subfig:satimgFley}
+%\hspace{1cm}
+%\mfigure{width=.4\linewidth}{img/fig12-b2.png}{The mask of the area to cover.}{subfig:satimgMaskFley}
+%\mfigure{width=.4\linewidth}{img/fig12-c2.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverageFley}
+%\hspace{1cm}
+%\mfigure{width=.4\linewidth}{img/fig12-d4.png}{The final mosaic images}{subfig:satimgNoncoverFley}
+%\tabsimuposeFley
+%\end{mfigures}
 
 
   
 % \hspace*{\fill}\subfloat[][]{\tabsimupose} 
  
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 As demonstrate before with the previous experimentation the GAPSO is robust for a big outdoor area with a non-convex shape. This experiment show one more time for a similar area in term of size (a bit slower) with  less cameras. The objective is to increase the difficulty  by adding  an more complex shape of the area to cover. To do that an area with several sub-parts composed by small space and hole has been selected.
 During this experimentation a high coverage rate is required (we aspect more than 95%) 
 
