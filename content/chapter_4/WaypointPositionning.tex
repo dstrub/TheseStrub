@@ -211,7 +211,7 @@ Thanks to that we know the two algorithms can be used for a more complex shape a
 %	\subsection{Result}
 %	\subsection{Explication}
 
-\section{Hybrid GA PSO }
+\section{Hybrid GA PSO }\label{sec:hybridGAPSO}
 % ref: 76* 77* 
  
 
@@ -297,15 +297,15 @@ The principal inconvenient of the GAPSO is due to this double convergence. In fa
 		
 \section{Going further, more experiment }
 
-The previous section with the different experiments shown the efficiency of the GA for the vast areas and the flexibility offer by the hybridised GAPSO (with a  small refinement of the solution). The experiments made until know was focused on different area relatively simple the next step is to increase the difficulty of the scene. The increased complexity is made by adding: 
+The previous section with the different experiments shown the efficiency of the GA for the vast areas and the flexibility offer by the hybridised GAPSO (with a small refinement of the solution). The experiments made until know was focused on different area relatively simple the next step is to increase the difficulty of the scene. The increased complexity is made by adding: 
 \begin{itemize}
 \item More obstacle.
-\item Hole.
+\item Hole in the area.
 \item Increase size of the area.
 \item Increase the search space by adding more parameters(as the roll). 
-\item add new constraint (as  some fix cameras).
+%\item Add new constraint (as  some fix cameras).
 \end{itemize} 
-The following section present the results obtained by increase step by step the difficulty. 
+The following section present the results obtained by increase step by step the difficulty. Each step presented chronologically in the following section has been made to test and some time to refine the parameters of the GA and GAPSO in different contexts. In the following section only the more significant step has been presented.
 
 	\subsection{Rectangle obstacle } \label{sec:expRectObstacle}
 	\begin{mfigures}[!]{Indoor area coverage using V-rep to simulate a realistic environment.}{fig:RoomsVrep} \centering
@@ -317,13 +317,15 @@ The following section present the results obtained by increase step by step the 
 
 \tabsimuposeVrep
 \end{mfigures}
-	Thanks to the result obtained an experiment is made using a slightly bigger size then the big room (Figure \ref{fig:Rooms_shapes}). The environment of this experiment try to be more realistic and the room is design with more obstacle. 
-	The obstacle are added in the map as non interesting area to cover as explained in  section \ref{subPara:MapConstraintAndObstacle}. Also this room design is the first not designed in order to have perfect ground trough unlike the previous room design (Figure \ref{fig:Rooms_shapes}).
-	To have a more realistic experiment a simulation tool dedicate to robotics is used to illustrate the result. 
-	     
-	The simulated room is 15 $\times$ 14 m$^2$ which corresponds more or less to a large lecture hall. The areas in red (see Figure \figref{subfig:VrepRoom})represents the zones which do not require coverage. Every camera can cover a 4 $\times$ 3 m$^2$,  when $z$ is equal to one. The $z$ factor can be equal at $[0.5, 1, 1.5]$, and the cameras can turn  at 90$^{\circ}$ to have the image in portrait or landscape. All of these parameters are taken into account in order to compute the waypoints and only the GA was used. The GA is applied until this convergence. 
 	
-	The waypoints positioning after running the GA give a solution well optimized (see Figure \figref{subfig:WaypointPoseVrep}). Not perfect but good enough with a limited number of cameras to offer a  mosaic image of the scene with no to much black hole (see Figure \figref{subfig:mosaicSceneVrep}). The solution obtained is comparable to the experiment made previously (see \ref{sec:DoE}) as aspect, despite the increasing number of obstacle and size of the search space. This confirm again the ability of adaptation of the EA optimization and more exactly the GA. These result encourage us to go a bit further. 
+	Thanks to the result obtained (see \ref{sec:hybridGAPSO}) an experiment is made using a slightly bigger size than the big room (in Figure \figref{fig:Rooms_shapes}). The environment of this experiment to try to be more realistic, consequently the room is designed with more obstacle. 
+	The obstacles are added in the map as non-interesting area to cover as explained in  section \ref{subPara:MapConstraintAndObstacle}. Also for the first time the design of this room  is  not made in order to have perfect ground trough unlike the previous room design (Figure \figref{fig:Rooms_shapes}). The consequence of it is the number of camera use to cover all the area is not an integer and some overlap must append.
+	For this first realistic experiment a simulation tool dedicate to robotics is used to illustrate the result. 
+	     
+	The simulated room is 15 $\times$ 14 m$^2$ which corresponds more or less to a large lecture hall. The areas in red (see Figure \figref{subfig:VrepRoom})represent the zones which do not require coverage. Every camera can cover a 4 $\times$ 3 m$^2$,  when $z$ is equal to one. The $z$ factor can be equal at $[0.5, 1, 1.5]$, and the cameras can turn  at 90$^{\circ}$ to have the image in portrait or landscape. All of these parameters are taken into account in order to compute the waypoints position.The optimization of the waypoints position is made using  only the GA, but this time it is applied until the convergence. 
+	
+	 After running the single GA  a well optimized waypoints positioning is given (see Figure \figref{subfig:WaypointPoseVrep}). Not perfect but good enough with a limited number of cameras. At Each waypoints an image is captured in order to offer a  mosaic image of the scene with a restricted number of small black holes (see Figure \figref{subfig:mosaicSceneVrep}).
+	  The solution obtained is comparable to the experiments made previously (see \ref{sec:DoE}). As aspect, despite the increasing number of obstacle and increased size of the search space. This confirms again the ability of adaptation of the EA optimization and more exactly the GA. These results encourage us to go  further. 
 
 %%%%%%%%%%%%%%%%%%% for the  path plan%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % refer to : https://en.wikipedia.org/wiki/Screw_theory#Twist
@@ -403,7 +405,8 @@ The main result of this experiment was to evaluate if the modification of the pa
 Thanks to this tries the size of the area to cover and the number of waypoints can be increased. The next experiment has to test the boundary of the GAPSO optimization in term of size and number of cameras.
 
 
-	\subsection{For big area}
+	\subsection{Using mask for bigger area}
+	Based on the last experiment (\ref{sec:maskGAPSO}) a much bigger area with much more waypoints to pose estimate are presented here. The goal of the following sections is to see the boundary of the optimization when the slider are pushed to the maximum. The maximum in term of area size, number of waypoint and shape complexity.
 	
 		\subsubsection{outdoor fey}\label{sec:fey_map}
 
@@ -418,9 +421,9 @@ Thanks to this tries the size of the area to cover and the number of waypoints c
 \end{mfigures}
 
 
-Based on the last experiment (\ref{sec:maskGAPSO}) a much bigger area with much more waypoints to pose estimate are presented here. The goal is to see the boundary of the optimization when the slider  are pushed to the maximum.
+In this experiment a  much bigger and complex area is presented.
 		A much bigger area involves the increasing of the search space and the increasing of the complexity. 
-In the following example figure \figref{subfig:satimgMaskFley} the satellite images are used to define the area to control (in white).  The size of the area has been increased to has a grid composed by almost half million points with near to 200 thousand points to cover. 
+In the following example figure \figref{subfig:satimgMaskFley} the satellite images are used to define the area to control (in white). The size of the area has been increased to has a grid composed by almost half million points with near to 200 thousand points to cover. 
 The objective is to increase the difficulty in this experiment. In addition to the increased size of the area to cover, the shape of it has been complicated. To do that an area with several sub-parts composed by small space and hole has been selected.
 During this experimentation a high coverage rate is required (we aspect more than $95\%$). 
 %File name :C:\Users\stru\Documents\python\newMap  champ\fley71390RMask.png
