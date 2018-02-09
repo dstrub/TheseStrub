@@ -325,7 +325,7 @@ The following section present the results obtained by increase step by step the 
 	The simulated room is 15 $\times$ 14 m$^2$ which corresponds more or less to a large lecture hall. The areas in red (see Figure \figref{subfig:VrepRoom})represent the zones which do not require coverage. Every camera can cover a 4 $\times$ 3 m$^2$,  when $z$ is equal to one. The $z$ factor can be equal at $[0.5, 1, 1.5]$, and the cameras can turn  at 90$^{\circ}$ to have the image in portrait or landscape. All of these parameters are taken into account in order to compute the waypoints position.The optimization of the waypoints position is made using  only the GA, but this time it is applied until the convergence. 
 	
 	 After running the single GA  a well optimized waypoints positioning is given (see Figure \figref{subfig:WaypointPoseVrep}). Not perfect but good enough with a limited number of cameras. At Each waypoints an image is captured in order to offer a  mosaic image of the scene with a restricted number of small black holes (see Figure \figref{subfig:mosaicSceneVrep}).
-	  The solution obtained is comparable to the experiments made previously (see \ref{sec:DoE}). As aspect, despite the increasing number of obstacle and increased size of the search space. This confirms again the ability of adaptation of the EA optimization and more exactly the GA. These results encourage us to go  further. 
+	  The solution obtained is comparable to the experiments made previously (see \ref{sec:DoE}). As aspect, despite the increasing number of obstacle and increased size of the search space. This confirms again the ability of adaptation of the EA optimization and more exactly the single GA. These results encourage us to go  further. 
 
 %%%%%%%%%%%%%%%%%%% for the  path plan%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % refer to : https://en.wikipedia.org/wiki/Screw_theory#Twist
@@ -357,11 +357,11 @@ The following section present the results obtained by increase step by step the 
 \tabsimuposeIUTcube
 \end{mfigures}	
 
-The previous experiment shown the efficiency of the GA despite numerous obstacle and bigger room. The following experiment try to push a bite more the optimization process using only the GA. The increased complexity of map was made by adding much more polygon and also hole in the map. In fact until know all the obstacle was added around the bounding of the area. Add Obstacle in the middle to create a hole in the area increase significantly the complexity of the coverage estimation.
-To simulate a realistic environment the map is designed manually based on a satellite images (see Figure \figref{subfig:Le2iCube}). Each rectangle obstacle has been placed to reproduce the satellite images. 
+The previous experiment shown the efficiency of the single GA despite numerous obstacle and slightly bigger room. The following experiment try to push a bit more the optimization process using a single GA. The increased complexity of map was made by adding much more obstacle with some holes in the middle of the map. In fact until know all the obstacles was added around the bounding of the area. Add Obstacle in the middle to create a hole in the area, that increase significantly the complexity of the coverage estimation.
+To simulate a realistic environment the map is designed manually based on a satellite images (see Figure \figref{subfig:Le2iCube}). Each rectangle obstacle has been placed to reproduce the buildings as in  the satellite images. 
 
-The result obtained by the GA optimization (see Figure \figref{subfig:IUTCoverage}) show one more time the adaptation power of the GA to the complex scene. The total coverage of the area is around $76.5\%$ for 75 waypoints. The answer proposed is not perfect and can be improved in order to reduce some overlap and black hole. The important number of dimension to optimize ($75\time 4$) and the increased size of the area (twice bigger then previously) mark the limit of the simple GA optimization.\\
-	The more interesting aspect of this experiment is to show the efficiency of the GA in a real complex environment. The solution proposed can be considered as good for the purpose of the challenge (obstacle, hole, numerous waypoints to pose estimate, vast area,...). 
+The result obtained by the GA optimization (see Figure \figref{subfig:IUTCoverage}) show one more time the adaptation power of the single GA to the complex scene. The total coverage of the area is around $76.5\%$ for 75 waypoints. The answer proposed is not perfect and can be improved in order to reduce some overlap and black hole. The important number of dimension to optimize ($75\time 4$) and the increased size of the area (twice bigger then previously) mark the limit of the simple GA optimization.\\
+	The more interesting aspect of this experiment is to show the efficiency of the single GA in a real complex environment. The solution proposed can be considered as good for the purpose of the challenge (obstacle, hole, numerous waypoints to pose estimate, vast area,...). 
   
 %only GA 
 %z size  0.5 1 1.5 1.75
@@ -384,29 +384,33 @@ cameras using the GAPSO $92.81\%$.}{subfig:coverageGAPSOTorcy}
 \end{mfigures}
 
 
-Based on the limitation of the map design and the necessity to go one step further the paradigm have to evolve.
-The solution proposed to represent the area until know, was to add rectangles obstacles by remove the corresponding points of the grid (as explained in \ref{subsec:obstacleZone}). The prime advantage to use rectangles obstacles was in the coding implementation. 
-This facility becomes a lock for the more complex area. In addition, it is reveal not user friendly.\\
- The solution chosen for the flowing experimentation is to use a binary mask of the are to cover. The mask represent in the white side the area to cover and in black the non interesting zone (also called obstacles, see \figref{subfig:satimgMaskTorcy}). This solution is finally more "user friendly"  and do not change the fundamental of the occupation grid (each white pixel of the mask is a point of the grid to cover). 
+Based on the limitation of the map design and the necessity to go one step further the paradigm has to evolve.
+The solution proposed representing the area until now, was to add rectangles obstacles by removing the corresponding points of the grid (as explained in \ref{subsec:obstacleZone}). The primary advantage to use rectangle obstacles was in the coding implementation. 
+This facility becomes a lock for the more complex area. In addition, it is revealed not user friendly.\\
+ The solution chosen for the flowing experimentation is to use a binary mask of the area to cover. The mask represents in the white side the area to cover and in  the black side of the non interesting zone (also called obstacles, see \figref{subfig:satimgMaskTorcy}). This solution is finally more "user friendly"  and do not change the fundamental of the grid map used until here. Each white pixel of the mask is a point of the grid to cover.  
  
 %from VISAP EVOLUTIONRY ALGORITHM FOR POSITIONING CAMERAS NETWORKS MOUNTED ON UAV torcy map
 
-For this first experiments with the binary mask, a smaller area is chosen, with a small amount of cameras necessary to fully cover it. In the Figure \figref{subfig:satimgTorcy} the area to control is extracted form satellite images to have a mask (see\figref{subfig:satimgMaskTorcy}). 
+For this first experiment with the binary mask to describe the area to cover, a smaller area is selected. A smaller area involved a smaller amount of similar waypoints necessary to fully cover it. In the Figure \figref{subfig:satimgTorcy} the area to control is extracted from a satellite images to have a mask (see\figref{subfig:satimgMaskTorcy}). The single GA is performed  with 25 waypoints to pose estimate. The solution obtained by the single GA is re-injected in the PSO. Each waypoint has to be placed on $x; y; z$. In order to test this new paradigm the rotation $\gamma$ is removed from the parameters to optimize.
 
-Among the experiment presented until know (\ref{sec:RecObstacleHole} and \ref{sec:expRectObstacle}) only the GA was employ  for the optimization. The last experiment with bigger area and complex area shape composed by hole begin show the limiting use of a single GA. This observation is confirmed and is getting bigger for the area more complex as the one from a complex map designed according to a satellite images ( as  Figure \figref{subfig:satimgTorcy} and \figref{subfig:satimgMaskTorcy})
-
-Consequently, the GA is performed  firstly to optimize the position of the waypoints the result are in visible in Figure \figref{subfig:coverageGATorcy}. 
-
-The optimized waypoints positioning, cover $90.76\%$ of the area with 25 cameras and the GA converge after just 67 generation. The solution given by the single GA is already good enough despise the complexity of the map. Although can be refined by apply a PSO. The PSO is used with a initialisation from the first optimisation. 
+ To begin the single GA was performed. The result are visible in Figure \figref{subfig:coverageGATorcy}. The optimized waypoints positioning, cover $90.76\%$ of the area with 25 cameras and the single GA converge after just 67 generations. The solution given by the single GA is already good enough despite the complexity of the map. 
+  The solution obtained is conformed to the expected result. The solution of the single GA gives a well optimized waypoints poses, despite the new paradigm with the complex map. 
+  
+   Among the experiment presented until now (\ref{sec:RecObstacleHole} and \ref{sec:expRectObstacle}) only the single GA was employed for the optimization. On the last experiment (\ref{sec:RecObstacleHole}) with a bigger and more complex area composed by hole,  the limiting of a single GA appears slightly. This observation is confirmed and is getting bigger for the area more complex. More complex as the one outcome the map designed according to the satellite images with mask (as  Figure \figref{subfig:satimgTorcy} and \figref{subfig:satimgMaskTorcy}).
+The solution proposed being to apply a GAPSO. The PSO will allow the refinement of the GA solution.
+%Consequently, the GA is performed  firstly to optimize the position of the waypoints . 
+%The optimized waypoints positioning, cover $90.76\%$ of the area with 25 cameras and the GA converge after just 67 generation. The solution given by the single GA is already good enough despise the complexity of the map. Although can be refined by apply a PSO. 
+The PSO is used with an initialisation from the first optimisation (using  the GA solution). 
 Finally the result presented in the Figure \figref{subfig:coverageGAPSOTorcy} shown a much more refined  coverage with significant reduction in the amount of black hole and overlap (coverage is over $92.8\%$). 
 
-The main result of this experiment was to evaluate if the modification of the paradigm by the grid customization may had a signification impact on the waypoint positioning. The conclusion of this experiment is, in fact not so much when the GAPSO is applied. The experiment  allow also to evaluate the improvement made  by the GAPSO. The GAPSO hybridization is robust and flexible despite the strong constraint due to the non geometric area.  
+The main result of this experiment was to evaluate if the paradigm modification may have a significant impact on the waypoints positioning.
+ The conclusion of this experiment is, in fact not so much when the GAPSO is applied. Despite the increased complexity due to the area shape (possible by the mask) the use of the hybrid GAPSO permit to composentes it. The experiment allows also to evaluate the improvement made by the GAPSO. The GAPSO hybridization is robust and flexible despite the strong constraint due to the non geometric area.  
 
-Thanks to this tries the size of the area to cover and the number of waypoints can be increased. The next experiment has to test the boundary of the GAPSO optimization in term of size and number of cameras.
+Thanks to this tries the size of the area to cover and the number of waypoints can be increased. The next experiment has to test the boundary of the GAPSO optimization in term of size and number of cameras using a mask for describing the area.
 
 
 	\subsection{Using mask for bigger area}
-	Based on the last experiment (\ref{sec:maskGAPSO}) a much bigger area with much more waypoints to pose estimate are presented here. The goal of the following sections is to see the boundary of the optimization when the slider are pushed to the maximum. The maximum in term of area size, number of waypoint and shape complexity.
+	Based on the last experiment (\ref{sec:maskGAPSO}) a much bigger area with much more waypoints to pose estimates are presented here. The goal of the following sections is to see the boundary of the  GAPSO optimization when the sliders are pushed to the maximum. The maximum in term of area size, number of waypoint and shape complexity.
 	
 		\subsubsection{outdoor fey}\label{sec:fey_map}
 
@@ -421,11 +425,11 @@ Thanks to this tries the size of the area to cover and the number of waypoints c
 \end{mfigures}
 
 
-In this experiment a  much bigger and complex area is presented.
-		A much bigger area involves the increasing of the search space and the increasing of the complexity. 
-In the following example figure \figref{subfig:satimgMaskFley} the satellite images are used to define the area to control (in white). The size of the area has been increased to has a grid composed by almost half million points with near to 200 thousand points to cover. 
-The objective is to increase the difficulty in this experiment. In addition to the increased size of the area to cover, the shape of it has been complicated. To do that an area with several sub-parts composed by small space and hole has been selected.
-During this experimentation a high coverage rate is required (we aspect more than $95\%$). 
+In this experiment, a much bigger and complex area is presented.
+		A much bigger area involves the increasing of the search space and consequently the increasing of the complexity. 
+In the following example Figure \figref{subfig:satimgMaskFley} the satellite images are used to define the area to control (in white). The size of the area has been increased to have a grid composed by almost half million of points with nearly to 200 thousands points to cover. 
+The objective is to increase the difficulty in this experiment. In addition to the increased size of the area to cover, the shape of it has been complicated. To do that an area with several sub-parts composed by small space and hole has been selected.\\
+During this experimentation, a high coverage rate is required. We aspect more than $95\%$ of coverage rate. More than $95\%$ of coverage rate is a hight requirement and push the optimization in term of precise positioning to the limit of the GAPSO. The risk to ask a very hight coverage rate is to need a lot of waypoints with several overlap and consequently a long time before to converge. 
 %File name :C:\Users\stru\Documents\python\newMap  champ\fley71390RMask.png
 %Size is : 895 x 502
 %Nmb point to cover: 194497
@@ -433,8 +437,8 @@ During this experimentation a high coverage rate is required (we aspect more tha
 %total:447894
 %/!\ The image given is not a falide mask dif : -1396
 
-In order to cover the big area, the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. Althouth the GAPSO associate to the adapted cost function allows on the example Figure \figref{subfig:satimgcoverageFley} more waypoints to be placed and optimized. 
- In the Figure \figref{subfig:satimgcoverageFley} and \figref{subfig:satimgNoncoverFley} the area is covered by 80 waypoints for 98.48$\%$ of coverage. To reach this coverage rate the GA convergence are achieved after 4856 generations. The important number of necessary generation before the convergence of the GA and a similar  increasing time computation of the PSO, allow us to glimpse the limits of the GAPSO for the too big search space with numerous waypoints to pose estimate. Despite this potential future limitation the answer of the GAPSO is relatively fast and efficient.\\
+In order to cover the big area, the solution can be to use a bigger focal length or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. The other solution is to increase the number of waypoints. The increased number of waypoints can be a source of difficulty for the  optimization. Although the difficulty to manage more waypoints  to the GAPSO associate to the adapted cost function allows the example Figure \figref{subfig:satimgcoverageFley} more waypoints to be placed and optimized. 
+ In the Figure \figref{subfig:satimgcoverageFley} and \figref{subfig:satimgNoncoverFley} the area is covered by 80 waypoints for $98.48\%$ of coverage. To reach this coverage rate the GA convergence is achieved after 4'856 generations. The important number of necessary generation before the convergence of the GA and a similar  increasing time computation for the PSO, allow us to glimpse the limits of the GAPSO for the too big search space with numerous waypoints to pose estimate. Despite this potential future limitation the answer of the GAPSO is relatively fast and efficient.\\
  
 
 		\subsubsection{map3 calvisson}
@@ -448,11 +452,11 @@ In order to cover the big area, the solution can be to use a bigger focal or hig
 \tabsimuposeCalvisson
 \end{mfigures}	
 
-The precedent experiment (see \ref{sec:fey_map}) show the efficiency and flexibility of the GAPSO  to the big map with lote of waypoint in a really complex area. Despite an important increasing time of computation the GAPSO can use to go even more futher  and try to touch the boundary.  
+The precedent experiment (see \ref{sec:fey_map}) shows the efficiency and flexibility of the GAPSO to the big map with lots of waypoint in a really complex area. Despite an important increasing time of computation the GAPSO can use to go even more further and try to touch the boundary.  
 
-For this  experiment, the area proposed here is the biggest never tested yet here. The grid is composed by almost 1 million of points with more than 616 thousand of point to cover (number of white pixel). The number of waypoints to cover this vast area has  been increased to reach  the  110 waypoints. The number of waypoints to  place and optimize, is the mush more important compared to the literature for example, in \citep{8*zhou2011,33*reddy2012}.
+For this  experiment, the area proposed here is the biggest never tested yet here. The grid is composed by almost 1 million of points with more than 616 thousand of points to cover (number of white pixel). The number of waypoints to cover this vast area has  been increased to reach  the  110 waypoints. The number of waypoints      to  place and optimize, is the much more important compared to the literature for example, in \citep{8*zhou2011,33*reddy2012}.
 The GAPSO is executed with success and the final coverage is  over $98.26\%$.  
-	 To reach this coverage rate the GA convergence is achieved after 170501 generations. \\
+	 To reach this coverage rate the GA convergence is achieved after 170'501 generations. \\
 	 This important number of generation to reach the convergence with the GA in a first time, before to proceed to a PSO optimization. That show at same time the great efficiency of GAPSO to optimize the position for numerous waypoint in a big search space with propose a really good answer. This great optimization is conditionally upon to an important time of convergence. This show the limit of the GAPSO due to the important number of generation and consequently important time computation (few hours with a core i7).  
 	 To nuanced the really important time useful to reach the double convergence (GA and PSO) the context of the experiment has to be highlight. In Fact the area to cover is important but  also the coverage rate respected is also an important factor because more this coverage rate is important more a fine tuning of the numerous parameters of the solution must be done.
 	
@@ -478,14 +482,14 @@ In the first time the GA appear efficient enough  for the  optimization in the b
   
 % \hspace*{\fill}\subfloat[][]{\tabsimupose} 
  
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-As demonstrate before with the previous experimentation the GAPSO is robust for a big outdoor area with a non-convex shape. This experiment show one more time for a similar area in term of size (a bit slower) with  less cameras. The objective is to increase the difficulty  by adding  an more complex shape of the area to cover. To do that an area with several sub-parts composed by small space and hole has been selected.
-During this experimentation a high coverage rate is required (we aspect more than 95%) 
-
-In the following example, shown in Figure \figref{subfig:satimgFley}, the satellite images are used to denote the area to control (in white). \\
-
- However the GA associated with the adapted cost function allows  (as in Figure \figref{subfig:satimgcoverageFley}) many more waypoints to be placed and optimized in order to keep an acceptable image resolution of the area compared to the literature, for example, in \cite{8*,33*}. In Figure \figref{subfig:satimgcoverageFley} and \figref{subfig:satimgNoncoverFley}, the area is covered by 80 waypoints for a 98.48$\%$ coverage rate, with an average $z$ at 0.95 and  the GA convergence is achieved after 4856 generations before an PSO optimization. \\
-		
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%As demonstrate before with the previous experimentation the GAPSO is robust for a big outdoor area with a non-convex shape. This experiment show one more time for a similar area in term of size (a bit slower) with  less cameras. The objective is to increase the difficulty  by adding  an more complex shape of the area to cover. To do that an area with several sub-parts composed by small space and hole has been selected.
+%During this experimentation a high coverage rate is required (we aspect more than 95%) 
+%
+%In the following example, shown in Figure \figref{subfig:satimgFley}, the satellite images are used to denote the area to control (in white). \\
+%
+% However the GA associated with the adapted cost function allows  (as in Figure \figref{subfig:satimgcoverageFley}) many more waypoints to be placed and optimized in order to keep an acceptable image resolution of the area compared to the literature, for example, in \cite{8*,33*}. In Figure \figref{subfig:satimgcoverageFley} and \figref{subfig:satimgNoncoverFley}, the area is covered by 80 waypoints for a 98.48$\%$ coverage rate, with an average $z$ at 0.95 and  the GA convergence is achieved after 4856 generations before an PSO optimization. \\
+%		
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
