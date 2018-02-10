@@ -13,9 +13,9 @@ During the previous sections, the problem was discussed as an optimization probl
 
 \section{PSO }
 
-The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is an stochastic algorithms from the family of evolutionary algorithms (see  chapter \ref{chap:EA}). 
-The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 [148* bis]. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it appends here from the bird flocking, fish schooling and swarming theory. These are animals working in a group to find food. 
-The direction to take is not decided by one leader, but by all individuals of the swarm by relaying just few informations as what quantities of food their found. 
+The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is a stochastic algorithms from the family of evolutionary algorithms (see chapter \ref{chap:EA}). 
+The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 [148* bis]\cite{148*eberhart1995}. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it appends here from the bird flocking, fish schooling and swarming theory. These are animals working in a group to seek food. 
+The direction to take is not decided by one leader, but by all individuals in the swarm by relaying just few informations as what quantities of food they found. 
 The swarm composed by numerous individuals became smarter and more efficient to reach their objective. 
 The algorithm proposed by Russel Eberhart and James Kennedy in [148* bis] \cite{148*eberhart1995} are directly inspired by these behaviours.
 
@@ -44,18 +44,17 @@ Thanks to this basic behaviour of the particles the swarm can coverage to a glob
 To have an efficient optimization just few parameters must be set-up for the PSO.  
 The more important are the inertia of the particles, the size of the swarm and the initial dispersion.
 \begin{itemize}
-\item The inertia will globally  help the particles to keep their initial velocity. The consequences of the high value of inertia is to explore more the search space and therefore the convergence will be longer. 
-\item The size of the swarm  have an impact on the convergence time (in number of iteration) and the also time computation. Indeed a big amount of particles in the swarm  means more exploration of the search space at each iteration, but also more comparison to find the best particles (the comparison may have a non negligible computation time). 
+\item The inertia will globally help the particles to keep their initial velocity. The consequences of the high inertia, is to explore more the search space and therefore the convergence will be longer. 
+\item The size of the swarm  have an impact on the convergence time (in number of iteration) and  also the time computation. Indeed a big amount of particles in the swarm  means more exploration of the search space at each iteration, but also more comparison to find the best particles (the comparison may have a non negligible computation time). 
 The swarm size is commonly fixed but can be as the population in the GA (see section \ref{sec:Population} ) dynamically adjusted during the optimization process. 
 
-
-\item The initial dispersion of the swarm can be a decisive element as the population for the GA (see in \ref{sec:initPOP}). For the PSO the use of an heuristic to initialize all the particles of the swarm is not recommended due to this important risk to converge prematurely in a local minimum. The random dispersion appear  as the more appropriate for a global optimization. On the other hand the fast convergence and the PSO ability to climb the hill to go out of the local minima can be used in order to refine an other optimized solution. The principal risk is to optimize around the initial dispersion and  do not explore correctly the search space.  
-\item Other criteria as $\phi_g$ and $\phi_i$ are minor but can be useful to   have a realy fine adjusted PSO.
+\item The initial dispersion of the swarm can be a decisive element as the population for the GA (see in \ref{sec:initPOP}). For the PSO the use of an heuristic to initialize all the particles of the swarm is not recommended due to this important risk to converge prematurely in a local minimum. The random dispersion appear as the more appropriate for a global optimization. On the other hand the fast convergence and the PSO ability to climb the small hill to go out of the local minima can be used in order to refine an other optimized solution. The principal risk is to optimize around the initial dispersion and do not explore correctly the search space.  
+\item Other criteria as $\phi_g$ and $\phi_i$ are minor but can be useful to have a realy fine adjusted PSO.
 \end{itemize}
 
-Finally to summarize the PSO is efficient in term of optimization despite a very basic behaviour of each particles. Each particles have this own velocity defined part way by the random and controlled by a global parameters; the inertia.
- The power of PSO is at same time this efficiency to solve the optimization problem and this simplicity of use. In fact the PSO need at minima  few element to work properly:
- a cost function, an inertia parameters and the size of the swarm. These efficiency and simplicity of use explain this popularity during the last decade.
+Finally to summarize the PSO is efficient in term of optimization despite a very basic behaviour of each  particles. Each particle has this own velocity defined part way by the random and controlled by a global parameter; the inertia.
+ The power of PSO is at the same time this efficiency to solve the optimization problem and this simplicity of use. In fact, the PSO needs at minima few element to work properly:
+ A cost function, an inertia parameter and the size of the swarm. These efficiency and simplicity of use explain this popularity during the last decade.
  
 
 
@@ -70,28 +69,26 @@ Finally to summarize the PSO is efficient in term of optimization despite a very
 
 \section{Random selection }
 
-The random selection (named RS) is a very basic algorithm. It is used as a reference points for the comparison of different algorithms. The RS does not use a complex meta-heuristic and is perfect to compare the efficiency of the other algorithm.
+The random selection (named RS) is a very basic algorithm. It serves as a reference points for the comparison of different algorithms. The RS does not take a complex meta-heuristic and is perfect to compare the efficiency of the other algorithm.
 
-The random selection works by randomly generate numerous solutions. Among the solutions randomly generated the best solution is kept as the optimized global solution. The RS allows to look through the search space by randomly try different  possible solution. The search space exploration by the RS is only made by random sampling with any optimization method. 
-Indeed the RS is used as a reference points for the other algorithms. If the RS get a similar result with the same amount of the cost function call, the algorithm compared can be considered as not more efficient then a simple random solution. 
-The RS is used to the search for the optimization algorithms and this appropriate parameters as the reference point and evaluate the efficiency of the chosen algorithms.
-
-
+The random selection works by randomly generate numerous solutions. Among the solutions randomly generated the best solution is kept as the optimized global solution. The RS allows to look through the search space by randomly try different possible solution. The search space exploration by the RS is only made by random sampling without other optimization method. 
+Indeed the RS is invoked as a reference points for the other algorithms. If the RS get a similar result with the same numbers of the cost function call, the algorithm compared can be considered as not more efficient then a simple random solution. 
+The RS objective is to serve as  reference point for the other optimization algorithms. It will be a perfect reference to judge the efficiency of the optimization from other algorithms.  
   
-
-PSO camera position 
-8 33 87 84 143(transitor) 193 194 200(capter 360)201
-148 origine de PSO. 
-PSO[84 8 33 143] 87 193* 194* 200* 201* 
-
-228*(hibrid) 161* 158* 78 GA VS PSO
+%
+%PSO camera position 
+%8 33 87 84 143(transitor) 193 194 200(capter 360)201
+%148 origine de PSO. 
+%PSO[84 8 33 143] 87 193* 194* 200* 201* 
+%
+%228*(hibrid) 161* 158* 78 GA VS PSO
 
 \section{Algorithm comparison }\label{sec:GAvsPSO} 
 %
-To solve the problem of cameras position (or waypoints) the possible usable algorithms are varied as that was discussed in the chapter \ref{chap:stateOfTheArt} (see the sum-up tables \ref{tab:sum-up1} and \ref{tab:sum-up2}).
-Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints of our problem. The EA is a vast family of algorithms and one of the more used for our problem is the PSO (see \ref{tab:sum-up2}). The PSO give good result in many case. In the EA family the GA is one of the founders and was one of the more popular due to this great flexibility and efficiency.
+To solve the problem of cameras positioning (or waypoints positioning) the usable algorithms are varied as that was discussed in the chapter \ref{chap:stateOfTheArt} (see the sum-up tables \ref{tab:sum-up1} and \ref{tab:sum-up2}).
+Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints of our problem. The EA is a vast family of algorithms. Among this family the more used for our problem is the PSO (see \ref{tab:sum-up2}). The PSO gives a good and fast result in many case. In the EA family, the GA is one of the founders and was one of the more popular due to this great flexibility and efficiency.
  After more investigation the GA is under estimate for the problem of camera positioning unlike the PSO (see \citep{33*reddy2012,8*zhou2011,84*xu2011,143*maji2015,193*fu2014,194*fu2010}).
- Base on the work of Boeringer et al in \citep{78*boeringer2004}78*, where the PSO and the GA have been conscientiously compared. The conclusion in \citep{78*boeringer2004} is relatively open and highlights the similarity of result between two algorithms. An experimentation have to be done to find the best algorithms for the problem of cameras position in a complex environment. 
+ Base on the work of Boeringer et al in \citep{78*boeringer2004}, where the PSO and the GA have been conscientiously compared. The conclusions  of the comparison in \citep{78*boeringer2004} is relatively open and highlights the similarity of result between the two algorithms. An experimentation has to be done to find the best algorithms for the problem of cameras position in a complex environments. 
 
 
 
@@ -116,7 +113,7 @@ Among the algorithms studied in the literature the EA family appear as the more 
 To find the best coverage, many experiments have been used to compare PSO and GA. PSO is easier to implement and runs faster, but GA is more flexible and generic thanks to the many tunable parameters. 
 The following subsections will provide a comparison between PSO and GA with using RS as a reference.% and give an overview of our method, which is based on GA. The comparison demonstrates the overall advantage of the latter over the former.\\
 %In the literature, the PSO was often used \cite{8*zhou2011,33*reddy2012}, mostly because of the simplicity of its implementation. However, it is interesting to compare the algorithm with the GA. The two algorithms are from the same family (both are stochastic and from evolutionary algorithms).\\
-To compare and evaluate their performance, we tested them in different scenarios. The scenarios have been  design to have different shape and size. The shape of the room have been design to estimate the number of cameras but due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where: 
+To compare and evaluate their performance, we tested them in different scenarios. The scenarios have been  designed to have a different shape and size. The shapes of the room have been designed to estimate the exact number of cameras in order to have a ground trough. Due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where: 
 
 
 
@@ -132,7 +129,7 @@ To compare and evaluate their performance, we tested them in different scenarios
 
 
 The design of the experiments in Table \ref{table:table1} has been set up to identify the most efficient algorithm for the positioning of a set of cameras with maximum coverage depending on the numerous cases. 
-The Design of Experiments (DOE) have been made to take in account; the  shapes, sizes, some constraint as the fix altitude and  many size of the set of cameras. The DOE has been designed to highlight the impact of the constraints on the optimization process with the GA and PSO.
+The Design of Experiments (DOE) has been made to take in account; the  shapes, sizes, some constraint as the fix altitude and  many size for the set of waypoints. The DOE has been established to highlight the impact of the constraints on the optimization process with the GA and PSO.
 
 
 \begin{table} [!htb]
@@ -155,9 +152,9 @@ The Design of Experiments (DOE) have been made to take in account; the  shapes, 
 \end{table}
 
 The Ground Truth (GT) is the minimum number of cameras required to fully cover a given area. The size of the area has been selected so that the GT can be easily estimated. 
-NW is the maximum Number of cameras (or Waypoint) used for the experiments.  
+NW is the maximum Number of Waypoints (or cameras) used for the experiments.  
 At each experiment a solution is computed for a number of cameras from 1 to NW. To compare the different algorithms fairly, only 10 000 calls of the cost function are allowed for each optimization.
-The optimization have been executed 8 times for each optimization process. 8 times is the minimum number of test has to be done to can have a usable average despite the hight volatility due to the randomness of the algorithms.\\ % 420*8 =3 360 test.
+The optimization has been executed 8 times for each optimization process. 8 times is the minimum number of test has to be done to can have a usable average despite the hight volatility due to the randomness of the algorithms.\\ % 420*8 =3 360 test.
 
 
 \subsection{ Analysis of the result }
@@ -177,22 +174,21 @@ The optimization have been executed 8 times for each optimization process. 8 tim
   \caption{Comparison of eight solutions given by the GA, with eight solutions given by PSO algorithms with a Z between $[1/2; 2]$ in the room with L shape $120\times80$ and ground truth equal to 15.}\label{fig:RLz2}
    \endminipage\hfill
 \end{figure}
-After performing the several experiments (see Table \ref{table:table1}), it appears that the GA and PSO algorithms are close in performance in numerous case. Among several experiment of the DoE some particularity appear despite the globally close result of GA and PSO. Also as expected the RS is always the worst solution.
- In the following subsection  just few experiment are taken to illustrate some interesting phenomena specific to the GA and PSO for our problems.
+After performing several experiments (see Table \ref{table:table1}), it appears that the GA and PSO algorithms are close in performance in numerous case. Among several experiment of the DoE some particularity appear despite the globally close result of GA and PSO. Also as expected the RS is always the worst solution.
+ In the following subsection just few experiments are taken to illustrate some interesting phenomena specific to the GA and PSO for our problems.
 
-In the case where the search space is large and numerous dimension have to be optimized the GA appear globally more efficient as in Figure \ref{fig:bigRz1}. In contrary in this case (big room with z=1) the PSO give a very bad answer close then simple RS.
+In the case where the search space is large and numerous dimension have to be optimized by the GA appears globally more efficient as in Figure \ref{fig:bigRz1}. In contrary in this case (big room with z=1) the PSO gives a very bad answer close than simple RS.
 %What is appearing in some case as in Figure \ref{fig:bigRz1} is the  GA is much more efficient where the search space is large (big room and big number of cameras),  as the example in Figure \ref{fig:bigRz1}. 
- Instead, PSO is more effective for optimizing small areas as in Figure \ref{fig:RLz2}. In the small room in L shape with a $z$ between 1/2 and 2, the PSO reach quickly (quicker then the 10 000 calls) to the optimal solution. Where here the optimal solution is known and equal to GT. In the same case the GA propose an optimized solution (compared then the RS) but far from the PSO.
+ Instead, PSO is more effective for optimizing small areas as in Figure \ref{fig:RLz2}. In the small room in L shape with a $z$ between 1/2 and 2, the PSO reach quickly (quicker than the 10 000 calls) to the optimal solution. Where, here the optimal solution is known and equal to GT. In the same case the GA propose an optimized solution (compared then the RS) but far from the PSO.
  
- This efficiency can be explained by the small variation of the solution introduced by the PSO. However, this small variation is not enough to find an optimized solution in a big search space that occurs when many cameras are required or when the local minimum is deeper. The PSO appear really efficient in a relatively small search space where the number of dimension to optimize is not to high.
- On the other hand the variety  introduced by the GA allows the escape from local minima. This variety is helpfully  in the big search space in order to explore quickly a wide part of it. The variety introduced by the GA became an handicap for a more fine optimization. That explain the bad result obtained during the experiment is a small room. Variety of the GA negatively affect the accuracy of the solution and may require a further optimization step to refine. 
+ This efficiency can be explained by the slight variation of the solution introduced by the PSO. However, this slight variation is not enough to find an optimized solution in a big search space that occurs when many cameras are required or when the local minimum is deeper. The PSO appears really efficient in a relatively small search space where the number of dimensions to optimize is not too high.
+ On the other hand, the variety  introduced by the GA allows to escape from  the local minima. This variety is helpfully  in the big search space in order to explore quickly a wide part of it. The variety introduced by the GA became a handicap for a more fine optimization. That explains the bad result obtained during the experiment in the small room. The variety of the GA negatively affects the accuracy of the solution and may require a further optimization step to refine. 
  
-%-------- ajouté un exemple entre 2 forme differente qui on un resulta proche 
------------- file Grafig roomShape.txt-----\\
-The DoE have been design with different shape in order to see the impact of it on the algorithms. What is appearing during the experiment is the low impact of the shape on the result of the algorithms. The experiment made in the small room (120X80) and the small room in L shape with a z between [1/2; 2](see Figure !!! and Figure !!!). The graphics (see Figure !!! and Figure !!!)  present a similar result, proof of the small impact of the shape on the algorithms.
- This small impact can be explained by the use of meta-heuristic (as PSO and GA) and not by the use of an heuristic  much more dependent of the shape (and the constraint). 
- 
-Thanks to that we know the two algorithms can be used for a more complex shape as that will be presented in the following experiment.
+%-------- ajouté un exemple entre 2 forme differente qui on un resulta proche ------------ file Grafig roomShape.txt-----\\
+%The DoE have been design with different shape in order to see the impact of it on the algorithms. What is appearing during the experiment is the low impact of the shape on the result of the algorithms. The experiment made in the small room (120X80) and the small room in L shape with a z between [1/2; 2](see Figure !!! and Figure !!!). The graphics (see Figure !!! and Figure !!!)  present a similar result, proof of the small impact of the shape on the algorithms.
+% This small impact can be explained by the use of meta-heuristic (as PSO and GA) and not by the use of an heuristic  much more dependent of the shape (and the constraint). 
+% 
+%Thanks to that we know the two algorithms can be used for a more complex shape as that will be presented in the following experiment.
 
  
 
@@ -454,16 +450,24 @@ In order to cover the big area, the solution can be to use a bigger focal length
 
 The precedent experiment (see \ref{sec:fey_map}) shows the efficiency and flexibility of the GAPSO to the big map with lots of waypoint in a really complex area. Despite an important increasing time of computation the GAPSO can use to go even more further and try to touch the boundary.  
 
-For this  experiment, the area proposed here is the biggest never tested yet here. The grid is composed by almost 1 million of points with more than 616 thousand of points to cover (number of white pixel). The number of waypoints to cover this vast area has  been increased to reach  the  110 waypoints. The number of waypoints      to  place and optimize, is the much more important compared to the literature for example, in \citep{8*zhou2011,33*reddy2012}.
-The GAPSO is executed with success and the final coverage is  over $98.26\%$.  
+For this experiment, the area proposed here is the biggest never tested yet (among the one presented). The grid is composed of almost 1 million of points, with more than 616 thousands points to cover. The number of waypoints to cover this vast area, has been increased to reach the 110 waypoints. 
+The number of waypoints to pose estimate, is the among more important compared to the literature for example, in \citep{8*zhou2011,33*reddy2012,82*chrysostomou2012,143*maji2015, 151*zhao2013, 152*wang2009, 165*jiang2010, 193*fu2014, 181*wang2017, 18*ding2012}. %, ,83*van2009   bug ?
+The GAPSO is executed with success and the final coverage is over $98.26\%$.  
+	
 	 To reach this coverage rate the GA convergence is achieved after 170'501 generations. \\
-	 This important number of generation to reach the convergence with the GA in a first time, before to proceed to a PSO optimization. That show at same time the great efficiency of GAPSO to optimize the position for numerous waypoint in a big search space with propose a really good answer. This great optimization is conditionally upon to an important time of convergence. This show the limit of the GAPSO due to the important number of generation and consequently important time computation (few hours with a core i7).  
-	 To nuanced the really important time useful to reach the double convergence (GA and PSO) the context of the experiment has to be highlight. In Fact the area to cover is important but  also the coverage rate respected is also an important factor because more this coverage rate is important more a fine tuning of the numerous parameters of the solution must be done.
+	 The important number of generation before to reach the convergence with the GA in a first time, and  proceed to a PSO optimization for a second time reveals a long time computation before the final solution given by the GAPSO. 
+	 That show at the same time the great efficiency of GAPSO to optimize the position for numerous waypoints in a big search space with proposing a really good answer. This great optimization is conditionally upon for an important time of convergence. This show the limit of the GAPSO due to the important number of generation and consequently important time computation (a few hours with a core i7).  
+	 To nuanced the really important time useful to reach the double convergence (GA and PSO) the context of the experiment has to be highlighted. In Fact the area to cover is important but also the coverage rate respected is also an important factor because more this coverage rate is important more a fine tuning of the numerous parameters of the solution must be done.
 	
-	\subsection{Waypoint positioning conclusion} 
+	\subsection{Waypoints positioning limitation} 
 	
-Among the numerous experiment done the GAPSO appear as a good solution to optimize the position and orientation of numerous waypoints (or cameras)  in a vast and complex map.
-In the first time the GA appear efficient enough  for the  optimization in the big room  but after more experimentation the single GA appear weak to finally refine the solution.  The contribution of PSO was essential to have a more refine solution and also allow more flexibility especially for the number of waypoint is restricted.
+Among numerous experiments done, the GAPSO appear as a good solution to optimize the position and orientation of numerous waypoints (or cameras) in a vast and complex map.
+In the first time the GA appear efficient enough for the optimization in the big room but after more experimentation the single GA appears weak to finally refine the solution. The contribution of PSO was essential to have a more refine solution and also allow more flexibility especially when the number of waypoints is restricted. \\
+During the differents experiment proposed some limitation appear. Among the limitation the more important is mostly the consequences of a high numbers of waypoints to have a high coverage rate.
+ The size of the area and moreover the number of waypoints to pose estimate has an important impact on the time convergence of the GAPSO.  This time convergence increase even more when the number of waypoints is hight  for have a high coverage rate. \\
+ To illustrate this phenomenon the a GAPSO ran on the last experiment (same map) but  with less waypoints(only 80). Consequently the coverage rate is also smaller around $85.5\%$ of coverage for  the 80 waypoints. In this condition, the number of generation for the GA before to converge are just around 200 generation.  This 200 generations for the GA and a similar number of iteration for the PSO appears as a huge difference between the $98.26\%$ of coverage of the 110 waypoints in 170'501 generations. This huge difference is due at the same time to the number of dimension to optimize and the fine refinement due to the high coverage rate.
+ Thanks to these observations it is appearing the main limitation of the GAPSO is not the  big or complex area, but is mostly the high number of waypoints (or number of dimension to optimize ) and the high coverage rate with involved a fine refinement of each waypoints position. 
+ 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
