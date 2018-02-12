@@ -325,24 +325,57 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
 
 \paragraph*{Grid sum up}
 
-The following paragraph surmise the different way to represent the area. The area represented has to be covered by set of cameras. the grid map may be used to represent different aspect  and constraint of the problems. The map representation  take an crucial role  in the  area coverage. The design aborted  previously  are summarized here in this table. This table show the  more important aspect of each grid representation  in different paper.
+The following paragraph surmise the different way to represent the area. The area represented has to be covered by set of cameras. the grid map may be used to represent different aspect  and constraint of the problems. The map representation  take an crucial role in the area coverage. The design aborted previously  are summarized here in this table \ref{tab:mapSumUp}. This table show the  more important aspect of each grid representation  in different paper.
 
-%\begin{table}[h]
-%\begin{tikzpicture}
-%\begin{tabular}{|c|cccc|c|}
-%\hline
-% & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $h(x)$ \\ \hline
-%1 & 1 & 0 & 1 & 1 & 13.25 \\
-%2 &  &  &  &  &  \\
-%\vdots &  &  &  &  &  \\
-%N &  &  &  &  &  \\ \hline
-%\end{tabular}
 
- \begin{center}
-   \begin{tabular}{ l | m{0.1\linewidth} | m{0.1\linewidth} | m{0.187\linewidth} | m{0.147\linewidth} | m{0.115\linewidth}   }
-     \hline
-     ref & grid pattern & grid random  & volumetric space & Sampling frequency &Zone of interest \tabularnewline \hline 
-	 \cite{8*zhou2011} zhou2011  		&	 X	 &	     & 	   						  & For real-time    & X \tabularnewline   \hline 	
+
+% \begin{center}
+%   \begin{tabular}{ l | m{0.1\linewidth} | m{0.1\linewidth} | m{0.187\linewidth} | m{0.147\linewidth} | m{0.115\linewidth}   }
+%     \hline
+%     ref & grid pattern & grid random  & volumetric space & Sampling frequency &Zone of interest \tabularnewline \hline 
+%	 \cite{8*zhou2011} zhou2011  		&	 X	 &	     & 	   						  & For real-time    & X \tabularnewline   \hline 	
+%	 \cite{22*zhao2008} zhao2008 		&	 X	 &	 X   & 	   						  & Incremental	 	 & X \tabularnewline \hline     
+%	 \cite{82*chrysostomou2012} chrysostomou2012 &	 X	 &	     &	3D grid					  &  				 & X \tabularnewline \hline
+%       \citep{83*van2009} van2009 		&	 X	 &	 X   & 	2D grid at each level  	  &  				 &	\tabularnewline \hline
+%    \cite{87*morsly2012} morsly2012	 	&	 X	 &	     &  Superposition of 2D grid  &  	Adaptable	 &	\tabularnewline \hline
+%\cite{141*akbarzadeh2013} akbarzadeh2013       &	 X	 &	     & 	2D grid on relief 		  &  		 		 & X \tabularnewline \hline
+%   \cite{150*chakrabarty2002} chakrabarty2002   &	 X	 &	     & 	  	 					  & Topologies sensor&	\tabularnewline \hline
+%     \cite{164*valente2013} valente2013
+%     &	 X	 	&	     &overlap by shifting of z  &  				 &	\tabularnewline \hline
+%      \cite{170*yabuta2008} yabuta2008     &	 .	 & 	     &		  					  &For zone 
+%     															segmentation 	 & X \tabularnewline \hline
+%      \cite{171*horster2006}    &	  	 &	 X   & 	  	 					  &  		 	 	 & X \tabularnewline \hline
+%      \cite{174*zhang2016}      &	  	 	&	     & 	 	 					  & 				 & X \tabularnewline \hline
+%           
+%   \end{tabular}
+% \end{center}
+%	 
+
+
+\begin{table}[!h]
+\label{tab:mapSumUp}
+\begin{tikzpicture}[right]
+\node (a) at (0,0)
+{
+
+\begin{tabular}{|c|}
+\hline
+   Zone of  interest \\ \hline
+   Sampling frequency   \\\hline %\vdots
+   Volumetric space  \\\hline
+   Grid random \\ \hline
+   Grid pattern  \\ \hline
+\end{tabular}
+};
+
+\node[yshift=-3.89cm,xshift=-1cm] (b) at (a.south) 
+{
+\begin{tabular}{l | m{0.031\linewidth} | m{0.024\linewidth} | m{0.29\linewidth} | m{0.2\linewidth} | m{0.031\linewidth} }
+\hline
+%zhou2011 \citep{8*zhou2011} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $h(x)$ \\ \hline
+%zhao2008 \citep{22*zhao2008} & 1 & 0 & 1 & 1 & 13.25 \\\hline
+
+\cite{8*zhou2011} zhou2011  		&	 X	 &	     & 	   						  & For real-time    & X \tabularnewline   \hline 	
 	 \cite{22*zhao2008} zhao2008 		&	 X	 &	 X   & 	   						  & Incremental	 	 & X \tabularnewline \hline     
 	 \cite{82*chrysostomou2012} chrysostomou2012 &	 X	 &	     &	3D grid					  &  				 & X \tabularnewline \hline
        \citep{83*van2009} van2009 		&	 X	 &	 X   & 	2D grid at each level  	  &  				 &	\tabularnewline \hline
@@ -353,59 +386,25 @@ The following paragraph surmise the different way to represent the area. The are
      &	 X	 	&	     &overlap by shifting of z  &  				 &	\tabularnewline \hline
       \cite{170*yabuta2008} yabuta2008     &	 .	 & 	     &		  					  &For zone 
      															segmentation 	 & X \tabularnewline \hline
-      \cite{171*horster2006}    &	  	 &	 X   & 	  	 					  &  		 	 	 & X \tabularnewline \hline
-      \cite{174*zhang2016}      &	  	 	&	     & 	 	 					  & 				 & X \tabularnewline \hline
-           
-   \end{tabular}
- \end{center}
-	 
-%\end{tikzpicture}
-%
-%\end{table}		 
-table test
-%\begin{tabular}{ccc}
-%\hline
-%a&b&c\\
-%\hline
-%\end{tabular}
-%\quad
-%\begin{tabular}{ccc}
-%\hline
-%d&e&f\\
-%\hline
-%\end{tabular}
-
-ahzehazeh
-\begin{table}[h]
-
-\begin{tikzpicture}
-\node (a) at (0,0){
-\begin{tabular}{|c|cccc|c|}
-\hline
- & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $h(x)$ \\ \hline
-1 & 1 & 0 & 1 & 1 & 13.25 \\
-2 &  &  &  &  &  \\
-\vdots &  &  &  &  &  \\
-N &  &  &  &  &  \\ \hline
-\end{tabular}};
-\node[yshift=-2cm] (b) at (a.south) 
-{
-\begin{tabular}{|c|cccc|c|}
-\hline
- & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $h(x)$ \\ \hline
-1 & 1 & 0 & 1 & 1 & 13.25 \\
-2 &  &  &  &  &  \\
-\vdots &  &  &  &  &  \\
-N &  &  &  &  &  \\ \hline
+      \cite{171*horster2006}  horster2006  &	  	 &	 X   & 	  	 					  &  		 	 	 & X \tabularnewline \hline
+      \cite{174*zhang2016}  zhang2016  &	  	 	&	     & 	 	 					  & 				 & X \tabularnewline \hline
+%\vdots &  &  &  &  &  \\
+%N &  &  &  &  &  \\ \hline
 \end{tabular}
 };
-\draw[->,ultra thick](a)--(b);
-\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
-\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2);
+%\draw[->,ultra thick](a)--(b);
+\draw [->,very thick] (3.98,1.02) -- (16,1.02) -- (16,-2);
+\draw [->,very thick] (3.98,0.51) -- (14,0.51) -- (14,-2);
+\draw [->,very thick] (3.98,0.0) -- (9,0.) -- (9,-2);
+\draw [->,very thick] (3.98,-0.51) -- (7,-0.5) -- (7,-2);
+\draw [->,very thick] (3.98,-1.02) -- (6.2,-1.02) -- (6.2,-2);
+
+%\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
+%\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2);
 \end{tikzpicture}
-\label{my-label}
+ \caption{sum-up of the grid map.}
 \end{table}	
-eeeeeeeeee 
+ 
  
 \subsection{Our approach}
  Base on the different design the one finally adopted is a grid $G$ as in Eq \ref{eq:Grid} with an uniform repartition following the 2D grid pattern. The frequency adopted is fixed depending than the size of the area, the precision required and the cameras property. The frequency adopted for the following part as to be considered as dense (high sampling frequency).
@@ -414,14 +413,14 @@ eeeeeeeeee
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{ Cameras coverage.}\label{sec:CamerasCoverage}
+\section{ Cameras coverage}\label{sec:CamerasCoverage}
 
 
 Once the area to cover is described by the grid, the next step is to verify for each point of the grid if one or more cameras cover it, based on Eq: \ref{eq:PciK} with $k=1$.\\
 To verify if each points of the grid is covered by a camera. It is primordial to talk about what is a camera, what kind of camera are appropriate and their projection model. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{ Cameras definition.}\label{sec:CamerasDefinition}
+\subsection{ Cameras definition}\label{sec:CamerasDefinition}
 
 The closest projection model to the human view is the perspective projection. The perspective projection is also the more common and more especially in the field of area coverage as in example \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional with a $360^{\circ}$ of field of view as \citep{43*erdem2006,150*chakrabarty2002,174*zhang2016}. 
 Here we are only focussing  on the camera perspective due to its wide use.  \\
@@ -686,16 +685,16 @@ The constraint considered in this work are :
 	\item The resolution.\\
 
 \end{itemize} 
-\subparagraph{Fixes number of the cameras.}
+\subparagraph{Fixes number of the cameras}
 One of the first constraint is the fix number of cameras. This constraint as some others (detailed latter) are  useful to simplify and restrict the possibility of the problem. This constraint permits us to focus on the fine optimisation (as in \citep{22*zhao2008} where both are tested). The number of cameras is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  
 
-\subparagraph{Fixes parameters of camera and no rotations.}
+\subparagraph{Fixes parameters of camera and no rotations}
 Fixes parameters of the cameras and no rotations ($\alpha$ and $\beta$) has been introduced previously (section \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV are also an advantage for the optimization by simplifying the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization.
 
-\subparagraph{Fixes altitude.}
+\subparagraph{Fixes altitude}
  The fix altitude is a constraint use in order to limit the number of parameters to optimize. The use of this constraint is used to reduce the complexity (see section \ref{sec:OptimizationComplexity}). It is also useful for other assumptions, as a camera on the celling or for a submarine  \cite{66*galceran2013}. This constraint is an optional constraint and is not commonly used in the experiment presented in the following section.   
 
-\subparagraph{The altitude boundary.}\label{sec:altitudeBoundary}
+\subparagraph{The altitude boundary}\label{sec:altitudeBoundary}
  When the altitude is not fixed some limit must be chosen to avoid the extremely high and low altitude. The highest altitude will be fixed depending on the UAV ability and other restrictions as the laws. The lowest altitude has to be fixed for the safety of the user under the UAV.  
 In practice the boundary of the $z$ is defined with :
  \begin{equation}\label{eq:boundaryZ}
@@ -703,7 +702,7 @@ In practice the boundary of the $z$ is defined with :
  \end{equation} 
  Where $\sup z$ is the maximal altitude of the camera and $\inf z$ the minimum altitude. $A$ is the fix altitude  of a camera where the camera projection has been computed with $A=z$ with only $coef$ vary as introduced in Equation \ref{eq:A.coef}. 
  
- \subparagraph{The map boundary.}
+ \subparagraph{The map boundary}
 The map boundary is a constraint similar then the altitude boundary. Despite the shape of an area to cover some maximum boundary can be made. In fact for any shape as complex as it, it is  possible to encapsulate in a rectangle. The rectangle map boundary is defined by a width $W$ and height $H$. The boundary on $x$ and $y$ are:
  \begin{equation}
   \begin{array}{lcl}
@@ -734,27 +733,27 @@ The grid $G$ is reduced in order to have only the points in the white sub-part. 
 Concretely this implementation is easier for the complex map and has also some advantage. \\
 Among the advantage, the flexibility of the grid customization. That allows the optimization to try some exotic solutions, as allowing the camera  position on the black sub-part or in a border of it during the optimization.  Obviously the exotic solution with a cameras position on the black side does not increase the coverage rate  but if the optimisation converge correctly no camera will be on the the black sub-part of the map (or small part of it).
 
-\subparagraph{Some fix cameras in the set.}
+\subparagraph{Some fix cameras in the set}
 Having some fix cameras position in the set of cameras, is an optional constraint. This allows to have few manual cameras position from an user or other algorithms.
 One case can be to have some specific area as the entrance where have to be surveyed by a cameras dedicated to.  
 To implement this constraint the solution applied during the experiments (presented later) is to adapt the map by removing the point of the grid $G$ cover by the sub-set of fix cameras (as if these points of the grid was covered).
 
-\subparagraph{The resolution.}
+\subparagraph{The resolution}
 The resolution of the images is related then the sensor size (in px) and the distance between the camera and the object filmed. In our case, the sensor size is fixed by the properties of the camera mounted on the UAV and the object filmed is the floor of the area to cover. In this case, the distance between the camera and floor is the altitude. \\
 The resolution constraint has to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be the lower possible.\\
 Considering only the resolution constraint as minimizing the average altitude of the cameras is harmful for the coverage optimization.
 Consequently, during the optimization a trade off between the altitude (and the related resolution) and the coverage rate have to be done $\min{\frac{\sum^n_{i=1}{A.coef_i}}{n}}$ and the coverage rate. In order to manage this trade off, the average altitude of the cameras is included in the cost function (see section  \ref{sec:costFun}).  
  
-\subsubsection{Constraints types.}
+\subsubsection{Constraints types}
  
 Among the constraints listed different priorities and restrictions exist. Indeed the constraint can be considered in 2 sub-class. 
 
-\subparagraph{Hard Constraint.}
+\subparagraph{Hard Constraint}
  Some of the constraints presented are called "Hard constraint". \\
  The hard constraints limit the possible solution by do not allowing the solution with does not respect it. This hard constraint is directly used during in the optimisation process to prohibit any solution to be out of this boundary. This hard constraint has to be integrate in the optimization process in order to cannot generate a solution with does not respect it. Consequently the hard constraint can some times slow down the generation of the individuals.\\ 
  For example, the 3D boundary as defined in Equation \ref{eq:3dBoundary} is a hard constraint. Each cameras position must be inside the 3D boundary.\\
  
- \subparagraph{Soft Constraint.}
+ \subparagraph{Soft Constraint}
  In the other case, some constraint can be considered as "Soft Constraint".\\ 
  The soft constraints has to minimize the set of error. If a soft constraint is not fully respected the solution can be considered as acceptable and this small amount of error does not affect so much the final answer. In this case the soft constraint is assimilate to small acceptable error. \\
  The soft constraint leaves the possibility during the optimization to do some mistake in order to learn about it.  

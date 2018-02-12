@@ -38,7 +38,7 @@ The Darwin theory was validated, especially with the genetic progress. The progr
 The discovery of DNA code permits to confirm the genetic proximity between  some species. Moreover the DNA permit to evaluate their evolution and code modification in the same species from different location and several generation gap. %voir eventuelement  l’évolution des petit lezar sur 20generation
 Also the genetic may explained deeper and clearly the evolutionary process. 
 
-\subsubsection{Biologic evolution process.}
+\subsubsection{Biologic evolution process}
 
 In the biologies, every living element is composed by cellular. Inside each cellular  the DNA code is stoked. The DNA composes the chromosomes. The chromosomes have a central role in the definition of one individual and in the reproduction process (see the Fig \ref{fig:celTokrom}). \\
 \begin{figure}[t!]
@@ -170,7 +170,7 @@ Since the late 90s the research of EA have been focused on the multi objective e
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{General formulation of  EA. }\label{sec:GeneralEAform}
+\subsection{General formulation of  EA}\label{sec:GeneralEAform}
 
  The EA is vast and many type of algorithms exist in this family, despite that a global formulation is proposed.\\
  Most of the EA have to optimize one or several problems using an iterative process to evolve towards a best solution. The EA can be formulated as the optimization of a parametres vector. Where each element of the vector ($\vec{x}$) is one input or a dimension to optimize. \begin{equation}
@@ -308,18 +308,18 @@ The diverse aspects of the problem should be clearly defined before the element 
 %!!!a finir verifier et surmen réecrire!!!!
 When the chromosome is defined the second phase is to choose the best coding solution. Many solutions exist to encode the chromosome like presented in \cite{131*walters1995} and \cite{123*owais2008}   but among the coding solution, 4 main categories can be considered as  basic coding type,  which are the combinatory coding, binary, the real (also alphabet) and tree coding.
 
-\subparagraph*{Binary Coding}(\cite{ 73*wright1991, 95*miller1995,97*goldberg1985,123*owais2008, 131*walters1995}).  
+\subparagraph*{Binary Coding}(\cite{ 73*wright1991, 95*miller1995,97*goldberg1985,123*owais2008, 131*walters1995})  
 \\The binary coding offers to format the chromosomes as a bit string in which every genome of the chromosome can be covert on pack of bit with can have only 2 value 0 or 1. This coding method was studied since the beginning of the GA by Goldberg et al  \cite{97*goldberg1985} and also used in other EA like PSO in \cite{87*morsly2012}. The binary coding is more efficient in the small search space or when the size of the chromosome is not too long. The advantage of the binary coding is the possibility to introduce lot of variety during the process of optimization \cite{73*wright1991}. The variety is traditionally from the mutation but in the case of the binary coding the crossover introduce variety by the potential split of the genome in 2 pack of bit.
 \\
-\subparagraph*{The combinatory }(\cite{ 80*serpell2010,110*eiben2003} ).
+\subparagraph*{The combinatory }(\cite{ 80*serpell2010,110*eiben2003} )
 \\The combinatory coding is commonly applied in some specific problems where the goal is to order all the element. In this case, the position of the genome in the chromosome is primordial as in \cite{ 110*eiben2003}. It is characteristically used to the problem as TSP \cite{80*serpell2010} (Travelling salesman problem).  When the combinatory coding is used for problem the aim is to optimize the order the element of the chromosome. With a combinatory coding the each chromosome already has all genome of the answer. An example, the TSP the aim is to order various cities (in the problem of TSP every genome represents a city) and all the possible cities are included in the initial solution (chromosome). In this case, the problem is to optimize the combination of the element composed by the initial solution. 
 One evolution of the combinatory traditional coding is to can add and remove some genome, that obviously affect the size of the chromosome, for example  when the goal is to find the shortest distance in the tree \cite{113*mais2010}. \\
 
-\subparagraph*{Real Coding }(\cite{ 73*wright1991, 123*owais2008,131*walters1995}).   
-Real coding or integer coding is considering every genome of the chromosome as a number to optimize. This number can be a real or an integer and may have an infinity of possibilities in the negative or positive. In fact, the value does not have an infinity of possibilities because the constraint by the computer and limits of the problem itself too (size of the search space). This coding is used when the search space is large and also can be efficient when many dimensions need to be optimized. But most of the time a special attention should be put to the operator, because in many cases the operator may be adapted or redesigned depending on the problem such as in \cite{68*muhlenbein1989},  which the operators are adapted to look for close neighbours.\\
-\subparagraph*{Tree coding }(\cite{ 113*mais2010, 123*owais2008, 131*walters1995}).   
+\subparagraph*{Real Coding }(\cite{ 73*wright1991, 123*owais2008,131*walters1995})   
+\\Real coding or integer coding is considering every genome of the chromosome as a number to optimize. This number can be a real or an integer and may have an infinity of possibilities in the negative or positive. In fact, the value does not have an infinity of possibilities because the constraint by the computer and limits of the problem itself too (size of the search space). This coding is used when the search space is large and also can be efficient when many dimensions need to be optimized. But most of the time a special attention should be put to the operator, because in many cases the operator may be adapted or redesigned depending on the problem such as in \cite{68*muhlenbein1989},  which the operators are adapted to look for close neighbours.\\
+\subparagraph*{Tree coding }(\cite{ 113*mais2010, 123*owais2008, 131*walters1995})   
 The tree coding use the tree representation to take care of the hierarchy but this method is not really popular and not flexible to any case. The advantage of tree coding is this ability to go farer then a combinatory representation.  An example in \cite{131*walters1995}, the tree coding is used with the GA to optimize new network telephone or gas/ water pipeline where the relation between the element are primordial. In \cite{131*walters1995} present the interest of tree coding for  the intrusion detection system. 
-\\\\
+\\
 The 4 coding method presented are not the only potential coding, there are the more commune and the roots of other coding   and many other have been developed and studied with direct or indirect coding to feet  with specific problem. Thereby in the literature a survey are dedicated to the encoding chromosome for the GA \cite{121*ronald1997}. The survey \cite{121*ronald1997} propose to explain and find a robust coding usable depending on the problems. 
 \\
 
@@ -414,7 +414,7 @@ Even the cost of this function must be the most accurate, in some cases like in 
 \subsubsection{Population }\label{sec:Population}
 The population gathers a number N of solutions (or individuals) from the same generation. The individual can be represented into one or  more chromosomes(instead to have redundancy as in \cite{ 121*ronald1997}). Commonly each individual is composed by one chromosome. Therefore the two terms are regularly inverted in the literature.\\
 At every generation most or all the population is renewed (by using the selection and operator). Indeed the population can have an effect on the convergence and the result of the EA and different strategy or set up exist. About the population 2 main points need to be studied : the first is the initial population and the 2nd is the size of the population.  
-\subparagraph{Initialisation of the population.}\label{sec:initPOP}
+\subparagraph{Initialisation of the population}\label{sec:initPOP}
 Initialization of the population is one of the fundamental questions may affect the convergence of the problems. There are mainly 2 common proposed solutions with one using the full random generation or  using efficient and already approved heuristic.\\
 
  The method is based on heuristic involved a perfect knowledge  of the problem and can not be applied  for all the problem. The advantage of using heuristic, it can give very good starting individuals at the beginning the optimizations and also used the heuristic may give a solution more respectful of the constraint of the problem, obtusely if the problem include many constraints hard to satisfy. \\
