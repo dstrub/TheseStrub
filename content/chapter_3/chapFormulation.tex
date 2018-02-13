@@ -325,7 +325,7 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
 
 \paragraph*{Grid sum up}
 
-The following paragraph surmise the different way to represent the area. The area represented has to be covered by set of cameras. the grid map may be used to represent different aspect  and constraint of the problems. The map representation  take an crucial role in the area coverage. The design aborted previously  are summarized here in this table \ref{tab:mapSumUp}. This table show the  more important aspect of each grid representation  in different paper.
+The following paragraph surmise the different way to represent the area. The area represented has to be covered by set of cameras. the grid map may be used to represent different aspect  and constraint of the problems. The map representation  take an crucial role in the area coverage. The design aborted previously  are summarized here in this Table \ref{tab:mapSumUp}. This table show the  more important aspect of each grid representation  in different paper.
 
 
 
@@ -353,18 +353,18 @@ The following paragraph surmise the different way to represent the area. The are
 
 
 \begin{table}[!h]
-\label{tab:mapSumUp}
+
 \begin{tikzpicture}[right]
 \node (a) at (0,0)
 {
 
 \begin{tabular}{|c|}
 \hline
-   Zone of  interest \\ \hline
-   Sampling frequency   \\\hline %\vdots
-   Volumetric space  \\\hline
-   Grid random \\ \hline
-   Grid pattern  \\ \hline
+  \textbf{Zone of  interest} \\ \hline
+   \textbf{Sampling frequency}   \\\hline %\vdots
+  \textbf{Volumetric space}  \\\hline
+   \textbf{Grid random }\\ \hline
+   \textbf{Grid pattern}  \\ \hline
 \end{tabular}
 };
 
@@ -372,24 +372,32 @@ The following paragraph surmise the different way to represent the area. The are
 {
 \begin{tabular}{l | m{0.031\linewidth} | m{0.024\linewidth} | m{0.29\linewidth} | m{0.2\linewidth} | m{0.031\linewidth} }
 \hline
-%zhou2011 \citep{8*zhou2011} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $h(x)$ \\ \hline
-%zhao2008 \citep{22*zhao2008} & 1 & 0 & 1 & 1 & 13.25 \\\hline
+\toprule
 
-\cite{8*zhou2011} zhou2011  		&	 X	 &	     & 	   						  & For real-time    & X \tabularnewline   \hline 	
-	 \cite{22*zhao2008} zhao2008 		&	 X	 &	 X   & 	   						  & Incremental	 	 & X \tabularnewline \hline     
-	 \cite{82*chrysostomou2012} chrysostomou2012 &	 X	 &	     &	3D grid					  &  				 & X \tabularnewline \hline
-       \citep{83*van2009} van2009 		&	 X	 &	 X   & 	2D grid at each level  	  &  				 &	\tabularnewline \hline
-    \cite{87*morsly2012} morsly2012	 	&	 X	 &	     &  Superposition of 2D grid  &  	Adaptable	 &	\tabularnewline \hline
-\cite{141*akbarzadeh2013} akbarzadeh2013       &	 X	 &	     & 	2D grid on relief 		  &  		 		 & X \tabularnewline \hline
-   \cite{150*chakrabarty2002} chakrabarty2002   &	 X	 &	     & 	  	 					  & Topologies sensor&	\tabularnewline \hline
-     \cite{164*valente2013} valente2013
-     &	 X	 	&	     &overlap by shifting of z  &  				 &	\tabularnewline \hline
-      \cite{170*yabuta2008} yabuta2008     &	 .	 & 	     &		  					  &For zone 
-     															segmentation 	 & X \tabularnewline \hline
-      \cite{171*horster2006}  horster2006  &	  	 &	 X   & 	  	 					  &  		 	 	 & X \tabularnewline \hline
-      \cite{174*zhang2016}  zhang2016  &	  	 	&	     & 	 	 					  & 				 & X \tabularnewline \hline
-%\vdots &  &  &  &  &  \\
-%N &  &  &  &  &  \\ \hline
+\rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{8*zhou2011} zhou2011}   		&	 \ding{52}	 &	     & 	   						  & For real-time    &  \ding{52} \tabularnewline   \hline 	
+\rowcolor[HTML]{EFEFEF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{22*zhao2008} zhao2008}  		&	  \ding{52}	 &	  \ding{52}   & 	   						  & Incremental	 	 &  \ding{52} \tabularnewline \hline     
+ \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{82*chrysostomou2012} chrysostomou2012}  &	  \ding{52}	 &	     &	3D grid					  &  				 &  \ding{52} \tabularnewline \hline
+\rowcolor[HTML]{EFEFEF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \citep{83*van2009} van2009 } 		&	  \ding{52}	 &	  \ding{52}  & 	2D grid at each level  	  &  				 &	\tabularnewline \hline
+  \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{87*morsly2012} morsly2012} 	 	&	  \ding{52}	 &	     &  Superposition of 2D grid  &  	Adaptable	 &	\tabularnewline \hline
+\rowcolor[HTML]{EFEFEF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{141*akbarzadeh2013} akbarzadeh2013 }      &	  \ding{52}	 &	     & 	2D grid on relief 		  &  		 		 &  \ding{52} \tabularnewline \hline
+  \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} \cite{150*chakrabarty2002} chakrabarty2002}    &	  \ding{52}	 &	     & 	  	 					  & Topologies sensor&	\tabularnewline \hline
+\rowcolor[HTML]{EFEFEF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{164*valente2013} valente2013}       &	  \ding{52}	 	&	     &overlap by shifting of z  &  				 &	\tabularnewline \hline
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} \cite{170*yabuta2008} yabuta2008}         &	 .	 & 	     &		  					  &For zone segmentation 	 &  \ding{52} \tabularnewline \hline
+\rowcolor[HTML]{EFEFEF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{171*horster2006}  horster2006}   &	  	 &	  \ding{52}   & 	  	 					  &  		 	 	 &  \ding{52} \tabularnewline \hline
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{174*zhang2016}  zhang2016}    &	  	 	&	     & 	 	 					  & 				 &  \ding{52} \tabularnewline \hline
+
+    	 
 \end{tabular}
 };
 %\draw[->,ultra thick](a)--(b);
@@ -402,7 +410,7 @@ The following paragraph surmise the different way to represent the area. The are
 %\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
 %\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2);
 \end{tikzpicture}
- \caption{sum-up of the grid map.}
+ \caption{sum-up of the grid map.}\label{tab:mapSumUp}
 \end{table}	
  
  
@@ -668,23 +676,28 @@ That mean among all the possibles combination of parameters $V$ only the one int
 The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context. As example: the room shape, minimizing  the altitude,  have the best resolution, orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. 
 The constraint have to be defined depending on the problems and the goal.
 \section{Cost Function}
-\subsection{Constraint}\label{sec:constraint}
+The cost function has to evaluate the quality of an given answer. To estimate the quality of the answer  one of the main criteria is the coverage rate. The precedent section has been focus on the computation of the coverage rate. \\
+To create an efficient cost function, other criteria has to be taken in to account as the constraints.  
+ To establish the cost function a list constraint has to be done. Each constraint of this list does not have the same importance. In order to split the constraint depending then their impact on the problem two type will be  explained before to dicusse about the implementation  of the cost function. 
 
-Make the exhaustive list of all the constraints for the problem of cameras positioning is not really interesting and almost impossible. The constraint can be numerous and depend mainly of the problem formulation and the context. Like that few of them was briefly introduced in the previous section as in chapter \ref{chap:stateOfTheArt}, section \ref{sec:coverageEstimation},... This part is focus on the list of the constraint used in our case and detail their design.
+\subsection{Constraint list}\label{sec:constraint}
 
-The constraint considered in this work are : 
-\begin{itemize}
-	\item Fix number of the cameras.
-	\item Fix parameters of the camera.
-	\item No rotation  on  $\alpha$ and $\beta$ (pan and tilt).
-	\item Possible fix altitude.
-	\item Altitude boundary (not too hight, not too low).  	
-	\item The map boundary (rigid rectangle).  
-	\item Non rectangles map with possible holes.
-	\item To have some fix cameras in the set. 
-	\item The resolution.\\
+%Make the exhaustive list of all the constraints for the problem of cameras positioning is not really interesting and almost impossible.
+ The constraint can be numerous and depend mainly of the problem formulation and the context. Like that few of them was briefly introduced in the previous section as in chapter \ref{chap:stateOfTheArt}, section \ref{sec:coverageEstimation},... This part is focus on the list of the constraint used in our case and detail their design.
 
-\end{itemize} 
+%The constraint considered in this work are : 
+%\begin{itemize}
+%	\item Fix number of the cameras.
+%	\item Fix parameters of the camera.
+%	\item No rotation  on  $\alpha$ and $\beta$ (pan and tilt).
+%	\item Possible fix altitude.
+%	\item Altitude boundary (not too hight, not too low).  	
+%	\item The map boundary (rigid rectangle).  
+%	\item Non rectangles map with possible holes.
+%	\item To have some fix cameras in the set. 
+%	\item The resolution.\\
+%
+%\end{itemize} 
 \subparagraph{Fixes number of the cameras}
 One of the first constraint is the fix number of cameras. This constraint as some others (detailed latter) are  useful to simplify and restrict the possibility of the problem. This constraint permits us to focus on the fine optimisation (as in \citep{22*zhao2008} where both are tested). The number of cameras is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  
 
@@ -742,11 +755,11 @@ To implement this constraint the solution applied during the experiments (presen
 The resolution of the images is related then the sensor size (in px) and the distance between the camera and the object filmed. In our case, the sensor size is fixed by the properties of the camera mounted on the UAV and the object filmed is the floor of the area to cover. In this case, the distance between the camera and floor is the altitude. \\
 The resolution constraint has to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be the lower possible.\\
 Considering only the resolution constraint as minimizing the average altitude of the cameras is harmful for the coverage optimization.
-Consequently, during the optimization a trade off between the altitude (and the related resolution) and the coverage rate have to be done $\min{\frac{\sum^n_{i=1}{A.coef_i}}{n}}$ and the coverage rate. In order to manage this trade off, the average altitude of the cameras is included in the cost function (see section  \ref{sec:costFun}).  
+Consequently, during the optimization a trade off between the altitude (and the related resolution) and the coverage rate have to be done $\min{\frac{\sum^n_{i=1}{A.coef_i}}{n}}$ and the coverage rate. In order to manage this trade off, the average altitude of the cameras is included in the cost function (see section  \ref{sec:costFun}).  \\
  
-\subsubsection{Constraints types}
+\subsection{Constraint types}
  
-Among the constraints listed different priorities and restrictions exist. Indeed the constraint can be considered in 2 sub-class. 
+Among the constraints listed different priorities and restrictions exist. Indeed the constraint can be considered in 2 sub-class. The two sub-class are the hard constraint and the soft constrain  presented in the following paragrapher.
 
 \subparagraph{Hard Constraint}
  Some of the constraints presented are called "Hard constraint". \\

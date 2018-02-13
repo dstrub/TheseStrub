@@ -1,4 +1,4 @@
-\chapter{Waypoints positioning } 
+\chapter{Comparative result and experimentation on Waypoints positioning } 
 \minitoc
 To remind, the main objective is to propose an efficient path to can cover an area using a camera mounted on an UAV. The solution proposed here, is to focus on optimizing the position of a cameras set to fully cover an area in a first time. When set of optimized cameras pose is found the position can be used as waypoints for an UAVs path. Indeed find an optimized position for each camera of a given set is primordial. The following sections are dedicated to the optimization of it. 
 
@@ -9,9 +9,9 @@ To remind, the main objective is to propose an efficient path to can cover an ar
 
 During the previous sections, the problem was discussed as an optimization problem. The formulation of the problem was presented  and  the complexity of the problem was disused in the section \ref{sec:OptimizationComplexity}. Thanks to this preliminary result the following section is only focused on the optimization process. 
 
+\section{Other algorithm used}
 
-
-\section{PSO }
+\subsection{PSO }
 
 The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is a stochastic algorithms from the family of evolutionary algorithms (see chapter \ref{chap:EA}). 
 The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 [148* bis]\cite{148*eberhart1995}. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it appends here from the bird flocking, fish schooling and swarming theory. These are animals working in a group to seek food. 
@@ -67,7 +67,7 @@ Finally to summarize the PSO is efficient in term of optimization despite a very
 %- inconvenient 
 
 
-\section{Random selection }
+\subsection{Random selection }
 
 The random selection (named RS) is a very basic algorithm. It serves as a reference points for the comparison of different algorithms. The RS does not take a complex meta-heuristic and is perfect to compare the efficiency of the other algorithm.
 
@@ -98,7 +98,7 @@ Among the algorithms studied in the literature the EA family appear as the more 
 %78*= Comparaison entre PSO et algo génétique GA  les avantage  et les cas d’utilisation pratique.
 %Papyer détatille  avec des plusier experience comparative  conclusion ouverte sur le choix mais la conlution et que le PSO offre plus de posibilité d’amélioration de par sa simplicité de mise en place et sa « récente utilisation » 
 
-\subsection{Designe of experiment }\label{sec:DoE}
+\subsection{Design of experiment }\label{sec:DoE}
 \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px)}{fig:Rooms_shapes} \centering
 \mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room}{subfig:r1}
 \hspace{1cm}
@@ -108,7 +108,7 @@ Among the algorithms studied in the literature the EA family appear as the more 
 \mfigure{width=.4\linewidth}{img/fig7-d.png}{Room L}{subfig:r4}
 \mfigure{width=.4\linewidth}{img/fig7-e2.png}{Big room L}{subfig:r5}
 \end{mfigures}
---------to finish-----\\ (+ integration du RS)\\
+%--------to finish-----\\ (+ integration du RS)\\
 
 To find the best coverage, many experiments have been used to compare PSO and GA. PSO is easier to implement and runs faster, but GA is more flexible and generic thanks to the many tunable parameters. 
 The following subsections will provide a comparison between PSO and GA with using RS as a reference.% and give an overview of our method, which is based on GA. The comparison demonstrates the overall advantage of the latter over the former.\\
@@ -135,16 +135,17 @@ The Design of Experiments (DOE) has been made to take in account; the  shapes, s
 \begin{table} [!htb]
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
   \hline
-  \multicolumn{2}{|l|}{z=1 } &\multicolumn{2}{|c|}{GA}  & \multicolumn{2}{|c|}{PSO} & \multicolumn{2}{|c|}{RS}  \\  \hline
-  \multicolumn{2}{|c|}{ } & GT & NC & GT & NC & GT & NC\\ \hline
-  Room &  120x80 & 16 &20 & 16 & 20 & 16 & 20\\ \cline{2-8}
-     &  240x160 & 64 &70 & 64 & 70 & 64 & 70 \\ \hline
-  Room U &  120x80 & 12 &20 & 12 & 20 & 12 & 20\\ \hline
-  \multicolumn{2}{|l|}{z=2 } &\multicolumn{2}{|c|}{GA}  & \multicolumn{2}{|c|}{PSO}& \multicolumn{2}{|c|}{RS}  \\  \hline
- Room &  120x80 & 4 &10 & 4 & 10 & 4 & 10\\ \cline{2-8}
-     &  240x160 & 16 &20 & 16 & 20 & 16 & 20 \\ \hline
- Room L&  120x80 & 3 &10 & 3 & 10 & 3 & 10\\ \cline{2-8}
-     &  240x160 & 15 &20 & 15 & 20 & 15 & 20 \\ \hline
+  \multicolumn{2}{|l|}{ \Emph{z=1} } &\multicolumn{2}{|c|}{\Emph{GA}}  & \multicolumn{2}{|c|}{\Emph{PSO}} & \multicolumn{2}{|c|}{\Emph{RS}}  \\  \hline
+  \multicolumn{2}{|c|}{ } & \textbf{GT} & \textbf{NC} & \textbf{GT} & \textbf{NC} & \textbf{GT} & \textbf{NC} \\ \hline
+  \Emph{Room} &  \textbf{120x80} & 16 &20 & 16 & 20 & 16 & 20\\ \cline{2-8}
+     &  \textbf{240x160} & 64 &70 & 64 & 70 & 64 & 70 \\ \hline
+  \Emph{Room U} &  \textbf{120x80} & 12 &20 & 12 & 20 & 12 & 20\\ \hline
+  \multicolumn{2}{|l|}{\Emph{z=2} } &\multicolumn{2}{|c|}{\Emph{GA}}  & \multicolumn{2}{|c|}{\Emph{PSO}}& \multicolumn{2}{|c|}{\Emph{RS}}  \\  \hline
+  \multicolumn{2}{|c|}{ } & \textbf{GT} & \textbf{NC} & \textbf{GT} & \textbf{NC} & \textbf{GT} & \textbf{NC} \\ \hline
+ \Emph{Room} &  \textbf{120x80} & 4 &10 & 4 & 10 & 4 & 10\\ \cline{2-8}
+     &  \textbf{240x160} & 16 &20 & 16 & 20 & 16 & 20 \\ \hline
+ \Emph{Room L}&  \textbf{120x80} & 3 &10 & 3 & 10 & 3 & 10\\ \cline{2-8}
+     &  \textbf{240x160} & 15 &20 & 15 & 20 & 15 & 20 \\ \hline
   
 \end{tabular}
 \caption{Design of the experiment for comparing the efficiency of PSO and GA in different conditions.  (GT is Ground Truth and NW is Number of Waypoints).}\label{table:table1}
@@ -224,7 +225,7 @@ Thanks to the experiment done and presented in the previous section (see \ref{se
  The hybridization can be the key to optimize the camera positions in all the condition. The aim of the hybridization is to exploit the better of both algorithms, trying to further refine the solution. 
 
 %   77*\cite{c13}.
-\subsubsection{The different hybridization }
+\subsection{The different hybridization }
 
  Different hybridization of the GA and PSO can be made. Each hybridization of GA and PSO has the advantage and disadvantage. This following section is focused on the main hybridisation of GA and PSO. \\
 In Premalatha al et 76* \citep{76*premalatha2009} propose three different solution to hybrid the GA and PSO: 
@@ -249,7 +250,7 @@ The set-up of the algorithms has to be adapted to the hybridization and the prob
 
 
 
-\subsubsection{Experimentation }
+\subsection{Experimentation }
 To compare the efficiency of the hybridization GAPSO to the GA, one experimentation is proposed.
 The experimentation followed the rule fixed during the comparison as in Table \ref{table:table1}. %\\
 It appears the big room in L shape as the Figure \figref{subfig:r5} is the most suitable to test the hybridization.  % (POURQUOI ???).
@@ -267,7 +268,7 @@ The set-up of the GA has been slightly modified by increasing the mutation ratio
   \endminipage\hfill
 \end{figure}
 
- \subsubsection{Result and comment }
+ \subsection{Result and comment }
   
 %\begin{figure}[t]
 %\minipage{0.95\textwidth}
@@ -414,7 +415,7 @@ Thanks to this tries the size of the area to cover and the number of waypoints c
 	\subsection{Using mask for bigger area}
 	Based on the last experiment (\ref{sec:maskGAPSO}) a much bigger area with much more waypoints to pose estimates are presented here. The goal of the following sections is to see the boundary of the  GAPSO optimization when the sliders are pushed to the maximum. The maximum in term of area size, number of waypoint and shape complexity.
 	
-		\subsubsection{outdoor fey}\label{sec:fey_map}
+		\subsubsection{Vast and complex outdoor}\label{sec:fey_map}
 
 \begin{mfigures}[!]{ Optimization of the waypoints poses with a vast outside area and just a few  black holes.}{fig:Rooms_shapes} \centering
 \mfigure{width=.4\linewidth}{img/fig12-a2.png}{The area to cover taken form satellite images.}{subfig:satimgFley}
@@ -443,7 +444,7 @@ In order to cover the big area, the solution can be to use a bigger focal length
  In the Figure \figref{subfig:satimgcoverageFley} and \figref{subfig:satimgNoncoverFley} the area is covered by 80 waypoints for $98.48\%$ of coverage. To reach this coverage rate the GA convergence is achieved after 4'856 generations. The important number of necessary generation before the convergence of the GA and a similar  increasing time computation for the PSO, allow us to glimpse the limits of the GAPSO for the too big search space with numerous waypoints to pose estimate. Despite this potential future limitation the answer of the GAPSO is relatively fast and efficient.\\
  
 
-		\subsubsection{map3 calvisson}
+		\subsubsection{Biggest map with numerous waypoints}
 \begin{mfigures}[!]{ Optimization of the waypoint pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoint position, (d) is the representation of the black hole.}{fig:CalvissonExp} \centering
 \mfigure{width=.4\linewidth}{img/calvisson2+mask.png}{The area to cover taken form satellite images.}{subfig:satimgCalvisson}
 \hspace{1cm}
