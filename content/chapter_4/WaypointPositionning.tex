@@ -1,4 +1,4 @@
-\chapter{Comparative result and experimentation on Waypoints positioning } 
+\chapter{Comparative result \& experimentation on waypoints positioning } 
 \minitoc
 To remind, the main objective is to propose an efficient path to can cover an area using a camera mounted on an UAV. The solution proposed here, is to focus on optimizing the position of a cameras set to fully cover an area in a first time. When set of optimized cameras pose is found the position can be used as waypoints for an UAVs path. Indeed find an optimized position for each camera of a given set is primordial. The following sections are dedicated to the optimization of it. 
 
@@ -7,9 +7,41 @@ To remind, the main objective is to propose an efficient path to can cover an ar
 
 %\section{An optimization problem.}
 
-During the previous sections, the problem was discussed as an optimization problem. The formulation of the problem was presented  and  the complexity of the problem was disused in the section \ref{sec:OptimizationComplexity}. Thanks to this preliminary result the following section is only focused on the optimization process. 
+
+
+\section{ Waypoint  positioning context of experiments} \label{sec:contextOfExp}
+
+ During the previous sections, the problem was discussed as an optimization problem. The formulation of the problem was presented and also the complexity of the problems was discussed in the section \ref{sec:OptimizationComplexity}. 
+The precedent sections has introduce all the useful elements to solve the problems of camera positioning in a complex environment. 
+This chapter is dedicate to the different experimentations done to test the efficiency of the proposed methods. 
+For the first experiment, different environment are proposed. The parameter of the environment has been adapted and chosen carefully. 
+The environment have been designed to have a different shape and size. The different rooms shape are used to estimate the impact of the shape on the proposed solution.
+The shapes of the rooms are designed to estimate the exact number of cameras in order to have a ground trough.
+Moreover the rooms propose different size. The size of the room may have two main impact on the optimization.
+First, increase the size of a room, will increase in proportion the size of the search space. On the other hand a bigger room allow to place more waypoints. More the number of waypoints to place is important more the number of dimension raise-up. The increasing number of dimension is used to test the robustness of the algorithms.
+ The room finally used for the experimentation are proposed in the \figref{fig:Rooms_shapes}.
+ 
+ \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px)}{fig:Rooms_shapes} \centering
+\mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room}{subfig:r1}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/fig7-b.png}{Big room}{subfig:r2}
+\mfigure{width=.4\linewidth}{img/fig7-c.png}{Room U}{subfig:r3}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/fig7-d.png}{Room L}{subfig:r4}
+\mfigure{width=.4\linewidth}{img/fig7-e2.png}{Big room L}{subfig:r5}
+\end{mfigures} 
+
+
+% Due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where:  ...  
+%,
+
+
+%Thanks to this preliminary result the following section is only focused on the optimization process. 
 
 \section{Other algorithm used}
+
+In order to compare our proposed method other algorithm  has to be introduce. The following section will show the 2 algorithms used for the comparison to the proposed GA. The environment introduce in \ref{sec:contextOfExp} is used to  make this comparison.  
+The particle swarm optimisation and the random selection is described in the following section. These two  algorithms was used due importance in the literature for the PSO and the other for this simplicity for evaluate the optimization.  
 
 \subsection{PSO }
 
@@ -99,21 +131,15 @@ Among the algorithms studied in the literature the EA family appear as the more 
 %Papyer détatille  avec des plusier experience comparative  conclusion ouverte sur le choix mais la conlution et que le PSO offre plus de posibilité d’amélioration de par sa simplicité de mise en place et sa « récente utilisation » 
 
 \subsection{Design of experiment }\label{sec:DoE}
-\begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px)}{fig:Rooms_shapes} \centering
-\mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room}{subfig:r1}
-\hspace{1cm}
-\mfigure{width=.4\linewidth}{img/fig7-b.png}{Big room}{subfig:r2}
-\mfigure{width=.4\linewidth}{img/fig7-c.png}{Room U}{subfig:r3}
-\hspace{1cm}
-\mfigure{width=.4\linewidth}{img/fig7-d.png}{Room L}{subfig:r4}
-\mfigure{width=.4\linewidth}{img/fig7-e2.png}{Big room L}{subfig:r5}
-\end{mfigures}
+
 %--------to finish-----\\ (+ integration du RS)\\
 
 To find the best coverage, many experiments have been used to compare PSO and GA. PSO is easier to implement and runs faster, but GA is more flexible and generic thanks to the many tunable parameters. 
 The following subsections will provide a comparison between PSO and GA with using RS as a reference.% and give an overview of our method, which is based on GA. The comparison demonstrates the overall advantage of the latter over the former.\\
 %In the literature, the PSO was often used \cite{8*zhou2011,33*reddy2012}, mostly because of the simplicity of its implementation. However, it is interesting to compare the algorithm with the GA. The two algorithms are from the same family (both are stochastic and from evolutionary algorithms).\\
-To compare and evaluate their performance, we tested them in different scenarios. The scenarios have been  designed to have a different shape and size. The shapes of the room have been designed to estimate the exact number of cameras in order to have a ground trough. Due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where: 
+To compare and evaluate their performance, we tested them in different scenarios.
+
+-!- The scenarios have been  designed to have a different shape and size. The shapes of the room have been designed to estimate the exact number of cameras in order to have a ground trough. Due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where: 
 
 
 
