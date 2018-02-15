@@ -12,14 +12,15 @@ To remind, the main objective is to propose an efficient path to can cover an ar
 \section{ Waypoint  positioning context of experiments} \label{sec:contextOfExp}
 
  During the previous sections, the problem was discussed as an optimization problem. The formulation of the problem was presented and also the complexity of the problems was discussed in the section \ref{sec:OptimizationComplexity}. 
-The precedent sections has introduce all the useful elements to solve the problems of camera positioning in a complex environment. 
+The precedent sections has introduce all the useful elements to solve the problems of camera positioning in a complex environment. \\
 This chapter is dedicate to the different experimentations done to test the efficiency of the proposed methods. 
-For the first experiment, different environment are proposed. The parameter of the environment has been adapted and chosen carefully. 
-The environment have been designed to have a different shape and size. The different rooms shape are used to estimate the impact of the shape on the proposed solution.
+For the first experiment, different environment are proposed. The parameter of the environment has been adapted and carefully chosen. \\
+The environment have been designed to have a various shape and size. The different rooms shape are used to estimate the impact of the shape on the proposed solution.
 The shapes of the rooms are designed to estimate the exact number of cameras in order to have a ground trough.
 Moreover the rooms propose different size. The size of the room may have two main impact on the optimization.
-First, increase the size of a room, will increase in proportion the size of the search space. On the other hand a bigger room allow to place more waypoints. More the number of waypoints to place is important more the number of dimension raise-up. The increasing number of dimension is used to test the robustness of the algorithms.
+First, the increasing  size of a room, will increase in proportion the size of the search space. On the other hand a bigger room allow to place more waypoints. More the number of waypoints to place is important more the number of dimension raise-up. The increasing number of dimension is used to test the robustness of the algorithms.\\
  The room finally used for the experimentation are proposed in the \figref{fig:Rooms_shapes}.
+
  
  \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px)}{fig:Rooms_shapes} \centering
 \mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room}{subfig:r1}
@@ -31,7 +32,8 @@ First, increase the size of a room, will increase in proportion the size of the 
 \mfigure{width=.4\linewidth}{img/fig7-e2.png}{Big room L}{subfig:r5}
 \end{mfigures} 
 
-
+ In addition of the room parameters, the number of dimension is also tested by  added various possible altitudes for each waypoint. The waypoint can be in the simplest version placed only on x and y coordinate and in the second time z coordinate can also be optimized inside a given range of altitude. 
+ Two different set of scenario has been tested one with a fix value of z and  an other set of scenario with a range of z.  This is to evaluate the impact of the altitude on the optimization process.
 % Due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where:  ...  
 %,
 
@@ -40,8 +42,8 @@ First, increase the size of a room, will increase in proportion the size of the 
 
 \section{Other algorithm used}
 
-In order to compare our proposed method other algorithm  has to be introduce. The following section will show the 2 algorithms used for the comparison to the proposed GA. The environment introduce in \ref{sec:contextOfExp} is used to  make this comparison.  
-The particle swarm optimisation and the random selection is described in the following section. These two  algorithms was used due importance in the literature for the PSO and the other for this simplicity for evaluate the optimization.  
+In order to compare carefully our proposed method, other algorithm has to be introduce. The following section will show the 2 algorithms used for the comparison to the proposed GA. The environment introduced in \ref{sec:contextOfExp} is used to make the comparisons.  
+The particle swarm optimisation and the random selection is described in the following section. The PSO is used due to this importance in the literature for similar problems. The RS for this simplicity to evaluate the optimization, being a reference point .  
 
 \subsection{PSO }
 
@@ -105,7 +107,7 @@ The random selection (named RS) is a very basic algorithm. It serves as a refere
 
 The random selection works by randomly generate numerous solutions. Among the solutions randomly generated the best solution is kept as the optimized global solution. The RS allows to look through the search space by randomly try different possible solution. The search space exploration by the RS is only made by random sampling without other optimization method. 
 Indeed the RS is invoked as a reference points for the other algorithms. If the RS get a similar result with the same numbers of the cost function call, the algorithm compared can be considered as not more efficient then a simple random solution. 
-The RS objective is to serve as  reference point for the other optimization algorithms. It will be a perfect reference to judge the efficiency of the optimization from other algorithms.  
+The RS objective is to serve as reference point for the other optimization algorithms. It will be a perfect reference to judge the efficiency of the optimization from other algorithms.  
   
 %
 %PSO camera position 
@@ -119,8 +121,8 @@ The RS objective is to serve as  reference point for the other optimization algo
 %
 To solve the problem of cameras positioning (or waypoints positioning) the usable algorithms are varied as that was discussed in the chapter \ref{chap:stateOfTheArt} (see the sum-up tables \ref{tab:sum-up1} and \ref{tab:sum-up2}).
 Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints of our problem. The EA is a vast family of algorithms. Among this family the more used for our problem is the PSO (see \ref{tab:sum-up2}). The PSO gives a good and fast result in many case. In the EA family, the GA is one of the founders and was one of the more popular due to this great flexibility and efficiency.
- After more investigation the GA is under estimate for the problem of camera positioning unlike the PSO (see \citep{33*reddy2012,8*zhou2011,84*xu2011,143*maji2015,193*fu2014,194*fu2010}).
- Base on the work of Boeringer et al in \citep{78*boeringer2004}, where the PSO and the GA have been conscientiously compared. The conclusions  of the comparison in \citep{78*boeringer2004} is relatively open and highlights the similarity of result between the two algorithms. An experimentation has to be done to find the best algorithms for the problem of cameras position in a complex environments. 
+ After more investigation the GA is under estimate for the problem of camera positioning unlike the PSO (see \citep{33*reddy2012,8*zhou2011,84*xu2011,143*maji2015,193*fu2014,194*fu2010}). \\
+ The  conscientiously comparison  of GA and PSO was proposed by Boeringer et al in \citep{78*boeringer2004}. The conclusions  of the comparison in \citep{78*boeringer2004} is relatively open and highlights the similarity of result between the two algorithms and the importance of evaluate the them for each new problems. Consequently an experimentation has to be done to find the best algorithms for the problem of cameras position in a complex environments. 
 
 
 
@@ -134,12 +136,14 @@ Among the algorithms studied in the literature the EA family appear as the more 
 
 %--------to finish-----\\ (+ integration du RS)\\
 
-To find the best coverage, many experiments have been used to compare PSO and GA. PSO is easier to implement and runs faster, but GA is more flexible and generic thanks to the many tunable parameters. 
-The following subsections will provide a comparison between PSO and GA with using RS as a reference.% and give an overview of our method, which is based on GA. The comparison demonstrates the overall advantage of the latter over the former.\\
+To find the best solution to optimize the coverage of an area, many experiments have been used to compare PSO and GA. PSO is easier to implement and runs faster, but GA is more flexible and generic thanks to the many tunable parameters. 
+%The following subsections will provide a comparison between PSO and GA with using RS as a reference.% and give an overview of our method, which is based on GA. The comparison demonstrates the overall advantage of the latter over the former.\\
 %In the literature, the PSO was often used \cite{8*zhou2011,33*reddy2012}, mostly because of the simplicity of its implementation. However, it is interesting to compare the algorithm with the GA. The two algorithms are from the same family (both are stochastic and from evolutionary algorithms).\\
-To compare and evaluate their performance, we tested them in different scenarios.
+To compare and evaluate their performance, we tested them in different scenarios. Each algorithm was tested  before to have an appropriate set-up their parameters. 
+The comparison is applied on different scenario as that was introduced in the section \ref{sec:contextOfExp} and listed below. 
 
--!- The scenarios have been  designed to have a different shape and size. The shapes of the room have been designed to estimate the exact number of cameras in order to have a ground trough. Due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where: 
+
+%-!- The scenarios have been  designed to have a different shape and size. The shapes of the room have been designed to estimate the exact number of cameras in order to have a ground trough. Due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where: 
 
 
 
@@ -155,7 +159,7 @@ To compare and evaluate their performance, we tested them in different scenarios
 
 
 The design of the experiments in Table \ref{table:table1} has been set up to identify the most efficient algorithm for the positioning of a set of cameras with maximum coverage depending on the numerous cases. 
-The Design of Experiments (DOE) has been made to take in account; the  shapes, sizes, some constraint as the fix altitude and  many size for the set of waypoints. The DOE has been established to highlight the impact of the constraints on the optimization process with the GA and PSO.
+The Design of Experiments (DOE) has been made to take in account; the  shapes, sizes, some constraint as the fix altitude and  various size for the set of waypoints. The DOE has been established to highlight the impact of the constraints on the optimization process with the GA and PSO.
 
 
 \begin{table} [!htb]
@@ -178,9 +182,9 @@ The Design of Experiments (DOE) has been made to take in account; the  shapes, s
 
 \end{table}
 
-The Ground Truth (GT) is the minimum number of cameras required to fully cover a given area. The size of the area has been selected so that the GT can be easily estimated. 
+The Ground Truth (GT) is the minimum number of waypoints required to fully cover a given area. The size of the area has been selected so that the GT can be easily estimated. 
 NW is the maximum Number of Waypoints (or cameras) used for the experiments.  
-At each experiment a solution is computed for a number of cameras from 1 to NW. To compare the different algorithms fairly, only 10 000 calls of the cost function are allowed for each optimization.
+At each experiment a solution is computed for a number of cameras from 1 until NW. To compare the different algorithms fairly, only 10 000 calls of the cost function are allowed for each optimization.
 The optimization has been executed 8 times for each optimization process. 8 times is the minimum number of test has to be done to can have a usable average despite the hight volatility due to the randomness of the algorithms.\\ % 420*8 =3 360 test.
 
 
@@ -254,7 +258,7 @@ Thanks to the experiment done and presented in the previous section (see \ref{se
 \subsection{The different hybridization }
 
  Different hybridization of the GA and PSO can be made. Each hybridization of GA and PSO has the advantage and disadvantage. This following section is focused on the main hybridisation of GA and PSO. \\
-In Premalatha al et 76* \citep{76*premalatha2009} propose three different solution to hybrid the GA and PSO: 
+In Premalatha al et \cite{76*premalatha2009}  propose three different solution to hybrid the GA and PSO: 
 \begin{itemize}
 \item  GA and the PSO are employed in parallel. The best solution between both algorithms is used into the other algorithm. 
 For example: If the best solution at the end of the first generation is from PSO, this solution is used as a new individual for the crossover on the GA. Or if the best solution is from the GA, this good individual is employed in PSO as best particle for the next draw. This operation continues until such time as the convergence of both algorithms.   
