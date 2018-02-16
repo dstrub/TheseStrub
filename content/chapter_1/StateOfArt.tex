@@ -96,9 +96,15 @@ The real interesting element about the secondary objectives is the impact in the
 \section{Art gallery problem} \label{sec:AGP}
 %Once the objectives defined the next step, is to know how to represent the problems. To do that manly 2 different class  of problems have to be studied. The first is from the geometrical problem called  the Art galery problms.
 
-The problem of camera positioning is a tricky problem and depending on the finality of the camera networks and the formulation the camera pose will be affected.\\
- Once the objectives defined ( see section \ref{sec:camerasPositioning}) the next step, is to know how to represent the problems. To do that manly 2 different paradigms have to be studied.
- The first is from the geometrical problem called the Art Gallery Problem (AGP) formulation is commonly and historically borrowed as is presents in the following section with a fast definition of the problems, the solution used and the limit of this paradigm.
+
+Until know the problem of coverage was studied to place cameras. The use of cameras (fix or mounted on mobile robot) are the limited field of view  and  depth field of the sensor. An interesting paradigm closely related is  to use human guards  instead  of the set of cameras.  This paradigm is called the Art Gallery Problem (called AGP). The AGP is an interesting  paradigm with propose some efficient solution. 
+
+In the following section  a definition of the AGP is given with a brief historic. Next to this introduction on AGP some of the more interesting solution  are discussed before to see the limit of this paradigm.
+
+%The problem of camera positioning is a tricky problem. The positioning of the set of cameras depend on many factor. To solve this problems is importatant to know more about the relat
+% %finality of the camera networks and the formulation the camera pose will be affected.\\
+%% Once the objectives defined ( see section \ref{sec:camerasPositioning}) the next step, is to know how to represent the problems. To do that manly 2 different paradigms have to be studied.
+% The first is from the geometrical problem called the Art Gallery Problem (AGP) formulation is commonly and historically borrowed as is presents in the following section with a fast definition of the problems, the solution used and the limit of this paradigm.
 
 
 	\subsection{Definition of the paradigm}
@@ -125,7 +131,7 @@ A polygon composed by $n$ vertices need in the worst case a minimum number of gu
 Once the proof of the minimum number in the worst case found the objective became to find an optimal solution in reasonable time. \\
 For that the work of Toussaint and Avis (in 1981) is the reference and propose a solution working in $O(n log n)$. This work has been follow and upgrade until the solution of Couto, Resend and Souza  2011 \cite{224*couto2011} a solution is finally proposed in $O(n^3)$  in the worst case. 
 
-It is a short overview of the AGP solution but also the solution proposed are very specific to the AGP and cannot be re-use for problem little different.
+%It is a short overview of the AGP solution but also the solution proposed are very specific to the AGP and cannot be re-use for problem little different.
 
 	
 	\subsection{limit of AGP and camera coverage relation}
@@ -529,9 +535,109 @@ Each camera defined m focusing of optimize the solution and return a acceptable 
 
 %####################TODO############################
 \section{Coverage path planning project  CPPP}
-\subsection{AGP  to watchmen problem}
+\subsection{AGP  to watchman route problem}
+
+
+Before to explore the solutions proposed for the CPP is essential to understand the  role of the Watchman route Problem (WRP). The WRP is closely related then the CPP  and  the WRP has impacted the research for the CPP. 
+ In this section in focused on the definition of WRP in first time. In the second time the solution proposed to solve it and in the last part the limit of the WRP.
+
+\subsubsection{Definition of the watchmen problem }
+
+The watchman route problem is introduce for the first time by Chin and Ntafos in 1987. The problem of the WMP can be summarized in one sentence "How to calculate a shortest route contained inside a polygon such that any point inside this polygon is visible from at least one point on the route?".  \\
+As for AGP a guard have to cover an area represented by simple polygon. The guard is considered as perfect with no restriction in the field of view (the guard can see at $360^\circ$) and no restriction in the depth field (form on extremity of the room the guard can see the opposed wall until no obstacle look him).
+
+ source : An Approximate Algorithm for Solving the Watchman Route Problem Fajie Li and Reinhard Klette
+\subsubsection{Solution} 
+
+
+\subsubsection{Limit and consequences}
+
+%tout comme l'agp a était une source d'inspiration pour  le positionnement de camera  le wmp est lui aussi une source d'inspiration pour  le cpp 
+The CPP 
+The origin of CPP can be found on the Watch Men Problem (WMP). The next
+
+The Watch Men Problem (WMP) is directly derived form the AGP. 
+
+As the importance of AGP for the problem of camera positioning  the Watch men problem 
+53* parcker eli :  propose a solution  to solve the watchmen problem based on the result optianined by the AGP \\ 
+54* Chin : complexity proof of NP-hard  for the watchmen problem by reduction of TSP + article fondateur
+
+
+
+
 \subsection{linear decomposition and sweep}
 %\subsubsection{ ??sensor positioned in electronic circuit ??}
 \subsection{Robot application}
 	%\subsubsection{hover robot}
 	%\subsubsection{submarine}
+	
+	
+	!!!!!!!!!!!!!!!!!!!!!!resource!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\ 
+	from 190
+	\subparagraph{CPP random coverage  path plan}
+	\begin{itemize}
+	\item Liu, Y., Lin, X., Zhu, S.: Combined coverage path planning for autonomous cleaning robots in unstructured environments. In: Proc. World Congress on Intelligent Control and Autom., pp. 8271–8276 (2008) 
+
+	\item Luo, C., Yang, S.X.: A bioinspired neural network for
+real-time concurrent map building and complete coverage robot navigation in unknown environments. IEEE
+Trans. Neural Netw. 19(7), 1279–1298 (2008)
+	
+	\item Oh, J.S., Choi, Y.H., Park, J.B., Zheng, Y.F.: Complete coverage navigation of cleaning robots using
+triangular-cell-based map. IEEE Trans. Ind. Electron. 51(3), 718–726 (2004)
+	\end{itemize}
+\subparagraph{Probelm du CPP par Genetic Algo GA }	
+\begin{itemize}
+	\item Jimenez, P.A., Shirnzadeh, B., Nicholson, A., Alici, G.: Optimal area covering using genetic algorithms. In: Proc. IEEE/ASME Int. Conf. Advanced Intelligent Mechatronics, pp. 1–5 (2007)
+	
+	\item Wang, M., Tan, S., Yan, L.: Complete coverage path planning of wall-cleaning robot using visual sensor. In: Proc. Int. Conf. Electronic Measurement and
+Instruments, pp. 159–164 (2007)
+
+	\item Zhang, G., Ferrari, S., Qian, M.: An information
+roadmap method for robotic sensor path planning. J. Intell. Robot. Syst. 56(1–2), 69–98 (2009)
+	\end{itemize}
+
+
+\subparagraph{CPP  résolution par  neural Network pour certain une gestion dinamique de obstacle  }	
+\begin{itemize}
+	\item Lee, T.K., Baek, S.H., Oh, S.Y., Choi, Y.H.: Complete coverage algorithm based on linked smooth spiral paths for mobile robots. In: Proc. Int. Conf. Control, Automation, Robotics and Vision, pp. 609–614 (2010)
+
+	
+	\item Yang, S.X., Luo, C.: A neural network approach to complete coverage path planning. IEEE Trans. Syst. Man Cybern. 34(1), 718–725 (2004)
+
+
+
+	\item Luo, C., Yang, S.X., Stacey, D.A., Jofriet, J.C.: A solution to vicinity problem of obstacles in complete coverage path planning. In: Proc. IEEE Int. Conf. Robotics
+and Automation, pp. 612–617 (2002)
+
+\item Qiu, X., Song, J., Zhang, X., Liu, S.: A complete coverage path planning method for mobile robot in uncertain environments. In: Proc. World Congress on
+Intelligent Control and Automation, pp. 8892–8896 (2006)
+
+
+\item Qiu, X., Liu, S., Yang, S.X.: A rolling method for 
+complete coverage path planning in uncertain environments. In: Proc. IEEE Int. Conf. Robotics and
+Biomimetics, pp. 146–151 (2004)
+
+\item Luo, C., Yang, S.X., Stacey, D.A.: Real-time path planning with deadlock avoidance of multiple cleaning
+robots. In: Proc. IEEE Int. Conf. Robotics and Automation, pp. 4080–4085 (2003) 
+
+	\end{itemize}
+
+\subparagraph{survey  sur la décomposition  linaire }
+	\begin{itemize}
+	\item Choset, H.: Coverage for robotics-a survey of recent results. Ann. Math. Artif. Intell. 31, 113–126 (2001)
+	
+	\end{itemize}
+	
+	\paragraph{66*  points clé}
+	coverage path planning in the 3D space (UAV and Subamrine)\\ 
+	cellular decomposition :  requantangle cellul  ;  trapezoidal decomposition ; Boustrophedon Decomposition; Morse-based Cellular Decomposition ; online Morse-based Boustrophedon Decomposition ; Landmark-based Topological; slice Decomposition ;On-line Topological Coverage Algorithm ;Contact Sensor-based Coverage of Rectilinear Environments;Grid-based Methods;Grid-based Coverage using the Wavefront Algorithm;Neural Network-based Coverage on Grid Maps
+Coverage 
+		\paragraph{214* choset}
+		heurisitc and randomized approche :  propose a solution  on multi robot repultion system to spread the  robot  in the space and  use   a random motion  as strategie to explore the area[5,27]. \\(T. Balch and R.C. Arkin, Communication in reactive multiagent robotic systems, Autonom. Robots 1995) , unknown obstacles of arbitrary shape, Algorithmica 2 (1987) 403–430. ;:;\\ D. MacKenzie and T. Balch, Making a clean sweep: Behavior based vacuuming, in: AAAI Fall Symposium, Instationating Real-World Agents (1996). )
+		
+		\paragraph{Semi-approximate}
+		Hert and Lumelsky : propose a system based on cell decomposition  and   boundary folowing 
+		
+		\paragraph{multi robots}
+		
+		
