@@ -543,12 +543,37 @@ Before to explore the solutions proposed for the CPP is essential to understand 
 
 \subsubsection{Definition of the watchmen problem }
 
-The watchman route problem is introduce for the first time by Chin and Ntafos in 1987. The problem of the WMP can be summarized in one sentence "How to calculate a shortest route contained inside a polygon such that any point inside this polygon is visible from at least one point on the route?".  \\
-As for AGP a guard have to cover an area represented by simple polygon. The guard is considered as perfect with no restriction in the field of view (the guard can see at $360^\circ$) and no restriction in the depth field (form on extremity of the room the guard can see the opposed wall until no obstacle look him).
+The watchman route problem is introduce for the first time by Chin and Ntafos in 1987 54* \cite{54chin}. The problem of the WMP can be summarized in one sentence :
+
+"How to calculate a shortest route contained inside a polygon such that any point inside this polygon is visible from at least one point on the route?".  
+
+The guard have to cover an area represented by a polygon. The guard is considered as perfect with no restriction in the field of view (the guard can see at $360^\circ$) and no restriction in the depth field (form on extremity of the room the guard can see the opposed wall until no obstacle look him). 
+The shape of the polygon is primordial and affect greatly the possible answer and the complexity to solve the WRP.
+The WRP problem is by many aspect  closely related then  the AGP. The AGP is commonly considered as the roots of the WRP.
+ In fact the  WRP is not only focus on fix position but on finding an optimal path. The path have to be optimized  to control  all the point  which  compose the polygon (or also called room)  and have to be shorter as possible.
+ 
+  In order to build the path first step is to find the waypoints of it and in the second time find the  shortest trajectory.
+
+polygone impact on the complexity
+AGP -> WRP  
+
+
 
  source : An Approximate Algorithm for Solving the Watchman Route Problem Fajie Li and Reinhard Klette
 \subsubsection{Solution} 
+%from https://link.springer.com/content/pdf/10.1007%2F978-3-642-31155-0.pdf
+compexity $O(n^4 log n)$ :\\
+Dror, M., Efrat, A., Lubiw, A., Mitchell, J.S.B.: Touring a sequence of polygons.
+In: Proc. 35th Symposium on Theory of Computing, pp. 473–482 (2003)\\
+Tan, X.: Fast computation of shortest watchman routes in simple polygons. Information Processing Letters 77(1), 27–33 (2001) \\ 
 
+linear aproximation :  Tan, X.: A linear-time 2-approximation algorithm for the watchman route problem
+for simple polygons. Theoretical Computer Science 384(1), 92–103 (2007)
+
+Polygons with holes the problem is NP-hard : 54*\\
+   Dumitrescu, A., T oth, C.D.:Watchman tours for polygons with holes. Computational Geometry: Theory and Applications  (2012)
+
+ An $O (log n)-approximation$:
 
 \subsubsection{Limit and consequences}
 
