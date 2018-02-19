@@ -554,39 +554,73 @@ The WRP problem is by many aspect  closely related then  the AGP. The AGP is com
  
   In order to build the path first step is to find the waypoints of it and in the second time find the  shortest trajectory.
 
-polygone impact on the complexity
-AGP -> WRP  
+%polygone impact on the complexity
+%AGP -> WRP  
 
-
-
- source : An Approximate Algorithm for Solving the Watchman Route Problem Fajie Li and Reinhard Klette
+% source : An Approximate Algorithm for Solving the Watchman Route Problem Fajie Li and Reinhard Klette
+ 
 \subsubsection{Solution} 
+
+Some solution are existing to solve the WRP. The solution to solve it are applicable only if the polygon is simple. A polygon is considered as simple, when the boundary of it are composed of continue straight lines that do not intersect between her. To complete this definition it is important to precise the simple polygon does not have hole (see Figure \figref{fig:simplePoly}). 
+ \begin{mfigures}[!]
+{Few example to illustrate the simple polygon. }{fig:simplePoly} \centering
+\mfigure{width=.4\linewidth}{img/SimplPolygonA.png}{Example of simple polygons.}{subfig:SimplePoly}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/SimplPolygonB.png}{Example of non simple polygons.}{subfig:nonSimplePoly}
+\hspace{1cm}
+\end{mfigures}	
+
+Among the solution for the WRT with the simple polygon the work Tan, X [234*]\cite{} propose a solution for a fast computation time. The solution proposed work in the simple polygon composed by $n$ vertices in a polynomial time $O(n^5)$. \\
+An other solution proposed to go a bit further. The solution of Dror et al [233*]\cite{} assume to have a better complexity. In fact in [233*]\cite{} the solution proposed for the WRP in a simple polygon are working in $O(n^3 log n)$.  The deterministic solution applied is also usable to related problem close then the WRT as the zoo-keeper problem and safari problem.
+
+This two solution [233*][234*] are usable only in the case of simple polygon to delivered the optimal solution which is the shortest path. 
+
+To have a more general solution for WRP, the proposition is to have to an efficient algorithm with the complex polygon. A solution is to look for an efficient approximation. An efficient approximation mean a path short enough but due to the computation method, the optimality of the path can not be certify as the best.
+
+Several efficient approximations has been proposed as in [235*] and [53*]. In faigl the solution proposed is based in splitting the problem into two sub problem. The first sub-problem is to find the a set of point with can  be good enough to cover all the area despite a restricted visibility range. In fact the solution proposed by Faigl in [235*] is applicable for a watchman with a restricted visibility range. Equivalent then a $360^\circ$ field of view with a restricted depth of field. Once the set of point to cover all the polygon is found the second sub-problem is create a path passing by all this points. This second sub-problem is similar then a classic Travelling Salesman Problem (TSP). The TSP  try to answer of the question ask by a travelling salesman "What is the shortest path passing by each city only one time and return to the starting city?". In the TSP the city are the node on the interconnected map with the road as the connexion. The TSP is well known as NP-hard and NP-complete in some condition as described in [236*]. \\ 
+Finally the solution used for the TSP can be applied for the second sub-problem of WRT.
+In Packer [53*] similar solution then the one proposed by faigl in [235*] has been proposed to approximate the shorter path as possible. To approximate the shorter path the problem of WRP is also split in two sub-problem. The first sub-problem is considered as similar then the AGP and use the method form AGP to find the waypoints. The second sub-problem is also compared as TSP.
+
+
+
 %from https://link.springer.com/content/pdf/10.1007%2F978-3-642-31155-0.pdf
-compexity $O(n^4 log n)$ :\\
-Dror, M., Efrat, A., Lubiw, A., Mitchell, J.S.B.: Touring a sequence of polygons.
-In: Proc. 35th Symposium on Theory of Computing, pp. 473–482 (2003)\\
-Tan, X.: Fast computation of shortest watchman routes in simple polygons. Information Processing Letters 77(1), 27–33 (2001) \\ 
+%compexity $O(n^4 log n)$ :\\
+%Dror, M., Efrat, A., Lubiw, A., Mitchell, J.S.B.: Touring a sequence of polygons.
+%In: Proc. 35th Symposium on Theory of Computing, pp. 473–482 (2003)\\
+%Tan, X.: Fast computation of shortest watchman routes in simple polygons. Information Processing Letters 77(1), 27–33 (2001) \\ 
 
-linear aproximation :  Tan, X.: A linear-time 2-approximation algorithm for the watchman route problem
-for simple polygons. Theoretical Computer Science 384(1), 92–103 (2007)
+%linear approximation :  Tan, X.: A linear-time 2-approximation algorithm for the watchman route problem for simple polygons. Theoretical Computer Science 384(1), 92–103 (2007)
 
-Polygons with holes the problem is NP-hard : 54*\\
-   Dumitrescu, A., T oth, C.D.:Watchman tours for polygons with holes. Computational Geometry: Theory and Applications  (2012)
+%Polygons with holes the problem is NP-hard : 54*\\
+ %  Dumitrescu, A., T oth, C.D.:Watchman tours for polygons with holes. Computational Geometry: Theory and Applications  (2012)
 
- An $O (log n)-approximation$:
+ %An $O (log n)-approximation$ for Rectilinear polygons are also known as orthogonal polygons.:Mata, C.S., Mitchell, J.S.B.: Approximation algorithms for geometric tour and network design problems. In: Proc. 11th Symposium on Computational Geometry, pp. 360–369 (1995)
 
 \subsubsection{Limit and consequences}
 
+The method proposed to solve the WRP are really interesting and give a good solution in some specific condition. This condition are the limit of the method proposed. In fact the optimal solution, that mean the shortest path  which cover all the area (polygon) are usable only if the polygon respect some rule (must be a simple polygon).  
+When the polygon begin to be more complex the optimal solution cannot be reached. The method applied to solve the WRP for complex area are interesting, especially in the splitting the problem into sub-problem. Despite this interesting aspect the solution proposed are most of the time limited due to the area representation (must be a polygon composed by vertex). This representation associate to the geometric methodologies to find the waypoints give an crucial importance to the number of vertex in the complexity of the area. More the number of vertex is important more the first sub-problem will be difficult and long to solve. 
+Consequently this method is not the more appropriate for the vast and complex outside area which would require  numerous vertex to describe it.
+ The biggest limit of the WRP is the ability of the watchman. In fact in the original problem, the Watchman is considered has perfect visibility. The solution proposed for answer to the WRP are not usable when some constraint is added in the  visibility. 
+In Faigl [235*] the WRP begin to be extended by add a constraint on the visibility. In this condition the problem is slightly muted to self-organizing map  in the way to became  a coverage path planning.
+
+The AGP then WRP has greatly impacted the vision and the problem design of coverage and coverage path planning. Especially the CPP by splitting the problem into two sub-problem. 
+
+
+
+ 
+
+
 %tout comme l'agp a était une source d'inspiration pour  le positionnement de camera  le wmp est lui aussi une source d'inspiration pour  le cpp 
-The CPP 
-The origin of CPP can be found on the Watch Men Problem (WMP). The next
-
-The Watch Men Problem (WMP) is directly derived form the AGP. 
-
-As the importance of AGP for the problem of camera positioning  the Watch men problem 
-53* parcker eli :  propose a solution  to solve the watchmen problem based on the result optianined by the AGP \\ 
-54* Chin : complexity proof of NP-hard  for the watchmen problem by reduction of TSP + article fondateur
-
+%The CPP 
+%The origin of CPP can be found on the Watch Men Problem (WMP). The next
+%
+%The Watch Men Problem (WMP) is directly derived form the AGP. 
+%
+%As the importance of AGP for the problem of camera positioning  the Watch men problem 
+%53* parcker eli :  propose a solution  to solve the watchmen problem based on the result optianined by the AGP \\ 
+%54* Chin : complexity proof of NP-hard  for the watchmen problem by reduction of TSP + article fondateur
+%
 
 
 
