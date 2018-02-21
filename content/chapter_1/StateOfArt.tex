@@ -524,17 +524,50 @@ The popularity of the PSO is mostly due to the association of the quick implemen
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Field of view}
-
- optical and the occlusion
-
-cover an area with certain amount of sensors. This number of position can be estimate as follow.\\   
-Each camera defined m focusing of optimize the solution and return a acceptable solution.
- 
+%\subsection{Field of view}
+%
+% optical and the occlusion
+%
+%cover an area with certain amount of sensors. This number of position can be estimate as follow.\\   
+%Each camera defined m focusing of optimize the solution and return a acceptable solution.
+% 
 
 
 %####################TODO############################
-\section{Coverage path planning project  CPPP}
+\section{Coverage path planning part  CPPP }
+
+To keep on eyes on a vast area composed by numerous obstacles the solution discussed until know was to pose numerous cameras or robotics cameras. This solution is interesting only for monitor a vast area in continue. This solution is really costly and need numerous sensor with an efficient system of communication network to centralized the images collected. All the images must be collected in a real time. This costly system is not usefully in many occasion. 
+
+In fact for many application the area need to be controlled periodically. As example  of application the cartographies  with need  just one fly over an area roughly bounded as in [66*], forest fire detection which require a periodic fly over the region as in [237*] and the agriculture need to fly over the field few time the year in order to control by photography the hydration, the maturity ,etc, as in [203*,63*,105*,164*,167*,177*,203*]. \textbf{revoir les ref et trié un peu}.
+
+For all this applications the area must be cover but does not need a coverage of all the area instantly and continuously. The solution commonly proposed is to use only one sensor mounted on a mobile robots. The mobile robots have to be adapted to the task and the environment, as flying [105*] ,driving [213*,30*], swimming [66*]. The mobile robot with the sensor move in the space to cover all the area. In this case, the objective is to find the best path for the mobile robot to cover all the area. The best path is dependent then the constraint of each problem. But the common point, is to have the shorter path to cover most of or all the area.
+The following section is focused on finding the best coverage path planing (CPP) for different kind of sensors mounted on mobile robots. To estimate the best CPP different algorithms and methodologies has been applied in the literature  to solve or at least optimize the CPP problems.
+
+  The following section is focus on the different algorithms and methodologies applied to solve or at least optimize the coverage path planning problem. In a first time the watchman route problem is introduced to highlight the origin of the CPP problem and the relation with the cameras positioning for optimal coverage. In a second time the more popular solution are discussed.
+ 
+
+
+
+%hovering robot
+% In some case some domestic robots as  the hovering robot   or similar  must also to 213*
+
+
+%-------------------------------------\\
+% Grenzdorffer, G., Engel, A., Teichert, B.: The photogram-metric potential of low-cost UAVs in forestry and agriculture. Int. Arch. Photogram. Rem. Sens. Spatial Inform. Sci.
+%31(B3), 1207–1214 (2008) 
+%
+%Zarco-Tejada, P.J., Berni, J.A., Suarez, L., Fereres, E.: A new era in remote sensing of crops with unmanned robots.
+%SPIE Newsroom, pp. 2–4 (2008)
+%
+%Kazmi, W., Bisgaard, M., Garcia-Ruiz, F., Hansen, K.D.,
+%la Cour-Harbo, A.: Adaptive surveying and early treatment
+%of crops with a team of autonomous vehicles. In: European
+%Conference on Mobile Robots, pp. 253–258 (2011) 
+
+
+
+
+
 \subsection{AGP  to watchman route problem}
 
 
@@ -604,7 +637,7 @@ Consequently this method is not the more appropriate for the vast and complex ou
  The biggest limit of the WRP is the ability of the watchman. In fact in the original problem, the Watchman is considered has perfect visibility. The solution proposed for answer to the WRP are not usable when some constraint is added in the  visibility. 
 In Faigl [235*] the WRP begin to be extended by add a constraint on the visibility. In this condition the problem is slightly muted to self-organizing map  in the way to became  a coverage path planning.
 
-The AGP then WRP has greatly impacted the vision and the problem design of coverage and coverage path planning. Especially the CPP by splitting the problem into two sub-problem. 
+The AGP then WRP has greatly impacted the vision and the problem design of cameras coverage and coverage path planning. Especially the CPP by splitting the problem into two sub-problem. 
 
 
 
@@ -622,28 +655,95 @@ The AGP then WRP has greatly impacted the vision and the problem design of cover
 %54* Chin : complexity proof of NP-hard  for the watchmen problem by reduction of TSP + article fondateur
 %
 
+\subsection{CPP solutions}
+
+To optimize the CPP problems many solution was been proposed. The different algorithms and methodologies proposed are discussed in the following sub-section. The methodologies proposed  can be split in several branches.
+%60* =  une découpe en zone  rectangle et utilisation  de la triangulation pour le positionment de waypoint  puit tsp.
+%
+%217*= utilisation du GA  pour la conexion entre polygone simple (1er étape découpe de la zone  en  polygone en fonction des obstacle - 2e  crée un graphe qui  reli les différant sous partie ( polygone) GA  -3 choisir le sweep le plus )
+%
+%61* 62*= floor planning
+
+\subsubsection{ Cellular decomposition and sweep}
+To solve the CPP problem the solution the more usual is to use the cellular decomposition. the cellular decomposition is inspired by the methodologies presented for the WRP.
+The idea is to split the problem in two sub-problem and optimize its independently. The first sub-problem is to find the best waypoints and the second sub-problem is to find the shorter path passing by all the waypoints (as a TSP).
+ The Cellular decomposition also split the problem of CPP in two sub-problem.  The first sub-problem is focus on the decomposition of the complex area in several cells.  Each cell has to be a simple polygon (basically a rectangle or latter any quadrilateral polygon). Inside each cell a sweep will be applied in order to cover all the area. The second sub-problem is to find the which can connect each simple polygon. The problem has to take in account in  many case the sweep start and end to find the global shorter path. where the global shorter path  take in account the sweep trajectory of each simple polygon and the path between the  simple polygons.
+ 
+ Finally the cellular decomposition is made by the decomposition of the complex area, choose the appropriate  sweep and find the shorter path to connect the cells. 
+ 
+ \paragraph{Decomposition}
+
+ The decomposition in cells has to objective to split the a complex area in several sub-area. The sub-area has to be simpler in term of shape in order to can applies a sweep. 
+Since the 90s numerous algorithm has been developed for the cellular decomposition. Among the algorithms for cellular decomposition, 3 type of decomposition has been made in the survey of choset [214*]and \cite{66*galceran2013}. 
+\begin{itemize}
+	\item Approximate: 
+		An approximate decomposition is based on a discretization of the area. The free space of the area is representative by a set of case (gird). Each case of the grid has to be cover by the mobile robots.  The case is considered  completely cover if the robot is on this position. That mean the frequency of the grid is defined by the covered area of the mobile robots. 
+		The approximate decomposition by case is fast to describe the area but is greatly limited due to the low sampling frequency of the gird and the limited trajectory possible.\\
+	 
+	\item Semi approximate: 
+	 The semi approximate decomposition is by part based on the discretization of the space. The idea is to create a set of large cells. The width of the cells is fix and the height is relative then the area boundary. 
+	 The semi approximate cell decomposition allow to have cells with two parallel side  with a fix size  (at the right and left) and  the  two other side adapted to the boundary (at the up and down).  The width  of  the cell chosen depending then half of the focal length of the camera mounded on the mobile robot. The area is covered by following the boundary of the cells with sweep to pass cells  after cells.
+	 The advantage of this semi approximate decomposition is the facility to describe a vast area and the low computation required. Additionally this decomposition can be made on-line by the robot and do not require a hight level of knowledge of the area. The disadvantage is the non optimized path due to the cell decomposition. The simplicity  of this decomposition  can gender case where the robot have to path many time by the same place. The semi approximate cellular decomposition do not allow to have an optimised path planning. 
+	 %%%%% add fig from238* fig8 to --> from214
+	\item Exact cellular decomposition: 
+	The exact cellular decomposition describe the area by create juxtaposed geometrical region. The size of the region (or cells) are not dependent then the robots ability despite the previous decomposition. The large size of the cell allow the  mobile robots to  do back and forth motion to cover all the cell (also called sweep).  The cells have to be ordered to have an efficient and short path passing by all the cells. The path has to limit the distance to pass  between the cells.
+	The exact cellular decomposition became popular and numerous algorithms has been proposed to has  a faster decomposition and with a more appropriate shape depending then the area shape. 
+	Among the numerous exact cellular decomposition the trapezoidal decomposition for this simplicity and historic importance, the Boustrophedon decomposition  and  Morse-based Cellular Decomposition for their important in the construction of other exact cellular decomposition has to be cited. These algorithms and other has been clearly summarized in the survey of Carreras and Galceran \citep{66*galceran2013} 
+	
+\end{itemize}
+
+144* (164* 167*) 190* upgrade to talk
+
+ survey = 66* 214*
+ 
+ 
+119* 214* 215* 146*  144* 164* 167* 190*=cellule decomposition \\ 
+ 
+ \paragraph{Sweep} 
+ 
+ \paragraph{Path planning}
+ 
+
+\subsubsection{Other solution for CPP}
 
 
-\subsection{linear decomposition and sweep}
+
+In choset et al 214*  some heuristic and randomized solution has been presented.    
+one of the basic heuristic is to follow the boundary of the area to cover. (R.A. Brooks, A robust layered control system for a mobile robot, IEEE J. Robotics Autom. (1986)   et
+  E. Gat and G. Dorais, Robot navigation by conditional sequencing, in: Proc. IEEE Int. Conf. on
+Robotics and Automation, San Diego, CA (May 1994) pp. 1293–1299. )
+
+	\begin{itemize}
+	\item Liu, Y., Lin, X., Zhu, S.: Combined coverage path planning for autonomous cleaning robots in unstructured environments. In: Proc. World Congress on Intelligent Control and Autom., pp. 8271–8276 (2008) 
+
+	\item Luo, C., Yang, S.X.: A bioinspired neural network for
+real-time concurrent map building and complete coverage robot navigation in unknown environments. IEEE
+Trans. Neural Netw. 19(7), 1279–1298 (2008) == PDF TNN2008  cite 132  neural network pour  robot aspirateur  avec construction de la map  et complet couverture  
+	
+	\item Oh, J.S., Choi, Y.H., Park, J.B., Zheng, Y.F.: Complete coverage navigation of cleaning robots using
+triangular-cell-based map. IEEE Trans. Ind. Electron. 51(3), 718–726 (2004) == pdf navigation-robot.pdf   robot roulant construction de son univer ajout de direction possible
+
+	\item 214* = propose 2 heuristic  et randomize 
+	\end{itemize}
+	
+	216* 218* 215* 196*= robot roulant hoover \\
+	
+	191* 190* 211* 212* = low enregie cpp\\
+	177*= multi spectral\\
+	119* 214* 215* 146* 66* 144* 164* 167* 190*=cellule decomposition \\
+	146* 147* = optimization de trajectoire local cpp\\
+	196* =neural Network \\
+	195* 189*= ???
+
 %\subsubsection{ ??sensor positioned in electronic circuit ??}
-\subsection{Robot application}
+%\subsection{Robot application}
 	%\subsubsection{hover robot}
 	%\subsubsection{submarine}
 	
 	
 	!!!!!!!!!!!!!!!!!!!!!!resource!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\ 
 	from 190
-	\subparagraph{CPP random coverage  path plan}
-	\begin{itemize}
-	\item Liu, Y., Lin, X., Zhu, S.: Combined coverage path planning for autonomous cleaning robots in unstructured environments. In: Proc. World Congress on Intelligent Control and Autom., pp. 8271–8276 (2008) 
 
-	\item Luo, C., Yang, S.X.: A bioinspired neural network for
-real-time concurrent map building and complete coverage robot navigation in unknown environments. IEEE
-Trans. Neural Netw. 19(7), 1279–1298 (2008)
-	
-	\item Oh, J.S., Choi, Y.H., Park, J.B., Zheng, Y.F.: Complete coverage navigation of cleaning robots using
-triangular-cell-based map. IEEE Trans. Ind. Electron. 51(3), 718–726 (2004)
-	\end{itemize}
 \subparagraph{Probelm du CPP par Genetic Algo GA }	
 \begin{itemize}
 	\item Jimenez, P.A., Shirnzadeh, B., Nicholson, A., Alici, G.: Optimal area covering using genetic algorithms. In: Proc. IEEE/ASME Int. Conf. Advanced Intelligent Mechatronics, pp. 1–5 (2007)
