@@ -671,7 +671,7 @@ The idea is to split the problem in two sub-problem and optimize its independent
  
  Finally the cellular decomposition is made by the decomposition of the complex area, choose the appropriate  sweep and find the shorter path to connect the cells. 
  
- \paragraph{Decomposition}
+ \paragraph{Decomposition}\label{par:decomposition}
 
  The decomposition in cells has to objective to split the a complex area in several sub-area. The sub-area has to be simpler in term of shape in order to can applies a sweep. 
 Since the 90s numerous algorithm has been developed for the cellular decomposition. Among the algorithms for cellular decomposition, 3 type of decomposition has been made in the survey of choset [214*]and \cite{66*galceran2013}. 
@@ -688,21 +688,62 @@ Since the 90s numerous algorithm has been developed for the cellular decompositi
 	\item Exact cellular decomposition: 
 	The exact cellular decomposition describe the area by create juxtaposed geometrical region. The size of the region (or cells) are not dependent then the robots ability despite the previous decomposition. The large size of the cell allow the  mobile robots to  do back and forth motion to cover all the cell (also called sweep).  The cells have to be ordered to have an efficient and short path passing by all the cells. The path has to limit the distance to pass  between the cells.
 	The exact cellular decomposition became popular and numerous algorithms has been proposed to has  a faster decomposition and with a more appropriate shape depending then the area shape. 
-	Among the numerous exact cellular decomposition the trapezoidal decomposition for this simplicity and historic importance, the Boustrophedon decomposition  and  Morse-based Cellular Decomposition for their important in the construction of other exact cellular decomposition has to be cited. These algorithms and other has been clearly summarized in the survey of Carreras and Galceran \citep{66*galceran2013} 
+	Among the numerous exact cellular decomposition the trapezoidal decomposition for this simplicity and historic importance, the Boustrophedon decomposition  and  Morse-based Cellular Decomposition for their important in the construction of other exact cellular decomposition has to be cited. These algorithms and other has been clearly summarized in the survey of Carreras and Galceran \citep{66*galceran2013}. 
+	The exact cellular decomposition has continue to be studied since the survey of  Carreras and Galceran  \citep{66*galceran2013} and upgraded, as in 144* for propose a decomposition for concave or multiple polygons.
 	
 \end{itemize}
 
-144* (164* 167*) 190* upgrade to talk
 
- survey = 66* 214*
- 
- 
-119* 214* 215* 146*  144* 164* 167* 190*=cellule decomposition \\ 
+
+
+% survey = 66* 214*
+% CPP experimentation (164* 167*)
+% 
+%119* 214* 215* 146*  144* 164* 167* 190*=cellule decomposition \\ 
+
  
  \paragraph{Sweep} 
+	The back and forth or sweep is an essential element of the CPP by cellular decomposition. The sweep has to cover the entire cell.s The cells are splitting the area in relatively simple polygon (as see in the paragraph \ref{par:decomposition}). The sweep has to be adapted then the shape of the cells and also must start and finish in a appropriate position for passing to the next cell.
+	For that the starting point of the sweep and the ending point are crucial for the global path planning.
+	In Torres et al 144* the sweep is function then a direction and can go clockwise or counter-clockwise to have a start and end in the appropriate position for the transition. 
+	 This allow to have 8 different  applicable sweeps at each cell depending then the more appropriate start and finish. The sweep  are adapted depending then : the turn side ( clockwise or counter-clockwise), the direction (horizontal or vertical) and the finishing  position (start and stop form the same side or opposite side).  
+	 The sweep can be also alternatively switch for a spiral as proposed in Jimenez et al [217*]. The proposed sweep and spiral in [217*] are adaptable depending then the context. The sweep can have two direction and for the spiral two turn side (clockwise or counter-clockwise).
+	 
+	To have an adapted sweep the footprint has to be defined depending then the camera ability and the objective. In 144* the size of the sweep is dependent then the area cover by a camera and a sufficient amount of overlap for the 3D reconstruction (see also [191*]). In Li et al  \citep{146*li2011} the foot print of the camera with a small pan is take in account. Due to the pan the camera projection is not a rectangle but a trapezoid. Consequently the sweep size is adapted by taking the larger side of the trapezoid for the sweep dimension.
+	Also for the grid decomposition the sweep size is directly related the coverage ability of the mobile robots (as example in [215*][195*]).  % also 216*+48  215*  195* +55 218*+12  use a sensing camera at the front).
+	
+	One extra element to take in account for the sweep can be in some case the external element as the wind. In [215*][190*] the external condition are taking in account in the cost function and influence the sweep.
+	
+	
+	To summarize the sweep as to be correctly chosen. To choose the appropriate sweep the following ellement has to be taking in account:
+	\begin{itemize}
+		\item The size of  sweep  has to be defined depending then the ability of the camera (foot print size).
+		\item The direction (horizontal or vertical).
+		\item The finishing  position (start and stop form the same side or opposite side)
+		
+	\end{itemize}
+	% The foot print, 
+	 %the type of sweep ( sweep or spiral), the direction (horizontal or vertical), the finishing  position (start and stop form the same side or opposite side) the size of the footprint has to be defined depending then the ability of the camera. 
+	
+	%215* 190* generic cost depending then external condition  and  using spiral or sweep
+	 
+	 %144*  size to the sweep adapted  depending then the footprint of the camera on the ground floor  with propose lot of overlap useful for the 3D reconstruction.  the sweep  is function then a direction  and can go  clockwise or counter-clockwise to have  a start and end in the appropriate position for the transition. 
+	 %This allow to have 8 different sweep applicable at each cell depending then the more apropriate start and finish depending  then the turn side ( clockwise or counter-clockwise), the direction (horizontal or vertical)  and the finishing ( start and stop form the same side or opposite side).  
+	% 217*  propose  sweep and spiral with  different direction  for the sweep and two turn side for the  spiral
+
+	%195* spiral sweeping for on-line coverage (for hoover application)
+	 
+%	209* comparative between cellular decomposition with sweep and a global spiral on the complex shape. (master these)
+	
+	
+    
+ 
+ %décompostion celulurai avec étude sur le remplisage sweep ou  spyrale pour  des zone concave our convex 
+%Ost, G.: Search Path Generation with UAV Applications Using Approximate Convex Decomposition, Masters Thesis. Linkopings universitet, Sweden (2012)
+
  
  \paragraph{Path planning}
- 
+ 217*  GA  for the TSP
 
 \subsubsection{Other solution for CPP}
 
