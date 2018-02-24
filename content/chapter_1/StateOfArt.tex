@@ -536,14 +536,14 @@ The popularity of the PSO is mostly due to the association of the quick implemen
 %####################TODO############################
 \section{Coverage path planning part  CPPP }
 
-To keep on eyes on a vast area composed by numerous obstacles the solution discussed until know was to pose numerous cameras or robotics cameras. This solution is interesting only for monitor a vast area in continue. This solution is really costly and need numerous sensor with an efficient system of communication network to centralized the images collected. All the images must be collected in a real time. This costly system is not usefully in many occasion. 
+The solution put forward in the literature until now to keep on eyes a vast area composed by numerous obstacles was to pose numerous cameras or robotics cameras (as PTZ cameras).  This solution is interesting only to monitor a vast area in continue. This solution is really costly and need numerous sensor with an efficient system of communication network to centralize the images collected. All the images must be collected in a real time. This costly system is not always useful. 
 
-In fact for many application the area need to be controlled periodically. As example  of application the cartographies  with need  just one fly over an area roughly bounded as in [66*], forest fire detection which require a periodic fly over the region as in [237*] and the agriculture need to fly over the field few time the year in order to control by photography the hydration, the maturity ,etc, as in [203*,63*,105*,164*,167*,177*,203*]. \textbf{revoir les ref et trié un peu}.
+In fact, in some application the area needs to be controlled periodically. The periodic control  of the area(and not continue unlike the solution presented until now) can be illustrate with some example :  the cartographies with need just one fly over an area roughly bounded as in \citep{66*galceran2013} [164*], forest fire detection which require a periodic fly over specific and vast region as in [237*], the hoovering robots with need to cover all the area with some time some on-line computation [216* 218* 215* 196*] and the agriculture. For the agriculture application an UAV need to fly over the field few time the year in order to control by photography the hydration, the maturity, etc, as in [203*,63*,105*,164*,167*,177*,203*]. %\textbf{revoir les ref et trié un peu}.
 
-For all this applications the area must be cover but does not need a coverage of all the area instantly and continuously. The solution commonly proposed is to use only one sensor mounted on a mobile robots. The mobile robots have to be adapted to the task and the environment, as flying [105*] ,driving [213*,30*], swimming [66*]. The mobile robot with the sensor move in the space to cover all the area. In this case, the objective is to find the best path for the mobile robot to cover all the area. The best path is dependent then the constraint of each problem. But the common point, is to have the shorter path to cover most of or all the area.
-The following section is focused on finding the best coverage path planing (CPP) for different kind of sensors mounted on mobile robots. To estimate the best CPP different algorithms and methodologies has been applied in the literature  to solve or at least optimize the CPP problems.
+For all these applications the area must be covered but does not need a coverage of all the area instantly and continuously. The solution commonly proposed is to use only one sensor mounted on a mobile robot. Mobile robots have to be adapted to the task and the environment, as flying [105*], driving [213*,30*], swimming [66*]. The mobile robot with the sensor moves in the space to cover all the area. In this case, the objective is to determine the best path for the mobile robot to cover all the area. The best path is dependent then the constraint of each problem. However, the common point, is to have the shorter path to all or at least most of the area.
+The following section is focused on finding the best Coverage Path Planing (CPP) for a sensor mounted on mobile a robot. The sensor can be varied, but  the great majority of the case then it is a camera. To estimate the best CPP different algorithms and methodologies has been applied in the literature to solve or at least optimize the CPP problems.
 
-  The following section is focus on the different algorithms and methodologies applied to solve or at least optimize the coverage path planning problem. In a first time the watchman route problem is introduced to highlight the origin of the CPP problem and the relation with the cameras positioning for optimal coverage. In a second time the more popular solution are discussed.
+  The following section is focussed on the different algorithms and methodologies applied to solve or at least optimize the coverage path planning problem. In a first time, the watchman route problem is introduced to highlight the origin of the CPP problem and the relation with the cameras positioning for optimal coverage. In a second time, the more popular solution are discussed.
  
 
 
@@ -571,14 +571,14 @@ The following section is focused on finding the best coverage path planing (CPP)
 \subsection{AGP  to watchman route problem}
 
 
-Before to explore the solutions proposed for the CPP is essential to understand the  role of the Watchman route Problem (WRP). The WRP is closely related then the CPP  and  the WRP has impacted the research for the CPP. 
- In this section in focused on the definition of WRP in first time. In the second time the solution proposed to solve it and in the last part the limit of the WRP.
-
+Before to explore the solutions proposed for the CPP is essential to understand the role of the Watchman route Problem (WRP). The WRP is closely related than the CPP and the WRP has impacted the research for the CPP. 
+The following sections are focused on the definition of the WRP, the solution proposed in order to solve it, and finally a fast discussion of the limit of the WRP  is proposed.
+ 
 \subsubsection{Definition of the watchmen problem }
 
-The watchman route problem is introduce for the first time by Chin and Ntafos in 1987 54* \cite{54chin}. The problem of the WMP can be summarized in one sentence :
+The watchman route problem is introduce for the first time by Chin and Ntafos in 1987 54* \cite{54chin} . The problem of the WMP can be summarized in one sentence :
 
-"How to calculate a shortest route contained inside a polygon such that any point inside this polygon is visible from at least one point on the route?".  
+\textbf{"How to calculate a shortest route contained inside a polygon such that any point inside this polygon is visible from at least one point on the route?"}.  
 
 The guard have to cover an area represented by a polygon. The guard is considered as perfect with no restriction in the field of view (the guard can see at $360^\circ$) and no restriction in the depth field (form on extremity of the room the guard can see the opposed wall until no obstacle look him). 
 The shape of the polygon is primordial and affect greatly the possible answer and the complexity to solve the WRP.
@@ -702,7 +702,7 @@ Since the 90s numerous algorithm has been developed for the cellular decompositi
 %119* 214* 215* 146*  144* 164* 167* 190*=cellule decomposition \\ 
 
  
- \paragraph{Sweep} 
+ \paragraph{Sweep} \label{par:sweep}
 	The back and forth or sweep is an essential element of the CPP by cellular decomposition. The sweep has to cover the entire cell.s The cells are splitting the area in relatively simple polygon (as see in the paragraph \ref{par:decomposition}). The sweep has to be adapted then the shape of the cells and also must start and finish in a appropriate position for passing to the next cell.
 	For that the starting point of the sweep and the ending point are crucial for the global path planning.
 	In Torres et al 144* the sweep is function then a direction and can go clockwise or counter-clockwise to have a start and end in the appropriate position for the transition. 
@@ -715,13 +715,14 @@ Since the 90s numerous algorithm has been developed for the cellular decompositi
 	One extra element to take in account for the sweep can be in some case the external element as the wind. In [215*][190*] the external condition are taking in account in the cost function and influence the sweep.
 	
 	
-	To summarize the sweep as to be correctly chosen. To choose the appropriate sweep the following ellement has to be taking in account:
+	To summarize the sweep as to be adapted then the area and the relation between cells. To choose the appropriate sweep the following element has to be taking in account:
 	\begin{itemize}
 		\item The size of  sweep  has to be defined depending then the ability of the camera (foot print size).
 		\item The direction (horizontal or vertical).
 		\item The finishing  position (start and stop form the same side or opposite side)
-		
 	\end{itemize}
+To  can has the more appropriate sweep is primordial to know by advance  the cells scheduling when is needed. The cells scheduling is the main part of the path planning.
+
 	% The foot print, 
 	 %the type of sweep ( sweep or spiral), the direction (horizontal or vertical), the finishing  position (start and stop form the same side or opposite side) the size of the footprint has to be defined depending then the ability of the camera. 
 	
@@ -743,101 +744,131 @@ Since the 90s numerous algorithm has been developed for the cellular decompositi
 
  
  \paragraph{Path planning}
- 217*  GA  for the TSP
+ 
+ The path planning as to aims to find the short path passing by all the cells. The path planning became even more tricky in the case of exact cellular decomposition. Or for any decomposition which requires a sweeping inside each cells. In fact in this case, the goal is to have the shorter path planning with taking in account each sweep and transition between cells. In the precedent paragraph \ref{par:sweep} the sweep has been detailed.
+ To find the best scheduling between each cells the algorithm form the TSP are commonly used.     
+ 
+ When the area are decomposed in cells the goal is to schedule the priority of passage from one cell to another in order to create an efficient path passing by all the cells. The scheduling of the cells can be solved to use the paradigm of TSP (Traveling Salesman Problem) to have a path planning. 
+The TSP is well known problem and is  deeply studied form long time ago.  First is essential remember the TSP is an NP-complete and NP-hard problem as proofed in KARP in [236*]. 
+
+To optimize the TSP numerous algorithms was tested and some of them has been specially applied to schedule the cells to have the shorter path. In [60*] two methods was tested before to develop a third. The method used are based on branch and bound algorithms and develop a method called "Novel Previous-Next Waypoints Coverage Constraint" (PNWCC). The algorithms presented in [60*] propose at same time a schedule of each cells with also a smooth trajectory without sharp edges usable for non holonomic driving robots. 
+
+	In the survey of Carreras et Galceran \citep{66*galceran2013} among the solutions proposed to solve the   TSP is to computes an exhaustive walk trough the adjacency graph. This solution is workable only for small adjancy graph. Among the other solution proposed the Genetic Algorithm. The GA is popular to optimize the TSP and is comonly use to evaluate the influence of this parameter as in \citep{68*muhlenbein1989} \citep{80*serpell2010} [139*]. About the CPP problem the GA is used to optimize the TSP in JIMENEZ et al [217] after a exacte cellular decomposition of a complex polygon. 
+	
+The GA is announced well appropriate to have an optimized solution for the TSP. 
+Also the in some situation a  TSP is not realistic and some external constraint can be added as the wind effect, the turbulences, or holonomy constraint (see [102*,56*,66*] \citep{66*galceran2013}).
+ 
+ 
+%236* proof of NP complet and NP-hard
+
+%60* use of TSP = any TSP algorithm can be used  as the branch and bound algorithm. or best choice is to use  the Hearest Neighbor algorithm  and finally propose a Novel PNWCC solution with propose a path without  sharp edges usable for non holonomic driving robots.
+%66* TSP  solver with a  several methode. 
+%217* use of TSP  solved with GA (CPP)217*  GA  for the TSP
+
+%102* TSP with external constraint (wind)
+ 
+%68* asyncorne parallel GA for TSP
+%80* GA mutation rate for TSP 
+%139* GA config for TSP
+%172* TSP GA   Use of GA multi goal for  schedule the charge on  m machine and n job  
+
+%XX 56* evitement d'obstacle et trachectioire 
+%XXX 214* reference of the problem 
+%XXX 164*  use TSP 
+
 
 \subsubsection{Other solution for CPP}
 
-
-
-In choset et al 214*  some heuristic and randomized solution has been presented.    
-one of the basic heuristic is to follow the boundary of the area to cover. (R.A. Brooks, A robust layered control system for a mobile robot, IEEE J. Robotics Autom. (1986)   et
-  E. Gat and G. Dorais, Robot navigation by conditional sequencing, in: Proc. IEEE Int. Conf. on
-Robotics and Automation, San Diego, CA (May 1994) pp. 1293–1299. )
-
-	\begin{itemize}
-	\item Liu, Y., Lin, X., Zhu, S.: Combined coverage path planning for autonomous cleaning robots in unstructured environments. In: Proc. World Congress on Intelligent Control and Autom., pp. 8271–8276 (2008) 
-
-	\item Luo, C., Yang, S.X.: A bioinspired neural network for
-real-time concurrent map building and complete coverage robot navigation in unknown environments. IEEE
-Trans. Neural Netw. 19(7), 1279–1298 (2008) == PDF TNN2008  cite 132  neural network pour  robot aspirateur  avec construction de la map  et complet couverture  
-	
-	\item Oh, J.S., Choi, Y.H., Park, J.B., Zheng, Y.F.: Complete coverage navigation of cleaning robots using
-triangular-cell-based map. IEEE Trans. Ind. Electron. 51(3), 718–726 (2004) == pdf navigation-robot.pdf   robot roulant construction de son univer ajout de direction possible
-
-	\item 214* = propose 2 heuristic  et randomize 
-	\end{itemize}
+%
+%In choset et al 214*  some heuristic and randomized solution has been presented.    
+%one of the basic heuristic is to follow the boundary of the area to cover. (R.A. Brooks, A robust layered control system for a mobile robot, IEEE J. Robotics Autom. (1986)   et
+%  E. Gat and G. Dorais, Robot navigation by conditional sequencing, in: Proc. IEEE Int. Conf. on
+%Robotics and Automation, San Diego, CA (May 1994) pp. 1293–1299. )
+%
+%	\begin{itemize}
+%	\item Liu, Y., Lin, X., Zhu, S.: Combined coverage path planning for autonomous cleaning robots in unstructured environments. In: Proc. World Congress on Intelligent Control and Autom., pp. 8271–8276 (2008) 
+%
+%	\item Luo, C., Yang, S.X.: A bioinspired neural network for
+%real-time concurrent map building and complete coverage robot navigation in unknown environments. IEEE
+%Trans. Neural Netw. 19(7), 1279–1298 (2008) == PDF TNN2008  cite 132  neural network pour  robot aspirateur  avec construction de la map  et complet couverture  
+%	
+%	\item Oh, J.S., Choi, Y.H., Park, J.B., Zheng, Y.F.: Complete coverage navigation of cleaning robots using
+%triangular-cell-based map. IEEE Trans. Ind. Electron. 51(3), 718–726 (2004) == pdf navigation-robot.pdf   robot roulant construction de son univer ajout de direction possible
+%
+%	\item 214* = propose 2 heuristic  et randomize 
+%	\end{itemize}
 	
 	216* 218* 215* 196*= robot roulant hoover \\
 	
 	191* 190* 211* 212* = low enregie cpp\\
-	177*= multi spectral\\
-	119* 214* 215* 146* 66* 144* 164* 167* 190*=cellule decomposition \\
-	146* 147* = optimization de trajectoire local cpp\\
-	196* =neural Network \\
-	195* 189*= ???
-
-%\subsubsection{ ??sensor positioned in electronic circuit ??}
-%\subsection{Robot application}
-	%\subsubsection{hover robot}
-	%\subsubsection{submarine}
-	
-	
-	!!!!!!!!!!!!!!!!!!!!!!resource!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\ 
-	from 190
-
-\subparagraph{Probelm du CPP par Genetic Algo GA }	
-\begin{itemize}
-	\item Jimenez, P.A., Shirnzadeh, B., Nicholson, A., Alici, G.: Optimal area covering using genetic algorithms. In: Proc. IEEE/ASME Int. Conf. Advanced Intelligent Mechatronics, pp. 1–5 (2007)
-	
-	\item Wang, M., Tan, S., Yan, L.: Complete coverage path planning of wall-cleaning robot using visual sensor. In: Proc. Int. Conf. Electronic Measurement and
-Instruments, pp. 159–164 (2007)
-
-	\item Zhang, G., Ferrari, S., Qian, M.: An information
-roadmap method for robotic sensor path planning. J. Intell. Robot. Syst. 56(1–2), 69–98 (2009)
-	\end{itemize}
-
-
-\subparagraph{CPP  résolution par  neural Network pour certain une gestion dinamique de obstacle  }	
-\begin{itemize}
-	\item Lee, T.K., Baek, S.H., Oh, S.Y., Choi, Y.H.: Complete coverage algorithm based on linked smooth spiral paths for mobile robots. In: Proc. Int. Conf. Control, Automation, Robotics and Vision, pp. 609–614 (2010)
-
-	
-	\item Yang, S.X., Luo, C.: A neural network approach to complete coverage path planning. IEEE Trans. Syst. Man Cybern. 34(1), 718–725 (2004)
-
-
-
-	\item Luo, C., Yang, S.X., Stacey, D.A., Jofriet, J.C.: A solution to vicinity problem of obstacles in complete coverage path planning. In: Proc. IEEE Int. Conf. Robotics
-and Automation, pp. 612–617 (2002)
-
-\item Qiu, X., Song, J., Zhang, X., Liu, S.: A complete coverage path planning method for mobile robot in uncertain environments. In: Proc. World Congress on
-Intelligent Control and Automation, pp. 8892–8896 (2006)
-
-
-\item Qiu, X., Liu, S., Yang, S.X.: A rolling method for 
-complete coverage path planning in uncertain environments. In: Proc. IEEE Int. Conf. Robotics and
-Biomimetics, pp. 146–151 (2004)
-
-\item Luo, C., Yang, S.X., Stacey, D.A.: Real-time path planning with deadlock avoidance of multiple cleaning
-robots. In: Proc. IEEE Int. Conf. Robotics and Automation, pp. 4080–4085 (2003) 
-
-	\end{itemize}
-
-\subparagraph{survey  sur la décomposition  linaire }
-	\begin{itemize}
-	\item Choset, H.: Coverage for robotics-a survey of recent results. Ann. Math. Artif. Intell. 31, 113–126 (2001)
-	
-	\end{itemize}
-	
-	\paragraph{66*  points clé}
-	coverage path planning in the 3D space (UAV and Subamrine)\\ 
-	cellular decomposition :  requantangle cellul  ;  trapezoidal decomposition ; Boustrophedon Decomposition; Morse-based Cellular Decomposition ; online Morse-based Boustrophedon Decomposition ; Landmark-based Topological; slice Decomposition ;On-line Topological Coverage Algorithm ;Contact Sensor-based Coverage of Rectilinear Environments;Grid-based Methods;Grid-based Coverage using the Wavefront Algorithm;Neural Network-based Coverage on Grid Maps
-Coverage 
-		\paragraph{214* choset}
-		heurisitc and randomized approche :  propose a solution  on multi robot repultion system to spread the  robot  in the space and  use   a random motion  as strategie to explore the area[5,27]. \\(T. Balch and R.C. Arkin, Communication in reactive multiagent robotic systems, Autonom. Robots 1995) , unknown obstacles of arbitrary shape, Algorithmica 2 (1987) 403–430. ;:;\\ D. MacKenzie and T. Balch, Making a clean sweep: Behavior based vacuuming, in: AAAI Fall Symposium, Instationating Real-World Agents (1996). )
-		
-		\paragraph{Semi-approximate}
-		Hert and Lumelsky : propose a system based on cell decomposition  and   boundary folowing 
-		
-		\paragraph{multi robots}
+%	177*= multi spectral\\
+%	119* 214* 215* 146* 66* 144* 164* 167* 190*=cellule decomposition \\
+%	146* 147* = optimization de trajectoire local cpp\\
+%	196* =neural Network \\
+%	195* 189*= ???
+%
+%%\subsubsection{ ??sensor positioned in electronic circuit ??}
+%%\subsection{Robot application}
+%	%\subsubsection{hover robot}
+%	%\subsubsection{submarine}
+%	
+%	
+%	!!!!!!!!!!!!!!!!!!!!!!resource!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\ 
+%	from 190
+%
+%\subparagraph{Probelm du CPP par Genetic Algo GA }	
+%\begin{itemize}
+%	\item Jimenez, P.A., Shirnzadeh, B., Nicholson, A., Alici, G.: Optimal area covering using genetic algorithms. In: Proc. IEEE/ASME Int. Conf. Advanced Intelligent Mechatronics, pp. 1–5 (2007)
+%	
+%	\item Wang, M., Tan, S., Yan, L.: Complete coverage path planning of wall-cleaning robot using visual sensor. In: Proc. Int. Conf. Electronic Measurement and
+%Instruments, pp. 159–164 (2007)
+%
+%	\item Zhang, G., Ferrari, S., Qian, M.: An information
+%roadmap method for robotic sensor path planning. J. Intell. Robot. Syst. 56(1–2), 69–98 (2009)
+%	\end{itemize}
+%
+%
+%\subparagraph{CPP  résolution par  neural Network pour certain une gestion dinamique de obstacle  }	
+%\begin{itemize}
+%	\item Lee, T.K., Baek, S.H., Oh, S.Y., Choi, Y.H.: Complete coverage algorithm based on linked smooth spiral paths for mobile robots. In: Proc. Int. Conf. Control, Automation, Robotics and Vision, pp. 609–614 (2010)
+%
+%	
+%	\item Yang, S.X., Luo, C.: A neural network approach to complete coverage path planning. IEEE Trans. Syst. Man Cybern. 34(1), 718–725 (2004)
+%
+%
+%
+%	\item Luo, C., Yang, S.X., Stacey, D.A., Jofriet, J.C.: A solution to vicinity problem of obstacles in complete coverage path planning. In: Proc. IEEE Int. Conf. Robotics
+%and Automation, pp. 612–617 (2002)
+%
+%\item Qiu, X., Song, J., Zhang, X., Liu, S.: A complete coverage path planning method for mobile robot in uncertain environments. In: Proc. World Congress on
+%Intelligent Control and Automation, pp. 8892–8896 (2006)
+%
+%
+%\item Qiu, X., Liu, S., Yang, S.X.: A rolling method for 
+%complete coverage path planning in uncertain environments. In: Proc. IEEE Int. Conf. Robotics and
+%Biomimetics, pp. 146–151 (2004)
+%
+%\item Luo, C., Yang, S.X., Stacey, D.A.: Real-time path planning with deadlock avoidance of multiple cleaning
+%robots. In: Proc. IEEE Int. Conf. Robotics and Automation, pp. 4080–4085 (2003) 
+%
+%	\end{itemize}
+%
+%\subparagraph{survey  sur la décomposition  linaire }
+%	\begin{itemize}
+%	\item Choset, H.: Coverage for robotics-a survey of recent results. Ann. Math. Artif. Intell. 31, 113–126 (2001)
+%	
+%	\end{itemize}
+%	
+%	\paragraph{66*  points clé}
+%	coverage path planning in the 3D space (UAV and Subamrine)\\ 
+%	cellular decomposition :  requantangle cellul  ;  trapezoidal decomposition ; Boustrophedon Decomposition; Morse-based Cellular Decomposition ; online Morse-based Boustrophedon Decomposition ; Landmark-based Topological; slice Decomposition ;On-line Topological Coverage Algorithm ;Contact Sensor-based Coverage of Rectilinear Environments;Grid-based Methods;Grid-based Coverage using the Wavefront Algorithm;Neural Network-based Coverage on Grid Maps
+%Coverage 
+%		\paragraph{214* choset}
+%		heurisitc and randomized approche :  propose a solution  on multi robot repultion system to spread the  robot  in the space and  use   a random motion  as strategie to explore the area[5,27]. \\(T. Balch and R.C. Arkin, Communication in reactive multiagent robotic systems, Autonom. Robots 1995) , unknown obstacles of arbitrary shape, Algorithmica 2 (1987) 403–430. ;:;\\ D. MacKenzie and T. Balch, Making a clean sweep: Behavior based vacuuming, in: AAAI Fall Symposium, Instationating Real-World Agents (1996). )
+%		
+%		\paragraph{Semi-approximate}
+%		Hert and Lumelsky : propose a system based on cell decomposition  and   boundary folowing 
+%		
+%		\paragraph{multi robots}
 		
 		
