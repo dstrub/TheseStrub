@@ -1,4 +1,4 @@
-\chapter{Problem modelisation}\label{chap:formulation}
+\chapter{Problem modeling}\label{chap:formulation}
 % comit 21-11-2017
 \minitoc
 
@@ -112,7 +112,7 @@ g_i \in Pc \mbox{ IFF } g_i \mbox{ is coverd. }
 		\minipage{0.85\textwidth}
   		\includegraphics[width=\linewidth]{img/CamProjectOnGrid.png}
   
- 	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid $G$ is placed on the floor to discretize the area covered with numerous grid point $g_i$. The point cover by the camera $Pc$ are noted in red}\label{fig:cam_projOnGrid}
+ 	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid $G$ is placed on the floor to discretize the area covered with numerous grid point $g_i$. The point cover by the camera $Pc$ are noted in red.}\label{fig:cam_projOnGrid}
 \end{figure*}
 The design of the grid is an important element of the problem formulation. Different solution has been proposed during the time with different advantage depending on the situation.\\
 
@@ -221,9 +221,9 @@ Different distribution can be used, but commonly in the literature the grid patt
 \begin{center}
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/randomGridRef171.png}
-  \caption{ (a )area  to cover.\\   
+  \caption{ (a )Area  to cover.\\   
 (c) Importance of the area.\\  
-(b) grid representation.}\label{fig:randomGridRef171}
+(b) Grid representation.}\label{fig:randomGridRef171}
   \endminipage\hfill
   \end{center}
 \end{figure}
@@ -401,16 +401,16 @@ The following paragraph surmise the different way to represent the area. The are
 \end{tabular}
 };
 %\draw[->,ultra thick](a)--(b);
-\draw [->,very thick] (3.98,1.02) -- (16,1.02) -- (16,-2);
-\draw [->,very thick] (3.98,0.51) -- (14,0.51) -- (14,-2);
-\draw [->,very thick] (3.98,0.0) -- (9,0.) -- (9,-2);
-\draw [->,very thick] (3.98,-0.51) -- (7,-0.5) -- (7,-2);
-\draw [->,very thick] (3.98,-1.02) -- (6.2,-1.02) -- (6.2,-2);
+\draw [->,very thick] (4.25,1.02) -- (16,1.02) -- (16,-2);
+\draw [->,very thick] (4.25,0.51) -- (14,0.51) -- (14,-2);
+\draw [->,very thick] (4.25,0.0) -- (9,0.) -- (9,-2);
+\draw [->,very thick] (4.25,-0.51) -- (7,-0.5) -- (7,-2);
+\draw [->,very thick] (4.25,-1.02) -- (6.2,-1.02) -- (6.2,-2);
 
 %\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
 %\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2);
 \end{tikzpicture}
- \caption{sum-up of the grid map.}\label{tab:mapSumUp}
+ \caption{Sum-up of the grid map.}\label{tab:mapSumUp}
 \end{table}	
  
  
@@ -579,9 +579,10 @@ In this condition the efficiency of the function $f()$ in charge then, computes 
 \subsubsection{Coverage estimation optimization} \label{sec:coverageEstimation}
 Design an efficient cost function is necessary to reduce the time computation and estimates the area covered. A good estimation of the area covered is primordial for the optimisation process. 
   The computation of a camera projection have to be minimized with some basic assumption depending on the problems.\\
-Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotations in $\alpha$ (pan) and $\beta$ (tilt). It is possible to compute for a given altitude the area covered by one camera, based on the given parameters. Especially the focal length $f$, the altitude of the cameras and the sensor size $Sw\times Sh$. 
-In this model the camera projection is always a rectangle as described in Figure \ref{fig:cam_proj}. To estimate the shape of the rectangle with is deduced from the ratio of $s$ and the size of this rectangle with is deduced from $(f ,s ,A)$. Where $A$ is the altitude. The altitude is the distance between the grid and the cameras, in the simple case $A$ is considered to be equal to $z$, when the grid is on the floor.  \\
-The basic computation to estimate the size of a camera projection :
+Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotations in $\alpha$ (pan) and $\beta$ (tilt). It is possible to compute for a given altitude the area covered by one camera, based on the given parameters. Especially the focal length $f$, the altitude of the cameras $A$ and the sensor size $Sw\times Sh$. \\
+In this model the camera projection is always a rectangle as described in Figure \ref{fig:cam_proj}. 
+The altitude is the distance between the grid and the cameras, in the simple case $A$ is considered to be equal to $z$, when the grid is on the floor.  \\
+Based on the useful parameters form the camera $(f ,Sw\times Sh ,A)$ the computation to estimate the size of a camera projection ($Wr$,$Hr$) is :
 
 %\begin{equation}
 %s= [Sw ; Sh]  %\mbox{   } Sw,Sh \in \mathbb{N} 
@@ -589,22 +590,25 @@ The basic computation to estimate the size of a camera projection :
 %
 %\noindent Where $Sw$, sensor size width. \\
 %Where $Sh$, sensor size height.
-	\begin{equation} \label{eq:etaUpsilon}
- 	 \begin{split}
-		\eta = 2\times \tan^{-1} (\frac{Sw}{(2\times f)}  ) 
- 	   \\
-		\upsilon = (\frac{Sw}{Sh} )\times \eta
- 	 \end{split}
+
+%Where $\eta$, $\upsilon$ are the horizontal and vertical camera fields of view.\\
+%Estimating the width and height of the rectangle projected on the ground depend on the altitude $A$ :
+%	\begin{equation}\label{eq:WrHr1}
+%		\begin{split}
+%    		Wr= 2\times A\times\tan \frac{\eta}{2}
+%    	    \\
+%    	    Hr= 2\times A\times\tan \frac{\upsilon}{2}
+%    	 \end{split}
+%	\end{equation} 
+	
+	
+	\begin{equation} \label{eq:WrHr1}
+	\begin{split}
+			Wr=(\frac{1}{f} . Sw).A\\
+			Hr=(\frac{1}{f} . Sh).A
+     \end{split} 
 	\end{equation}
-Where $\eta$, $\upsilon$ are the horizontal and vertical camera fields of view.\\
-Estimating the width and height of the rectangle projected on the ground depend on the altitude $A$ :
-	\begin{equation}\label{eq:WrHr1}
-		\begin{split}
-    		Wr= 2\times A\times\tan \eta
-    	    \\
-    	    Hr= 2\times A\times\tan \upsilon
-    	 \end{split}
-	\end{equation} 
+	
 	\begin{figure*}[t!]
 		\centering
 		\minipage{0.85\textwidth}
@@ -613,40 +617,39 @@ Estimating the width and height of the rectangle projected on the ground depend 
  	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid is placed on the floor to discretize 	the area covered.}\label{fig:cam_proj}
 	\end{figure*}
 
-Therefore, the size of the rectangle projected onto the floor is $(Wr,Hr)$ for the width and height. The values of $Wr$ and $Hr$ are directly linked to the altitude of the camera. In the simple case and in the initialization, $A$ is equal to $z$  and $z$ is selected in a range given by the UAV or the user. \\
-Once the couple $(Wr,Hr)$ as been computed for a $A=z$ it is easier to change the altitude of the camera. The rectangle projection will be affected in proportion.
-	\begin{equation}\label{eq:A.coef}
-		\begin{split}
- 		   	f(A)= (Wr,Hr) \text{ based on eq \ref{eq:WrHr1}}\\
-    		f(A.Coef)=f(z)= (Wr.Coef,Hr.Coef)      
-    	 \end{split} 
-	\end{equation}
-Therefore, to any altitude $z$ is existing $A.Coef$ where the size of the camera projection onto the floor is $(Wr.coef, Hr.coef)$. Thanks to this the eq: \ref{eq:etaUpsilon} and eq: \ref{eq:WrHr1} have to be compute once  for a given focal length $f$ and sensor $s$ with an simple $A=z$. Adding simple $Coef$ the size of camera projection can be easily simplified in order to limit the useless computation (only 2 multiplication instead then equation \ref{fig:cam_proj} and \ref{eq:etaUpsilon}.
-The model of camera projection is greatly simplified by the UAV assumption (fix pan, tilt and focal length). That permits to consider the camera projection as a simple rectangle with a size directly related to the altitude (by using a simple coefficient $Coef$).\\
+%Therefore, the size of the rectangle projected onto the floor is $(Wr,Hr)$ for the width and height. The values of $Wr$ and $Hr$ are directly linked to the altitude of the camera. 
+
+
+%In the simple case and in the initialization, $A$ is equal to $z$ and $z$ is selected in a range given by the UAV or the user. \\
+%Once the couple $(Wr,Hr)$ as been computed for a $A=z$ it is easier to change the altitude of the camera. The rectangle projection will be affected in proportion.
+%	\begin{equation}\label{eq:A.coef}
+%		\begin{split}
+% 		   	f(A)= (Wr,Hr) \text{ based on eq \ref{eq:WrHr1}}\\
+%    		f(A.Coef)=f(z)= (Wr.Coef,Hr.Coef)      
+%    	 \end{split} 
+%	\end{equation}
+%Therefore, to any altitude $z$ is existing $A.Coef$ where the size of the camera projection onto the floor is $(Wr.coef, Hr.coef)$. Thanks to this the eq: \ref{eq:etaUpsilon} and eq: \ref{eq:WrHr1} have to be compute once  for a given focal length $f$ and sensor $s$ with an simple $A=z$. Adding simple $Coef$ the size of camera projection can be easily simplified in order to limit the useless computation (only 2 multiplication instead then equation \ref{fig:cam_proj} and \ref{eq:etaUpsilon}.
+The model of camera projection is greatly simplified by the UAV assumption (fix pan, tilt and focal length). That permits to consider the camera projection as a simple rectangle with a size directly related to the altitude. The altitude is assuming to be a coefficient of  the Equation \ref{eq:WrHr1}\\
 %The simplification by modelling all the cameras with a fix orientation and same ability (in order to have a rectangle projection onto the ground) 
-All this simplification helps the cost function to be fast and efficient. \\
+All this simplification helps the cost function to be fast and efficient.  In fact in the Equation \ref{eq:WrHr1} the parameters focal length and the sensor size are fixed and do not need to be recomputed for each camera position only the altitude $A$ has to be updated.\\
 
 \subsection{Parameter to optimize }\label{sec:parameterToOptimize}
-% en raison de 
-By dint of the simplification presented previously the vector of parameters (\ref{eq:v}) can be simplified too.\\
-To summarize,  the computation of one camera projection onto the floor, where the floor is represented by a grid for the area to cover, and the camera is in altitude with a looking direction orthogonal to the floor. Just few parameter are necessary  as showed in equation  \ref{eq:etaUpsilon} %{eq:WrHr1 , }
-to \ref{eq:A.coef}. Thanks to that the equation (\ref{eq:v}) can be reduced with keeping only the position of the camera and the roll as:
+% en raison de    ref 191*
+By dint of the simplification presented previously the vector of parameters (see Equation \ref{eq:v}) can be simplified.
+To summarize,  the computation of one camera projection onto the floor, where the floor is represented by a grid for the area to cover, and the camera is in altitude with a looking direction orthogonal to the floor. Just few parameter are necessary as showed in equation  \ref{eq:WrHr1}. Thanks to this design the Equation \ref{eq:v} can be reduced with keeping only the position of the camera and the roll as:
 	\begin{equation}\label{eq:v2}
-		v=(x,y,z,\gamma )
-	\end{equation}
-	or also
-	\begin{equation}\label{eq:v2}
-		v=(x,y,A.coef,\gamma )
+		v=(x,y,z,\gamma ) \text{ or also } v=(x,y,A,\gamma )
 	\end{equation}
 
-Reducing the number of  parameters, passing to the equation \ref{eq:v} to \ref{eq:v2} are really usefully to the optimisation of the problem. The reduction of the number of parameter will greatly affect the optimisation process.\\
+
+Reducing the number of  parameters, passing to the equation \ref{eq:v} to \ref{eq:v2} are really usefully to the optimisation of the problem. The reduction of the number of parameter will greatly affect the optimisation process.
  Indeed, in addition to reduce the time computation, this simplification reduce the number of parameters to optimize.   
 
-Until now the camera projection estimation as was addressed with only one camera. But we want to compute the coverage for a set of cameras. \\
-The solution is based on the previous estimation for the camera projection, but adapts to the location of each camera. By  positioning the rectangle projection to have the center of it at the $x$ and $y$ position and compute the occupation grid.\\
+Until now the camera projection estimation  was addressed with only one camera. But we want to compute the coverage for a set of cameras. 
+The solution is based on the previous estimation for the camera projection, but adapts to the location of each camera. By positioning the rectangle projection to have the center of it at the $x$ and $y$ position and compute the occupation grid.
 
-In order to win a bit of time, each point of the grid already cover by a camera are note tested for the next cameras. This small modification will impact positively the computation time for the coverage estimation of a network of camera. That mean in the equation \ref{eq:sum sum v g} the value of $m$ decrease as $i$ increase. More exactly  the size of $m$ decrease as  the area coverage increase.  
-\\
+In order to win a bit of time, each point of the grid already cover by a camera are note tested for the next cameras. This small modification will impact positively the computation time for the coverage estimation of a network of cameras. That mean in the equation \ref{eq:sum sum v g} the value of $m$ decrease as $i$ increase. More exactly the size of $m$ decrease as the area coverage increase.  
+
 
 \subparagraph{Representation of the parameters to optimize. \\}
 
@@ -711,9 +714,9 @@ Fixes parameters of the cameras and no rotations ($\alpha$ and $\beta$) has been
  When the altitude is not fixed some limit must be chosen to avoid the extremely high and low altitude. The highest altitude will be fixed depending on the UAV ability and other restrictions as the laws. The lowest altitude has to be fixed for the safety of the user under the UAV.  
 In practice the boundary of the $z$ is defined with :
  \begin{equation}\label{eq:boundaryZ}
-   \inf z\leq A.Coef\leq \sup z  
+   \inf A\leq A\leq \sup A  
  \end{equation} 
- Where $\sup z$ is the maximal altitude of the camera and $\inf z$ the minimum altitude. $A$ is the fix altitude  of a camera where the camera projection has been computed with $A=z$ with only $coef$ vary as introduced in Equation \ref{eq:A.coef}. 
+ Where $\sup A$ is the maximal altitude of the camera and $\inf A$ the minimum altitude. $A$ is the altitude between the cameras and the grid. %$A$ is the fix altitude of a camera where the camera projection has been computed with $A=z$ with only $coef$ vary as introduced in Equation \ref{eq:A.coef}. 
  
  \subparagraph{The map boundary}
 The map boundary is a constraint similar then the altitude boundary. Despite the shape of an area to cover some maximum boundary can be made. In fact for any shape as complex as it, it is  possible to encapsulate in a rectangle. The rectangle map boundary is defined by a width $W$ and height $H$. The boundary on $x$ and $y$ are:
@@ -727,7 +730,7 @@ The map boundary is a constraint similar then the altitude boundary. Despite the
 By associating the altitude boundary (from Eq\ref{eq:boundaryZ}), a cube boundary limits the position of the cameras in the 3 dimensional spaces. 
 \begin{equation}\label{eq:3dBoundary}
   \begin{array}{lclcl}
-  	0\leq x\leq W \\ 0\leq y\leq H  \\ \inf z\leq A.Coef\leq \sup z  
+  	0\leq x\leq W \\ 0\leq y\leq H  \\ \inf A\leq A\leq \sup A  
   \end{array} 
  \end{equation} 
  
@@ -755,7 +758,7 @@ To implement this constraint the solution applied during the experiments (presen
 The resolution of the images is related then the sensor size (in px) and the distance between the camera and the object filmed. In our case, the sensor size is fixed by the properties of the camera mounted on the UAV and the object filmed is the floor of the area to cover. In this case, the distance between the camera and floor is the altitude. \\
 The resolution constraint has to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be the lower possible.\\
 Considering only the resolution constraint as minimizing the average altitude of the cameras is harmful for the coverage optimization.
-Consequently, during the optimization a trade off between the altitude (and the related resolution) and the coverage rate have to be done $\min{\frac{\sum^n_{i=1}{A.coef_i}}{n}}$ and the coverage rate. In order to manage this trade off, the average altitude of the cameras is included in the cost function (see section  \ref{sec:costFun}).  \\
+Consequently, during the optimization a trade off between the altitude (and the related resolution) and the coverage rate have to be done $\min{\frac{\sum^n_{i=1}{A_i}}{n}}$ and the coverage rate. In order to manage this trade off, the average altitude of the cameras is included in the cost function (see section  \ref{sec:costFun}).  \\
  
 \subsection{Constraint types}
  

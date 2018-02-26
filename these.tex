@@ -301,27 +301,12 @@
 %% The content of the PhD thesis
 \mainmatter
  
-\part{Contexte et Problématiques}
+
 
 \chapter{content/introduction/}
   
 \section{Context and motivation}
 
-Ce squelette d'écrit quelques éléments pouvant vous aider pour écrire votre ouvrage de thèse.
-Un plan typique d'une thèse scientifique est également proposé. ss\cite{Wang1996} 122* 
-teste cite \cite{118*}
-
-
-\section{scope and challenges}
-quelle son les point  bloquant  en qlq ligne 
-\section{Contribution }
-postionement de  camera :  problem formulation  
-						   GA 
-						   results 
-CPPP :  decoupe du problem
-		par plan
-		result and solution 
-\section{Organisation }
 
 \begin{emphbox}
 	do some things!
@@ -508,6 +493,14 @@ Vous pouvez formatter les noms de personnes de manière uniforme, comme par exem
 %\include{content/Glosaire/glossaire}
 \chapter{Premier chapitre des annexes}
 
-
+Computation to compute the $\eta, \upsilon$. Where $\eta, \upsilon$ are the horizontal and vertical camera field of view.
+	\begin{equation} \label{eq:etaUpsilon}
+ 	 \begin{split}
+		\eta = 2\times \tan^{-1} (\frac{Sw}{(2\times f)}  ) 
+ 	   \\
+		\upsilon = (\frac{Sw}{Sh} )\times \eta
+ 	 \end{split}
+	\end{equation}
+	The Equation \ref{eq:etaUpsilon} is to complete the Figure \ref{fig:cam_proj}.
  
 \end{document}

@@ -35,10 +35,10 @@ The coverage is the main objective but is not the finality. An efficient coverag
 The focus of this study is to find the best position of each camera in order to maximize the covered area. To do that, it is important to define what is exactly mean "covered". Based on the literature the covered area can be varied, depending on the finality. 
 % Among the huge possible definition more or less restrictive the more interesting to studied is discussed: 
 \begin{figure}[t!]
-\minipage{0.85\textwidth}
+\center
+\minipage{0.75\textwidth}
    \includegraphics[width=\linewidth]{img/objectCoverFrom142.png}
-  \caption{ Computed camera network pose estimation with the corresponding flight path (yellow) for an 3D object full coverage. This result is from Hoppe et al \cite{142*hoppe2012}. 
-.}\label{fig:ObjectCover142}
+  \caption{ Computed camera network pose estimation with the corresponding flight path (yellow) for an 3D object full coverage. This result is from Hoppe et al \cite{142*hoppe2012}.}\label{fig:ObjectCover142}
   \endminipage\hfill
 \end{figure}
 
@@ -61,10 +61,10 @@ Finally one of the most simplest  view of the coverage concern the outside and i
 
 
 \begin{figure}[t!]
-\minipage{0.85\textwidth}
+\center
+\minipage{0.75\textwidth}
    \includegraphics[width=\linewidth]{img/MapRoI165.png}
-  \caption{ Map of an area to cover with  crucial sub area (region of interest) the normal sub-area  and obstacle. This map is an example of area coverage  introduce in  Jiang et al \cite{165*jiang2010}. 
-.}\label{fig:MapRoI165}
+  \caption{ Map of an area to cover with  crucial sub area (region of interest) the normal sub-area  and obstacle. This map is an example of area coverage  introduce in  Jiang et al \cite{165*jiang2010}. }\label{fig:MapRoI165}
   \endminipage\hfill
 \end{figure}
 
@@ -175,9 +175,10 @@ For our case the discipline the more interesting is the coverage of an area with
 
 	\subsection{Sensor at 360}
 	\begin{figure}[t!]
+	\center
 \minipage{0.55\textwidth}
    \includegraphics[width=\linewidth]{img/WsnSensor1.png}
-  \caption{ one omnidirectional sensor centred on $u$, with a radius $r$ for the range.}\label{fig:WsnSensor1}
+  \caption{ One omnidirectional sensor centred on $u$, with a radius $r$ for the range.}\label{fig:WsnSensor1}
   \endminipage\hfill
 \end{figure}
 
@@ -311,10 +312,10 @@ So the objectives are not independently optimize, moreover  the  solution propos
 Otherwise this method have some limit, as show in the experiment the area is relatively restricted and numerous cameras with a fixed position are useful. The consequences is the quantity of overlap relatively important. In this case the number of sensor is not well optimize to cover the area. Also to use properly this method for maximum coverage it requires a large number of simulated target in the region to observe. 
 
 \begin{figure}[t!]
+\center
 \minipage{0.55\textwidth}
    \includegraphics[width=\linewidth]{img/CoverageFrom18.png}
-  \caption{ result of coverage after have used the game theory with objective to maximize the tracking and the resolution. result obtained in the experiment presented in \cite{18*ding2012}}\label{fig:CoverageFrom18}
-  \endminipage\hfill
+  \caption{ Result of coverage after have used the game theory with objective to maximize the tracking and the resolution. Result obtained in the experiment presented in \cite{18*ding2012}.}\label{fig:CoverageFrom18}\endminipage\hfill
 \end{figure}
 	
 	%%%%%%%%%%%table sum up%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -22,7 +22,7 @@ First, the increasing  size of a room, will increase in proportion the size of t
  The room finally used for the experimentation are proposed in the \figref{fig:Rooms_shapes}.
 
  
- \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px)}{fig:Rooms_shapes} \centering
+ \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px)}{fig:Rooms_shapes}. \centering
 \mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room}{subfig:r1}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/fig7-b.png}{Big room}{subfig:r2}
@@ -48,10 +48,10 @@ The particle swarm optimisation and the random selection is described in the fol
 \subsection{PSO }
 
 The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is a stochastic algorithms from the family of evolutionary algorithms (see chapter \ref{chap:EA}). 
-The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 [148* bis]\cite{148*eberhart1995}. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it appends here from the bird flocking, fish schooling and swarming theory. These are animals working in a group to seek food. 
+The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 \cite{148*eberhart1995}. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it appends here from the bird flocking, fish schooling and swarming theory. These are animals working in a group to seek food. 
 The direction to take is not decided by one leader, but by all individuals in the swarm by relaying just few informations as what quantities of food they found. 
 The swarm composed by numerous individuals became smarter and more efficient to reach their objective. 
-The algorithm proposed by Russel Eberhart and James Kennedy in [148* bis] \cite{148*eberhart1995} are directly inspired by these behaviours.
+The algorithm proposed by Russel Eberhart and James Kennedy in  \cite{148*eberhart1995} are directly inspired by these behaviours.
 
 The methodologies used, is to examine each individual or also called particles as a solution of the problems. The problem is optimized at each iteration. To do that each solution must be comparable and quantifiable. At each iteration, each particle has to be tested by a cost function in order to discriminate the best particles of the swarm. The cost function and the design of it has been detailed in the chapter \ref{chap:formulation}.
 When the best particle is found at the end of an iteration, the other particles of set, try to change their initial direction to converge more or less quickly to the actual best. 
@@ -293,7 +293,7 @@ The set-up of the GA has been slightly modified by increasing the mutation ratio
 \begin{figure}[t]
 \minipage{0.85\textwidth}
   \includegraphics[width=\linewidth]{img/GAPSO_GA_PSO3waypoint.eps}
-  \caption{comparison between GA PSO and the hybridization of GAPSO.
+  \caption{Comparison between GA PSO and the hybridization of GAPSO.
 }\label{fig:GAPSO}
   \endminipage\hfill
 \end{figure}
@@ -453,7 +453,7 @@ Thanks to this tries the size of the area to cover and the number of waypoints c
 \mfigure{width=.4\linewidth}{img/fig12-b2.png}{The mask of the area to cover.}{subfig:satimgMaskFley}
 \mfigure{width=.4\linewidth}{img/fig12-c2.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverageFley}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/fig12-d4.png}{The final mosaic images}{subfig:satimgNoncoverFley}
+\mfigure{width=.4\linewidth}{img/fig12-d4.png}{The final mosaic images.}{subfig:satimgNoncoverFley}
 \tabsimuposeFley
 \end{mfigures}
 
@@ -481,7 +481,7 @@ In order to cover the big area, the solution can be to use a bigger focal length
 \mfigure{width=.4\linewidth}{img/calvisson2mask.png}{The mask of the area to cover.}{subfig:satimgMaskCalvisson}
 \mfigure{width=.4\linewidth}{img/zcalvisson2result1cout_98_260375_gen_170501_Ncam_110.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverageCalvisson}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/calvisson3cover.png}{The final mosaic images}{subfig:satimgNoncoverCalvisson}
+\mfigure{width=.4\linewidth}{img/calvisson3cover.png}{The final mosaic images.}{subfig:satimgNoncoverCalvisson}
 \tabsimuposeCalvisson
 \end{mfigures}	
 
