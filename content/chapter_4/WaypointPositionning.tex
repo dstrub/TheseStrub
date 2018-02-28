@@ -19,21 +19,21 @@ The environment have been designed to have a various shape and size. The differe
 The shapes of the rooms are designed to estimate the exact number of cameras in order to have a ground trough.
 Moreover the rooms propose different size. The size of the room may have two main impact on the optimization.
 First, the increasing  size of a room, will increase in proportion the size of the search space. On the other hand a bigger room allow to place more waypoints. More the number of waypoints to place is important more the number of dimension raise-up. The increasing number of dimension is used to test the robustness of the algorithms.\\
- The room finally used for the experimentation are proposed in the \figref{fig:Rooms_shapes}.
+ The room finally used for the experimentation are proposed in the Figure \figref{fig:Rooms_shapes}.
 
  
- \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px)}{fig:Rooms_shapes}. \centering
-\mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room}{subfig:r1}
+ \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px).}{fig:Rooms_shapes} \centering
+\mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room.}{subfig:r1}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/fig7-b.png}{Big room}{subfig:r2}
-\mfigure{width=.4\linewidth}{img/fig7-c.png}{Room U}{subfig:r3}
+\mfigure{width=.4\linewidth}{img/fig7-b.png}{Big room.}{subfig:r2}
+\mfigure{width=.4\linewidth}{img/fig7-c.png}{Room U.}{subfig:r3}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/fig7-d.png}{Room L}{subfig:r4}
-\mfigure{width=.4\linewidth}{img/fig7-e2.png}{Big room L}{subfig:r5}
+\mfigure{width=.4\linewidth}{img/fig7-d.png}{Room L.}{subfig:r4}
+\mfigure{width=.4\linewidth}{img/fig7-e2.png}{Big room L.}{subfig:r5}
 \end{mfigures} 
 
- In addition of the room parameters, the number of dimension is also tested by  added various possible altitudes for each waypoint. The waypoint can be in the simplest version placed only on x and y coordinate and in the second time z coordinate can also be optimized inside a given range of altitude. 
- Two different set of scenario has been tested one with a fix value of z and  an other set of scenario with a range of z.  This is to evaluate the impact of the altitude on the optimization process.
+ In addition of the room parameters, the number of dimension is also tested by  added various possible altitudes for each waypoint. The waypoint can be in the simplest version placed only on $x$ and $y$ coordinate and in the second time $z$ coordinate can also be optimized inside a given range of altitude. 
+ Two different set of scenario has been tested one with a fix value of $z$ and  an other set of scenario with a range of $z$.  This is to evaluate the impact of the altitude on the optimization process.
 % Due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where:  ...  
 %,
 
@@ -447,7 +447,7 @@ Thanks to this tries the size of the area to cover and the number of waypoints c
 	
 		\subsubsection{Vast and complex outdoor}\label{sec:fey_map}
 
-\begin{mfigures}[!]{ Optimization of the waypoints poses with a vast outside area and just a few  black holes.}{fig:Rooms_shapes} \centering
+\begin{mfigures}[!]{ Optimization of the waypoints poses with a vast outside area and just a few  black holes.}{fig:fleyExp} \centering
 \mfigure{width=.4\linewidth}{img/fig12-a2.png}{The area to cover taken form satellite images.}{subfig:satimgFley}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/fig12-b2.png}{The mask of the area to cover.}{subfig:satimgMaskFley}
