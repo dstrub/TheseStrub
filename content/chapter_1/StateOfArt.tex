@@ -670,7 +670,7 @@ The popularity of the PSO is mostly due to the association of the quick implemen
 
 
 %####################TODO############################
-\section{Coverage path planning part  CPPP }
+\section{Coverage path planning}
 
 The solutions put forward in the literature until now to keep on eyes a vast area composed by numerous obstacles was to pose numerous cameras or robotics cameras (as PTZ cameras and smart camera).
 The solutions proposed until now are interesting only to monitor a vast area  in continue with several cameras. 
@@ -762,7 +762,7 @@ Finally the solution used for the TSP can be applied for the second sub-problem 
 
 In faigl [235*] a similar method than the one proposed by Packer [53*] has been proposed to approximate the shorter path as possible. The problem is also split into two sub-problems with the first is to optimize the position of the waypoints and the second is to schedule the position in order to create a path planning (directly inspired by the TSP). 
 %the algorithm proposed is based on splitting the problem into two sub-problems. The first sub-problem is to find a set of point with can be good enough to cover all the area despite a restricted visibility range. These points are called waypoints for the following sections. 
- Furthermore, the solution proposed by Faigl in [235*] is applicable to a watchman with a restricted visibility range. Equivalent then a $360^\circ$ field of view with a restricted depth of field. This restriction affects greatly the waypoints positioning.
+ Furthermore, the solution proposed by Faigl in [235*] is applicable to a watchman with a restricted visibility range. Equivalent then a $360^\circ$ field of view with a restricted depth of field. This restriction affects greatly the waypoints positioning. Thanks to this constraint more waypoint has to be place to cover an area.
  Once the set of waypoints to cover all the polygon is found, the second sub-problem is to create a path passing by all this points.  The algorithms proposed  to do it, are also inspired by the solution given for the optimize the TSP.
  %This second sub-problem is similar then a classic Travelling Salesman Problem (TSP). The TSP  try to answer the question ask by a travelling salesman "What is the shortest path passing by each city only one time and return to the starting city?". In the TSP, the city are the node on the interconnected map with the road as the connexion. The TSP is well known as NP-hard and NP-complete in some condition as described in [236*]. \\ 
 %Finally the solution used for the TSP can be applied for the second sub-problem of WRT.
@@ -786,11 +786,11 @@ In faigl [235*] a similar method than the one proposed by Packer [53*] has been 
 
 \subsubsection{Limit and consequences}
 
-The method proposed to solve the WRP are really interesting and give a good solution in some specific condition. This condition are the limit of the method proposed. In fact the optimal solution, that mean the shortest path which cover all the area (polygon) are usable only if the polygon respect some rule. The polygon must be simple.  \\
+The method proposed to solve the WRP are really interesting and give a good solution in some specific condition. This condition are the limit of the method proposed. In fact the optimal solution, that mean the absolutely shortest path which cover all the area (polygon) are usable only if the polygon respect some rule. The polygon must be simple.  \\
 When the polygon begin to be more complex the optimal solution cannot be reached. The method applied to solve the WRP for complex area are interesting. Especially in the splitting the problem into sub-problem. Despite this interesting aspect the solution proposed are most of the time limited due to the area representation (must be a polygon composed by vertex). This representation associate to the geometric methodologies to find the waypoints give an crucial importance to the number of vertex in relation then the number of cameras. More the number of vertex is important more the first sub-problem will be difficult and long to solve. 
 Consequently this method is not the more appropriate for the vast and complex outside area which would require  numerous vertex to describe it.
- The biggest limit of the WRP is the ability of the watchman. In fact in the original problem, the Watchman is considered has perfect visibility. The solution proposed for answer to the WRP are not usable when some constraint is added in the  visibility. 
-In Faigl [235*] the WRP begin to be extended by add a constraint on the visibility. In this condition the problem is slightly muted to self-organizing map  in the way to became a coverage path planning.
+ The biggest limit of the WRP is the ability of the watchman. In fact in the original problem, the Watchman is considered has perfect visibility. The solution proposed for answer to the WRP are not usable when some constraint is added in the visibility. 
+In Faigl [235*] the WRP begin to be extended by add a constraint on the visibility. In this condition the problem is slightly muted to self-organizing map in the way to became a coverage path planning.
 
 The AGP then WRP has greatly impacted the vision and the problem design of cameras coverage and coverage path planning. Especially the CPP by splitting the problem into two sub-problem.  
 
@@ -812,8 +812,10 @@ The AGP then WRP has greatly impacted the vision and the problem design of camer
 
 \subsection{CPP solutions}
 
-To optimize the CPP problems many solution was been proposed. The different algorithms and methodologies proposed are discussed in the following sub-section. The methodologies proposed can be split in several branches. 
-The more important methodologies to optimize the CPP is  the use of sweep associate to a cellular decomposition.
+
+
+To optimize the CPP problems many solution was been proposed. The different algorithms and methodologies proposed are discussed in the following sub-section. The methodologies proposed are  split in several branches. 
+The more important methodologies to optimize the CPP is the use of sweep associate to a cellular decomposition.
 %60* =  une découpe en zone  rectangle et utilisation  de la triangulation pour le positionment de waypoint  puit tsp.
 %
 %217*= utilisation du GA  pour la conexion entre polygone simple (1er étape découpe de la zone  en  polygone en fonction des obstacle - 2e  crée un graphe qui  reli les différant sous partie ( polygone) GA  -3 choisir le sweep le plus )
@@ -821,31 +823,36 @@ The more important methodologies to optimize the CPP is  the use of sweep associ
 %61* 62*= floor planning
 
 \subsubsection{ Cellular decomposition and sweep}
-To solve the CPP problem the solution the most common is to use the cellular decomposition. The cellular decomposition is  by some aspect inspired by the methodologies presented from the WRP.
+\begin{mfigures}[!]{ Illustration  of  simple cell decomposition with sweep.}{fig:CellDecp} \centering
+\mfigure{width=.4\linewidth}{img/CellDecop.png}{}{}
+
+\end{mfigures}	
+To solve the CPP problem the solution the most common is to use the cellular decomposition. The cellular decomposition is by some aspect inspired by the methodologies presented from the WRP.
 To remember one of the interesting solution for the WRP  is to split the problem in two sub-problem and optimize its independently. The first sub-problem is to find the best waypoints and the second sub-problem is to find the shorter path passing by all the waypoints (as a TSP).
- The Cellular decomposition also split the problem of CPP in two sub-problems. The first sub-problem is focus on the decomposition of the complex area in several cells.  Each cell has to be a simple polygon (basically a rectangle or latter any quadrilateral polygon). Inside each cell a sweep will be applied in order to cover all the area. The second sub-problem is to find the path which can connect each simple polygon. The problem has to take in account in many case the sweep start and end to find the global shorter path. where the global shorter path  take in account the sweep trajectory of each simple polygon and the path between the  simple polygons.
+ The Cellular decomposition also split the problem of CPP in two sub-problems. The first sub-problem is focus on the decomposition of the complex area in several cells.  Each cell has to be a simple polygon (basically a rectangle or latter any quadrilateral polygon). Inside each cell a sweep will be applied in order to cover all the area (see \figref{fig:CellDecp}). The second sub-problem is to find the path which can connect each simple polygon. The problem has to take in account in many case the sweep start and end to find the global optimized shorter path. Where the global optimized shorter path take in account the sweep trajectory of each simple polygon and the path between the simple polygons.
  
- Finally the cellular decomposition is made by the decomposition of the complex area, choose the appropriate  sweep and find the shorter path to connect the cells. 
+ Finally the cellular decomposition is made by the decomposition of the complex area, choose the appropriate sweep and find the shorter path to connect the cells. 
  
  \paragraph*{Decomposition}\label{par:decomposition}
 
- The decomposition in cells has to objective to split the a complex area in several sub-area. The sub-area has to be simpler in term of shape in order to can applies a sweep. 
-Since the 90s numerous algorithm has been developed for the cellular decomposition. Among the algorithms for cellular decomposition, 3 type of decomposition has been made in the survey of choset [214*]and \cite{66*galceran2013}. 
+ The decomposition in cells, has to objective to split the a complex area in several sub-area. The sub-area has to be simpler in term of shape in order to can applies a sweep. 
+Since the 90s numerous algorithm has been developed for the cellular decomposition. Among the algorithms for cellular decomposition, 3 type of decomposition has been made. Has it is explained in the survey of choset  \cite{214*choset2001} and  Galceran and al \cite{66*galceran2013}. 
 \begin{itemize}
 	\item Approximate: 
-		An approximate decomposition is based on a discretization of the area. The free space of the area is representative by a set of case (gird). Each case of the grid has to be cover by the mobile robots.  The case is considered  completely cover if the robot is on this position. That mean the frequency of the grid is defined by the covered area of the mobile robots. 
+		An approximate decomposition is based on a discretization of the area. The free space of the area is representative by a set of case (gird). Each case of the grid has to be cover by the mobile robots. The case is considered completely cover if the robot is on this position. That mean the frequency of the grid is defined by the covered area of the mobile robots. 
 		The approximate decomposition by case is fast to describe the area but is greatly limited due to the low sampling frequency of the gird and the limited trajectory possible.\\
 	 
 	\item Semi approximate: 
 	 The semi approximate decomposition is by part based on the discretization of the space. The idea is to create a set of large cells. The width of the cells is fix and the height is relative then the area boundary. 
-	 The semi approximate cell decomposition allow to have cells with two parallel side  with a fix size  (at the right and left) and  the  two other side adapted to the boundary (at the up and down).  The width  of  the cell chosen depending then half of the focal length of the camera mounded on the mobile robot. The area is covered by following the boundary of the cells with sweep to pass cells  after cells.
-	 The advantage of this semi approximate decomposition is the facility to describe a vast area and the low computation required. Additionally this decomposition can be made on-line by the robot and do not require a hight level of knowledge of the area. The disadvantage is the non optimized path due to the cell decomposition. The simplicity  of this decomposition  can gender case where the robot have to path many time by the same place. The semi approximate cellular decomposition do not allow to have an optimised path planning. 
+	 The semi approximate cell decomposition allow to have cells with two parallel side with a fix size (at the right and left) and  the  two other side adapted to the boundary (at the up and down).  The width  of  the cell chosen depending then half of the focal length of the camera mounded on the mobile robot. The area is covered by following the boundary of the cells with sweep to pass cells  after cells.
+	 The advantage of this semi approximate decomposition is the facility to describe a vast area and the low computation required. Additionally, this decomposition can be made on-line by the robot and do not require a hight level of knowledge of the area. 
+	 The disadvantage is the non optimized path due to the cell decomposition. The simplicity  of this decomposition  can gender case where the robot have to path many time by the same place. The semi approximate cellular decomposition do not allow to have a well optimised path planning. 
 	 %%%%% add fig from238* fig8 to --> from214
 	\item Exact cellular decomposition: 
-	The exact cellular decomposition describe the area by create juxtaposed geometrical region. The size of the region (or cells) are not dependent then the robots ability despite the previous decomposition. The large size of the cell allow the  mobile robots to  do back and forth motion to cover all the cell (also called sweep).  The cells have to be ordered to have an efficient and short path passing by all the cells. The path has to limit the distance to pass  between the cells.
-	The exact cellular decomposition became popular and numerous algorithms has been proposed to has  a faster decomposition and with a more appropriate shape depending then the area shape. 
+	The exact cellular decomposition describe the area by create juxtaposed geometrical region. The size of the region (or cells) are not dependent then the robots ability despite the previous decomposition. The large size of the cell allow the  mobile robots to do back and forth motion to cover all the cell (also called sweep).  The cells have to be ordered to have an efficient and short path passing by all the cells. The path has to limit the distance to pass  between the cells.
+	The exact cellular decomposition became popular and numerous algorithms has been proposed. The algorithms proposed are can be a faster decomposition or with a more appropriate shape depending then the area shape. 
 	Among the numerous exact cellular decomposition the trapezoidal decomposition for this simplicity and historic importance, the Boustrophedon decomposition  and  Morse-based Cellular Decomposition for their important in the construction of other exact cellular decomposition has to be cited. These algorithms and other has been clearly summarized in the survey of Carreras and Galceran \citep{66*galceran2013}. 
-	The exact cellular decomposition has continue to be studied since the survey of  Carreras and Galceran  \citep{66*galceran2013} and upgraded, as in 144* for propose a decomposition for concave or multiple polygons.
+	The exact cellular decomposition has continue to be studied since the survey of  Carreras and Galceran  \citep{66*galceran2013} and upgraded, as in 144*  \cite{} for propose a decomposition for concave or multiple polygons.
 	
 \end{itemize}
 
@@ -859,12 +866,20 @@ Since the 90s numerous algorithm has been developed for the cellular decompositi
 
  
  \paragraph*{Sweep} \label{par:sweep}
-	The back and forth or sweep is an essential element of the CPP by cellular decomposition. The sweep has to cover the entire cell.s The cells are splitting the area in relatively simple polygon (as see in the paragraph \ref{par:decomposition}). The sweep has to be adapted then the shape of the cells and also must start and finish in a appropriate position for passing to the next cell.
+	The back and forth or sweep is an essential element of the CPP by cellular decomposition. The sweep has to cover the entire cells. The cells are splitting the area in relatively simple polygon (as see in the paragraph \ref{par:decomposition} and  the Figure \figref{fig:CellDecp}). The sweep has to be adapted then the shape of the cells and also must start and finish in a appropriate position for passing to the next cell.
 	For that the starting point of the sweep and the ending point are crucial for the global path planning.
 	In Torres et al 144* the sweep is function then a direction and can go clockwise or counter-clockwise to have a start and end in the appropriate position for the transition. 
-	 This allow to have 8 different  applicable sweeps at each cell depending then the more appropriate start and finish. The sweep  are adapted depending then : the turn side ( clockwise or counter-clockwise), the direction (horizontal or vertical) and the finishing  position (start and stop form the same side or opposite side).  
-	 The sweep can be also alternatively switch for a spiral as proposed in Jimenez et al [217*]. The proposed sweep and spiral in [217*] are adaptable depending then the context. The sweep can have two direction and for the spiral two turn side (clockwise or counter-clockwise).
-	 
+	 This allow to have 8 different applicable sweeps at each cell depending then the more appropriate start and finish. The sweep are adapted depending then : 
+	 \begin{itemize}
+	 \item The turn side ( clockwise or counter-clockwise)
+	 \item The direction (horizontal or vertical)
+	 \item The finishing  position (start and stop form the same side or opposite side)
+\end{itemize}	
+	 The sweep can be also alternatively switch for a spiral as proposed in Jimenez et al [217*]. The proposed sweep and spiral in [217*] are adaptable depending then the context. The sweep can have two direction and for the spiral two turn side (clockwise or counter-clockwise).  The different sweep and spiral are illustrated in the Figure \figref{fig:sweepSpiral}. 
+	  \begin{mfigures}[!]{Different sweep and spiral}{fig:sweepSpiral} \centering
+\mfigure{width=.4\linewidth}{img/SweepSpiral.png}{}{subfig:RoomPy}
+\end{mfigures} 
+
 	To have an adapted sweep the footprint has to be defined depending then the camera ability and the objective. In 144* the size of the sweep is dependent then the area cover by a camera and a sufficient amount of overlap for the 3D reconstruction (see also [191*]). In Li et al  \citep{146*li2011} the foot print of the camera with a small pan is take in account. Due to the pan the camera projection is not a rectangle but a trapezoid. Consequently the sweep size is adapted by taking the larger side of the trapezoid for the sweep dimension.
 	Also for the grid decomposition the sweep size is directly related the coverage ability of the mobile robots (as example in [215*][195*]).  % also 216*+48  215*  195* +55 218*+12  use a sensing camera at the front).
 	
@@ -933,8 +948,10 @@ Also the in some situation a  TSP is not realistic and some external constraint 
 %XXX 164*  use TSP 
 
 
-\subsubsection{Other solution for CPP}
-
+%%%%%\subsubsection{Other solution for CPP}
+%%%%%	216* 218* 215* 196*= robot roulant hoover \\
+%%%%%	
+%%%%%	191* 190* 211* 212* = low enregie cpp\\
 %
 %In choset et al 214*  some heuristic and randomized solution has been presented.    
 %one of the basic heuristic is to follow the boundary of the area to cover. (R.A. Brooks, A robust layered control system for a mobile robot, IEEE J. Robotics Autom. (1986)   et
@@ -954,9 +971,7 @@ Also the in some situation a  TSP is not realistic and some external constraint 
 %	\item 214* = propose 2 heuristic  et randomize 
 %	\end{itemize}
 	
-	216* 218* 215* 196*= robot roulant hoover \\
 	
-	191* 190* 211* 212* = low enregie cpp\\
 %	177*= multi spectral\\
 %	119* 214* 215* 146* 66* 144* 164* 167* 190*=cellule decomposition \\
 %	146* 147* = optimization de trajectoire local cpp\\
