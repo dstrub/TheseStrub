@@ -53,11 +53,25 @@ The focus of this study is to find the best position of each camera in order to 
 
 \begin{itemize}
 \item Object coverage: \\
+\begin{figure}[t!]
+\center
+\minipage{0.65\textwidth}
+   \includegraphics[width=\linewidth]{img/MapRoI165.png}
+  \caption{ Map of an area to cover with crucial sub-area (region of interest) the normal sub-area  and obstacle. This map is an example of area coverage  introduce in  Jiang et al \cite{165*jiang2010}. }\label{fig:MapRoI165}
+  \endminipage\hfill
+\end{figure}
    %The definition of a coverage can be varied this is a good example. 
-   In Hoppe et al \cite{142*hoppe2012}  a good coverage is defined by the ability to have full 3D reconstruction of an object (in their 3 dimension) with no occlusion. This definition of the coverage is exploits the prior knowledge of the object to cover. In this case the camera position will make a sphere around the object to cover as in the Figure \ref{fig:ObjectCover142}. 
-   This definition of coverage is not the more helpful due to this restricted application, focused only on 3D reconstruction. This formulation and  consequently the solution proposed is not applicable for the area coverage.\\ 
+   In Hoppe et al \cite{142*hoppe2012} a good coverage is defined by the ability to have full 3D reconstruction of an object (in their 3 dimension) with no occlusion. This definition of the coverage is exploits the prior knowledge of the object to cover. In this case the camera position will make a sphere around the object to cover as in the Figure \ref{fig:ObjectCover142}. 
+   This definition of coverage is not the more helpful due to this restricted application, focused only on 3D reconstruction. This formulation and consequently the solution proposed is not applicable for the area coverage.\\ 
    \item Path to cover: \\
-   The coverage problem may be reduced as a series of paths commonly borrowed by the users (car, pedestrian, …). When the area to cover is a well-known place the path of the users can be deduced \cite{27*bodor2005} or if the area to cover is a road the trajectory of the driver is knew \cite{14*lu2011}.  In this condition, the aim is to cover the common path of the user as presented in  \cite{14*lu2011,27*bodor2005,30*bodor2005,81*nikolaidis2009}. The path coverage is interesting due to this numerous restriction on the area to cover. Thanks to the restriction the coverage may became easier. Otherwise the path coverage introduce an important element is the zone with has a priority. This restricted zone in the area have to be the only area taking in account or  at least  the area  cover in priority.\\
+   \begin{figure}[t!]
+\center
+\minipage{0.75\textwidth}
+   \includegraphics[width=\linewidth]{img/PathToCover[81].png}
+  \caption{  the path to cover is illustrate in the work of nikolaidis et al \cite{81*nikolaidis2009}. The are a small room is focused on cover a road (walk path) by using 3 cameras. }\label{fig:pathToCover81}
+  \endminipage\hfill
+\end{figure}
+   The coverage problem may be reduced as a series of paths commonly borrowed by the users (car, pedestrian, …). When the area to cover is a well-known place the path of the users can be deduced \cite{27*bodor2005} or if the area to cover is a road the trajectory of the driver is knew \cite{14*lu2011}.  In this condition, the aim is to cover the common path of the user as presented in  \cite{14*lu2011,27*bodor2005,30*bodor2005,81*nikolaidis2009} (see the Figure \ref{fig:pathToCover81}). The path coverage is interesting due to this numerous restriction on the area to cover. Thanks to the restriction the coverage may became easier. Otherwise the path coverage introduce an important element is the zone with has a priority. This restricted zone in the area have to be the only area taking in account or  at least  the area  cover in priority.\\
    \item Coverage priority: \\
    A natural way of defining the coverage in a context of insufficient number of cameras, is to define in priority some zone of interest to cover.
     In \cite{84*xu2011,165*jiang2010,171*horster2006}, their proposed to focus on priority on some predefined region, respectively called region of interest, curial sub-area (see Figure \ref{fig:MapRoI165}) and importance space weighting.  In the solutions proposed  by \cite{84*xu2011,165*jiang2010,171*horster2006}, the cameras poses are in priority affected to this specific and restricted region which has to effect too neglected the other part of the area. \\
@@ -69,19 +83,21 @@ Finally one of the simplest view of the coverage concern the outside and inside 
   
 
 
-\begin{figure}[t!]
-\center
-\minipage{0.75\textwidth}
-   \includegraphics[width=\linewidth]{img/MapRoI165.png}
-  \caption{ Map of an area to cover with crucial sub-area (region of interest) the normal sub-area  and obstacle. This map is an example of area coverage  introduce in  Jiang et al \cite{165*jiang2010}. }\label{fig:MapRoI165}
-  \endminipage\hfill
-\end{figure}
+
+
+
 
 The common point in all this coverage definition is the importance to maximize it, despite the other objectives. In the examples presented the coverage was always the first and for some of them the only objective. Despite the interest for maximizing the coverage some other elements has to be taken in account to have a useful cameras position depending on the finality. The secondary objective can have a not negligible impact on the camera pose.  The secondary objectives are numerous and closely related than the finality. Among the secondary objective available with their numerous adapted version, some of the most interesting of them are presented :\\
 \begin{itemize}
 \item  The numbers of cameras: \\ In numerous situation, the secondary objective has to limit the number of cameras affected to the area as \cite{151*zhao2013,171*horster2006,22*zhao2008}. Limit the number of cameras is primordial to decrease the time computation for the final application and in some case the network traffic. Also reduce the number of cameras to cover the full area mean reduce the cost of the video surveillance installation as \cite{82*chrysostomou2012}. In the case  minimizing the number of camera is a secondary objective not directly in contradiction with the camera pose optimization for  best coverage. The two objectives can become complementary. At some point a too strong trade-off in favour of the minimizing the numbers of cameras may reduce the area cover by accepting some small area  non covered. The small area is know as black hole. Otherwise,  if the trade-off is in favour then the complete coverage of the area the risk is to have a too high number of cameras (with numerous overlap).\\
 
-\item Object tracking: \\ The secondary objective can be after the area coverage, to detect and localize targets as for example in \cite{18*ding2012,12*soto2009,23*liu2009,39*wu2011,40*sohrabi2000,22*zhao2008}. In these cases, the secondary objective is to find cameras pose or dynamic adaptation of the pose for follow one or numerous targets. The dynamic adaptation is commonly adapted to the looking direction in order to track the target. The dynamic adaptation is applied on the network composed by PTZ cameras as in \cite{18*ding2012,38*liu2010,12*soto2009}.
+\item Object tracking: \\
+\begin{mfigures}[!]{ Illustration of an covered area for tracking target. Experiment  form Ding et al \citep{18*ding2012} }{fig:Tracking18} \centering
+\mfigure{width=.65\linewidth}{img/coverageTrackingDing[18]a.png}{Initial coverage for 5 cameras dedicate to detect the  input of target.}{subfig:taget18a}
+\hspace{1cm} \\
+\mfigure{width=.65\linewidth}{img/coverageTrackingDing[18]b.png}{The covered area when the objective became to track several target.}{subfig:taget18b}
+\end{mfigures}	
+ The secondary objective can be after the area coverage, to detect and localize targets as for example in \cite{18*ding2012,12*soto2009,23*liu2009,39*wu2011,40*sohrabi2000,22*zhao2008}. In these cases, the secondary objective is to find cameras pose or dynamic adaptation of the pose for follow one or numerous targets. The dynamic adaptation is commonly adapted to the looking direction in order to track the target. The dynamic adaptation is applied on the network composed by PTZ cameras as in \cite{18*ding2012,38*liu2010,12*soto2009} (as illustrated in the Figure \citep{18*ding2012}).
 Keeping a full area covered and at same time the when the secondary objective is to track efficiently one or more target, can become contradictory. The solution must be a trade-off, between the maximum coverage and the tracked track, as in \cite{18*ding2012} and \cite{38*liu2010}.
  In Liu et al \cite{38*liu2010} the tracking of a target in a wide area is decomposed in phases, detection and location phase. For the detection phase, the area coverage is important but not any more for the location phase. These phases, although distinct for one target can intervene at the same time if there is more than one target. Obviously when the secondary objective is to do tracking the cameras position will be less efficient to cover the area depending on the numbers of targets.  \\
 
@@ -90,7 +106,8 @@ Keeping a full area covered and at same time the when the secondary objective is
 \item  Energetic cost:
 \\ To estimate the camera positioning another secondary element can be the energy cost in \cite{38*liu2010,42*bulusu2001}. Lui et al \cite{38*liu2010} is a good example, the first objective is to cover most of the area to be able to detect if a target is entered in the area to control. In a second time, the target is followed by  the smart and autonomous cameras of the network. The set of cameras were randomly dispersed in the area and the coverage of the area will be to select the cameras useful to detect the targets intrusion. The selection of the camera is managed between the maximum area coverage and the minimum cost consumption. In this case the consumption is reduced by reducing the number of smart camera turned in detection mode. In Lui et al \cite{38*liu2010} the smart cameras are considered has more or less greedy depending then mode activated (detection or tracking). Moreover the energy cost can be considered not only in term of number of cameras turn on, but also in term of distance between each cameras. Notably in the case of each camera position will be a waypoint for doing a path planning \cite{191*di2016,218*meiting2007}.  
 \\
-\item Multi coverage:\\ Among the numerous secondary objectives possible, the multi coverage is interesting (as for example in \cite{149*mavrinac2013,151*zhao2013,152*wang2009,174*zhang2016,175*medhi2013}). The multi coverage or also called $k$-coverage where $k$ represent the number of cameras useful to cover some region of the area. The multi coverage or $k$-coverage can be at some point confused with the region of interest and coverage priority (see more in detailed in section \ref{sec:zoneOfInterest}). Mostly due to their importance given at some restricted part of area. The difference between them is the impact of the multi coverage on the finale coverage. The multi coverage involved one or few specific zone of the area to be covered by a minimum of $k$ cameras at same time in order to be considered as cover. This secondary objective in the case of limit will generate a conflict between the full coverage of the area and the $k$-coverage requirement even more with a restricted number of cameras. 
+\item Multi coverage:\\
+ Among the numerous secondary objectives possible, the multi coverage is interesting (as for example in \cite{149*mavrinac2013,151*zhao2013,152*wang2009,174*zhang2016,175*medhi2013}). The multi coverage or also called $k$-coverage where $k$ represent the number of cameras useful to cover some region of the area. The multi coverage or $k$-coverage can be at some point confused with the region of interest and coverage priority (see more in detailed in section \ref{sec:zoneOfInterest}). Mostly due to their importance given at some restricted part of area. The difference between them is the impact of the multi coverage on the finale coverage. The multi coverage involved one or few specific zone of the area to be covered by a minimum of $k$ cameras at same time in order to be considered as cover. This secondary objective in the case of limit will generate a conflict between the full coverage of the area and the $k$-coverage requirement even more with a restricted number of cameras. 
 \\ 
 \item  Resolution:\\ The objective of resolution is to keep the quality of the image acceptable \cite{27*bodor2005,33*reddy2012,171*horster2006,152*wang2009,43*erdem2006}. Most of his article are used the distance along the optical axis as parameters in order to evaluate the resolution constraint. The lens, the sensor and the distance between the camera  and a target (or surface) is used to estimate the resolution. In many application is essayer to adapt the distance between the camera and the target or the zoom (when the lens is not a fix focal) then to modifies the other parameters as the sensor or the lens.\\
 %The resolution is also model as the acceptable the depth of field.
@@ -125,13 +142,20 @@ In the following section a definition of the AGP is given with a brief historic.
 
 
 	\subsubsection{Definition of the paradigm} \label{sec:AGPdef}
+	\begin{figure}[t!]
+\center
+\minipage{0.65\textwidth}
+   \includegraphics[width=\linewidth]{img/AGP3.png}
+  \caption{ Illustration of the AGP. The gallery is cover by  4 guard ($x_1;...;x_4$) for a polygon  composed by $n$ vertice ($v_1;...;v_n$).}\label{fig:AGP}
+  \endminipage\hfill
+\end{figure}
 	The art gallery problem is a geometrical problem introduced by Victor Klee in 1973. The problem was to estimate the number and the position, of useful guard to cover an art gallery. 
 The particularity of a art gallery is the complexity of the room shape, with many walls to dispose the painting. The shape complexity of the room make the estimation of guards number even more difficult.\\
 In order to formulate properly the problem, the room is assimilated as a polygon $P$, composed by $n$ vertices ($v_1; v_2;…v_n$). The vertices are linked by $n$ edges ($v_1 v_2;…; v_{n-1} v_n$) to make the shape of the Polygon $P$ (or room).
 
 A guard $x$ is inside the room $x \in P$. A guard $x$ can cover or see any point $y \in P$ if the segment $xy$ is not intersect by one of boundary ( a wall) of the polygon $P$, in order to have $ xy \subseteq P$.
 The polygon $P$ is considered as fully cover when for any position of the point $y$ in the polygon at least one guard can see it .\\
-A guard $x$ can have a $360^\circ$ field of view to cover all around him, with no depth of field limitation (except the wall obstacle). Clearly that mean the guard can see and monitor the entire length of the room one side to another side if no obstacle around to occlude. For example, if the shape of the room is a triangle, quadrilateral or another convex simple polygon, at any position taken by one guard, this guard can monitor all the area despite the size of the art gallery. 
+A guard $x$ can have a $360^\circ$ field of view to cover all around him, with no depth of field limitation (except the wall obstacle). Clearly that mean the guard can see and monitor the entire length of the room one side to another side if no obstacle around to occlude. For example, if the shape of the room is a triangle, quadrilateral or another convex simple polygon, at any position taken by one guard, this guard can monitor all the area despite the size of the art gallery (see Figure \ref{fig:AGP}). 
 
 When the polygon is more complex, it is necessary to estimate the minimum number $g$ of guards $x$ and the position of the guards $x$ in polygon $P$. 
  The set of minimum number of guards are listed in $X$. Where $X$ contain the useful $x$ to fully cover the polygons $P$, with $g$ the minimums number of guard in order to have a set of points $X=\{x_1…x_i…. x_g\}$. So that every point $y$ in $P$  are cover by at least on guard $x$ of the set of $X$. \\
@@ -211,19 +235,27 @@ For our case the aspect the more interesting of the WSN, is the coverage of an a
 	\center
 \minipage{0.55\textwidth}
    \includegraphics[width=\linewidth]{img/WsnSensor1.png}
-  \caption{ One omnidirectional sensor centred on $u$, with a radius $r$ for the range.}\label{fig:WsnSensor1}
+  \caption{ One omnidirectional sensor centred on $x$, with a radius $r$ for the range.}\label{fig:WsnSensor1}
   \endminipage\hfill
 \end{figure}
 
+	
+
 The WSN refer commonly to sensors or actuators  with no restriction in the view angle, it is considering to have a $360^\circ$ field of view. The sensor Field of view can be represented in a 2D plan  as in \cite{200*kulkarni2011, 174*zhang2016,150*chakrabarty2002} (as illustrate in the Figure \ref{fig:WsnSensor1}) and in some case a spherical for the 3D environment example in \cite{175*medhi2013,59*wang2008}.  
 
-Each sensors have a position $x$ in the area and a power range. From the sensor power  the radius $r$ of the circle is deduced from $x$ as center (show \ref{fig:WsnSensor1}). This circle give the area cover by a sensor in the simplest case. 
-The simplest case correspond to a flat area without any obstacle, or it is negligible with do not impact the covered area as in \cite{200*kulkarni2011,174*zhang2016}.  
+Each sensors have a position $x$ in the area and a power range. From the sensor power  the radius $r$ of the circle is deduced from $x$ as center (see Figure \ref{fig:WsnSensor1}). This circle give the area cover by a sensor in the simplest case. 
+The simplest case correspond to a flat area without any obstacle, or it is negligible with do not impact the covered area as in \cite{200*kulkarni2011,174*zhang2016} ( see the Figure \ref{fig:WsnSensorNet}).  
 Others more complex solutions can be used. Its are more complex but also more realistic as in Wang et al \cite{59*wang2008}. Where are taking in account the relief and obstacle. 
 In Zhang et al \cite{174*zhang2016} more complex model have been developed, where despite of a flat ground without obstacle each sensor is composed by a perception radius and a communication. The communication radius a bit bigger then the perception radius. This 2 radius correspond to area covered for one antenna (sensor) and the distance of emission/reception of the data.  In order to have an efficient coverage of the area, the antenna must be place in order to have connection with other antenna but without too much overlap of the perception sensor.\\
 
 The solution proposed in order to optimize the positioning of the WSN for a circular sensor can be varied. Mostly 2 different ways are applied for the sensor with have circular angle of view or spherical.\\
-
+\begin{figure}[t!]
+	\center
+\minipage{0.65\textwidth}
+   \includegraphics[width=\linewidth]{img/sensorWSN3.png}
+  \caption{ Illustration fo a  simple wireless sensor network with omnidirectional sensor centred on $x$, with a radius $r$.}\label{fig:WsnSensorNet}
+  \endminipage\hfill
+\end{figure}
 \begin{itemize}
 
 
@@ -233,7 +265,7 @@ The limit of this solution despite the greedy consumption resources is also not 
 This solution include many different family of algorithms focused on optimization.
 Among the family of algorithms, the evolutionary algorithms (disused in detailed in section \ref{chap:EA}) is commonly used as in \cite{200*kulkarni2011,59*wang2008}, and \cite{150*chakrabarty2002}. \\
 These solutions propose to optimize the position in order to maximize the coverage depending on constraints and the secondary objectives. The method of optimization have to be adapted to the problem. 
-In Chakrabarty et al \cite{150*chakrabarty2002} the integer linear programming with an "LPsovlver" are chosen in order to maximize the coverage with 2 type of sensors. One standard with a smaller area coverage but with a smaller cost (can have a $100m$ radius for 150\$) and the other sensor can cover a wider region (can have a $200m$  radius for 200\$) and the objective is to cover the region with a second objective is to reduce the cost. The solution proposed is to use the integer linear programming adapted to the problem of coverage optimization with the economic cost as constraint. \\
+In Chakrabarty et al \cite{150*chakrabarty2002} the integer linear programming  is chosen in order to maximize the coverage with 2 type of sensors. One standard with a smaller area coverage but with a smaller cost (can have a $100m$ radius for 150\$) and the other sensor can cover a wider region (can have a $200m$  radius for 200\$) and the objective is to cover the region with a second objective is to reduce the cost. The solution proposed is to use the integer linear programming adapted to the problem of coverage optimization with the economic cost as constraint. \\
 In \cite{59*wang2008} and \cite{200*kulkarni2011} the solution proposed is based on 2 different evolutionary algorithms in order to optimize the sensors positioning. 
 In kulkarni et al \cite{200*kulkarni2011} the camera positing with a multi coverage is solved with using an evolutionary algorithm called Particles Swarm Optimization (PSO). The objective is to optimize the position of the sensor in order to have an efficient coverage of the area and also enough redundancy to keep the network workable if one or few sensor fail. In Wang et al \cite{59*wang2008} one evolutionary algorithms is also used to optimize the position of antennas. The objectives in this paper is to give the best coverage of an area with taking in count the relief of the area. The relief make the coverage estimation of each sensor even more complex and costly in terms of time computation. The Genetic algorithm are used in order to find quickly a position for each antenna of the network. 
 \end{itemize}
@@ -244,7 +276,15 @@ Now the following section  is dedicated to see if this solution is applicable to
 
 	\subsubsection{Visual sensors}
 	
-Logically, the result obtained with the Omni-directional sensors are interesting and must be applied to the problem with even more constraints and objectives as can be the positioning of visual sensor network (VSN). The term of  visual sensor contains several types of cameras with several constraints and properties. Despite these several type of cameras, the more commonly used and studied is the perspective camera (as in \citep{149*mavrinac2013,174*zhang2016,193*fu2014,42*bulusu2001}). 
+	\begin{figure}[t!]
+	\center
+\minipage{0.65\textwidth}
+   \includegraphics[width=\linewidth]{img/coverage[165].png}
+  \caption{ Illustration of  the  area coverage with visual sensors. The area  is cover at 47\%. Experiment form Jiang et al \citep{165*jiang2010} }\label{fig:Coverage165}
+  \endminipage\hfill
+\end{figure}
+	
+Logically, the result obtained with the Omni-directional sensors are interesting and must be applied to the problem with even more constraints and objectives as can be the positioning of visual sensor network (VSN). The term of  visual sensor contains several types of cameras with several constraints and properties. Despite these several type of cameras, the more commonly used and studied is the perspective camera (as in \citep{149*mavrinac2013,174*zhang2016,193*fu2014,42*bulusu2001,165*jiang2010})(see Figure \ref{fig:Coverage165}). 
   In fact the visual sensor or camera have a limited depth of field but also a limited field of view. This new constraint makes the cameras positioning more complex, as that was for AGP (see section \ref{sec:AGP}) to passes from guard to camera.
  The advantage in these cases, are first the sensor has been designed with a limited depth of field (the sensor has a limited power range). 
  Moreover the solution applied previously for circular sensor was not only geometric or based on heuristic algorithms. The problem has also been formalized as an optimization problem. These problem formulations allow to use optimization algorithms and meta-heuristics. In addition, these problems formulations appear as the more suitable to add constraint and secondary objectives. Thanks to that, the solution  developed for the WSN can mostly be adapted to the problem of camera positioning. 
@@ -294,7 +334,7 @@ The solution purposed is based on constructive solution with adapted heuristic. 
 The cutting on sub-region offer at the heuristic to work in reasonable time due to this restricted area.\\
 The solution proposed though this efficiency in the case of barrier coverage is not rely appropriate to vast coverage area. The first limitation is the number of cameras use to fully cover the area. The important number of cameras is mainly due to this definition of “full view covered”. That definition imply many overlap to have the multi direction coverage.\\
 
-The previous solutions and algorithms presented in \cite{38*liu2010 37*ma2012,81*nikolaidis2009,171*horster2006} are based on constructive method for the cameras placement and their local optimization. Each camera is individual placed dependently then the network with an iterative process. The iterative process has to chose the best position for each camera of the set. This methods has some consequence, nobly the fast increasing number of iteration required to have a solution good enough for each camera. The time complexity is event more problematic with increasing the size of the area and even more with the number of cameras. Also these solution are extremely dependent then the formulation and the constraints and cannot be easily adapted to other problems or external constraint. The rigidity of adaptation is mostly due to the  use of heuristic  design for  very specific problems. 
+The previous solutions and algorithms presented in \cite{38*liu2010, 37*ma2012,81*nikolaidis2009,171*horster2006} are based on constructive method for the cameras placement and their local optimization. Each camera is individual placed dependently then the network with an iterative process. The iterative process has to chose the best position for each camera of the set. This methods has some consequence, nobly the fast increasing number of iteration required to have a solution good enough for each camera. The time complexity is event more problematic with increasing the size of the area and even more with the number of cameras. Also these solution are extremely dependent then the formulation and the constraints and cannot be easily adapted to other problems or external constraint. The rigidity of adaptation is mostly due to the  use of heuristic  design for  very specific problems. 
 
 \subsection{  Linear programming optimisation and limits}
 	Different method of linear optimization was applied and test. In some case, due to a well-adapted formulation; a specific shape of the area or cameras number the linear optimisation is efficient. 
@@ -526,7 +566,7 @@ In Fu.y \cite{193*fu2014} the PSO is use to optimise the problem of maximum cove
 The objective is to position several transistors in a rectangular printed circuit board (PCB).
 The transistors must have a rectangular shape with different sizes and ratios. 
   Despite the apparent simplicity the several rectangular shape for the chips and some potential additional constraints, as the relation dependence between chips, or the strict non-overlapping of the transistors, makes the problem of positioning transistor becomes complex. The solution is to optimize the position and orientation of the chips on the board using evolutionary algorithm. The  PSO is chosen and more precisely the craziness based PSO (CR-PSO). The interest of the CR-PSO is the variety introduce during the optimization compare then a classical PSO. The variety introduced during the optimisation process by the CR-PSO  helps to pass over the several local minima. 
-  The more interesting aspect is to use a PSO in a similar problem then camera positioning which was commonly answered with a linear convex optimisation as in 62* \cite{} and  based on the work on the floor planning defined Boyd and Vandenberghe in their book Convex optimization \cite{}(8.8 page 438).  
+  The more interesting aspect is to use a PSO in a similar problem then camera positioning which was commonly answered with a linear convex optimisation as in \citep{62*vijayan1991} and  based on the work on the floor planning defined Boyd and Vandenberghe in their book Convex optimization \cite{boyd2004convex}(8.8 page 438).  
   
 The solution proposed based on PSO are promising. The PSO or closely related have numerous advantages as showed in the previous articles.
  The main advantages are the efficient and fast optimisation, as well as the fast implementation. In fact, the PSO is  relatively easy to implement and just few parameters need to be set-up before to have an efficient result. The simplicity of the implementation is due to the numerous framework developed in all languages and the low numbers of parameters to set-up as mainly number of particles and the global inertia.	
@@ -676,10 +716,10 @@ The popularity of the PSO is mostly due to the association of the quick implemen
 The solutions put forward in the literature until now to keep on eyes a vast area composed by numerous obstacles was to pose numerous cameras or robotics cameras (as PTZ cameras and smart camera).
 The solutions proposed until now are interesting only to monitor a vast area  in continue with several cameras. 
 The disadvantage of positioning a set of cameras appears quickly with the cost. The cost is due to the several cameras and the communication network required to can centralize the image collected. All the images must be collected in a real time. This costly system is not always useful. 
-In fact, in some application the area needs to be controlled periodically. The periodic control of the area does not require an installation of the set of fixed cameras unlike the solution presented until now (see section \ref{sec:SolutionBasedonEA} and section \ref{sec:NonEAmethod}). The periodical control requirement can be illustrate with some example :  the cartographies with need just one fly over an area roughly bounded as in \citep{66*galceran2013} [164*], forest fire detection which require a periodic fly over specific and vast region as in [237*], the hoovering robots with need to cover all the room with some time some on-line computation [216* 218* 215* 196*] and the agriculture.
- About the agriculture application, an UAV need to fly over the field few time the year in order to control by photography the hydration, the maturity, etc, as in [203*,63*,105*,164*,167*,177*,203*]. %\textbf{revoir les ref et trié un peu}.
+In fact, in some application the area needs to be controlled periodically. The periodic control of the area does not require an installation of the set of fixed cameras unlike the solution presented until now (see section \ref{sec:SolutionBasedonEA} and section \ref{sec:NonEAmethod}). The periodical control requirement can be illustrate with some example :  the cartographies with need just one fly over an area roughly bounded as in \citep{66*galceran2013,164*valente2013}, forest fire detection which require a periodic fly over specific and vast region as in\cite{237*casbeer2006}, the hoovering robots with need to cover all the room with some time some on-line computation \citep{218*meiting2007,216*luo2002,215*lee2010,196*yang2004}  and the agriculture.
+ About the agriculture application, an UAV need to fly over the field few time the year in order to control by photography the hydration, the maturity, etc, as in \citep{164*valente2013,203*zarco2008,63*chao2008,105*long199,167*barrientos2011,177*lelong2008}. %\textbf{revoir les ref et trié un peu}.
 
-For all these applications the area must be covered but does not need a coverage of all the area instantly and continuously. The solution commonly proposed is to use only one sensor mounted on a mobile robot. Mobile robots need to be adapted to the task and the environment, as flying [105*], driving [213*,30*], swimming [66*]. The mobile robot with the sensor moves in the space to cover all the area. In this case, the objective is to determine the best path for the mobile robot to cover all the area. The best path is dependent then the constraint of each problem. However, the common point, is to have the shorter path to all or at least most of the area.
+For all these applications the area must be covered but does not need a coverage of all the area instantly and continuously. The solution commonly proposed is to use only one sensor mounted on a mobile robot. Mobile robots need to be adapted to the task and the environment, as flying  \citep{105*long1991}, driving \citep{30*bodor2005,213*roberts2008}, swimming \cite{66*galceran2013}. The mobile robot with the sensor moves in the space to cover all the area. In this case, the objective is to determine the best path for the mobile robot to cover all the area. The best path is dependent then the constraint of each problem. However, the common point, is to have the shorter path to all or at least most of the area.
 The following section is focused on finding the best Coverage Path Planing (CPP) for a sensor mounted on a mobile robot. The sensor can be varied, but the great majority of the case it is a camera perspective. To estimate the best CPP different algorithms and methodologies has been applied in the literature to solve or at least optimize the CPP problems.
 
   The following sections is focussed on the different algorithms and methodologies applied to solve or at least optimize the coverage path planning problem. In a first time, the watchman route problem is introduced to highlight the origin of the CPP problem and the relation with the cameras positioning for optimal coverage. In a second time, the more popular solutions are discussed.
@@ -715,7 +755,7 @@ The following sections are focused on the definition of the WRP, the solution pr
  
 \subsubsection{Definition of the watchmen problem }
 
-The Watchman Route Problem is introduced for the first time by Chin and Ntafos in 1987 54* \cite{54chin} . The problem of the WMP can be summarized in one sentence :
+The Watchman Route Problem is introduced for the first time by Chin and Ntafos in 1987 \cite{54*chin1988}. The problem of the WMP can be summarized in one sentence :
 
 \textbf{"How to calculate a shortest route contained inside a polygon such that any points inside this polygon is visible from at least one point of the route?"}.  
 
@@ -745,25 +785,25 @@ The WRP problem can be solve in some condition. The solution to solve it are app
 \hspace{1cm}
 \end{mfigures}	
 
-To solve the WRP few algorithms were developed. Step by step the algorithms proposed in the literature allow a faster solution. The first interesting algorithm for the WRP with the simple polygon is the early work of Tan, X [234*]\cite{}. In [234*] propose an algorithm for a fast computation time. The solution proposed work in the simple polygon composed by $n$ vertices in a polynomial time $O(n^5)$. \\
-Others algorithms proposed to go a bit further. Dror et al [233*]\cite{} assume to have a better  time complexity. In fact, in [233*]\cite{} the solution proposed for the WRP in a simple polygon is working in $O(n^3 log n)$.  The deterministic solution applied is also usable in closely relate problem of the WRT as the zoo-keeper problem and safari problem.
-This two algorithms [233*][234*] are usable only in the case of simple polygon to delivered the optimal solution which is the shortest path for the full room coverage. 
+To solve the WRP few algorithms were developed. Step by step the algorithms proposed in the literature allow a faster solution. The first interesting algorithm for the WRP with the simple polygon is the early work of Tan, X \cite{234*tan2001}. In \citep{234*tan2001}  propose an algorithm for a fast computation time. The solution proposed work in the simple polygon composed by $n$ vertices in a polynomial time $O(n^5)$. \\
+Others algorithms proposed to go a bit further. Dror et al \cite{233*dror2003} assume to have a better  time complexity. In fact, in \cite{233*dror2003} the solution proposed for the WRP in a simple polygon is working in $O(n^3 log n)$.  The deterministic solution applied is also usable in closely relate problem of the WRT as the zoo-keeper problem and safari problem.
+This two algorithms \citep{234*tan2001,233*dror2003} are usable only in the case of simple polygon to delivered the optimal solution which is the shortest path for the full room coverage. 
 
 To have a more general solution for WRP, the proposition is to have an efficient algorithm working also in the complex polygon. A solution is to look for an efficient approximation. An efficient approximation means a path short enough.  Due to the computation method the optimality of the path can not be certified as the best.
-Several efficient approximations has been proposed as in [235*] and [53*]. 
+Several efficient approximations has been proposed as in \citep{235*faigl2010} and \citep{53*packer2008}. 
 
-In Packer [53*] the algorithm proposed is based on splitting the problem into two sub-problems. The first sub-problem is to find a set of points with can be good enough to cover all the area despite a restricted visibility range. These points are called waypoints.  
+In Packer \citep{53*packer2008}  the algorithm proposed is based on splitting the problem into two sub-problems. The first sub-problem is to find a set of points with can be good enough to cover all the area despite a restricted visibility range. These points are called waypoints.  
 Once the set of waypoints to cover all the polygon are found, the second sub-problem is to create a path passing by all this points. 
  This second sub-problem is similar then a classic Travelling Salesman Problem (TSP). The TSP try to answer the questions asks by a travelling salesman "\textbf{What is the shortest path passing by each city only one time and return to the starting city?}".
-  In the TSP, the cities are the node on the interconnected map and the roads are the connexion between them. The TSP is a well known as NP-hard and NP-complete in the some condition as described in [236*]. \\ 
+  In the TSP, the cities are the node on the interconnected map and the roads are the connexion between them. The TSP is a well known as NP-hard and NP-complete in the some condition as described in \citep{236*karp1972}. \\ 
 Finally the solution used for the TSP can be applied for the second sub-problem of WRT.
  The TSP and the algorithms proposed to optimize it are discussed more in detail later \ref{par:TSPPathPlan}
 
 %a similar method than the one proposed by faigl in [235*] has been proposed to approximate the shorter path as possible. To approximate the shorter path the problem of WRP is also split in two sub-problem. The first sub-problem is considered as similar then the AGP and use the method form AGP to find the waypoints. The second sub-problem is also compared as TSP.
 
-In faigl [235*] a similar method than the one proposed by Packer [53*] has been proposed to approximate the shorter path as possible. The problem is also split into two sub-problems with the first is to optimize the position of the waypoints and the second is to schedule the position in order to create a path planning (directly inspired by the TSP). 
+In faigl  \citep{235*faigl2010}  a similar method than the one proposed by Packer \citep{53*packer2008}[53*] has been proposed to approximate the shorter path as possible. The problem is also split into two sub-problems with the first is to optimize the position of the waypoints and the second is to schedule the position in order to create a path planning (directly inspired by the TSP). 
 %the algorithm proposed is based on splitting the problem into two sub-problems. The first sub-problem is to find a set of point with can be good enough to cover all the area despite a restricted visibility range. These points are called waypoints for the following sections. 
- Furthermore, the solution proposed by Faigl in [235*] is applicable to a watchman with a restricted visibility range. Equivalent then a $360^\circ$ field of view with a restricted depth of field. This restriction affects greatly the waypoints positioning. Thanks to this constraint more waypoint has to be place to cover an area.
+ Furthermore, the solution proposed by Faigl in \citep{235*faigl2010} is applicable to a watchman with a restricted visibility range. Equivalent then a $360^\circ$ field of view with a restricted depth of field. This restriction affects greatly the waypoints positioning. Thanks to this constraint more waypoint has to be place to cover an area.
  Once the set of waypoints to cover all the polygon is found, the second sub-problem is to create a path passing by all this points.  The algorithms proposed  to do it, are also inspired by the solution given for the optimize the TSP.
  %This second sub-problem is similar then a classic Travelling Salesman Problem (TSP). The TSP  try to answer the question ask by a travelling salesman "What is the shortest path passing by each city only one time and return to the starting city?". In the TSP, the city are the node on the interconnected map with the road as the connexion. The TSP is well known as NP-hard and NP-complete in some condition as described in [236*]. \\ 
 %Finally the solution used for the TSP can be applied for the second sub-problem of WRT.
@@ -791,7 +831,7 @@ The method proposed to solve the WRP are really interesting and give a good solu
 When the polygon begin to be more complex the optimal solution cannot be reached. The method applied to solve the WRP for complex area are interesting. Especially in the splitting the problem into sub-problem. Despite this interesting aspect the solution proposed are most of the time limited due to the area representation (must be a polygon composed by vertex). This representation associate to the geometric methodologies to find the waypoints give an crucial importance to the number of vertex in relation then the number of cameras. More the number of vertex is important more the first sub-problem will be difficult and long to solve. 
 Consequently this method is not the more appropriate for the vast and complex outside area which would require  numerous vertex to describe it.
  The biggest limit of the WRP is the ability of the watchman. In fact in the original problem, the Watchman is considered has perfect visibility. The solution proposed for answer to the WRP are not usable when some constraint is added in the visibility. 
-In Faigl [235*] the WRP begin to be extended by add a constraint on the visibility. In this condition the problem is slightly muted to self-organizing map in the way to became a coverage path planning.
+In Faigl \citep{235*faigl2010} the WRP begin to be extended by add a constraint on the visibility. In this condition the problem is slightly muted to self-organizing map in the way to became a coverage path planning.
 
 The AGP then WRP has greatly impacted the vision and the problem design of cameras coverage and coverage path planning. Especially the CPP by splitting the problem into two sub-problem.  
 
@@ -844,7 +884,7 @@ Since the 90s numerous algorithm has been developed for the cellular decompositi
 		The approximate decomposition by case is fast to describe the area but is greatly limited due to the low sampling frequency of the gird and the limited trajectory possible.\\
 	 
 	\item Semi approximate: 
-	 The semi approximate decomposition is by part based on the discretization of the space. The idea is to create a set of large cells. The width of the cells is fix and the height is relative then the area boundary (see [241*]). 
+	 The semi approximate decomposition is by part based on the discretization of the space. The idea is to create a set of large cells. The width of the cells is fix and the height is relative then the area boundary (see \citep{214*choset2001}). 
 	 The semi approximate cell decomposition allow to have cells with two parallel side with a fix size (at the right and left) and  the  two other side adapted to the boundary (at the up and down).  The width  of  the cell chosen depending then half of the focal length of the camera mounded on the mobile robot. The area is covered by following the boundary of the cells with sweep to pass cells  after cells.
 	 The advantage of this semi approximate decomposition is the facility to describe a vast area and the low computation required. Additionally, this decomposition can be made on-line by the robot and do not require a hight level of knowledge of the area. 
 	 The disadvantage is the non optimized path due to the cell decomposition. The simplicity  of this decomposition  can gender case where the robot have to path many time by the same place. The semi approximate cellular decomposition do not allow to have a well optimised path planning. \\
@@ -854,7 +894,7 @@ Since the 90s numerous algorithm has been developed for the cellular decompositi
 	The exact cellular decomposition describe the area by create juxtaposed geometrical region. The size of the region (or cells) are not dependent then the robots ability despite the previous decomposition. The large size of the cell allow the  mobile robots to do back and forth motion to cover all the cell (also called sweep).  The cells have to be ordered to have an efficient and short path passing by all the cells. The path has to limit the distance to pass  between the cells.
 	The exact cellular decomposition became popular and numerous algorithms has been proposed. The algorithms proposed are can be a faster decomposition or with a more appropriate shape depending then the area shape. 
 	Among the numerous exact cellular decomposition the trapezoidal decomposition for this simplicity and historic importance, the Boustrophedon decomposition  and  Morse-based Cellular Decomposition for their important in the construction of other exact cellular decomposition has to be cited. These algorithms and other has been clearly summarized in the survey of Carreras and Galceran \citep{66*galceran2013}. 
-	The exact cellular decomposition has continue to be studied since the survey of  Carreras and Galceran  \citep{66*galceran2013} and upgraded, as in 144*  \cite{} for propose a decomposition for concave or multiple polygons.
+	The exact cellular decomposition has continue to be studied since the survey of  Carreras and Galceran  \citep{66*galceran2013} and upgraded, as in   \cite{144*torres2016} for propose a decomposition for concave or multiple polygons.
 	
 \end{itemize}
 
@@ -870,22 +910,22 @@ Since the 90s numerous algorithm has been developed for the cellular decompositi
  \paragraph*{Sweep} \label{par:sweep}
 	The back and forth or sweep is an essential element of the CPP by cellular decomposition. The sweep has to cover the entire cells. The cells are splitting the area in relatively simple polygon (as see in the paragraph \ref{par:decomposition} and  the Figure \figref{fig:CellDecp}). The sweep has to be adapted then the shape of the cells and also must start and finish in a appropriate position for passing to the next cell.
 	For that the starting point of the sweep and the ending point are crucial for the global path planning.
-	In Torres et al 144* the sweep is function then a direction and can go clockwise or counter-clockwise to have a start and end in the appropriate position for the transition. 
+	In Torres et al \cite{144*torres2016}  the sweep is function then a direction and can go clockwise or counter-clockwise to have a start and end in the appropriate position for the transition. 
 	 This allow to have 8 different applicable sweeps at each cell depending then the more appropriate start and finish. The sweep are adapted depending then : 
 	 \begin{itemize}
 	 \item The turn side ( clockwise or counter-clockwise)
 	 \item The direction (horizontal or vertical)
 	 \item The finishing  position (start and stop form the same side or opposite side)
 \end{itemize}	
-	 The sweep can be also alternatively switch for a spiral as proposed in Jimenez et al [217*]. The proposed sweep and spiral in [217*] are adaptable depending then the context. The sweep can have two direction and for the spiral two turn side (clockwise or counter-clockwise).  The different sweep and spiral are illustrated in the Figure \figref{fig:sweepSpiral}. 
+	 The sweep can be also alternatively switch for a spiral as proposed in Jimenez et al \citep{217*jimenez2007}. The proposed sweep and spiral in  \citep{217*jimenez2007}  are adaptable depending then the context. The sweep can have two direction and for the spiral two turn side (clockwise or counter-clockwise).  The different sweep and spiral are illustrated in the Figure \figref{fig:sweepSpiral}. 
 	  \begin{mfigures}[!]{Different sweep and spiral}{fig:sweepSpiral} \centering
 \mfigure{width=.4\linewidth}{img/SweepSpiral.png}{}{subfig:RoomPy}
 \end{mfigures} 
 
-	To have an adapted sweep the footprint has to be defined depending then the camera ability and the objective. In 144* the size of the sweep is dependent then the area cover by a camera and a sufficient amount of overlap for the 3D reconstruction (see also [191*]). In Li et al  \citep{146*li2011} the foot print of the camera with a small pan is take in account. Due to the pan the camera projection is not a rectangle but a trapezoid. Consequently the sweep size is adapted by taking the larger side of the trapezoid for the sweep dimension.
-	Also for the grid decomposition the sweep size is directly related the coverage ability of the mobile robots (as example in [215*][195*]).  % also 216*+48  215*  195* +55 218*+12  use a sensing camera at the front).
+	To have an adapted sweep the footprint has to be defined depending then the camera ability and the objective. In \cite{144*torres2016}  the size of the sweep is dependent then the area cover by a camera and a sufficient amount of overlap for the 3D reconstruction (see also\citep{191*di2016}). In Li et al  \citep{146*li2011} the foot print of the camera with a small pan is take in account. Due to the pan the camera projection is not a rectangle but a trapezoid. Consequently the sweep size is adapted by taking the larger side of the trapezoid for the sweep dimension.
+	Also for the grid decomposition the sweep size is directly related the coverage ability of the mobile robots (as example in \citep{215*lee2010,195*choi2009}).  % also 216*+48  215*  195* +55 218*+12  use a sensing camera at the front).
 	
-	One extra element to take in account for the sweep can be in some case the external element as the wind. In [215*][190*] the external condition are taking in account in the cost function and influence the sweep.
+	One extra element to take in account for the sweep can be in some case the external element as the wind. In \citep{215*lee2010,190*hsu2014 }[190*] !! the external condition are taking in account in the cost function and influence the sweep.
 	
 	
 	To summarize the sweep as to be adapted then the area and the relation between cells. To choose the appropriate sweep the following element has to be taking in account:
@@ -922,14 +962,14 @@ The aims of the path planning is to find the short path passing by all the cells
  Obviously, to find the best scheduling between each cells the algorithm form the TSP are commonly used.     
  
  When the area is decomposed in cells the goal is to schedule the priority of passage from one cell to another in order to create an efficient path passing by all the cells. The scheduling of the cells can be optimize by using the paradigm of TSP with those algorithms to have the best path planning. 
-The TSP is well known problem and is deeply studied form long time ago. First is essential remember the TSP is an NP-complete and NP-hard problem as proofed in Karp in [236*]. 
+The TSP is well known problem and is deeply studied form long time ago. First is essential remember the TSP is an NP-complete and NP-hard problem as proofed in Karp in \cite{236*karp1972}. 
 
-To optimize the TSP numerous algorithms was tested and some of them has been specially applied to schedule the cells to have the shorter path. In  An et al [60*] two algorithms was tested before to develop a third. The algorithms used are based on branch and bound. The algorithms developed in [60*] is called "Novel Previous-Next Waypoints Coverage Constraint" (PNWCC). The algorithms presented in [60*] propose at same time a schedule of each cells with also a smooth trajectory without sharp edges usable for non holonomic driving robots. 
+To optimize the TSP numerous algorithms was tested and some of them has been specially applied to schedule the cells to have the shorter path. In  An et al \cite{60*an2013} two algorithms was tested before to develop a third. The algorithms used are based on branch and bound. The algorithms developed in \cite{60*an2013} is called "Novel Previous-Next Waypoints Coverage Constraint" (PNWCC). The algorithms presented in \cite{60*an2013} propose at same time a schedule of each cells with also a smooth trajectory without sharp edges usable for non holonomic driving robots. 
 
-	In the survey of Carreras et Galceran \citep{66*galceran2013} among the solutions proposed to solve the TSP is to computes an exhaustive walk trough the adjacency graph. This solution is workable only for small adjacency graph. Among the other solution proposed the Genetic Algorithm. The GA is popular to optimize the TSP and is commonly use to evaluate the influence of this parameter as in \citep{68*muhlenbein1989} \citep{80*serpell2010} [139*]. About the CPP problem the GA is also used to optimize the TSP part as in Jimenez et al [217] where after an exact cellular decomposition of a complex polygon. 
+	In the survey of Carreras et Galceran \citep{66*galceran2013} among the solutions proposed to solve the TSP is to computes an exhaustive walk trough the adjacency graph. This solution is workable only for small adjacency graph. Among the other solution proposed the Genetic Algorithm. The GA is popular to optimize the TSP and is commonly use to evaluate the influence of this parameter as in \citep{68*muhlenbein1989} \citep{80*serpell2010}. About the CPP problem the GA is also used to optimize the TSP part as in Jimenez et al \citep{217*jimenez2007}  where after an exact cellular decomposition of a complex polygon. 
 	
 The GA is announced well appropriate to have an optimized solution for the TSP. 
-Also the in some situation a  TSP is not realistic and some external constraint can be added as the wind effect, the turbulences, or holonomy constraint as in [102*,56*] \citep{66*galceran2013}).
+Also the in some situation a  TSP is not realistic and some external constraint can be added as the wind effect, the turbulences, or holonomy constraint as in \citep{56*davies2006,102*ware2016,66*galceran2013}).
  
  
 %236* proof of NP complet and NP-hard
@@ -1048,15 +1088,15 @@ Also the in some situation a  TSP is not realistic and some external constraint 
 		
 		Among the algorithms developed for the CPP some interesting method have to be studied.
 		
-		Some algorithms has been discussed in Choset et \cite{214*choset2001} as approximate solution (see \ref{par:decomposition}. Despite this classification the decomposition of the area is not the really effective and the algorithms used must be highlight. Among it the solution based on regular grid discretization which this  comparatively to cellular decomposition high sampling frequency. As discussed earlier in this case the cell decomposition is made based on the coverage ability of the  mobile robots as  well detailed in [218*].
+		Some algorithms has been discussed in Choset et \cite{214*choset2001} as approximate solution (see \ref{par:decomposition}. Despite this classification the decomposition of the area is not the really effective and the algorithms used must be highlight. Among it the solution based on regular grid discretization which this  comparatively to cellular decomposition high sampling frequency. As discussed earlier in this case the cell decomposition is made based on the coverage ability of the  mobile robots as  well detailed in \citep{218*meiting2007}.
 		Thanks to this relatively fine grid decomposition the number of case and the regularity of its the TSP paradigm is not the more appropriate and other solution may used to optimize the path planing of the mobile robots.
-		This solution is relatively popular for the plan the hoover robot path as in 216*  215* 196* \citep{218*meiting2007}.
-		The idea is to have an algorithms which not tried to optimize globally the path planning but have an adapted local decision with maximize the global path plan. In Luo et al [216*] the goal is to have a complete coverage by visiting all the case of a grid. To visit all the case of the grid a neural-neighborhood analysis and neural dynamic programming approaches are adapted to can efficiently CPP for the robots. In Simon et Luo [196*] they propose an similar method with a neural network solution for dynamic and non planar area.
+		This solution is relatively popular for the plan the hoover robot path as in  \citep{216*luo2002,196*yang2004,215*lee2010,218*meiting2007}.
+		The idea is to have an algorithms which not tried to optimize globally the path planning but have an adapted local decision with maximize the global path plan. In Luo et al \citep{216*luo2002} the goal is to have a complete coverage by visiting all the case of a grid. To visit all the case of the grid a neural-neighborhood analysis and neural dynamic programming approaches are adapted to can efficiently CPP for the robots. In Simon et Luo \citep{196*yang2004} they propose an similar method with a neural network solution for dynamic and non planar area.
 		
-		The work of Lee et al [215*] propose an other solution Based on smooth spiral path. The idea is to propose to follow the boundary of the room to fully cover and use a smoothed spiral to cover the area. The solution proposed is compared to other method. The main advantage of these method is the on-line ability and the smoothed trajectory(see also [195*]).
+		The work of Lee et al \cite{215*lee2010} propose an other solution Based on smooth spiral path. The idea is to propose to follow the boundary of the room to fully cover and use a smoothed spiral to cover the area. The solution proposed is compared to other method. The main advantage of these method is the on-line ability and the smoothed trajectory(see also \citep{195*choi2009}).
 		
 		Before to conclude about some of the algorithms usable to optimise the coverage path planning the more elementary has to be discussed. In fact,  among the algorithms proposed until here the full random was not discussed. 
-		In Liu et al [242*] a really basic methods is developed to cover an area with an mobile robot (hover robot) for on-line path planning in a dynamic environment. The algorithm proposed is based on random direction. The basic idea is to move forward until the detection of an obstacle (ultrasonic or bumper). When an obstacle is detected the robot turn randomly. This solution is really basic and is based on the idea then if the room is not too big or not specially complex with enough time the mobile robot will cover all.
+		In Liu et al \cite{242*liu2008} a really basic methods is developed to cover an area with an mobile robot (hover robot) for on-line path planning in a dynamic environment. The algorithm proposed is based on random direction. The basic idea is to move forward until the detection of an obstacle (ultrasonic or bumper). When an obstacle is detected the robot turn randomly. This solution is really basic and is based on the idea then if the room is not too big or not specially complex with enough time the mobile robot will cover all.
 		
 		
 
