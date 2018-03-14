@@ -573,7 +573,14 @@ The solution proposed based on PSO are promising. The PSO or closely related hav
   On another side the PSO is not really efficient to optimize a lot of dimension at the same time and is quickly limited as the increasing size and complexity of the area. Due to this limit the PSO has been customized as in \citep{143*maji2015}  and \citep{194*fu2010}. \\
 The popularity of the PSO is mostly due to the association of the quick implementation, fast computation and efficient enough optimisation.
  
+ \paragraph{Sum-up} 
+ In order to summarise the previous section a Table \ref{tab:sum-upEA} is proposed with contain the interesting article.
+ The first column  is dedicate to the reference and the author name  and year. The second is  dedicate to  the best algorithms. In these articles most of the time more several solution has been tested. The second column show the best algorithms among the algorithm tested. The third column notify if among the other algorithms tested some them are from the EA  family. The 4$^{th}$,  5$^{th}$ and 6$^{th}$ column precise if the algorithm proposed optimize respectively on $x,y$ and $z$ coordinated the position of the cameras. In some case the position on $x$ and $y$ are not optimize  but randomly dispersed. The 7$^{th}$,  8$^{th}$ and 9$^{th}$ column precise if the algorithm proposed optimize respectively on pan, tilt and roll rotation of the cameras (if no optimization the orientation is fixed). The 10$^{th}$ column is dedicate to precise if the focal length is optimized or fix. The column for coverage representation  precise the area to cover is designed in  2D or 3D (11$^{th}$ column). In some case, the 2D representation of the area is enriched (noted with a "+" or "+relief"). The 12$^{th}$  column show the if the experiments proposed are indoor or outdoor (in, out). The 13$^{th}$  column is dedicated to show the maximum number of cameras tested in the experiments.  
+ The last columns are  dedicated to list the main secondary objective and constraints. 
   
+ 
+ 
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%tableau%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{landscape}
 %	\label{tab:sum-up2}
@@ -614,9 +621,10 @@ The popularity of the PSO is mostly due to the association of the quick implemen
 %\end{landscape}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{landscape}
-	\label{tab:sum-up2}
+	\label{tab:sum-upEA1}
+	
 \begin{table}[]
-
+\caption{Sum-up of the solution based on evolutionary method for maximize the coverage.}
 \begin{tikzpicture}[left]
 \node (a) at (-0,-0)
 {
@@ -692,7 +700,7 @@ The popularity of the PSO is mostly due to the association of the quick implemen
 \draw [->,very thick][orange] (-.135,-1.51) -- (1.5,-1.51) -- (1.5,-4.4); %EA tested
 \draw [->,very thick] 		  (-.135,-2.02) -- (0.2,-2.02) -- (0.2,-4.4); % best Al
 \end{tikzpicture}
-\end{table}
+\end{table} \label{tab:sum-upEA}
 \end{landscape}
 
 
@@ -711,12 +719,12 @@ The popularity of the PSO is mostly due to the association of the quick implemen
 
 
 %####################TODO############################
-\section{Coverage path planning}
+\section{Coverage path planning}\label{sec:CppLiterattur}
 
 The solutions put forward in the literature until now to keep on eyes a vast area composed by numerous obstacles was to pose numerous cameras or robotics cameras (as PTZ cameras and smart camera).
 The solutions proposed until now are interesting only to monitor a vast area  in continue with several cameras. 
 The disadvantage of positioning a set of cameras appears quickly with the cost. The cost is due to the several cameras and the communication network required to can centralize the image collected. All the images must be collected in a real time. This costly system is not always useful. 
-In fact, in some application the area needs to be controlled periodically. The periodic control of the area does not require an installation of the set of fixed cameras unlike the solution presented until now (see section \ref{sec:SolutionBasedonEA} and section \ref{sec:NonEAmethod}). The periodical control requirement can be illustrate with some example :  the cartographies with need just one fly over an area roughly bounded as in \citep{66*galceran2013,164*valente2013}, forest fire detection which require a periodic fly over specific and vast region as in\cite{237*casbeer2006}, the hoovering robots with need to cover all the room with some time some on-line computation \citep{218*meiting2007,216*luo2002,215*lee2010,196*yang2004}  and the agriculture.
+In fact, in some application the area needs to be controlled periodically. The periodic control of the area does not require an installation of the set of fixed cameras unlike the solution presented until now (see section \ref{sec:SolutionBasedonEA} and section \ref{sec:NonEAmethod}). The periodical control requirement can be illustrate with some example :  the cartographies with need just one fly over an area roughly bounded as in \citep{66*galceran2013,164*valente2013}, forest fire detection which require a periodic fly over specific and vast region as in \cite{237*casbeer2006}, the hoovering robots with need to cover all the room with some time some on-line computation \citep{218*meiting2007,216*luo2002,215*lee2010,196*yang2004}  and the agriculture.
  About the agriculture application, an UAV need to fly over the field few time the year in order to control by photography the hydration, the maturity, etc, as in \citep{164*valente2013,203*zarco2008,63*chao2008,105*long199,167*barrientos2011,177*lelong2008}. %\textbf{revoir les ref et trié un peu}.
 
 For all these applications the area must be covered but does not need a coverage of all the area instantly and continuously. The solution commonly proposed is to use only one sensor mounted on a mobile robot. Mobile robots need to be adapted to the task and the environment, as flying  \citep{105*long1991}, driving \citep{30*bodor2005,213*roberts2008}, swimming \cite{66*galceran2013}. The mobile robot with the sensor moves in the space to cover all the area. In this case, the objective is to determine the best path for the mobile robot to cover all the area. The best path is dependent then the constraint of each problem. However, the common point, is to have the shorter path to all or at least most of the area.
@@ -755,11 +763,16 @@ The following sections are focused on the definition of the WRP, the solution pr
  
 \subsubsection{Definition of the watchmen problem }
 
+ \begin{mfigures}[!]
+{Watchman route problems answer illustration. }{fig:WRPillust} \centering
+\mfigure{width=.4\linewidth}{img/WRPillustration.png}{}{subfig:WRPi}
+\hspace{1cm}
+\end{mfigures}	
 The Watchman Route Problem is introduced for the first time by Chin and Ntafos in 1987 \cite{54*chin1988}. The problem of the WMP can be summarized in one sentence :
 
 \textbf{"How to calculate a shortest route contained inside a polygon such that any points inside this polygon is visible from at least one point of the route?"}.  
 
-The guard has to cover an area represented by a polygon. The guards is considered as perfect with no restriction in the field of view (the guard can see at $360^\circ$) and no restriction in the depth field (the guard can see form on extremity of the room the guard can see the opposed wall until no obstacle look him). The guard ability are directly inspired by the AGP (see \ref{sec:AGP})
+The guard has to cover an area represented by a polygon (see the illustration of the problems in Figure \figref{fig:WRPillust}). The guards is considered as perfect with no restriction in the field of view (the guard can see at $360^\circ$) and no restriction in the depth field (the guard can see form on extremity of the room the guard can see the opposed wall until no obstacle look him). The guard ability are directly inspired by the AGP (see \ref{sec:AGP})
 The shape of the polygon is primordial and affect greatly the possible answer and the complexity to solve the WRP.
 The WRP problem is by many aspects closely related than the AGP. The AGP (see  section \ref{sec:AGP}) is commonly considered as the roots of the WRP.
  In fact, the WRP is not only focussed on fixing position but on finding an optimal path. The path has to be optimized to cover all the points which compose the polygon  and the path have to be shorter as possible.
@@ -1086,8 +1099,7 @@ Also the in some situation a  TSP is not realistic and some external constraint 
 		
 		\subsubsection{Other solution}
 		
-		Among the algorithms developed for the CPP some interesting method have to be studied.
-		
+		Among the algorithms developed for the CPP some interesting method have to be studied.		
 		Some algorithms has been discussed in Choset et \cite{214*choset2001} as approximate solution (see \ref{par:decomposition}. Despite this classification the decomposition of the area is not the really effective and the algorithms used must be highlight. Among it the solution based on regular grid discretization which this  comparatively to cellular decomposition high sampling frequency. As discussed earlier in this case the cell decomposition is made based on the coverage ability of the  mobile robots as  well detailed in \citep{218*meiting2007}.
 		Thanks to this relatively fine grid decomposition the number of case and the regularity of its the TSP paradigm is not the more appropriate and other solution may used to optimize the path planing of the mobile robots.
 		This solution is relatively popular for the plan the hoover robot path as in  \citep{216*luo2002,196*yang2004,215*lee2010,218*meiting2007}.
