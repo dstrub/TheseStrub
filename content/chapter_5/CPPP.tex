@@ -21,13 +21,13 @@ To optimize the CPP problems a simple and innovative method has been developed. 
 	% the number of waypoints will cause a  more complex and longer estimation of the pose for each of them and increase the complexity to compute a path. Otherwise with a too low number of waypoint the area will not be well cover and leave some black hole. 
 \end{itemize}
 
-The method propose has the advantage to optimize independently all the waypoints  and the path plan. This method is also note systematic based on a sweep and allows to have optimized path with the same stating point and ending point. 
+The method propose has the advantage to optimize independently all the waypoints and the path plan. This method is also not systematically based on a sweep and allows to have shorter path with the same stating point and ending point. 
 
 
-\subsection{Number of waypoint }
+\subsection{Number of waypoint and their poses estimation}\label{sec:NmbWaypoint}
 
-Is difficult to estimate properly the minimum of waypoints are necessary to cover a complex area.
-To do so, a two-step procedure has been implemented which rest on the pose optimization of a fixed number of waypoints introduce in the precedent Chapter \ref{chap:waypointPoseExp}. 
+Is difficult to estimate properly the minimum of waypoints which are necessary to cover a complex area.
+To do so, a two-step procedure has been implemented. Based on the pose optimization of a fixed number of waypoints introduce in the precedent Chapter \ref{chap:waypointPoseExp}. 
 The first step is to find the minimum number of waypoints depending on the area to cover like formulated in the
  Equation \ref{Eq:waypointN}. \\
 \begin{equation}\label{Eq:waypointN}
@@ -44,13 +44,16 @@ The first step is to find the minimum number of waypoints depending on the area 
 \item[-] $evalCost:$ cost function  
 \end{itemize}
 
-The second step is to compute GA optimization until the threshold is reached, while increasing the number of waypoints like explained in the Algorithm 1 Estimation of the number of waypoints.  
+The second step is to compute GA optimization until the threshold is reached. At the end of each GA convergence if the threshold rate is not reached one more waypoints is added and the GA optimization restart with one more waypoints. The algorithm  used to estimate the number of waypoint  is explained in the "Algorithm 1 Estimation of the number of waypoints".  
+               %  while increasing the number of waypoints like explained in the Algorithm 1 Estimation of the number of waypoints.  
 
 \begin{algorithm}{}
 \caption{Estimation of the number of waypoints}\label{alg:euclid}
 \begin{algorithmic}[6]
-\Procedure{N}{$a$}
+\Procedure{NmbWaypoint}{$A_{room},A_{Wall},\mbox{Threshold Rate},A_{Cam}$}
  \State $S\gets 0$
+  \State $NWayPoint\gets \frac{ A_{room} - \sum_{i=1}^n A_{wall i} }{A_{cam}} \times \mbox{Threshold Rate} 
+ $  (Equation \ref{Eq:waypointN})
   \While{$eval Cost(S)\leq ThresholdRate$}
 	 \State $S \gets GA(NWayPoint)$
 	  \State $NWayPoint\gets NWayPoint+1$
@@ -60,25 +63,23 @@ The second step is to compute GA optimization until the threshold is reached, wh
 \end{algorithmic}
 \end{algorithm}
 
-
+At the end of these steps, we have the number and a good set of waypoints pose from the last GA convergence. The waypoints pose can directly be used, but can also be refined using the adapted PSO (as in the GAPSO see \ref{sec:hybridGAPSO}). Once the number and the efficient pose of the waypoints done the next step is to compute the path planning.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	
-	\section{ Path planning. }\label{PathPlanning}
- \begin{mfigures}[!]{optimisation of the path plannig}{fig:Path_planning} \centering
-\mfigure{width=.4\linewidth}{img/22pts_WaypointsDijktra2.jpg}{Poses of every image captured in the room.}{subfig:Dijktra}
-\hspace{1cm}
-\mfigure{width=.4\linewidth}{img/22pts_WaypointsGA2.jpg}{Path compute with Dijktra multi goal.}{subfig:GATSP}
-\end{mfigures} 
+% \begin{mfigures}[!]{optimisation of the path plannig}{fig:Path_planning} \centering
+%\mfigure{width=.4\linewidth}{img/22pts_WaypointsDijktra2.jpg}{Poses of every image captured in the room.}{subfig:Dijktra}
+%\hspace{1cm}
+%\mfigure{width=.4\linewidth}{img/22pts_WaypointsGA2.jpg}{Path compute with Dijktra multi goal.}{subfig:GATSP}
+%\end{mfigures} 
  
   \subsection{Sorted waypoints and path planning.} \label{sorted}
-In the previous section, the method to obtain the shorter list of waypoints to have a desired coverage has been detailed. The list of waypoints is sort to compute an efficient path with smoother shape and shorter travelling distance. 
+In the previous section, the method to obtain the small list of waypoints to have a desired coverage has been detailed. The list of waypoints has to be sort to compute an efficient path with shorter travelling distance. In order to create an efficient path passing by all optimised waypoints the problem is formalized as a TSP. The TSP  quickly described in the flowing section.
 
-There are several ways to formulate this problem. In this paper, one method has been implemented.
 % \subsubsection*{a)}{Shortest Path Problem}
 % \\Normally, finding a shortest path between two points in configuration space is mature enough. In our case we assume the waypoints as multi goals. So the planning in this method will simply find at every waypoint the shortest Euclidean distance from the other available non-traversed waypoints. Based on that a ranked waypoints list will be generated. This will not guarantee a globally shortest distance, but will only choose the shortest distance every time a waypoint is visited.
  
-\subsubsection*{Traveling Salesman Problem. }\label{sec:TSP}
+\subsubsection*{Traveling Salesman Problem. }\label{sec:TSP2}
 
 %%%%%%%%%%%%%%%%%%%%
 % \begin{figure}[htp]
@@ -91,11 +92,13 @@ There are several ways to formulate this problem. In this paper, one method has 
 %%%%%%%%%%%%%%%%%%%%
 
 
-The sorted path can be formulated as travelling salesman problem (TSP). The travelling salesman problem is inspired by a question asked by a salesman  ``It is possible to give a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?" . This question is a well known NP-Hard problem and different solutions exit to optimize it depending of the context. Ponnambalam et al \cite{172*} propose to use the GA adapted to  multi-objective to optimize the TSP, also provide the GA set-up(mutation rate, population size...). DAVIES et al \cite{56*} propose to use the GA to solve the TSP applied on robotic with an obstacle constraint. \\
-Based on the literature, the GA since adapted and efficient enough for solve the TSP.
-One example of solution is provided in the Figure.\ref{fig:Path_planning}
+The sorted path can be formulated as travelling salesman problem (TSP). To remember the travelling salesman problem (TSP) is inspired by a question asked by a salesman  "\textbf{What is the shortest path passing by each city only one time and return to the starting city? When i know a list of cities and the distances between each pair of cities. }". The TSP problem is a well known NP-Hard and NP-complete problem ( see \citep{236*karp1972}) and different solutions exit to optimize it depending of the context. 
+Ponnambalam et al 172* \cite{172*} propose to use the GA adapted to  multi-objective to optimize the TSP, also provide the GA set-up(mutation rate, population size...). DAVIES et al \cite{56*davies2006} propose also to use the GA to solve the TSP applied on robotic with an obstacle constraint. \\
+Based on the literature, the GA since adapted and efficient enough to optimize the TSP problems.
+The GA  has to be set-up properly depending then the problem specific to TSP. The GA set-up was discussed in the section \ref{sec:Setting and set-up}. About the set-up the more appropriate to optimize the TSP, several studies has been made  as  \citep{68*muhlenbein1989,80*serpell2010,139*razali2011}139*. The conclusion is to use an simple GA for combinator problem. That mean the operator has to be adapted (using swap for example) with an high mutation rate and a very elitist selection.
+One example  using a adapted GA solution is provided in the Figure \figref{fig:Path_planning}
 
-\begin{mfigures}[!]{ Optimization of the path planning.}{fig:Path_planning} \centering
+\begin{mfigures}[!]{Optimization of the path planning.}{fig:Path_planning} \centering
 \mfigure{width=.4\linewidth}{img/fig5-a.png}{Every pose after the optimization of the waypoint positioning. }{subfig:Path_planning1}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/fig5-b.jpg}{Path compute with GA multi objective for TSP.}{subfig:Path_planning2}
@@ -113,9 +116,10 @@ One example of solution is provided in the Figure.\ref{fig:Path_planning}
 % The privilege of TSP problem formulation and solving it using GA over the other shortest path algorithms like Dijkstra, is that it provides global  complete solution traversing all the waypoints not finding a path from a starting node  to a goal node. The GA approach is more clarified and discussed by Trevor \textit{et al}     \cite{GA_Path}. 
 %  The distance covered by a path that is planned by GA is 513 meters, which is shorter by the factor of 1.8 compared to the distance covered by Dijsktra multi goal approach which is 963 meters. Using the GA  to optimize  the scheduling problem of waypoint makes a more efficient result and especially the GA unlike the Dijsktra multi goal, it is more efficient to sort a high number of waypoints.\\ 
  
-\subsection{Complexity of trajectory. }\label{tarjectory}
+\subsubsection{Complexity of trajectory. }\label{tarjectory}
 
-
+Once the waypoints position estimated and the shorter path passing by all the waypoints computed  it is interesting to can evaluate the trajectory complexity. The trajectory complexity can be a good glue of the path reaibility. !!!!
+ 
 To estimate the trajectory, two indicators are used in order to evaluate properly the path, the distance of the trajectory and the complexity in terms of curve for the UAV evolving in the 3D space.
 Therefore the complexity of trajectory is computed as follow: 
 \begin{equation}\label{Eq:trajectory}

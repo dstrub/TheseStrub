@@ -516,7 +516,7 @@ Equation variable
 \end{tabular}
 };
 
-\node[yshift=-3.89cm,xshift=-1.5cm] (b) at (a.south) 
+\node[yshift=-8.89cm,xshift=-1.5cm] (b) at (a.south) 
 {
 \begin{tabular}{l | m{0.35\linewidth} | m{0.205\linewidth} | m{0.150\linewidth} |   }
 \hline
@@ -528,7 +528,6 @@ Equation variable
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $P$}  		&Is  a Polygon  used to represent a art galery (room).	 & Sub-section	:\ref{sec:AGPdef}  & 	Only the section \ref{sec:AGP}	   						  \tabularnewline \hline     
  \rowcolor[HTML]{FFFFFF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$n$}  &	Number of vertice of $P$ &	Sub-section	:\ref{sec:AGPdef}     &	Only the section \ref{sec:AGP}					  \tabularnewline \hline
-
 \rowcolor[HTML]{E9E9EF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $v_i$}  		&Is  the $i^{th}$ vertice of the polygon $P$	 & Sub-section	:\ref{sec:AGPdef}  & 	Only the section \ref{sec:AGP}	   						  \tabularnewline \hline 
     	
@@ -541,10 +540,25 @@ Equation variable
    \rowcolor[HTML]{FFFFFF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$X$}  &	Is set with the minimum number of guards $X$ useful to fully cover the polygons $P$ &	Sub-section	:\ref{sec:AGPdef}     &	Only the section \ref{sec:AGP}					  \tabularnewline \hline
  
-    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$g$}  &	Is the number of guard $x$ need it to cover $P$ to have a set $X=\{x_1…x_i…. x_g\}$ &	Sub-section	:\ref{sec:AGPdef}     &	Only the section \ref{sec:AGP}					  \tabularnewline \hline
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$g$}  &	Is the number of guard $x$ need it to cover $P$ to have a set $X=\{x_1…x_i…. x_g\}$ &	Sub-section	:\ref{sec:AGPdef}     &	Only the section \ref{sec:AGP}					  \tabularnewline \hline
  
- 
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$A_{room}$}  &	area of the Room (length $\times$ width) &	Sub-section	:\ref{sec:NmbWaypoint}    &	Only the section \ref{sec:NmbWaypoint}					  \tabularnewline \hline
+
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$A_{Wall}$}  &	area of the obstacle like wall (length $\times$ width) &	Sub-section	:\ref{sec:NmbWaypoint}     &	Only the section \ref{sec:NmbWaypoint}					  \tabularnewline \hline
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$A_{Cam}$}  &	area cover by the camera in the maximum size of $z$ &	Sub-section	:\ref{sec:NmbWaypoint}    &	Only the section \ref{sec:NmbWaypoint}		  \tabularnewline \hline
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\mbox{NWayPoint}$}  &	number of waypoints &	Sub-section	:\ref{sec:NmbWaypoint}     &	Only the section \ref{sec:NmbWaypoint}					  \tabularnewline \hline
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\mbox{Threshold Rate}$}  &	objective threshold rate  &	Sub-section	:\ref{sec:NmbWaypoint}    &	Only the section \ref{sec:NmbWaypoint}		  \tabularnewline \hline
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$S$}  &	one solution of waypoints set  &	Sub-section	:\ref{sec:NmbWaypoint}     &	Only the section \ref{sec:NmbWaypoint}					  \tabularnewline \hline
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\mbox{evalCost}$}  &	cost function     &	Sub-section	:\ref{sec:NmbWaypoint}    &	Only the section \ref{sec:NmbWaypoint}		  \tabularnewline \hline
+
 \end{tabular}
 };
 %\draw[->,ultra thick](a)--(b);
@@ -563,3 +577,15 @@ Equation variable
 
 
 \end{document}
+
+
+%
+%\begin{itemize}
+%\item[-] $ A_{room}: $  area of the Room (length $\times$ width)
+%\item[-] $ A_{Wall}: $  area of the obstacle like wall (length $\times$ width)
+%\item[-] $ A_{Cam}: $   area cover by the camera in the maximum size of $z$
+%\item[-] $ \mbox{NWayPoint}: $  number of waypoints
+%\item[-] $ \mbox{Threshold Rate}: $ objective threshold rate 
+%\item[-] $S:$ one solution of waypoints set 
+%\item[-] $evalCost:$ cost function  
+%\end{itemize}
