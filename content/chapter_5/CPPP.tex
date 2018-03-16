@@ -91,6 +91,11 @@ In the previous section, the method to obtain the small list of waypoints to hav
 % \end{figure}
 %%%%%%%%%%%%%%%%%%%%
 
+\begin{mfigures}[!]{Optimization of the path planning.}{fig:Path_planning} \centering
+\mfigure{width=.4\linewidth}{img/fig5-a.png}{Every pose after the optimization of the waypoint positioning. }{subfig:Path_planning1}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/fig5-b.jpg}{Path compute with GA multi objective for TSP.}{subfig:Path_planning2}
+\end{mfigures}	
 
 The sorted path can be formulated as travelling salesman problem (TSP). To remember the travelling salesman problem (TSP) is inspired by a question asked by a salesman  "\textbf{What is the shortest path passing by each city only one time and return to the starting city? When i know a list of cities and the distances between each pair of cities. }". The TSP problem is a well known NP-Hard and NP-complete problem ( see \citep{236*karp1972}) and different solutions exit to optimize it depending of the context. 
 Ponnambalam et al 172* \cite{172*} propose to use the GA adapted to  multi-objective to optimize the TSP, also provide the GA set-up(mutation rate, population size...). DAVIES et al \cite{56*davies2006} propose also to use the GA to solve the TSP applied on robotic with an obstacle constraint. \\
@@ -98,11 +103,7 @@ Based on the literature, the GA since adapted and efficient enough to optimize t
 The GA  has to be set-up properly depending then the problem specific to TSP. The GA set-up was discussed in the section \ref{sec:Setting and set-up}. About the set-up the more appropriate to optimize the TSP, several studies has been made  as  \citep{68*muhlenbein1989,80*serpell2010,139*razali2011}139*. The conclusion is to use an simple GA for combinator problem. That mean the operator has to be adapted (using swap for example) with an high mutation rate and a very elitist selection.
 One example  using a adapted GA solution is provided in the Figure \figref{fig:Path_planning}
 
-\begin{mfigures}[!]{Optimization of the path planning.}{fig:Path_planning} \centering
-\mfigure{width=.4\linewidth}{img/fig5-a.png}{Every pose after the optimization of the waypoint positioning. }{subfig:Path_planning1}
-\hspace{1cm}
-\mfigure{width=.4\linewidth}{img/fig5-b.jpg}{Path compute with GA multi objective for TSP.}{subfig:Path_planning2}
-\end{mfigures}	
+
 
 %\texttt{\begin{figure}[t!]
 %  \centering
@@ -118,48 +119,28 @@ One example  using a adapted GA solution is provided in the Figure \figref{fig:P
  
 \subsubsection{Complexity of trajectory. }\label{tarjectory}
 
-Once the waypoints position estimated and the shorter path passing by all the waypoints computed  it is interesting to can evaluate the trajectory complexity. The trajectory complexity can be a good glue of the path reaibility. !!!!
+Once the waypoints position estimated and the shorter path passing by all the waypoints computed it is interesting to can evaluate the trajectory complexity. The trajectory complexity can be a good glue of the path reliability.  
  
-To estimate the trajectory, two indicators are used in order to evaluate properly the path, the distance of the trajectory and the complexity in terms of curve for the UAV evolving in the 3D space.
-Therefore the complexity of trajectory is computed as follow: 
+To estimate the trajectory, two indicators are used in order to evaluate properly the path complexity. The first indicator is the distance of the trajectory. The distance allow to evaluate basically the optimization of the path planning. This indicator is directly include in the optimisation process as discussed before \ref{sec:TSP2}. 
+Evaluate the trajectory only by using the distance indicator is not enough and an other indicator must be associate to can evaluate quickly the trajectory complexity. To estimate the complexity in terms of curve for the UAV evolving in the 3D space the several angles at each node is studied. 
+The complexity of trajectory indicator is computed as follow: 
 \begin{equation}\label{Eq:trajectory}
 \mbox{Trajectory complexity}=\frac{ \sum_{i=1}^{size(\alpha)} 180- \alpha_{i}  }{size(\alpha)}   
 \end{equation}
-Where $\alpha_i$ is an angle of curve in the trajectory as in Figure \ref{fig:trajectoirAlpha}. \\
+Where $\alpha_i$ is an angle of curve in the trajectory as in Figure \figref{fig:trajectoirAlpha}. \\
 $Size(\alpha)$ is the number of curve in all the trajectory.\\ 
-This method  can give a good idea of the global trajectory complexity despite to this simplicity.
+This method  can give an idea of the global trajectory complexity despite this simplicity. 
+The two indicator presented (the distance and the trajectory complexity) are used during the next section  to evaluate the gain of the proposed method.
 	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	
-			\subsection{Positioning of the waypoint }
-			
-			
-
-			\subsection{Sorted waypoint}
-				\subsubsection{Graph theory multi objective  }
-				\subsubsection{TSP solution }
-				\subsubsection{solution adopted}
-				\subsection{Complexity of trajectory }\label{tarjectory}
-%
-%\begin{figure}[t]
-%\minipage{0.75\textwidth}
-%  \includegraphics[width=\linewidth]{TrajectoirAlpha3.png}
-%  \caption{extraction of the curve angle in the trajectory }\label{fig:trajectoirAlpha}
-%  \endminipage\hfill
-%\end{figure}
-
  \begin{mfigures}[!]{optimisation of the path plannig}{fig:trajectoirAlpha} \centering
 \mfigure{width=.4\linewidth}{img/TrajectoirAlpha3.png}{Extraction of the curve angle in the trajectory.}{subfig:trajectoirAlpha}
 \end{mfigures} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
+				
 
-To estimate the complexity of the trajectory two indicator are used in order to evaluate properly the distance of the trajectory and the complexity in term of curve for the UAV evolving in the 3D space.
-Therefore the complexity of trajectory are computed as follow: 
-\begin{equation}\label{Eq:trajectory}
-\mbox{Trajectory complexity}=\frac{ \sum_{i=1}^{size(\alpha)} 180- \alpha_{i}  }{size(\alpha)}   
-\end{equation}
-Where $\alpha_i$ is a angle of curve in the trajectory as in figure \ref{fig:trajectoirAlpha}. \\
-$Size(\alpha)$ is the number of curve in all the trajectory.\\
+
 
 %%%%%%%%%%%%%%%%%%%
 			\section{Experiment}
@@ -203,52 +184,95 @@ $Size(\alpha)$ is the number of curve in all the trajectory.\\
 %   l'avantage de la methode  utilisent des paternes et que l'on optien un taux de reconvrement beaucoup plus important qui  est de  100\% avec un taux de recouvremnt plus ou moin important. mais en contre partie l chemian parcourie et plus long, 200m contre 150m avec l'utilisation des algo génétique. concernant la complexité de la trajectoire  on s'appuit sur l'equation  
 
 \subsection{Indore simulation} \label{experiment}
-The simulated room is 30 $\times$ 28 m$^2$ which corresponds more or less to a large lecture hall or even an outdoor area. The areas in red (figure \ref{fig:final_room2} c)represents the zones which do not require coverage. Every camera can cover a 4 $\times$ 3 m$^2$  when $z$ is equal to one. The $z$ factor can be equal at $[0.5, 1, 1.5]$, and the cameras can turn  at 90$^{\circ}$. All of these parameters are taken into account in order to compute the waypoints and the GA was used but without any lock to the convergence. 
-ROS is used to execute the path and send navigation commands to the robot.
-% refer to : https://en.wikipedia.org/wiki/Screw_theory#Twist
-
-These messages contain the linear and angular velocity values needed to control the robot's position and orientation. This process is to make the transition from simulation to real world UAV straightforward. The number of waypoints is set depending on the area covered by the cameras projection figure \ref{fig:cam_proj}. The trajectory built from these waypoints is done by sub-sampling the space between these 3D points coordinates.\\
-In our experiments, V-REP \cite{Vrep} is used to simulate the hardware of the UAV and all its mounted sensors like camera which is the core sensor. 
-% It was also used to build the room as explained in more details in the next subsection (\ref{experiment}). 
-In order to ease the deployment of the algorithms on a real platform, we chose ROS \cite{ROS} as the implementation framework to command the simulated UAV.
- This experiment follow the pipeline showed in the figure \ref{fig:pipeline} with the two different optimization parts.\\
- 
-%  
-%\begin{figure}[t]
-%  \centering
-%   \subfigure[Poses of every image captured in the room]{\includegraphics[width=0.45\textwidth]{room_python.PNG}}
-%   \hfill
-%   \subfigure[pose of every images with the path planning]{\includegraphics[width=0.45\textwidth]{room_pythonPath.png}}
-%  
-%  \subfigure[room in V-rep]{\includegraphics[width=0.45\textwidth]{room_full.png}}
-%  \hfill
-%  \subfigure[Room mosaicing]{\includegraphics[width=0.45\textwidth]{mosaic2.png}}
-%  \caption{Room Coverage}\label{fig:final_room2} 
-%\end{figure}
 
  \begin{mfigures}[!]{optimisation of the path planing}{fig:final_room2} \centering
-\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room}{subfig:RoomPy}
+%\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room}{subfig:RoomPy}
+\mfigure{width=.4\linewidth}{img/room_full.png}{Room Coverage}{subfig:fullRoomPath}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/room_pythonPath.png}{Pose of every images with the path planning}{subfig:PathPlanning}
-\mfigure{width=.4\linewidth}{img/room_full.png}{Room in V-rep}{subfig:RoomVrep}
-\mfigure{width=.4\linewidth}{img/mosaic2.png}{Room Coverage}{subfig:RoomCov}
+\mfigure{width=.4\linewidth}{img/VrepMyOptimization.png}{Pose of every images with the path planning}{subfig:PathPlanning}
+\mfigure{width=.4\linewidth}{img/VrepCellDecopo1.png}{Room in V-rep}{subfig:VrepCellsDecomp}
+
+\tabsimuposeVrepPath
 \end{mfigures} 
 
- 
- \subsubsection{Mosaicing}
+In order to experiment the proposed method for coverage path planning a simple indoor experiment is proposed to begin.
+The experiment proposed is based on the one discussed previously on Section \ref{sec:expRectObstacle}.
+To remind the experiment is made in a simulated room ($15 \times 14 m^2$). The area to cover is shown in the Figure \figref{subfig:fullRoomPath}. The camera parameter are the same $4 \times 3 m^2$ when $z$ is equal to one and the $z$ factor can be equal at [0.5;1,1;5] only for the waypoints positioning optimization. On the other hand the sweep is  computed with the camera at the maximum altitude to have the biggest area coverage possible.
 
-The ortho-mosaiced output image composed by the captured
-images should be very close to a complete top view of the area.
-Mosaicing in our case is simply computed using the position coordinates of the known waypoint and stitch the images together to validate the optimum choice of the positions where the drone captured these images figure \ref{fig:final_room2}(d).
+Thanks to this first experiment the path planning appear as much more appropriate. The path planning obtained by our method propose a shorter path, 881.6 pixel long when  the path by sweep is  at 1137 pixel long.  The path  proposed by the sweep is longer notably by the return to this starting point but not only (the junction between the start and finish of the path is 245 pixel long, with mean the path usefull to fully cover the area is around 892 pixel long). Moreover the proposed path planning in addition  then the shorter path the trajectory complexity is also better (65.22$^\circ$ instead to 97.81$^\circ$ for the path with sweep).
+Finally the proposed solution allow a better path planning thanks to this optimized waypoints despite the non complete coverage of the area. 
 
-The coverage threshold rate is 90\% of the useful area in the room without taking the block parts into full consideration to cover.
- 
- 
+
 
 \subsection{coverage outdoor}\label{coverageOutDoor}
- A much bigger area involves the increasing of the search space and the increasing of the complexity. 
-In the following example figure \ref{subfig:satimgMask} the satellite images are used to define the area to control (in white)  by the UAV. \\
-In order to cover the big area the solution can be to use a bigger focal or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. But the GA associate to the adapted cost function allows on the example figure \ref{subfig:satimgcoverage} much more waypoints to be placed and optimized, compared to the literature for example, in \cite{c10,c11}. In the figure \ref{subfig:satimgcoverage} and \ref{subfig:satimgNoncover} the area is covered by 110 waypoints for 98.26$\%$ of coverage and the convergence are achieved after 170501 generations.\\
+
+\subsubsection{Comparison of the trajectory.} \label{trajectoire path}
+ 
+ \begin{mfigures}[!]{Experimentation of coverage path planning in the outside area.}{fig:FleyPathPlan} \centering
+%\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room}{subfig:RoomPy}
+\mfigure{width=.4\linewidth}{img/fig10-a2.png}{Path planing using the pattern method.}{subfig:FleytfullRoomPath}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/fig10-b2.png}{[80 waypoints for 98.28\% of coverage.}{subfig:FleyPathPlanning}
+\mfigure{width=.4\linewidth}{img/fig10-c2.png}{Path with 80 waypoints for a distance of 4015.6 px.}{subfig:FleyCellsDecomp}
+
+\tabsimuposeVrepPath
+\end{mfigures} 
+ 
+ 
+% \begin{figure}[t!]
+%  \centering
+%   \subfloat[Path planing using the pattern method.]{\includegraphics[width=0.475\textwidth]{fig10-a2.png}}\qquad
+%   \subfloat[80 waypoints for 98.28\% of coverage.]{\includegraphics[width=0.475\textwidth]{fig10-b2.png}}\hfill %zcalvisson2result1cout_94_862284_gen_3634_Ncam_110
+% %\subfloat[Path with 110 waypoints for 94.86\%  ]{\includegraphics[width=0.55\textwidth]{fig10-c.jpg}}%zGAevolvTurnComplexCross_919Mut_001pop100cout_94_862284_gen_3634_Ncam_110Sorted  width=0.45
+% \hfill %zcalvisson2result1cout_94_862284_gen_3634_Ncam_110
+% \subfloat[Path with 80 waypoints for a distance of 4015.6 px. ]{\includegraphics[width=0.45\textwidth]{fig10-c2.png}} \hfill
+% \subfloat[][]{\tabsimupp}
+%  %zcalvisson2result1cout_94_862284_gen_3634_Ncam_110
+% %\subfloat[Path with 110 waypoints for 94.86\%  ]{\includegraphics[width=0.45\textwidth]{fig10-d_bis.jpg}}
+%  \caption{Experimentation of coverage path planning in the outside area.}\label{fig:trajectoryPath} 
+%\end{figure}
+
+%\begin{table}[]
+%\centering
+%\caption{Outdoor simulation with path planing (Figure \ref{fig:trajectoryPath})}
+%\label{pathPlan}
+%\begin{tabular}{l|ll}
+%\textbf {Parameters }             &\textbf{Value }                              &  \\ \cline{1-2}
+%\cellcolor[HTML]{FFFFFF}{$z$}        & \cellcolor[HTML]{FFFFFF}{[}1;1,5;2{]}        &  \\
+%\cellcolor[HTML]{F2F2F2}$\gamma$        & \cellcolor[HTML]{F2F2F2}portrait or landscape &  \\
+%\cellcolor[HTML]{FFFFFF}Coverage & \cellcolor[HTML]{FFFFFF}waypoint snap        &  \\
+%\cellcolor[HTML]{F2F2F2}Maximum size of camera projection & \cellcolor[HTML]{F2F2F2}70x105px             & 
+%\end{tabular}
+%\end{table}
+%\begin{table}[]
+%\centering
+%\caption{Outdoor simulation with path planing(Figure \ref{fig:trajectoryPath})}
+%\label{tab:pathPlan}
+%\begin{tabular}{l|ll}
+%\textbf {Parametres }             &\textbf{Value }                              &  \\ \cline{1-2}
+%\cellcolor[HTML]{FFFFFF}{$z$}        & \cellcolor[HTML]{FFFFFF}{[}1;1,5;2{]}        &  \\
+%\cellcolor[HTML]{F2F2F2}$\gamma$        & \cellcolor[HTML]{F2F2F2} portrait or landscape &  \\
+%\cellcolor[HTML]{FFFFFF}Coverage & \cellcolor[HTML]{FFFFFF} stream record        &  \\
+%\cellcolor[HTML]{F2F2F2}Maximum size of camera projection & \cellcolor[HTML]{F2F2F2}70x105px             & 
+%\end{tabular}
+%\end{table}
+
+  To compare the efficiency of the trajectory computation proposed in this article with a standard method, in term of coverage, path plan distance and trajectory complexity. The standard method used for CPP uses an adapted pattern to cover an area. The patterned method application is based on several articles as \citep{144*torres2016,191*di2016,63*chao2008,66*galceran2013} 119* %pattern155*
+
+ The path proposed is established in the area to cover and the camera FoV. The pattern is adapted depending on the shape of the area and the size of the camera projection in order to have full coverage with the minimum of overlapping. The final path using the pattern method showed in Figure \ref{fig:trajectoryPath}a.
+ \\ The solution proposed ( Figure \ref{fig:trajectoryPath}b) establishes a path apparently more complex (see Figure \ref{fig:trajectoryPath}c) using the third dimension with a coverage rate somewhat lower, 98.28\% of coverage for the full area after 3101 generation.
+ Although the distance of the path and the complexity trajectory based on  Eq.(\ref{Eq:trajectory}) prove the efficiency of this method by a shorter distance and a better complexity indicator as depicted in Table \ref{table:trajectory}.\\ 
+ \begin{table}[t]
+\begin{tabular}{|p{1.5cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|}
+  \hline
+   &Coverage rate & Path length (in px) & Trajectory complexity (Eq.\ref{Eq:trajectory})  \\  \hline
+  Pattern Method &  100\% & 4362.66 &82.14 \\ \hline
+  Ours Method &  98.28\% & 4015.6 &65.78 \\ \hline
+\end{tabular}
+\caption{Comparative table  of path distance and complexity.}\label{table:trajectory}
+\end{table}
+
+
 
 
 
