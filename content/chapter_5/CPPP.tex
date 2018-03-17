@@ -156,12 +156,6 @@ The two indicator presented (the distance and the trajectory complexity) are use
 %  \caption{Room Coverage}\label{fig:trajectoryPath} 
 %\end{figure}
 
- \begin{mfigures}[!]{optimisation of the path planing}{fig:trajectoryPath} \centering
-\mfigure{width=.4\linewidth}{img/calvisson2maskPath.png}{Path planing using the pattern method.}{subfig:Dijktra}
-\hspace{1cm}
-\mfigure{width=.4\linewidth}{img/zcalvisson2result1cout_94_862284_gen_3634_Ncam_110.png}{Path compute with Dijktra multi goal.}{subfig:GATSP}
-\mfigure{width=.4\linewidth}{img/zGAevolvTurnComplexCross_919Mut_001pop100cout_94_862284_gen_3634_Ncam_110Sorted.png}{Room Coverage.}{subfig:GATSP}
-\end{mfigures} 
   In order to compare the efficiency of the trajectory computation proposed in this article with a standard method using a adapted pattern to cover an area. The patterned method apply is based on several article as \cite{63*,66*,pattern155*}
 %  [ CHAO, Haiyang, BAUMANN, Marc, JENSEN, Austin, et al. Band-reconfigurable multi-UAV-based cooperative remote sensing for real-time water management and distributed irrigation control. In : IFAC World Congress, Seoul, Korea. 2008. \\]
 %  [ ZHANG, Houxiang, ZHANG, Jianwei, et ZONG, Guanghua. Cleaning Trajectory Evaluation of a Wall Cleaning Robot Based on Synthesis Standards. In : Computational Engineering in Systems Applications, IMACS Multiconference on. IEEE, 2006. p. 1695-1700. \\]
@@ -204,16 +198,19 @@ Finally the proposed solution allow a better path planning thanks to this optimi
 
 
 
-\subsection{coverage outdoor}\label{coverageOutDoor}
+\subsection{Outdoor simulation}\label{coverageOutDoor}
 
-\subsubsection{Comparison of the trajectory.} \label{trajectoire path}
+The gain for the indoor area is important. The gain is mostly due to the well optimised position of the waypoints. The experiment must be extended  for a bigger and complex area.
+
+
+\subsubsection{Vast and complex area.} \label{trajectoire path}
  
  \begin{mfigures}[!]{Experimentation of coverage path planning in the outside area.}{fig:FleyPathPlan} \centering
 %\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room}{subfig:RoomPy}
 \mfigure{width=.4\linewidth}{img/fig10-a2.png}{Path planing using the pattern method.}{subfig:FleytfullRoomPath}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/fig10-b2.png}{[80 waypoints for 98.28\% of coverage.}{subfig:FleyPathPlanning}
-\mfigure{width=.4\linewidth}{img/fig10-c2.png}{Path with 80 waypoints for a distance of 4015.6 px.}{subfig:FleyCellsDecomp}
+\mfigure{width=.4\linewidth}{img/fig10-b2.png}{80 waypoints for 98.28\% of coverage.}{subfig:FleyPathPlanning}
+\mfigure{width=.4\linewidth}{img/fig10-c2.png}{Path with 80 waypoints for a distance of 4015.6 px.}{subfig:FleyPathPlan}
 
 \tabsimuposeVrepPath
 \end{mfigures} 
@@ -256,12 +253,17 @@ Finally the proposed solution allow a better path planning thanks to this optimi
 %\cellcolor[HTML]{F2F2F2}Maximum size of camera projection & \cellcolor[HTML]{F2F2F2}70x105px             & 
 %\end{tabular}
 %\end{table}
+The CPP and more precisely the path planning part is compared to a standard method (the sweeping). We compare the CPP  in term of coverage, path plan distance and trajectory complexity. The standard method used for CPP uses an adapted pattern to cover an area. The patterned method application is based on several articles as \citep{144*torres2016,191*di2016,63*chao2008,66*galceran2013} 119* (see Section \ref{sec:CPPcellDecompSol}). %pattern155*
 
-  To compare the efficiency of the trajectory computation proposed in this article with a standard method, in term of coverage, path plan distance and trajectory complexity. The standard method used for CPP uses an adapted pattern to cover an area. The patterned method application is based on several articles as \citep{144*torres2016,191*di2016,63*chao2008,66*galceran2013} 119* %pattern155*
+To focus on a bigger area the experiment for outdoor waypoint positioning for vast and complex area using  a mask  is reused as in Section \ref{sec:fey_map}. This experiment has the advantage to be vast and complex enough for the comparison between the  sweeping method and the  proposed method.\\
+To compute the sweep,  the area is firstly decomposed in cells to apply an appropriate sweep. In the second time  the appropriate sweep are placed in each cells. The size of the sweep has been designed for the maximal altitude  depending then the size of the camera projection on to the floor. In this case the altitude of the path plan is fixed to have the better coverage in spit of the resolution. 
+The path plan using a sweeping method is visible in the Figure \figref{subfig:FleytfullRoomPath}. In order to cover completely the area several overlap and un-interesting region (the black region in Figure \figref{subfig:FleytfullRoomPath}) are covered. 
 
- The path proposed is established in the area to cover and the camera FoV. The pattern is adapted depending on the shape of the area and the size of the camera projection in order to have full coverage with the minimum of overlapping. The final path using the pattern method showed in Figure \ref{fig:trajectoryPath}a.
- \\ The solution proposed ( Figure \ref{fig:trajectoryPath}b) establishes a path apparently more complex (see Figure \ref{fig:trajectoryPath}c) using the third dimension with a coverage rate somewhat lower, 98.28\% of coverage for the full area after 3101 generation.
- Although the distance of the path and the complexity trajectory based on  Eq.(\ref{Eq:trajectory}) prove the efficiency of this method by a shorter distance and a better complexity indicator as depicted in Table \ref{table:trajectory}.\\ 
+The solution proposed by optimizing in a first time, a set of 80 waypoints for a coverage over the 98\% after a 3101 generations (see in \figref{subfig:FleyPathPlanning}). Once the waypoints optimized (in$x;y;z$ and roll) the path plan is computed using the method based on the TSP  and presented in the section \ref{sec:TSP2}. The final CPP  is visible in  the Figure \figref{subfig:FleyPathPlan} with the different altitude represented in color.
+
+% The path proposed is established in the area to cover and the camera FoV. The pattern is adapted depending on the shape of the area and the size of the camera projection in order to have full coverage with the minimum of overlapping. The final path using the pattern method showed in Figure \figref{subfig:FleytfullRoomPath}.
+ %\\ The solution proposed  establishes a path apparently more complex (see Figure \ref{fig:trajectoryPath}c) using the third dimension with a coverage rate somewhat lower, 98.28\% of coverage for the full area after 3101 generation.
+ Although the distance of the path and the complexity trajectory based on Eq.(\ref{Eq:trajectory}) prove the efficiency of this method by a shorter distance and a better complexity indicator as depicted in Table \ref{table:trajectory}.\\ 
  \begin{table}[t]
 \begin{tabular}{|p{1.5cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|}
   \hline
@@ -292,6 +294,14 @@ Finally the proposed solution allow a better path planning thanks to this optimi
 %  \caption{ Optimization of the waypoint pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoint position, (d) is the representation of the black hole.}
 %  \label{fig:Rooms_shapes}
 %\end{figure}
+
+
+ \begin{mfigures}[!]{optimisation of the path planing}{fig:trajectoryPath} \centering
+\mfigure{width=.4\linewidth}{img/calvisson2maskPath.png}{Path planing using the pattern method.}{subfig:Dijktra}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/zcalvisson2result1cout_94_862284_gen_3634_Ncam_110.png}{Path compute with Dijktra multi goal.}{subfig:GATSP}
+\mfigure{width=.4\linewidth}{img/zGAevolvTurnComplexCross_919Mut_001pop100cout_94_862284_gen_3634_Ncam_110Sorted.png}{Room Coverage.}{subfig:GATSP}
+\end{mfigures} 
 \subsubsection{Vast and complex outdoor}\label{sec:fey_map_CPPP}
 \subsubsection{Biggest map with numerous waypoints}
 
