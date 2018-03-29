@@ -474,7 +474,7 @@ In order to cover the big area, the solution can be to use a bigger focal length
  In the Figure \figref{subfig:satimgcoverageFley} and \figref{subfig:satimgNoncoverFley} the area is covered by 80 waypoints for $98.48\%$ of coverage. To reach this coverage rate the GA convergence is achieved after 4'856 generations. The important number of necessary generation before the convergence of the GA and a similar  increasing time computation for the PSO, allow us to glimpse the limits of the GAPSO for the too big search space with numerous waypoints to pose estimate. Despite this potential future limitation the answer of the GAPSO is relatively fast and efficient.\\
  
 
-		\subsubsection{Biggest map with numerous waypoints}
+		\subsubsection{Biggest map with numerous waypoints}\label{sec:biggestMapcalWaypoint}
 \begin{mfigures}[!]{ Optimization of the waypoint pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoint position, (d) is the representation of the black hole.}{fig:CalvissonExp} \centering
 \mfigure{width=.4\linewidth}{img/calvisson2+mask.png}{The area to cover taken form satellite images.}{subfig:satimgCalvisson}
 \hspace{1cm}
@@ -496,7 +496,7 @@ The GAPSO is executed with success and the final coverage is over $98.26\%$.
 	 That show at the same time the great efficiency of GAPSO to optimize the position for numerous waypoints in a big search space with proposing a really good answer. This great optimization is conditionally upon for an important time of convergence. This show the limit of the GAPSO due to the important number of generation and consequently important time computation (a few hours with a core i7).  
 	 To nuanced the really important time useful to reach the double convergence (GA and PSO) the context of the experiment has to be highlighted. In Fact the area to cover is important but also the coverage rate respected is also an important factor because more this coverage rate is important more a fine tuning of the numerous parameters of the solution must be done.
 	
-	\subsection{Waypoints positioning limitation} 
+	\subsection{Waypoints positioning limitation} \label{sec:waypointPoseLimite}
 	
 Among numerous experiments done, the GAPSO appear as a good solution to optimize the position and orientation of numerous waypoints (or cameras) in a vast and complex map.
 In the first time the GA appear efficient enough for the optimization in the big room but after more experimentation the single GA appears weak to finally refine the solution. The contribution of PSO was essential to have a more refine solution and also allow more flexibility especially when the number of waypoints is restricted. \\

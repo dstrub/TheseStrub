@@ -867,12 +867,12 @@ The value is returned by the cost function $C(Vs)$ is the quality of a solution 
  \section{Optimization complexity} \label{sec:OptimizationComplexity}
  
 %To cover an area with a certain amount of sensor many solutions can be possible.
-In spite of the simplification presented before, the problem stays complex. There exist many positions for each camera to cover an area with a certain amount of sensors. This number of position can be estimated as follows.\\   
-Each camera defined by the position on $x, y, z $ and $ \gamma$ can be set anywhere in the search space named $Sp$ : 
+In spite of the simplification presented before, the problem stays complex. There exist many positions for each camera to cover an area with a certain amount of sensors. This number of position can be estimated for each camera as follows.\\   
+Each camera defined by the position on $x, y, z $ and $ \gamma$ can be set anywhere in the search space of a cameras named $Sp$ : 
 \begin{equation}\label{eq:SearchSpace}
- Sp=(W\times H \times ( \max(A)-\min(A)) \times 2 )  Sp \in E 
+ Sp=(W\times H \times ( \max(A)-\min(A)) \times 2 )  
 \end{equation}
-Where $W$ and $H$ are the size as width and height of the area to cover, $\max(A)-\min(A)$  is the range  of possible altitude. 2 is to define the roll $\gamma$, as the rectangle projection is horizontal or vertical (landscape or portrait). The search space $Sp$ allows to take in consideration some strong constraint $E$ like the boundary of the area or the restriction in the degree of freedoms.
+Where $W$ and $H$ are the size as width and height of the area to cover, $\max(A)-\min(A)$ is the range of possible altitude. 2 is to define the roll $\gamma$, as the rectangle projection is horizontal or vertical (landscape or portrait).% $Sp \in E$ The search space of each camera $Sp$ allows to take in consideration some strong constraint $E$ like the boundary of the area or the restriction in the degree of freedoms.
 
 The problem of the search space is the propensity to increase rapidly as the area grows. This phenomena is accentuated by the size of the set of cameras $N$.
 %It is possible to express the size of the search space as a succession of product for estimate the number of feasible position on $x, y, z $ and $ \gamma$ for each combination of the set cameras : 
