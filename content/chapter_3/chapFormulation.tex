@@ -166,7 +166,7 @@ In this other side, the low sampling frequency may generate a bad estimation of 
 \begin{table}
    \begin{tabular}{ |m{0.20\linewidth}| m{0.40\linewidth} | m{0.30\linewidth} |  }
      \hline
-     &  \Emph{Advantage}   & \Emph{ Disadvantage}    \tabularnewline \hline 
+     &  \Emph{Advantage}   & \Emph{Disadvantage}    \tabularnewline \hline 
 	\Emph{High sampling frequency }			 & Best estimation of the area to cover  & Time consuming	    					\tabularnewline \cline{2-2}  
 							 & Give more precision on the cameras poses& \tabularnewline \hline  
 	  \Emph{Low sampling frequency }	      	 & Faster computation 	& Bad coverage estimation				 	 	\tabularnewline \hline
@@ -203,14 +203,14 @@ Therefore increase the number of points will also increase in proportion the num
  %The too high precision in the position of the camera will increase the complexity and some case where the value of $m$ is too high the optimization process cannot converge or find acceptable solution to the gain of the search space. \\ 
 
 
-\subsubsection{ Distribution}
+\subsubsection{Distribution}
 The distribution is an important factor to manage to design an occupation grid. The distribution is how the  points of the grid are placed on the area to cover.
 Different distribution can be used, but commonly in the literature the grid pattern distribution and in a lesser extent the random distribution is applied (see Figure \ref{fig:GridVsRand}). \\
 \begin{figure}[t!]
 \begin{center}
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/GridVsRand.png}
-  \caption{ (a)Grid with uniforme and regular distribution.\\   
+  \caption{(a)Grid with uniforme and regular distribution.\\   
 (b) Random distribution.\\  
 }\label{fig:GridVsRand}
   \endminipage\hfill
@@ -221,7 +221,7 @@ Different distribution can be used, but commonly in the literature the grid patt
 \begin{center}
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/randomGridRef171.png}
-  \caption{ (a )Area  to cover.\\   
+  \caption{(a) Area  to cover.\\   
 (c) Importance of the area.\\  
 (b) Grid representation.}\label{fig:randomGridRef171}
   \endminipage\hfill
@@ -239,7 +239,7 @@ The "random distribution" is less popular but in \cite{22*zhao2008} a hybrid dis
 
 
 
-\subsubsection{ Special modelling (3D  or 2D)}
+\subsubsection{Special modelling (3D  or 2D)}
 To design the occupation grid, one other element should be taken in consideration. It is the spacial modelling. After deciding the useful density and the distribution of the grid, the position in the space of the point $g_i$ need to be studied.  
 In fact depending on the problem the grid can be modelled differently in order to properly cover the area to control. Commonly the occupation grid is placed on the floor and calculate visibility only in 2D  by computing the  camera projection as in  \citep{164*valente2013,150*chakrabarty2002,8*zhou2011,170*yabuta2008,171*horster2006,22*zhao2008}, but depending on the context the grid have interest do describe a 3D space.  
 In Hegle et al \cite{83*van2009}, calculates the visibility, where it is relevant: for example, on the upper torso or head of the possible target rather than the floor. This article  proposes a 2D grid but inside the 3D space in order to  characterize properly the volume by placing the grid at a specific height.  
@@ -258,7 +258,7 @@ In \citep{141*akbarzadeh2013} propose a 2D grid adapted to the relief of the are
 \begin{center}
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/grilleRef141.png}
-  \caption{ Relief grid use to discretize  an area with taking in account the relief.}\label{fig:grilleRef141}
+  \caption{Relief grid use to discretize  an area with taking in account the relief.}\label{fig:grilleRef141}
   \endminipage\hfill
   \end{center}
 \end{figure}
@@ -316,7 +316,7 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
 \begin{center}
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/from170.png}
-  \caption{ Observed regions from camera candidate.}\label{fig:from170}
+  \caption{Observed regions from camera candidate.}\label{fig:from170}
   \endminipage\hfill
   \end{center}
 \end{figure}
@@ -421,14 +421,14 @@ The following paragraph surmise the different way to represent the area. The are
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{ Cameras coverage}\label{sec:CamerasCoverage}
+\section{Cameras coverage}\label{sec:CamerasCoverage}
 
 
 Once the area to cover is described by the grid, the next step is to verify for each point of the grid if one or more cameras cover it, based on Eq: \ref{eq:PciK} with $k=1$.\\
 To verify if each points of the grid is covered by a camera. It is primordial to talk about what is a camera, what kind of camera are appropriate and their projection model. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{ Cameras definition}\label{sec:CamerasDefinition}
+\subsection{Cameras definition}\label{sec:CamerasDefinition}
 
 The closest projection model to the human view is the perspective projection. The perspective projection is also the more common and more especially in the field of area coverage as in example \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional with a $360^{\circ}$ of field of view as \citep{43*erdem2006,150*chakrabarty2002,174*zhang2016}. 
 Here we are only focussing  on the camera perspective due to its wide use.  \\
@@ -438,7 +438,7 @@ The pin hole or in Latin the "camera obscura" (see Figure\ref{fig:cameraObscura}
 \begin{center}
  \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/PinholeCam.png}
-  \caption{ Pin hole camera model.}\label{fig:cameraObscura}
+  \caption{Pin hole camera model.}\label{fig:cameraObscura}
   \endminipage\hfill
 \end{center}
 \end{figure} 

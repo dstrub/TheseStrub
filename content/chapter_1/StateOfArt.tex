@@ -21,7 +21,7 @@ These questions are investigated and some answers are proposed by an overview of
 
 
 \subsection{Efficient pose in a camera network , challenged and objective}
-First we have to define,\textbf{ what is the pose of the cameras ? }
+First we have to define, \textbf{what is the pose of the cameras ? }
 The pose of the cameras, is composed by the position inside the area to monitor and the orientations of it. The orientation is also called looking direction.\\ 
 %An efficient pose and in some case the orientation (or also called looking direction) is directly related then the objective.\\
  Second element to define is, \textbf{what must be considered to evaluate if a camera pose is efficient?} To do that is primordial to identify the objectives. The objectives are different from the finality. The objectives are the most important elements to take in consideration in order to place the set of cameras. When the finality is the global application, as for example video surveillance is the finality but the coverage of an area, the target tracking is required to have an efficient surveillance. The coverage is one of the objectives the most interesting and the most common about cameras positioning.
@@ -47,7 +47,7 @@ The focus of this study is to find the best position of each camera in order to 
 \center
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/objectCoverFrom142.png}
-  \caption{ Computed camera network pose estimation with the corresponding flight path (yellow) for an 3D object full coverage. This result is from Hoppe et al \cite{142*hoppe2012}.}\label{fig:ObjectCover142}
+  \caption{Computed camera network pose estimation with the corresponding flight path (yellow) for an 3D object full coverage. This result is from Hoppe et al \cite{142*hoppe2012}.}\label{fig:ObjectCover142}
   \endminipage\hfill
 \end{figure}
 
@@ -57,7 +57,7 @@ The focus of this study is to find the best position of each camera in order to 
 \center
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/MapRoI165.png}
-  \caption{ Map of an area to cover with crucial sub-area (region of interest) the normal sub-area  and obstacle. This map is an example of area coverage  introduce in  Jiang et al \cite{165*jiang2010}. }\label{fig:MapRoI165}
+  \caption{Map of an area to cover with crucial sub-area (region of interest) the normal sub-area  and obstacle. This map is an example of area coverage  introduce in  Jiang et al \cite{165*jiang2010}. }\label{fig:MapRoI165}
   \endminipage\hfill
 \end{figure}
    %The definition of a coverage can be varied this is a good example. 
@@ -68,7 +68,7 @@ The focus of this study is to find the best position of each camera in order to 
 \center
 \minipage{0.75\textwidth}
    \includegraphics[width=\linewidth]{img/PathToCover[81].png}
-  \caption{  the path to cover is illustrate in the work of nikolaidis et al \cite{81*nikolaidis2009}. The are a small room is focused on cover a road (walk path) by using 3 cameras. }\label{fig:pathToCover81}
+  \caption{the path to cover is illustrate in the work of nikolaidis et al \cite{81*nikolaidis2009}. The are a small room is focused on cover a road (walk path) by using 3 cameras. }\label{fig:pathToCover81}
   \endminipage\hfill
 \end{figure}
    The coverage problem may be reduced as a series of paths commonly borrowed by the users (car, pedestrian, …). When the area to cover is a well-known place the path of the users can be deduced \cite{27*bodor2005} or if the area to cover is a road the trajectory of the driver is knew \cite{14*lu2011}.  In this condition, the aim is to cover the common path of the user as presented in  \cite{14*lu2011,27*bodor2005,30*bodor2005,81*nikolaidis2009} (see the Figure \ref{fig:pathToCover81}). The path coverage is interesting due to this numerous restriction on the area to cover. Thanks to the restriction the coverage may became easier. Otherwise the path coverage introduce an important element is the zone with has a priority. This restricted zone in the area have to be the only area taking in account or  at least  the area  cover in priority.\\
@@ -92,7 +92,7 @@ The common point in all this coverage definition is the importance to maximize i
 \item  The numbers of cameras: \\ In numerous situation, the secondary objective has to limit the number of cameras affected to the area as \cite{151*zhao2013,171*horster2006,22*zhao2008}. Limit the number of cameras is primordial to decrease the time computation for the final application and in some case the network traffic. Also reduce the number of cameras to cover the full area mean reduce the cost of the video surveillance installation as \cite{82*chrysostomou2012}. In the case  minimizing the number of camera is a secondary objective not directly in contradiction with the camera pose optimization for  best coverage. The two objectives can become complementary. At some point a too strong trade-off in favour of the minimizing the numbers of cameras may reduce the area cover by accepting some small area  non covered. The small area is know as black hole. Otherwise,  if the trade-off is in favour then the complete coverage of the area the risk is to have a too high number of cameras (with numerous overlap).\\
 
 \item Object tracking: \\
-\begin{mfigures}[!]{ Illustration of an covered area for tracking target. Experiment  form Ding et al \citep{18*ding2012} }{fig:Tracking18} \centering
+\begin{mfigures}[!]{Illustration of an covered area for tracking target. Experiment  form Ding et al \citep{18*ding2012} }{fig:Tracking18} \centering
 \mfigure{width=.65\linewidth}{img/coverageTrackingDing[18]a.png}{Initial coverage for 5 cameras dedicate to detect the  input of target.}{subfig:taget18a}
 \hspace{1cm} \\
 \mfigure{width=.65\linewidth}{img/coverageTrackingDing[18]b.png}{The covered area when the objective became to track several target.}{subfig:taget18b}
@@ -146,7 +146,7 @@ In the following section a definition of the AGP is given with a brief historic.
 \center
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/AGP3.png}
-  \caption{ Illustration of the AGP. The gallery is cover by  4 guard ($x_1;...;x_4$) for a polygon  composed by $n$ vertice ($v_1;...;v_n$).}\label{fig:AGP}
+  \caption{Illustration of the AGP. The gallery is cover by  4 guard ($x_1;...;x_4$) for a polygon  composed by $n$ vertice ($v_1;...;v_n$).}\label{fig:AGP}
   \endminipage\hfill
 \end{figure}
 	The art gallery problem is a geometrical problem introduced by Victor Klee in 1973. The problem was to estimate the number and the position, of useful guard to cover an art gallery. 
@@ -211,7 +211,7 @@ The AGP can be at same time for part, the  historical source of the cameras posi
 
 The Wireless Sensor Network (WSN) can be as AGP considered as inspiration for the  of cameras positioning for maximize the coverage. The WSN is an active field of research and in many aspects related to the cameras positioning. This parties is focused on the WSN and this relation with the camera positioning.  To begin:
 
-\textbf{ What is the Wireless Sensor Network (WSN)? }
+\textbf{What is the Wireless Sensor Network (WSN)? }
 
  The WSN is a distributed network of sensors or in some case actuator, in this case is also called WSAN. Each sensor of the network is a relay for the information and commend, to the rest of the network.  
 The sensor are at same time the node and the relay for the network. The node has to objective to transmit by relaying the information to the other node. 
@@ -235,7 +235,7 @@ For our case the aspect the more interesting of the WSN, is the coverage of an a
 	\center
 \minipage{0.55\textwidth}
    \includegraphics[width=\linewidth]{img/WsnSensor1.png}
-  \caption{ One omnidirectional sensor centred on $x$, with a radius $r$ for the range.}\label{fig:WsnSensor1}
+  \caption{One omnidirectional sensor centred on $x$, with a radius $r$ for the range.}\label{fig:WsnSensor1}
   \endminipage\hfill
 \end{figure}
 
@@ -253,7 +253,7 @@ The solution proposed in order to optimize the positioning of the WSN for a circ
 	\center
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/sensorWSN3.png}
-  \caption{ Illustration fo a  simple wireless sensor network with omnidirectional sensor centred on $x$, with a radius $r$.}\label{fig:WsnSensorNet}
+  \caption{Illustration fo a  simple wireless sensor network with omnidirectional sensor centred on $x$, with a radius $r$.}\label{fig:WsnSensorNet}
   \endminipage\hfill
 \end{figure}
 \begin{itemize}
@@ -280,12 +280,12 @@ Now the following section  is dedicated to see if this solution is applicable to
 	\center
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/coverage[165].png}
-  \caption{ Illustration of  the  area coverage with visual sensors. The area  is cover at 47\%. Experiment form Jiang et al \citep{165*jiang2010} }\label{fig:Coverage165}
+  \caption{Illustration of  the  area coverage with visual sensors. The area  is cover at 47\%. Experiment form Jiang et al \citep{165*jiang2010} }\label{fig:Coverage165}
   \endminipage\hfill
 \end{figure}
 	
 Logically, the result obtained with the Omni-directional sensors are interesting and must be applied to the problem with even more constraints and objectives as can be the positioning of visual sensor network (VSN). The term of  visual sensor contains several types of cameras with several constraints and properties. Despite these several type of cameras, the more commonly used and studied is the perspective camera (as in \citep{149*mavrinac2013,174*zhang2016,193*fu2014,42*bulusu2001,165*jiang2010})(see Figure \ref{fig:Coverage165}). 
-  In fact the visual sensor or camera have a limited depth of field but also a limited field of view. This new constraint makes the cameras positioning more complex, as that was for AGP (see section \ref{sec:AGP}) to passes from guard to camera.
+  In fact the visual sensor or camera have a limited depth of field but also a limited field of view. This new constraint makes the cameras positioning more complex, as that was for AGP (see Section \ref{sec:AGP}) to passes from guard to camera.
  The advantage in these cases, are first the sensor has been designed with a limited depth of field (the sensor has a limited power range). 
  Moreover the solution applied previously for circular sensor was not only geometric or based on heuristic algorithms. The problem has also been formalized as an optimization problem. These problem formulations allow to use optimization algorithms and meta-heuristics. In addition, these problems formulations appear as the more suitable to add constraint and secondary objectives. Thanks to that, the solution  developed for the WSN can mostly be adapted to the problem of camera positioning. 
  The following sections as to aims to disuse about the algorithms applied until now to the problem of camera positioning.
@@ -336,7 +336,7 @@ The solution proposed though this efficiency in the case of barrier coverage is 
 
 The previous solutions and algorithms presented in \cite{38*liu2010, 37*ma2012,81*nikolaidis2009,171*horster2006} are based on constructive method for the cameras placement and their local optimization. Each camera is individual placed dependently then the network with an iterative process. The iterative process has to chose the best position for each camera of the set. This methods has some consequence, nobly the fast increasing number of iteration required to have a solution good enough for each camera. The time complexity is event more problematic with increasing the size of the area and even more with the number of cameras. Also these solution are extremely dependent then the formulation and the constraints and cannot be easily adapted to other problems or external constraint. The rigidity of adaptation is mostly due to the  use of heuristic  design for  very specific problems. 
 
-\subsection{  Linear programming optimisation and limits}
+\subsection{Linear programming optimisation and limits}
 	Different method of linear optimization was applied and test. In some case, due to a well-adapted formulation; a specific shape of the area or cameras number the linear optimisation is efficient. 
 	The linear optimisation has been tested to have initial result in order to have a reference point before to develop other solution more appropriate(as example \cite{,151*zhao2013,82*chrysostomou2012}…).  
 %	The reason ofIn some other case the method was studied but finally rejected du to this fast limitation 
@@ -346,7 +346,7 @@ The previous solutions and algorithms presented in \cite{38*liu2010, 37*ma2012,8
 % non linear	 141*akbarzadeh2013,33*reddy2012 
 	 \subsubsection{Linear programming}
 In Erdem et al \cite{43*erdem2006} is based on AGP and the WSN and propose a fusion off their 2 paradigms in order to use there assumptions. Some modification have been done as example to take in account the field of view limitation. The interesting aspect is how some camera properties have been modelled to fit to the problem of AGP.  \\
-The solution proposed being workable with using an omnidirectional or considering a PTZ as omnidirectional cameras by using an efficient angular sweep. The simile omnidirectional cameras are simulated by PTZ camera with a non-continue zoom or fix focal length as in the  experimentation proposed in \cite{43*erdem2006}.  Where the PTZ can have a focal two focal lengths at 50mm and  35mm. 
+The solution proposed being workable with using an omnidirectional or considering a PTZ as omnidirectional cameras by using an efficient angular sweep. The simile omnidirectional cameras are simulated by PTZ camera with a non-continue zoom or fix focal length as in the  experimentation proposed in \cite{43*erdem2006}. Where the PTZ can have a focal two focal lengths at 50mm and  35mm. 
 Finally the solution proposed is to discretize the area to cover and also the different possible parameter for the camera (as: localization, orientation, focal...) in order to have a combinatorial formulation of the problem. Thanks to this formulation close than the Binary Integer Programming (BIP) and apply a well-known method “Branch and Bound” in order to optimize the camera placement.  \\
 This solution  proposes a  good  coverage with the minimum of cameras in a reasonable time. The limit of the solution is due to  the  use of omnidirectional or  simile omnidirectional cameras.% until, the  number of location sample, the numbers of cameras, and the number of parameters possible for the camera stay relatively  reduced.  \\
  
@@ -385,7 +385,7 @@ In the experiment proposed in \cite{12*soto2009} and \cite{18*ding2012,25*song20
 So the objectives are not independently optimize, moreover the solution proposed is to optimize its  simultaneously in order to have a consensus. The consensus is reach when it became impossible to upgrade one of them without downgrade the other one.\\
   In the experiment of \cite{18*ding2012,25*song2008} the consensus is found by the cameras communication. The cameras communication have to maximize numbers of  target covered with the higher resolution.
  The experiment is based on numerous targets moving freely in the area. Also in \cite{18*ding2012} one of the target must be cover in priority with a high resolution. That have an impact on the other camera position.
- The result of the experiment as in figure \ref{fig:CoverageFrom18} form \cite{18*ding2012} show a really efficient global coverage with almost all the target cover at every time despite the movements of the targets. \\
+ The result of the experiment as in Figure \ref{fig:CoverageFrom18} form \cite{18*ding2012} show a really efficient global coverage with almost all the target cover at every time despite the movements of the targets. \\
  The advantage of these solutions is the acceptable result and dynamic reconfiguration of the system for the reasonable size of the area and the decentralized computation.
  
 Otherwise this method have some limit, as show in the experiment the area is relatively restricted and numerous cameras with a fixed position are useful. The consequences is the quantity of overlap relatively important. In this case the number of sensor is not well optimize to cover the area. Also to use properly this method for maximum coverage it requires a large number of simulated target in the region to observe.  Finally this solution is more adapted for a self-reorganization of the a set of PTZ cameras.
@@ -394,7 +394,7 @@ Otherwise this method have some limit, as show in the experiment the area is rel
 \center
 \minipage{0.55\textwidth}
    \includegraphics[width=\linewidth]{img/CoverageFrom18.png}
-  \caption{ Result of coverage after have used the game theory with objective to maximize the tracking and the resolution. Result obtained in the experiment presented in \cite{18*ding2012}.}\label{fig:CoverageFrom18}\endminipage\hfill
+  \caption{Result of coverage after have used the game theory with objective to maximize the tracking and the resolution. Result obtained in the experiment presented in \cite{18*ding2012}.}\label{fig:CoverageFrom18}\endminipage\hfill
 \end{figure}
 	
 	%%%%%%%%%%%table sum up%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -477,39 +477,39 @@ Otherwise this method have some limit, as show in the experiment the area is rel
 	
 	\section{Solution based on evolutionary  method} \label{sec:SolutionBasedonEA}
 	
-	The solution already discussed, formulate the problem of camera positioning for maximum coverage (as in the section \ref{sec:NonEAmethod}) from various point of views. Until now the formulation and solution the more common have not been approach yet.
-In numerous works the cameras positioning for maximum coverage is assimilated to a problem of optimization. Due to the complexity of the problem (as that was introduce in the AGP section \ref{sec:AGP}) the linear optimization may not be appropriate.  
-The other solution, is to apply some stochastic method with an appropriate meta-heuristic. Among the various possibility the algorithm from the Evolutionary Algorithm (EA) has been used at numerous time. 
-The following section,  is focused on the different algorithms  based on the EA used in the literature to optimize a set of camera for maximum coverage depending then different constraints.
+	The solution already discussed, formulate the problem of camera positioning for maximum coverage (as in the section \ref{sec:NonEAmethod}) from various points of views. Until now the formulation and solution the more common have not been approach yet.
+In numerous works the cameras positioning for maximum coverage is assimilated to a problem of optimization. Due to the complexity of the problem (as that was introduced in the AGP section \ref{sec:AGP}) the linear optimization may not be appropriate.  
+The other solution, is to apply some stochastic method with an appropriate meta-heuristic. Among the various possibilities the algorithm from the Evolutionary Algorithm (EA) has been used at numerous time. 
+The following section, is focused on the different algorithms  based on the EA used in the literature to optimize a set of cameras for maximum coverage depending then different constraints.
 
 \subsection{Among the EA algorithms}
-In this subsection different algorithms to solve the problem of camera positioning is discussed. The algorithms presented try to optimize the the coverage depending then different specific constraints with different formulation adapted to the constraint.
+In this subsection different algorithms to solve the problem of camera positioning is discussed. The algorithms presented try to optimize the coverage depending then different specific constraints with different formulation adapted to the constraint.
 
-First the work of Zhao et al \cite{151*zhao2013} present few solutions to optimize the position. Among the solution proposed a greedy with a local optimization, an integer programming with an solver, a sampling algorithms and the Simulated Annealing (SA) from the EA family has been compare.  Also the SA is used to customize the sampling mechanize in order to propose a new customized solution. \\
+First the work of Zhao et al \cite{151*zhao2013} present few solutions to optimize the position. Among the solution proposed a greedy with a local optimization, an integer programming with a solver, a sampling algorithms and the Simulated Annealing (SA) from the EA family has been compared. Also the SA is used to customize the sampling mechanism in order to propose a new customized solution. \\
 In Zhao et al \cite{151*zhao2013}, the problem is formalized as a BIP (binary integer programming).
-  The goal is to find among a restricted numbers of possible positions and orientations the best pose for a set of cameras. To cover the area, despite the obstacle and the region of interest. \\
-Among the solution proposed, the greedy algorithm has a good approximation until the number of camera stay relatively small. The problem of the greedy algorithm  and the integer programming solver is to have an important risk to be stock in the local optimum. This risk increase proportionally then the size of the environment. Otherwise the sampling technique with the SA  is more adapted to the problem with times constraint and offer well solution.\\
-Despite that the solution proposed have some limitation. The major limitation is due to the experiment proposed. In fact the experiment is made in very small room with only few poses possible for each cameras. Consequently the solution proposed can appear better then a real situation and must be widely worst in a bigger area (in terms of time computation and optimisation of the pose). The more interesting aspect in this work \citep{151*zhao2013} is the use of the SA form the EA family which allow to have an efficient coverage much faster then the integer programming solver for a similar result. 
+  The goal is to find among a restricted numbers of possible positions and orientations the best pose for a set of cameras. The best pose for the set of camera has to cover the area, despite of the obstacle and the region of interest. \\
+Among the solution proposed, the greedy algorithm has a good approximate solution, as long as the number of camera stay relatively small. The problem of the greedy algorithm and the integer programming solver is to have an important risk to be stocked in the local optimum (local minima). This risk increases proportionally then the size of the environment. Otherwise the sampling technique with the SA is more adapted to the problem with times constraint and offers well solution.\\
+Despite that the solution proposed have some limitation. The major limitation is due to the experiment proposed. In fact, the experiment is made in a very small room with only few poses possible for each camera. Consequently, the solution proposed can appear better than a real situation and must be widely worst in a bigger area (in terms of time computation and optimisation of the pose). The more interesting aspect in this work \citep{151*zhao2013} is the use of the SA form the EA family which allows to have an efficient coverage much faster than the integer programming solver for a similar result. 
 
-In the recent work of Akbarzadeh et al \cite{141*akbarzadeh2013} the cameras positioning for outside area, have been designed as an optimization problem with few algorithms tested. Among the solution tested the SA and Gentic algotrithme (GA) both form the EA Family. 
+In the recent work of Akbarzadeh et al \cite{141*akbarzadeh2013} the cameras positioning for outside area, have been designed as an optimization problem with a few algorithms tested. Among the solution tested the SA and GA (Genetic Algorithm) both form the EA Family. 
 The work of Akbarzadeh et al \cite{141*akbarzadeh2013} are interesting in many points. \\
-The problem formulation is one of the interesting point. The goal is to cover an outside area with  multi coverage (exactly a $k-$coverage  discussed later in the  section \ref{sec:zoneOfInterest}), the relief of the terrain and obstacles with may generate potential occlusion. 
-Due to the several relief of the considered maps the cameras  are always pose at the same distance then the floor  depending then the floor altitude. Like that the altitude of a camera is automatic deduced form his position and the relief associate. Moreover, depending then the position and orientation of the cameras the relief can be source of occlusion for the cameras and has to be take in account.
+The problem formulation is one of the interesting points. The goal is to cover an outside area with  multi coverage (exactly a $k-$coverage  discussed later in the  section \ref{sec:zoneOfInterest}), the relief of the terrain and obstacles with may generate potential occlusion. 
+Due to several relief of the considered maps, the cameras  are always pose at the same distance then the floor  depending then the floor altitude. Like that the altitude of a camera is automatic deduced form his position and the relief associate. Moreover, depending then the position and orientation of the cameras the relief can be a source of occlusion for the cameras and has to be taken in account.
 %The cameras are always pose at the same distance then the floor despite the altitude and depending on the position  and orientation of the cameras the  occlusion generate by the obstacle and the relief has been computed. 
 %All these elements combined make the problem formulation relatively complete and realistic.
 %Trea is composed by some region with a  multi coverage constraints . 
 %Due to the relief of the ground the cameras may not be pose always at constant altitude. The solution proposed is to  place the  camera at fix distance then the ground floor despite the altitude. 
  %The cameras are always pose at the same distance then the floor despite the altitude and depending on the position and orientation of the cameras the occlusion generate by the obstacle and the relief has been computed.
-  All these elements combined make the problem formulation relatively complete and realistic.\\
- Among the solution studied, the non-linear have been tested with an quasi-Newton optimization methods (called BFGS see in \cite{141*akbarzadeh2013} section C), the SA and the CMA-ES  form the EA family with some mechanism close then a Genetic algorithm (see in \cite{141*akbarzadeh2013} section D) have been tested too.
-The result of the comparison give a net advantage of the algorithms from the EA family in term of coverage rate with a fix number of cameras but also in term of time computation. 
- The SA give a close coverage rate (some time slightly better) then the CMA-ES and also the SA have a better time computation. Otherwise the CMA-ES is the more efficient in average with a reasonable time computation close then SA. The advantage of the CMA-ES appear more important in the bigger area. The the quasi-newton and other algorithm tested are far away in terms of time and coverage, compared to the EA solutions.\\
+All these elements combined make the problem formulation relatively complete and realistic.\\
+ Among the solution studied, the non-linear have been tested with a quasi-Newton optimization method (called BFGS see in \cite{141*akbarzadeh2013} section C), the SA and the CMA-ES  form the EA family with some mechanism close then a Genetic algorithm (see in \cite{141*akbarzadeh2013} section D) have been tested too.
+The result of the comparison gives a net advantage of the algorithms from the EA family in term of coverage rate with a fix number of cameras but also in term of time computation. 
+ The SA gives a close coverage rate (some time slightly better) than the CMA-ES and also the SA have a better time computation. Otherwise the CMA-ES is the more efficient in average with a reasonable time computation close than SA. The advantage of the CMA-ES appears more important in the bigger area. The quasi-newton and other algorithms tested are far away in terms of time and coverage, compared to the EA solutions.\\
  
- In Chrysostomou and Gasteratos \cite{82*chrysostomou2012} present an optimization for maximum coverage with several constraints for 2 closely related problems. In the first time, the goal is to cover an inside area inspired by the AGP with the minimum of cameras. The minimum is fixed by a threshold depending on the coverage rate required. In the second time, the goal is to maximize the coverage for a fix number of cameras. This 2 problem are relatively close and just few elements has to be adapted to pass from on to an other problem.\\
-The coverage of the area is related to the camera visibility and few constraints has been proposed to control it, as  the visibility, viewing angle, field of view, resolution, viewing distance, and occlusion. The solution proposed to optimize the positions, orientations and some of the camera parameters (as the focal lengths) is to apply an algorithms form the EA family called Bee Colony. The bee colony is inspired by the Ant colony algorithms and associate to the bee exploration in the nature. The Bee colony is in this  paper \cite{82*chrysostomou2012} the more efficient in the 2 problems formulation (minimum of cameras and maximum of coverage with fix number of cameras) after a brief comparison with a GA and a broach and bound algorithms. \\
-The experiment proposed is relatively limited. Only one room has been tested with only one test per algorithm with is not relevant for stochastic algorithm (due to the importance of randomness). Despite that the result proposed are encouraging. 
+ In Chrysostomou and Gasteratos \cite{82*chrysostomou2012} present an optimization for maximum coverage with several constraints for 2 closely related problems. In the first time, the goal is to cover an inside area inspired by the AGP with the minimum of cameras. The minimum is fixed by a threshold depending on the coverage rate required. In the second time, the goal is to maximize the coverage for a fix number of cameras. This 2 problems are relatively close and just few elements has to be adapted to pass from on to another problem.\\
+The coverage of the area is related to the camera visibility and few constraints has been proposed to control it, as the visibility, viewing angle, field of view, resolution, viewing distance, and occlusion. The solution proposed to optimize the positions, orientations and some of the camera parameters (as the focal lengths) is to apply an algorithm form the EA family called Bee Colony. The Bee Colony is inspired by the Ant colony algorithm and associate to the bee exploration in the nature. The Bee colony is in this  paper \cite{82*chrysostomou2012} the more efficient in the 2 problems formulation (minimum of cameras and maximum of coverage with a fix number of cameras) after a brief comparison with a GA and a broach and bound algorithms. \\
+The experiment proposed is relatively limited. Only one room has been tested with only one test per algorithm, which is not relevant for stochastic algorithm (due to the importance of randomness). Despite that the result proposed are encouraging. 
 
-The works proposed in this section has the common point to applies different algorithms form the EA family to optimise the problem maximize the coverage for cameras positioning. The algorithms form the EA family appear well adapted to the problem. To go further in the EA some specific branch as the GA has to be studied.
+The works proposed in this section has the common point to apply different algorithms form the EA family to optimise the problem maximize the coverage for cameras positioning. The algorithms form the EA family appear well adapted to the problem. To go further in the EA some specific branch as the GA has to be studied.
 
 \subsection{Solution used Genetic Algorithm or close related}
 
@@ -517,20 +517,20 @@ The works proposed in this section has the common point to applies different alg
  In the solutions proposed as in \cite{82*chrysostomou2012,33*reddy2012,141*akbarzadeh2013} the Genetic algorithms have been applied as a comparator. The GA and solution strongly inspired by the GA  are not only used as a comparator, but it can appear more efficient as in \cite{83*van2009,101*topcuoglu2009,165*jiang2010,152*wang2009}.
 
 
-In Van et al \cite{83*van2009} the problem of cameras positioning for video surveillance to control building is studied. A building with several floor is considered and must be covered by a set of cameras. To do that the environment have to be considered in the 3 dimensions with the celling occlusion. The solution proposed is to fix the altitude of the cameras for each level of the building and considering each level as one independent room to  optimize. \\
-The optimization is based on a basic GA with a customized crossover and mutation in order to fit to the problems. 
+Van et al \cite{83*van2009} the problem of cameras positioning for video surveillance to control building is studied. A building with several floors is considered and must be covered by a set of cameras. To do that the environment has to be considered in the three dimensions (3D) with the ceiling occlusion. The solution proposed being to fix the altitude of the cameras for each level of the building and considering each level as one independent room to  optimize. \\
+The optimization is based on a basic GA with a customized crossover and mutation in order to fit the problems. 
 For the crossover a swap is done between two cameras form different sets.% For the crossover a swap between two cameras from two sets of camera position (chromosomes)
-About the mutation a Gaussian is use to mutate some parameters of the cameras in a set. The GA is used with an elitist selection. All this parameters of the GA are essential to have an appropriate optimization depending on the problems and to understand the performance of it (for more detail about the GA and this parameters see section \ref{sec:GAdetail}).  \\ 
-Finally the area is covered with 32 cameras (for 3 levels) with relatively good coverage. Few black hole and an acceptable level of overlapping.  In this case the GA is well appropriate and work efficiently.
+About the mutation, a Gaussian is used to mutate some parameters of the cameras in a set. The GA is used with an elitist selection. All these parameters of the GA are essential to have an appropriate optimization depending on the problems and to understand the performance of it (for more detail about the GA and this parameters see section \ref{sec:GAdetail}).  \\ 
+Finally the area is covered with 32 cameras (for 3 levels) with relatively good coverage. Few black hole and an acceptable level of overlapping. In this case, the GA is well appropriate and works efficiently.
 
-In Jiang et al \cite{165*jiang2010} the solution for the coverage problem in a wide area with region of interest and obstacle have been optimized with using a standard GA. In \cite{165*jiang2010} the GA has been tested for a wide area with numerous cameras orient. The goal is to find the best orientation to maximize the coverage for a set of cameras  randomly placed in the space. The experiment has been done in a vast area $400X300m^2$ with 60 cameras with all have the same depth and field of view. The number of cameras are not enough to control the full area and some choice must be done between the different region of interest. The GA proposed in this article offer the best result around 47\%, with a minimum of overlapping. \\
+In Jiang et al \cite{165*jiang2010} the solution for the coverage problem in a wide area with the regions of interest and obstacles have been optimized with using a standard GA. In \cite{165*jiang2010} the GA has been tested for a wide area with numerous cameras orient. The goal is to find the best orientation to maximize the coverage for a set of cameras  randomly placed in the space. The experiment has been done in a vast area $400X300m^2$ with 60 cameras with all has the same depth and field of view. The number of cameras are not enough to control the full area and some choice must be done between the different regions of interest. The GA proposed in this article offer the best result around 47\%, with a minimum of overlapping. \\
 The solution proposed with the GA is interesting and work well to optimize the orientation of the cameras in  a relatively big and complex area. The element missing in the solution proposed is an experiment with a number of cameras supposedly enough to fully cover the area. \\
 
-In Wang et al \cite{152*wang2009} a variant of the classical GA has been used. The Multi Agent Genetic Algorithm (MAGA is from \cite{223*zhong2004})) have been developed by the fusion of 2 algorithms, the GA and the multi agents systems. The principal advantage of this algorithms is this supposed efficiency on the optimization for a huge number of dimensions (Zhong et al estimate the efficiency range around 20 to 10 000 dimensions). In this case, the number of dimensions means the number of parameters to optimize to solve a given problems\\
-MAGA is used in \cite{152*wang2009} to optimize the area coverage. The area to cover is a 3D space area and most of the volumetric space has to be covered.  Unlike the other article the cameras have to be positioned in the 3 dimensions (in x, y and z) and the orientation too. The constraint of volumetric space associate to the optimization of the position, orientation and cameras property, increase greatly the size of the search space.  
-Despite this interesting solution the experiment proposed are not enough consistent to properly judge it. Despite that  eh MAGA appear promising  in term of  potential increasing search space and answer quality. 
+In Wang et al \cite{152*wang2009} a variant of the classical GA has been used. The Multi-Agent Genetic Algorithm (MAGA is from \cite{223*zhong2004})) have been developed by the fusion of 2 algorithms, the GA and the multi agents systems. The principal advantage of this algorithm is this supposed efficiency on the optimization for a huge number of dimensions (Zhong et al estimate the efficiency range around 20 to 10 000 dimensions). In this case, the number of dimensions means the number of parameters to optimize to solve a given problems.\\
+MAGA is used in \cite{152*wang2009} to optimize the area coverage. The area to cover is a 3D space area and most of the volumetric space have to be covered.  Unlike the other article the cameras have to be positioned in the 3 dimensions (in x, y and z) and the orientation too. The constraint of volumetric space associate to the optimization of the position, orientation and cameras property, increase greatly the size of the search space.  
+Despite this interesting solution the experiment proposed are not enough consistent to properly judge it. Despite that the MAGA appear promising in term of  potential increasing search space and answer quality. 
 
-In Topcuoglu et al\cite{101*topcuoglu2009} the solution proposed is an Hybrid Evolutionary Algorithms (HEA).  The HEA is based on the GA with different modification, notably on the operators. For example the cross-over is redesigned in order to have two different parts. 
+In Topcuoglu et al\cite{101*topcuoglu2009} the solution proposed is a Hybrid Evolutionary Algorithms (HEA).  The HEA is based on the GA with different modifications, notably on the operators. For example, the cross-over is redesigned in order to have two different parts. 
 One of the parts is a local cross-over and the other is a more classical cross-over.  
 The HEA proposed in this article is relatively close than another EA algorithms called the Mimetic algorithms. \\
 The solution applied in \cite{101*topcuoglu2009} is  presented with different experimentation dedicate  to maximize the visibility and minimize the cost of the sensors network. The experiments propose to compare a simple random selection to the HEA. The result of this experiment shows a real efficiency in terms of minimizing the number of useful sensors and the total utility (the utility is related then the multi objectives.) \\
@@ -774,7 +774,7 @@ The Watchman Route Problem is introduced for the first time by Chin and Ntafos i
 
 The guard has to cover an area represented by a polygon (see the illustration of the problems in Figure \figref{fig:WRPillust}). The guards is considered as perfect with no restriction in the field of view (the guard can see at $360^\circ$) and no restriction in the depth field (the guard can see form on extremity of the room the guard can see the opposed wall until no obstacle look him). The guard ability are directly inspired by the AGP (see \ref{sec:AGP})
 The shape of the polygon is primordial and affect greatly the possible answer and the complexity to solve the WRP.
-The WRP problem is by many aspects closely related than the AGP. The AGP (see  section \ref{sec:AGP}) is commonly considered as the roots of the WRP.
+The WRP problem is by many aspects closely related than the AGP. The AGP (see Section \ref{sec:AGP}) is commonly considered as the roots of the WRP.
  In fact, the WRP is not only focussed on fixing position but on finding an optimal path. The path has to be optimized to cover all the points which compose the polygon  and the path have to be shorter as possible.
  
 % A common way to build a path with as to cover a polygon can be to search the waypoints  which compose the path. Once the waypoints found the next step is to compute a path passing by all the previously founded waypoints. 
@@ -810,7 +810,7 @@ Once the set of waypoints to cover all the polygon are found, the second sub-pro
  This second sub-problem is similar then a classic Travelling Salesman Problem (TSP). The TSP try to answer the questions asks by a travelling salesman "\textbf{What is the shortest path passing by each city only one time and return to the starting city?}".
   In the TSP, the cities are the node on the interconnected map and the roads are the connexion between them. The TSP is a well known as NP-hard and NP-complete in the some condition as described in \citep{236*karp1972}. \\ 
 Finally the solution used for the TSP can be applied for the second sub-problem of WRT.
- The TSP and the algorithms proposed to optimize it are discussed more in detail later \ref{par:TSPPathPlan}
+ The TSP and the algorithms proposed to optimize it are discussed more in detail later in the Paragrapher \ref{par:TSPPathPlan}.
 
 %a similar method than the one proposed by faigl in [235*] has been proposed to approximate the shorter path as possible. To approximate the shorter path the problem of WRP is also split in two sub-problem. The first sub-problem is considered as similar then the AGP and use the method form AGP to find the waypoints. The second sub-problem is also compared as TSP.
 
@@ -876,21 +876,21 @@ The more important methodologies to optimize the CPP is the use of sweep associa
 %
 %61* 62*= floor planning
 
-\subsubsection{ Cellular decomposition and sweep} \label{sec:CPPcellDecompSol}
-\begin{mfigures}[!]{ Illustration  of  simple cell decomposition with sweep.}{fig:CellDecp} \centering
+\subsubsection{Cellular decomposition and sweep} \label{sec:CPPcellDecompSol}
+\begin{mfigures}[!]{Illustration  of  simple cell decomposition with sweep.}{fig:CellDecp} \centering
 \mfigure{width=.4\linewidth}{img/CellDecop.png}{}{}
 
 \end{mfigures}	
 To solve the CPP problem the solution the most common is to use the cellular decomposition. The cellular decomposition is by some aspect inspired by the methodologies presented from the WRP.
 To remember one of the interesting solution for the WRP  is to split the problem in two sub-problem and optimize its independently. The first sub-problem is to find the best waypoints and the second sub-problem is to find the shorter path passing by all the waypoints (as a TSP).
- The Cellular decomposition also split the problem of CPP in two sub-problems. The first sub-problem is focus on the decomposition of the complex area in several cells.  Each cell has to be a simple polygon (basically a rectangle or latter any quadrilateral polygon). Inside each cell a sweep will be applied in order to cover all the area (see \figref{fig:CellDecp}). The second sub-problem is to find the path which can connect each simple polygon. The problem has to take in account in many case the sweep start and end to find the global optimized shorter path. Where the global optimized shorter path take in account the sweep trajectory of each simple polygon and the path between the simple polygons.
+ The Cellular decomposition also split the problem of CPP in two sub-problems. The first sub-problem is focus on the decomposition of the complex area in several cells.  Each cell has to be a simple polygon (basically a rectangle or latter any quadrilateral polygon). Inside each cell a sweep will be applied in order to cover all the area (see Figure \figref{fig:CellDecp}). The second sub-problem is to find the path which can connect each simple polygon. The problem has to take in account in many case the sweep start and end to find the global optimized shorter path. Where the global optimized shorter path take in account the sweep trajectory of each simple polygon and the path between the simple polygons.
  
  Finally the cellular decomposition is made by the decomposition of the complex area, choose the appropriate sweep and find the shorter path to connect the cells. 
  
  \paragraph*{Decomposition}\label{par:decomposition}
 
  The decomposition in cells, has to objective to split the a complex area in several sub-area. The sub-area has to be simpler in term of shape in order to can applies a sweep. 
-Since the 90s numerous algorithm has been developed for the cellular decomposition. Among the algorithms for cellular decomposition, 3 type of decomposition has been made. Has it is explained in the survey of choset  \cite{214*choset2001} and  Galceran and al \cite{66*galceran2013}. 
+Since the 90s numerous algorithm has been developed for the cellular decomposition. Among the algorithms for cellular decomposition, 3 type of decomposition has been made. Has it is explained in the survey of Choset  \cite{214*choset2001} and  Galceran and al \cite{66*galceran2013}. 
 \begin{itemize}
 	\item Approximate: 
 		An approximate decomposition is based on a discretization of the area. The free space of the area is representative by a set of case (gird). Each case of the grid has to be cover by the mobile robots. The case is considered completely cover if the robot is on this position. That mean the frequency of the grid is defined by the covered area of the mobile robots. 
@@ -907,7 +907,7 @@ Since the 90s numerous algorithm has been developed for the cellular decompositi
 	The exact cellular decomposition describe the area by create juxtaposed geometrical region. The size of the region (or cells) are not dependent then the robots ability despite the previous decomposition. The large size of the cell allow the  mobile robots to do back and forth motion to cover all the cell (also called sweep).  The cells have to be ordered to have an efficient and short path passing by all the cells. The path has to limit the distance to pass  between the cells.
 	The exact cellular decomposition became popular and numerous algorithms has been proposed. The algorithms proposed are can be a faster decomposition or with a more appropriate shape depending then the area shape. 
 	Among the numerous exact cellular decomposition the trapezoidal decomposition for this simplicity and historic importance, the Boustrophedon decomposition  and  Morse-based Cellular Decomposition for their important in the construction of other exact cellular decomposition has to be cited. These algorithms and other has been clearly summarized in the survey of Carreras and Galceran \citep{66*galceran2013}. 
-	The exact cellular decomposition has continue to be studied since the survey of  Carreras and Galceran  \citep{66*galceran2013} and upgraded, as in   \cite{144*torres2016} for propose a decomposition for concave or multiple polygons.
+	The exact cellular decomposition has continue to be studied since the survey of  Carreras and Galceran  \citep{66*galceran2013} and upgraded, as in \cite{144*torres2016} for propose a decomposition for concave or multiple polygons.
 	
 \end{itemize}
 
@@ -938,7 +938,8 @@ Since the 90s numerous algorithm has been developed for the cellular decompositi
 	To have an adapted sweep the footprint has to be defined depending then the camera ability and the objective. In \cite{144*torres2016}  the size of the sweep is dependent then the area cover by a camera and a sufficient amount of overlap for the 3D reconstruction (see also\citep{191*di2016}). In Li et al  \citep{146*li2011} the foot print of the camera with a small pan is take in account. Due to the pan the camera projection is not a rectangle but a trapezoid. Consequently the sweep size is adapted by taking the larger side of the trapezoid for the sweep dimension.
 	Also for the grid decomposition the sweep size is directly related the coverage ability of the mobile robots (as example in \citep{215*lee2010,195*choi2009}).  % also 216*+48  215*  195* +55 218*+12  use a sensing camera at the front).
 	
-	One extra element to take in account for the sweep can be in some case the external element as the wind. In \citep{215*lee2010,190*hsu2014 }[190*] !! the external condition are taking in account in the cost function and influence the sweep.
+	One extra element to take in account for the sweep can be in some case the external element as the wind. In \citep{215*lee2010,190*hsu2014 }%!![190*] !! 
+	the external condition are taking in account in the cost function and influence the sweep.
 	
 	
 	To summarize the sweep as to be adapted then the area and the relation between cells. To choose the appropriate sweep the following element has to be taking in account:
