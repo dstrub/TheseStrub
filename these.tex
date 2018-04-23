@@ -368,7 +368,7 @@
  
 
 
-\chapter{content/introduction/}
+\chapter{Introduction}
   
 \section{Context and motivation}
 
@@ -547,13 +547,51 @@
 %% Appendixes
 \appendix
 \part{Annexes}
- index 
- PTZ = Pan, Tilt and Zoom cameras  also called PTZ  (9 page) \\
- $k$-coverage where $k$ represent the number of useful cameras, to cover some regions of the area.\\
- The Art Gallery Problem (AGP) is a theoretical and historical problem closely related than
-the camera positioning.
+% index 
+% PTZ = Pan, Tilt and Zoom cameras  also called PTZ  (9 page) \\
+% $k$-coverage where $k$ represent the number of useful cameras, to cover some regions of the area.\\
+% The Art Gallery Problem (AGP) is a theoretical and historical problem closely related than
+%the camera positioning.
 %\include{content/Glosaire/glossaire}
-\chapter{Premier chapitre des annexes}
+\chapter{ Annexes}
+\section{Acronym list}
+UAV - Unmounted Aerial Vehicle \\
+PTZ - Pan Tilt Zoom \\
+AGP - Art Gallery Problem \\
+NP-Hard - Non Polynomial Hard  \\ 
+NP-Complete - Non Polynomial Complete  \\ 
+WSN - Wireless Sensor Network \\
+WSAN - Wireless Sensor and Acutor Network\\
+PSO - Particles Swarm Optimization \\
+VSN - Visual Sensor Network \\
+BIP - Binary Integer Programming \\
+EA - Evolutionary Algorithm \\
+SA - Simulated Annealing \\
+MAGA - Multi-Agent Genetic Algorithm \\
+HEA - Hybrid Evolutionary Algorithms  \\
+PCB - Printed Circuit Board  \\
+PI-PSO  - Probability Inspired binary PSO \\
+CR-PSO - Craziness based PSO  \\
+CPP - Coverage Path Planing   \\
+WRP - Watchman Route Problem \\ 
+TSP - Travelling Salesman Problem \\ 
+PNWCC - Novel Previous-Next Waypoints Coverage Constraint \\ 
+DNA - DeoxyriboNucleic Acid \\
+MOP - Multi Objective Problem \\
+SGA - Simple Genetic Algorithm  \\
+MOEA - Multi Objective Evolutionary Algorithms \\
+MOEA/D - Multi Objective Evolutionary Algorithms  decomposed\\
+NSGA - Non-dominated Sorting GA \\
+NSGA-II - Non-dominated Sorting GA II \\
+BMPGA - Bi-objective Multi Populations GA \\
+QGA - Quantum-inspired GA \\
+DoF - Degree of Freedom \\
+RS - Random Selections \\
+DoE - Design of Experiments \\
+GT - Ground Truth \\
+NW - Number of Waypoints \\
+GAPSO -  Genetic Algorithm Particles Swarm Optimization  \\
+FoV - Field of View \\
 
 Computation to compute the $\eta, \upsilon$. Where $\eta, \upsilon$ are the horizontal and vertical camera field of view.
 	\begin{equation} \label{eq:etaUpsilon}
@@ -567,7 +605,10 @@ Computation to compute the $\eta, \upsilon$. Where $\eta, \upsilon$ are the hori
  
 
 
-Equation variable 
+
+
+
+\section{Equation variable} 
 
 \begin{table}[!h]
 
@@ -618,7 +659,7 @@ Equation variable
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $g_i$}  		& the i$^th$ point of the grid $G$ should be covered by a camera & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
 
  \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $m$}  		& is equal to the number of points in the grid $G$ & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $m$}  	& is equal to the number of points in the grid $G$ & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
 
  \rowcolor[HTML]{E9E9EF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $Pc$}  		& is  the list of the point $g_i$ form the grid $G$ which are covered & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
@@ -628,17 +669,22 @@ Equation variable
   
     \rowcolor[HTML]{E9E9EF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$P$}  &	is the list of  $p_i$ which contain the
-weighting of the area   &	Section	:\ref{sec:Grid}     &	Only the Section \ref{sec:Grid}					  \tabularnewline \hline
+weighting of the area   &	Section	:\ref{sec:Grid}     &	Only the Section \ref{sec:Grid}		  \tabularnewline \hline
+
    \rowcolor[HTML]{FFFFFF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$U$}  &	the zones without interest to be covered noted with the set $U $. $U\in G$ &	Section	:\ref{sec:Grid}    &	Only the Section \ref{sec:Grid} ???	  \tabularnewline \hline
+
     \rowcolor[HTML]{E9E9EF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$(\alpha,\beta, \gamma)$}  & Three degrees of freedom for the camera orientation  orientation: with the  the rotation in pan, tilt, and roll angles  &	Section	:\ref{sec:CamerasDefinition}  &	All 					  \tabularnewline \hline
+
    \rowcolor[HTML]{FFFFFF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$f$}  &	the focal lens &	Section	:\ref{sec:CamerasDefinition}    &	Only the Section \ref{sec:NmbWaypoint}		  \tabularnewline \hline
+
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$!$}  &	one solution of waypoints set  &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$Obj_k$}  &	the $k^{th}$ object in the scene. &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}					  \tabularnewline \hline
+
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$!$}  &	cost function     &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}		  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$f(...)$} & The function is in charge to compute a camera projection     &	Section	:\ref{sec:NmbWaypoint}    &	All	  \tabularnewline \hline
 
 
   
@@ -680,34 +726,35 @@ weighting of the area   &	Section	:\ref{sec:Grid}     &	Only the Section \ref{se
 \toprule
 
 \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$k$ and $k$-coverage}   		&	 Where $k$ represent the number of cameras useful to cover some region of the area.	 &Section :\ref{sec:FirstObjCover}     & 	All   						     \tabularnewline   \hline 	
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$E$}   		&	 represent the set of constraint ( the set E is defined  more in detail latter)	 &Section :\ref{sec:FirstObjCover}     & 	All   						     \tabularnewline   \hline 	
 \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $P$}  		&Is  a Polygon  used to represent a art galery (room).	 & Sub-section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}	   						  \tabularnewline \hline     
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $V$}  		& represents a solution. $V$ contain all individual positions and orientations of the set of cameras for a predefined focal length, sensor size and related map depending on the problem	 & Sub-section	:\ref{sec:parameterToOptimize}  & 	Only the Section \ref{sec:parameterToOptimize}	   						  \tabularnewline \hline     
  \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$n$}  &	Number of vertice of $P$ &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$n$}  &	the number of cameras in the network &	Section	:\ref{sec:parameterToOptimize}     &	All			  \tabularnewline \hline
 \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $v_i$}  		&Is  the $i^{th}$ vertice of the polygon $P$	 & Section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}	   						  \tabularnewline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $V_k$}  		& velocity  of a  particlule at the $k$th iteration 
+ & Section	:\ref{sec:PSOdetail}  & 	Only the Section \ref{sec:PSOdetail}	   						  \tabularnewline \hline 
     	
   \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$x_i$}  &	Is the $i^{th}$  guard (coordinate position in $P$) &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$P_i$}  &	best solution of a particle &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}					  \tabularnewline \hline
  
 \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $y$}  		&Is a point $y \in P$  & Section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}	   						  \tabularnewline \hline  
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $P_g$}  		& The best solution from the swarm   & Section	:\ref{sec:PSOdetail}  & 	Only the Section \ref{sec:PSOdetail}	   						  \tabularnewline \hline  
  
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$X$}  &	Is set with the minimum number of guards $X$ useful to fully cover the polygons $P$ &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\omega$}  &	is the inertia of the swarm &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}					  \tabularnewline \hline
  
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$g$}  &	Is the number of guard $x$ need it to cover $P$ to have a set $X=\{x_1…x_i…. x_g\}$ &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$b1$ and $b2$}  &	is random value between 0 and $\phi_g$ for $b_1$ or  $\phi_p$ for $b_2$ &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}					  \tabularnewline \hline
 
   \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$G$}  &	Is an occupation grid of the area &	Section	:\ref{sec:Grid}     &	All				  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\alpha_i$}  &  is an angle of curve in the trajectory as in Figure \figref{fig:trajectoirAlpha}	 &	Section	:\ref{sec:sorted}     &	All				  \tabularnewline \hline
  
  \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $g_i$}  		& the i$^th$ point of the grid $G$ should be covered by a camera & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} !}  		& the i$^th$ point of the grid $G$ should be covered by a camera & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
 
  \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $m$}  		& is equal to the number of points in the grid $G$ & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} !}  		& is equal to the number of points in the grid $G$ & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
 
  \rowcolor[HTML]{E9E9EF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $Pc$}  		& is  the list of the point $g_i$ form the grid $G$ which are covered & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
@@ -744,6 +791,7 @@ weighting of the area   &	Section	:\ref{sec:Grid}     &	Only the Section \ref{se
 \end{tikzpicture}
  \caption{Sum-up of the grid map.}\label{tab:mapSumUp}
 \end{table}	
+
 
 
 

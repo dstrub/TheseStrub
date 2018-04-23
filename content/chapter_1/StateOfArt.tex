@@ -223,7 +223,7 @@ The Wireless Sensor Network (WSN) can be as AGP considered as inspiration for th
 
 \textbf{What is the Wireless Sensor Network (WSN)? }
 
- The WSN is a distributed network of sensors or in some case actuators, is also called WSAN (Wierless sensors and actuators Network). Each sensor of the network is a relay for the information to the rest of the network.  
+ The WSN is a distributed network of sensors or in some case actuators, is also called WSAN (Wierless Sensors and Actuators Network). Each sensor of the network is a relay for the information to the rest of the network.  
 The sensors are at same time the nodes and the relay for the network. The node has to objective to transmit by relaying the information to the other node. 
 The information can be centralized or not :
 \begin{itemize}
@@ -233,7 +233,7 @@ The information can be centralized or not :
 \end{itemize}
  
 The information collected by the sensors are vast depending on the final application and the capacities of the sensors ability. 
-The WSN is used in different field for various application as for Telecom with antenna positioning \cite{59*wang2008}, military surveillance field \cite{38*liu2010,101*topcuoglu2009}, airport surveillance \cite{37*ma2012}, video surveillance and tracking \cite{38*liu2010}, environmental monitoring \cite{42*bulusu2001}... 
+The WSN is used in different field for various application as for telecom with antenna positioning \cite{59*wang2008}, military surveillance field \cite{38*liu2010,101*topcuoglu2009}, airport surveillance \cite{37*ma2012}, video surveillance and tracking \cite{38*liu2010}, environmental monitoring \cite{42*bulusu2001}... 
 Logically numerous sensor and information can be collected depending then the need as temperature, movements, images, song and also some  actuator can be used as radio frequency for example.\\
  The application of WSN are wide, especially since the WSN has more than one discipline. The WSN try to optimize a network of sensors in different aspects as for example \cite{39*wu2011} focus on an adapted architecture efficient enough for data transfer (here the data are images) or like in \cite{40*sohrabi2000} the WSN are dedicate to adapt the network around static nodes and energetic resources in order to keep the network connected.  \\
 For our case the aspect the more interesting of the WSN, is the coverage of an area with his and secondary objectives.
@@ -373,7 +373,7 @@ The solution proposed for the coverage is to adapt the number of points of inter
 The area is discretized with a grid.  The grid is composed by points selected smartly. Each point of the grid simulate a potential location of the target.
 The camera position is limited at few position fixed on the room boundary.
 % number of possible position for the camera (the boundary of the room) are defined.
-The adapted grid and the limited cameras positioning are used to limit the size of the search space (as number of possible solution). Thanks to this limited search space a linear optimization with the Binary Integer Programming (BIP) can be used. \\
+The adapted grid and the limited cameras positioning are used to limit the size of the search space (as number of possible solution). Thanks to this limited search space a linear optimization with the BIP can be used. \\
 Use a BIP is popular and others use it as in \cite{22*zhao2008,43*erdem2006}. In \cite{22*zhao2008} the solution proposed is to use BIP formulation, the smart sampling of the grid and branch and bound form LP\_solve libraries to optimize the cameras positions and orientations.\\
 
 % A Similar method is used in \cite{27*bodor2005} to find the position and orientation of a set of cameras. The goal of this paper is to find the appropriate position with maximize the resolution for a set of cameras dedicate to do tracking. The position is determined depending on a set of standard pedestrian trajectories. The camera pose try to maximize the given trajectory to have the best resolution and the entire coverage. \\
@@ -595,9 +595,9 @@ The orientation of the camera has to be optimized in pan and tilt. In addition, 
  To use this algorithm the problem have to be adapted. This adaptation give an original formulation based on a combinatorial problems. Despite the atypical formulation the solution proposed is greedy in term of cameras for cover a small space without obstacles. 
  
  In the recent work of Maji et al\cite{143*maji2015} the finality is different but the problem can be considering close then the problem of cameras positioning. 
-The objective is to position several transistors in a rectangular printed circuit board (PCB).
+The objective is to position several transistors in a rectangular Printed Circuit Board (PCB).
 The transistors must have a rectangular shape with different sizes and ratios. 
-  Despite the apparent simplicity the several rectangular shape for the chips. Some potential additional constraints, as the relation dependence between chips, or the strict non-overlapping of the transistors, makes the problem of positioning transistor becomes more complex. The solution is to optimize the positions and orientations of the chips on the board using EA. The  PSO is chosen and more precisely the craziness based PSO (CR-PSO). The interest of the CR-PSO is the variety introduce during the optimization compare then a classical PSO. The variety introduced during the optimisation process by the CR-PSO  helps to pass over the several local minima. 
+  Despite the apparent simplicity the several rectangular shape for the chips. Some potential additional constraints, as the relation dependence between chips, or the strict non-overlapping of the transistors, makes the problem of positioning transistor becomes more complex. The solution is to optimize the positions and orientations of the chips on the board using EA. The  PSO is chosen and more precisely the Craziness based PSO (CR-PSO). The interest of the CR-PSO is the variety introduce during the optimization compare then a classical PSO. The variety introduced during the optimisation process by the CR-PSO  helps to pass over the several local minima. 
   The more interesting aspect is to use a PSO in a similar problem then cameras positioning which was commonly answered with a linear convex optimisation as in \citep{62*vijayan1991} and  based on the work on the floor planning defined Boyd and Vandenberghe in their book Convex optimization \cite{boyd2004convex}(8.8 page 438).  
   
 The solutions proposed is based on PSO are promising. The PSO or closely related have numerous advantages as showed in the previous articles.
@@ -784,10 +784,10 @@ The following section is focused on finding the best Coverage Path Planing (CPP)
 %Conference on Mobile Robots, pp. 253–258 (2011) 
 
 
-\subsection{AGP  to watchman route problem}
+\subsection{AGP  to watchman route problem}\label{sec:WRP}
 
 
-Before to explore the solutions proposed for the CPP is essential to understand the role of the Watchman route Problem (WRP). The WRP is closely related than the CPP and the WRP has impacted the research for the CPP. 
+Before to explore the solutions proposed for the CPP is essential to understand the role of the Watchman Route Problem (WRP). The WRP is closely related than the CPP and the WRP has impacted the research for the CPP. 
 The following sections are focused on the definition of the WRP, the solution proposed in order to solve it, and finally a fast discussion of the limit of the WRP  is proposed.
  
 \subsubsection{Definition of the watchmen route problem }
@@ -872,7 +872,7 @@ In faigl  \citep{235*faigl2010}  a similar method than the one proposed by Packe
 The method proposed to solve the WRP are really interesting and give a good solution in some specific conditions. These conditions are also the restriction about the methods proposed. In fact the optimal solution, that mean the absolutely shortest path which cover all the area (polygon) are usable only if the polygon respect some rules.The polygon must be simple and take in count the guard ability (no viewing constraints).  \\
 When the polygon begin to be more complex the optimal solution cannot be reached. The method applied to solve the WRP for complex area are interesting. Especially by the splitting the problem into sub-problems. Despite this interesting aspect the solution proposed are most of the time limited due to the area representation (must be a polygon composed by vertex). This representation associate to the geometric methodologies to find the waypoints give an crucial importance to the number of vertex in relation then the number of cameras. More the number of vertex is important more the first sub-problem risk to be difficult and long to solve. 
 Consequently this method is not the more appropriate for the vast and complex outside area which would require  numerous vertex to describe it.
- The biggest limit of the WRP is the ability of the watchman. In fact in the original problem, the Watchman is considered has perfect visibility. The solution proposed for answer to the WRP are not usable with the add of new visibility constraint. 
+ The biggest limit of the WRP is the ability of the watchman. In fact in the original problem, the watchman is considered has perfect visibility. The solution proposed for answer to the WRP are not usable with the add of new visibility constraint. 
 In Faigl \citep{235*faigl2010} the WRP begin to be extended by add a constraint on the visibility. In this condition the problem is slightly muted to self-organizing map in the way to became a coverage path planning. But despite the add of a restricted  depth of field  the solution based on geometric heuristic do not allow to add more constraints.
 
 The AGP then WRP has greatly impacted the vision and the problem design of cameras coverage and coverage path planning.  Among the solutions discussed in the precedent section numerous articles are based and make references to the AGP and WRP. Our work is also inspired by its and will propose to extend it.
@@ -1013,7 +1013,7 @@ The aims of the path planning is to find the short path passing by all the cells
  When the area is decomposed in cells the goal is to schedule the priority of passage from one cell to another in order to create an efficient path passing by all the cells. The scheduling of the cells can be optimize by using the paradigm of TSP with those algorithms to have the best path planning. 
 The TSP is well known problem and is deeply studied form long time ago. First is essential  to remember the TSP is an NP-complete and NP-hard problem as proofed in Karp in \cite{236*karp1972}. 
 
-To optimize the TSP numerous algorithms was tested and some of them has been specially applied to schedule the cells to have the shorter path. In  An et al \cite{60*an2013} two algorithms was tested before to develop a third. The algorithms used are based on branch and bound. The algorithms developed in \cite{60*an2013} is called "Novel Previous-Next Waypoints Coverage Constraint" (PNWCC). The algorithms presented in \cite{60*an2013} propose at same time a schedule of each cells with also a smooth trajectory without sharp edges usable for non holonomic driving robots. 
+To optimize the TSP numerous algorithms was tested and some of them has been specially applied to schedule the cells to have the shorter path. In  An et al \cite{60*an2013} two algorithms was tested before to develop a third. The algorithms used are based on branch and bound. The algorithms developed in \cite{60*an2013} is called Novel Previous-Next Waypoints Coverage Constraint (PNWCC). The algorithms presented in \cite{60*an2013} propose at same time a schedule of each cells with also a smooth trajectory without sharp edges usable for non holonomic driving robots. 
 
 	In the survey of Carreras et Galceran \citep{66*galceran2013} the solutions proposed to solve the TSP is to computes an exhaustive walk trough the adjacency graph. This solution is workable only for compute small adjacency graph. The GA is popular to optimize the TSP and is commonly use to evaluate the influence of this parameter as in \citep{68*muhlenbein1989} \citep{80*serpell2010}. About the CPP problem the GA is also used to optimize the TSP part as in Jimenez et al \citep{217*jimenez2007}. Where the GA is applied to find an optimized schedule after an exact cellular decomposition of a complex polygon. \\
 The GA is announced well appropriate to have an optimized solution for the TSP. 

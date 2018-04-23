@@ -79,7 +79,8 @@ The mutation can also be the source of degenerate animals but in this case the n
 \section{The evolutionary algorithms }
 %\chapterintro
 %The genetic and biology has given rise to the evolutionary algorithm family in computer science.  
-\chapterintro*{T}he evolutionary algorithm (EA) is a big family of algorithms and they included many meta-heuristic used in the field of optimization and artificial intelligence.\\
+%\chapterintro*{T} 
+The Evolutionary Elgorithm (EA) is a big family of algorithms and they included many meta-heuristic used in the field of optimization and artificial intelligence.\\
  The evolutionary algorithm are inspired by the biologic mechanism for design meta-heuristics. The origin of the inspiration can be varied as  the genetic, insect work, animal behavior, … (see Table  \ref{tab:EAlist}). \\
  The biologic inspiration are not the only elements use to define the evolutionary algorithms. All the algorithms in this family are dedicate to optimize iteratively a population of solutions. 
  The EA family are not deterministic and use a randomised function in order to evolve. \\
@@ -393,7 +394,7 @@ The 4 coding method presented are not the only potential coding, there are the m
 
 \paragraph*{Multi objectives}
 The cost functions are traditionally made-up for  problems with only one objective, but in the recent years several solutions have been adapted for multi objective. The goal is to optimize a problem with few sub-objectives included. These sub-objectives can be at some point contradictory and a trade off must be done during the optimisation process, based on the rating made by the cost function. \\
- The cost function for multi objective problem (MOP) is discussed in the survey of Zhou et al \cite{75*zhou2011}. In Zhou et al \cite{75*zhou2011} one of the ways to solve the MOP is to adapt a classic mono objective algorithm in multi by customizing the cost function. The customization of the cost function propose a way to evaluate a solution not depending than one objective but with all of them combined in the same function instead of several cost function. 
+ The cost function for Multi Objective Problem (MOP) is discussed in the survey of Zhou et al \cite{75*zhou2011}. In Zhou et al \cite{75*zhou2011} one of the ways to solve the MOP is to adapt a classic mono objective algorithm in multi by customizing the cost function. The customization of the cost function propose a way to evaluate a solution not depending than one objective but with all of them combined in the same function instead of several cost function. 
  Also other solutions are discussed in \cite{75*zhou2011} like using coefficients for order the objective priority or by reducing the problem into several sub-problems. \\ %  reference pas naive car  ce sons celle qui seron utiliser par la suite
 
 \paragraph*{Constraints}
@@ -404,7 +405,7 @@ The goal is to satisfy the objective(s) while taking into account the constraint
 \paragraph*{Optimisation and time computation}
 
 The cost function should be designed carefully and have to pay special attention to the time computing. Indeed the hight frequency call of the function may generate some heavy slowdown. \\
-The cost function has a special importance in the optimization process to  the rating of all the individuals at every generation. If we consider a GA with 100 individuals (it is a common number of individuals  not to much and  generally enough ) and a convergence after 100 generation (it is good minimum in order to avoid a premature convergence), in this case the cost function will be call at minima 10 000 time. Due  to this important factor it is primordial to carefully design the cost function as is specified in \cite{70*arabas1994}.\\
+The cost function has a special importance in the optimization process to  the rating of all the individuals at every generation. If we consider a GA with 100 individuals (it is a common number of individuals  not to much and  generally enough) and a convergence after 100 generation (it is good minimum in order to avoid a premature convergence), in this case the cost function will be call at minima 10 000 time. Due  to this important factor it is primordial to carefully design the cost function as is specified in \cite{70*arabas1994}.\\
 It is common to have several thousands or billion calls of the cost function during the optimisation process.
   Hence the importance to have a function timeliness and economic in resource. \\
 Even the cost of this function must be the most accurate, in some cases like in \cite{95*miller1995}, a complex calculation or noise can affect the reliability of the cost function which will be impacted on the quality of optimized solution but despite the noise and the weakness of the cost function the GA can optimize and give a solution. But it is advisable to have a function accurate and reliable as possible to have an efficient solution.\\
