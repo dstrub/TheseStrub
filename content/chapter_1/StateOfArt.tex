@@ -77,7 +77,7 @@ Before formalising the coverage rate to be maximised, it is necessary to define 
   \caption{The path to cover is illustrate in the work of Nikolaidis et al. \cite{81*nikolaidis2009}. The aim is to is focused on cover a road (walk path) in a small room by using 3 cameras. }\label{fig:pathToCover81}
   \endminipage\hfill
 \end{figure}
-   The point here is to observe the entire trajectory commonly taken by users (car, pedestrian, …). When the area to cover is a well-known place, the main trajectory taken by the users can be estimated or extracted \cite{27*bodor2005}. If the area to cover is a road, the trajectory of the driver is known \cite{14*lu2011}. In this condition, the aim is to cover the common trajectory of the user as presented in  \cite{14*lu2011,27*bodor2005,30*bodor2005,81*nikolaidis2009} (see the Figure \ref{fig:pathToCover81}). The path coverage is interesting due to the restricted area to cover: not an entire area, but only a path within a given area, that can be seen as a priority sub-area. \\
+   The point here is to observe the entire trajectory commonly taken by users (car, pedestrian, …). When the area to cover is a well-known place, the main trajectory taken by the users can be estimated or extracted \cite{27*bodor2005}. If the area to cover is a road, for instance, then the trajectory of the driver is known \cite{14*lu2011}. In this condition, the aim is to cover the common trajectory of the user as presented in  \cite{14*lu2011,27*bodor2005,30*bodor2005,81*nikolaidis2009} (see the Figure \ref{fig:pathToCover81}). The path coverage is interesting due to the restricted area to cover: not an entire area, but only a path within a given area, that can be seen as a priority sub-area. \\
    %-------------------------------------------------
    \item Coverage priority: \\
       \begin{figure}[t!]
@@ -87,20 +87,20 @@ Before formalising the coverage rate to be maximised, it is necessary to define 
   \caption{Map of an area to cover with crucial sub-area (region of interest) the normal sub-area  and obstacle. This map is an example of area coverage  introduce in  Jiang et al. \cite{165*jiang2010}. }\label{fig:MapRoI165}
   \endminipage\hfill
 \end{figure}
-   A natural way of defining the coverage in a context of insufficient number of cameras, is to define in priority some zones of interest to cover.
-    In \cite{84*xu2011,165*jiang2010,171*horster2006}, their proposed to focus on priority on some predefined regions, respectively called region of interest, curial sub-area (see Figure \ref{fig:MapRoI165}) and importance space weighting.  In the solutions proposed  by \cite{84*xu2011,165*jiang2010,171*horster2006}, the cameras poses are in priority affected to this specific and restricted region which has to effect too neglected the other parts of the area. \\
-Logically if the environment is described with some regions of interest some neutral zones must exist. The neutral zones (or normal sub-areas) must be covered, but that is not the priority. Furthermore, some regions can be described as no interest regions. In \cite{165*jiang2010,171*horster2006} for example, the obstacle are designed as non-interested region and also this region have as consequences to occlude the vision of the camera. The main interest is to keep a maximum of freedom in the cameras network positioning and see if the camera position can manage with the different local priority and constraints.\\
+   A natural way of defining the coverage in a context of insufficient number of cameras, is to define as priority.
+    In \cite{84*xu2011,165*jiang2010,171*horster2006}, some predefined regions are set as "priority" and called respectively "region of interest", "crucial sub-area" (see Figure \ref{fig:MapRoI165}) and "importance space weighting".  In the solutions proposed  by \cite{84*xu2011,165*jiang2010,171*horster2006}, the camera poses are in priority affected to this specific and restricted region which has the effect to neglect the other parts of the area. \\
+If the environment is composed of some regions of interest, there should be also "normal" sub-areas. These "normal sub-areas" should be covered, but with lower priority. Furthermore, some  sub-areas can be defined as "no interest", which mean "not to be covered". In \cite{165*jiang2010,171*horster2006} for example, the obstacles are defined as "no interest" regions with also the consequence to  be occluding area. The idea is to keep a maximum of freedom in the camera network positioning and allow the system to handle local priority and constraints.\\
 %-------------------------------------------------
 \item Inside or outside area:\\ 
-Finally one of the simplest view of the coverage concern the outside and inside area coverage. The area to cover can be typically a room with walls. Each walls must be a considered as an obstacle and can occlude the camera field of view. In this case the main objective is to cover the surface in totality or at least maximize the coverage. This formulations is also workable for the vast outside area, but in addition it is necessary to take into account the size of the environment and the cameras limitation (as the depth of field), which can make the solution even longer and more complicated.
+Another important feature to define the coverage is related to indoor/outdoor scenes. The area to cover can be typically a room with walls (indoor). Each wall must be a considered as an obstacle occluding the camera field of view,  which results in having to manage the visibility of the environment according to these obstacles and to the position of the cameras. For outdoor scenes, it is often necessary to take into account the size of the environment according to the reduced field of view of the camera. This has the effect of increasing the number of required cameras (or views) and leveraging the combinatory. 
+
 %(also in the inside area the constraint must be the restricted posibel position of the camera (the camera must be placed on the wall for exemple))
    
 \end{itemize}
   
 
-
-
-The common points in all the examples discussed it is the will to maximize the coverage rate. The position of the cameras is not only guided by the coverage rate with is the main objective, but by the secondary objectives deducted form the finality. The secondary objectives witch can include some constraints outcome from the application finality.
+The common points in all the examples discussed is the aim of maximizing the coverage rate. The positioning of the cameras, and its effects on the coverage rate, is thus constrained by the application itself, the context  and the type of observed scenes.
+!!!!!!!!!!!!!DF!!!!!!!!!!!!!!!\\
 %!!!!!!
 %The common points in all this coverage definition is the importance to maximize it, despite the other objectives. In the examples presented the coverage was always the first and for some of them the only objective. Despite the interest for maximizing the coverage some other elements has to be taken in account to have a useful cameras position depending on the finality. 
 The secondary objective can have a not negligible impact on the camera pose. The secondary objectives are numerous and closely related than the finality. Among the secondary objective available with their numerous adapted version, some of the most interesting of them are presented :\\
