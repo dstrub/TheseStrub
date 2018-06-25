@@ -201,15 +201,16 @@ The EA maximize work towards to the global optimum solution $\vec{X}$.
  Where  $\vec{X}$ is the global optimum solution. \\
 % The cost function $f()$  is unique for each problem and have to be redesigned for each problematic. Depending on the problem, the global solution is unknown and the best is to tends to this supposed global optimum solution. 
 Optimize a solution $\vec{x}$ is not always enough to solve efficiently the problem. 
-The proposed solution has to respect the constraint linked to the problem. The constraint can be various depending than the problem. As example one naive constraint is the boundary of the search space. To reach a set of $m$ constrain $E$ must be taken in consideration.
+The proposed solution has to respect the constraint linked to the problem. The constraint function can be various depending than the problem. As example one naive constraint function is the boundary of the search space. To reach a set of $m$ constrain function $E$ must be taken in consideration :
 % But optimize a solution $\vec{x}$ depending on the fitness function is not enough to reach to the global optimized solution $\vec{X}$. To reach it a the set of $m$ constrain $E$ must be taken in consideration.
 \begin{equation}
 	E= \{e_1,...e_m \} 
 \end{equation}
-Where $e_j$ is the $j^th$ constraint of the set $E$. To evaluate if a solution $\vec{x}$ respect the constraint $e_j$ the function $e_j(\vec{x})$ can be use.
- Thus, that mean the solution $\vec{x}$ must minimize the set  of constraint $E$ and maximise the value of the cost function $f()$.
+Where $e_j$ is the $j^th$ constraint function of the set $E$. %To evaluate if a solution $\vec{x}$ respect the constraint $e_j$ the function $e_j(\vec{x})$ can be use.
+Thus, that means the cost function $F$ has to include  the set of constraint $E$ and maximise the value of the cost function $f()$.
+ %Thus, that means the solution $\vec{x}$ must minimize the set of constraint $E$ and maximise the value of the cost function $f()$.
 \begin{equation}
-	\max f(\vec{x}) - \min (\sum^{m}_{j=1} e_j(\vec{x} ) ) = \max F((\vec{x}))
+	\max F((\vec{x}))= \max f(\vec{x}) - \min (\sum^{m}_{j=1} e_j(\vec{x} ) )  
 \end{equation}
 
 %\begin{equation}
@@ -250,7 +251,7 @@ To know if the global optimal is reached, the method applied must be sure that n
 Consequently, how to determine when is time to stop the optimisation. Because at some point, it is useless to continue the optimization, the best solution has been founded or the optimization is lock in some deep local optimum.% and a stopping criteria should be defined.\\ 
  To determine the stopping criterion three possible way are communally used:\\
 \begin{itemize}
-\item  \textbf{fixed time criterion}: is to stop the algorithm after a fixed numbers of iterations or time limit. The limit is measured in term of time computing, also the numbers of iteration must be fixed by the user. The main interest of this method is to control the computation time of the problem which require a solution in a determined time (as for a real time). The risk of this method is to stop before finding an efficient solution. \\
+\item  \textbf{Fixed time criterion}: is to stop the algorithm after a fixed numbers of iterations or time limit. The limit is measured in term of time computing, also the numbers of iteration must be fixed by the user. The main interest of this method is to control the computation time of the problem which require a solution in a determined time (as for a real time). The risk of this method is to stop before finding an efficient solution. \\
 %This solution can be mixed with other method to reduce the number of useless iteration.% for control the case where the  other method are too long.  
 
 \item \textbf{Update criterion}: is to stop the algorithm (before the convergence) if no better solution is found after a predefined number of iteration. This criteria can be useful for the complex problem or if many solution can have the same quality. 
@@ -542,7 +543,7 @@ The operator have to aim the design of the next generation by generate the offsp
 Once the parent able to the reproduction were selected (using the selection mode saw previously) it is time to engender a new children.
 The techniques, to create a new population are numerous. Among them the more common  are the heritage (or selection), random generation, the crossover and mutation. 
 
-\subparagraph{heritage or selection:}
+\subparagraph{Heritage or selection:}
 The heritage or also called selection is a simple copy of the best parents to the next generation with no modification. This operator is commonly used to keep the best individual in order to do not lose the best solution if no upgrade is made by the other children. Indeed the other operator may propose degenerated children with is some time worst then their parents and the heritage  permit to conserve as is the individuals.
 \\
 The crossover and mutation have a more interesting mechanism. They are also the basis of many other customized operators and the understanding of the basic crossover and mutation required to use it.
@@ -610,11 +611,11 @@ To set-up properly a GA few question need to be posed as in the table \ref{tab:G
    \begin{tabular}{ | m{0.35\linewidth} | m{0.64\linewidth} |  }
      \hline
       \Emph{Inspiration or group}   & \Emph{Algorithm}    \tabularnewline \hline 
-	 Coding chromosome: & what coding choice? ( binary, combinatoric, real,...)				  	    \tabularnewline \hline 
+	 Coding chromosome: & What coding choice? ( binary, combinatoric, real,...)				  	    \tabularnewline \hline 
 	  Cost function.		 & How quantify the answer quality?		\tabularnewline  \hline  
 	Population	: 			 & What size?  	    					\tabularnewline \cline{2-2}  
 							 & What initialisation? (random or heuristic) \tabularnewline \hline  
-	  Selection mode      	 & what choice of selection mode? 				 	    \tabularnewline \cline{2-2}
+	  Selection mode      	 & What choice of selection mode? 				 	    \tabularnewline \cline{2-2}
         				 	 & And depending on the mode chosen what set-up? \tabularnewline \cline{2-2}
         					 & As for tournament selection the size pool, the wheel repartition for roulette wheel or the number of parent selected for elitist...  	\tabularnewline \hline
       						 & What operators to use?	  	  		\tabularnewline \cline{2-2}
