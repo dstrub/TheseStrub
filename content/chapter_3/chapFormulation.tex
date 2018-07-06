@@ -19,10 +19,13 @@
 %The following chapter is focused on the problem formulation for cameras positioning.\\
 %Obviously formulation proposed in not the only one and some other have been proposed in the literature, mostly depending then the objectives. \\
 
-The problem formulation has to translate the objective with all this problematic into a simple formulation usable for different optimization algorithms. 
-The objective here is to find the position for a set of cameras or waypoints. The position of this set of waypoints has to be optimized in order to cover most of the area. The area maybe a vast and complex zone.
+%The problem formulation has to translate the objective with all this problematic into a simple formulation usable for different optimization algorithms. 
+The following chapter is dedicated to formulate in detail the problems of cameras positioning. 
+The objective here is to find the position for a set of cameras or waypoints. The position of this set of waypoints has to be optimized in order to cover most of the area. The area to cover maybe a vast and composed by complex zones.
 A good formulation is essential to design an efficient cost function. The cost function is used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
-This chapter present  a formal definition of the problem based on the literature and  our proposed formulation. The formulation proposed is adapted to optimize the problems with evolutionary algorithm to have an efficient cameras position for maximizing the coverage, depending then many constraints as for example using a camera mounted on UAV.
+This chapter present a formal definition of the problem based on the literature and our proposed formulation. 
+The formulation proposed is adapted to optimize the problem of cameras or waypoints position depending then many constraint as  a complex and vast map or  cameras mounted on UAV.
+%The formulation proposed is adapted to optimize the problems with evolutionary algorithm to have an efficient cameras position for maximizing the coverage, depending then many constraints as for example using a camera mounted on UAV.
 
 %\section{Coverage estimation }
 
@@ -43,12 +46,13 @@ The following sections are focused on how to estimate the covered area depending
 
 %The problem needs to be formalized in order to clearly identify the complexity of the cameras positioning. 
 
-To estimate efficiently the area covered by a given set of cameras some points have to be clearly defined: 
-\begin{itemize}
-\item The area himself. How to represent the area. 
-\item The camera definition. How to estimate the cameras projection.
-\item The constraints added to the systems (constraints and secondary objectives). \\
-\end{itemize} 
+To estimate efficiently the area covered by a given set of cameras some points have to be clearly defined.
+First of all the area himself. The question of "How to represent the area?" is  primordial. The camera definition  which the question of  "How to estimate the camera projection?" is also an important part of the problem design.  The third part to take care  is the constraints which must be added to the systems.
+%\begin{itemize}
+%\item The area himself. How to represent the area. 
+%\item The camera definition. How to estimate the cameras projection.
+%\item The constraints added to the systems (constraints and secondary objectives). \\
+%\end{itemize} 
  This three parts are discussed in the following sections. The area definition is discussed in the section \ref{sec:Grid} dedicate to the grid design. The camera definition is discussed in the section \ref{sec:CamerasCoverage} and the third part discuss about the constraints in the section \ref{sec:constraint}.\\
 Finally when the problem is clearly defined all the different elements are integrated to have an efficient cost function usable for the optimisation process in \ref{sec:costFun}.
 
@@ -95,26 +99,31 @@ Finally when the problem is clearly defined all the different elements are integ
 
 %/!$\backslash$ \textbf{ ajouter une partie dedier  a [181*] qui propose une solution pour ajusté la densité en fonction  de la necesité de présision  (contour plus dense ) }
 
-The first part is tantamount to estimate properly the area to cover. To do so many methods have been developed most of them are based on an occupation grid $G$ of the area. The occupation grid  is a sample discretization of the area with numerous points.
+The first part is tantamount to estimate properly the area to cover. To do so many methods have been developed and most of them are based on an occupation grid $G$ of the area. The occupation grid is a sample discretization of the area with numerous points.
 \begin{equation}\label{eq:Grid}
 	G=\begin{bmatrix}
 	 	g_1 ...g_i ... g_m
 	\end{bmatrix}  , m\in \mathbb{N}
 \end{equation}
 Where $m$ is equal to the number of points in the grid.
-The occupation grid is placed on the area to cover. At minima each point $g_i$ of the grid $G$ should be covered by a camera (as in Figure \ref{fig:cam_projOnGrid}). Consequently a list of points is set up to enumerate the covered part of $G$ which are noted as $Pc$.
-\begin{equation}\label{eq:Pci}
-g_i \in Pc \mbox{ IFF } g_i \mbox{ is coverd. }
+The occupation grid is placed on the area to cover. Each point $g_i$ of the grid $G$ should be covered by a camera. In the Figure \ref{fig:cam_projOnGrid} the grid $G$ and the points $g_i$ are represented, as well as one camera and this associate projection on to the grid.
+ Consequently some part of the grid is covered (red dot in the Figure \ref{fig:cam_projOnGrid}). 
+% Consequently the list of points is set up to enumerate the covered part of $G$ which are noted as $Pc$. 
+%\begin{equation}\label{eq:Pci}
+%g_i \in Pc \mbox{ IFF } g_i \mbox{ is coverd. }
+%\end{equation}
+\begin{equation}\label{eq:B}
+\forall g_i \in G, B(g_i)= \begin{cases} 1, & \mbox{if } g_i \mbox{ is covered by at least one camera }\\ 0, & \mbox{otherwise}   \end{cases}
 \end{equation}
-
+$B$ is the set of grid points, which are at "1"  if covered by at least one of the camera. The size of $B$ is related to the size of $G$.
 \begin{figure*}[t!]
 		\centering
 		\minipage{0.85\textwidth}
   		\includegraphics[width=\linewidth]{img/CamProjectOnGrid.png}
   
- 	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid $G$ is placed on the floor to discretize the area covered with numerous grid point $g_i$. The point cover by the camera $Pc$ are noted in red.}\label{fig:cam_projOnGrid}
+ 	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid $G$ is placed on the floor to discretize the area covered with numerous grid points $g_i$. The point covered by the camera $Pc$ are noted in red.}\label{fig:cam_projOnGrid}
 \end{figure*}
-The design of the grid is an important element of the problem formulation. Different solution has been proposed during the time with different advantage depending on the situation.\\
+\\ The design of the grid is an important element of the problem formulation. Many solution has been proposed, with different advantage depending on the situation (constraint and objective).\\
 
 \subsection{How to design a grid map}%Related work for the grid design
 
@@ -122,11 +131,11 @@ The following section is focused on the different grids design, based on the lit
 
 
 \subsubsection{Sampling frequency} %Sampling frequency.\\
-The grid map is used to discretize the area to cover. The discretization of the area may vary and the area can get a high level of discretization or low level. The level of sampling frequency has a bearing on the problem formulation and moreover on the optimization.
+The grid map is used to discretize the area to cover. The discretization of the area may vary and the area can get a high level of discretization or low level. The level of sampling frequency has a bearing both on the problem formulation and on the optimization process.
 
 \paragraph*{High sampling frequency}
-The high level of discretization or high sampling frequency has some advantage and disadvantage.\\ 
-The high sampling frequency of an area is characterized by a big amount of point $g_i$ for describing the area. The big amount mean to have an important density of point $g_i$ and consequently the value of $m$ is high. 
+%The high level of discretization or high sampling frequency has some advantage and disadvantage.\\ 
+The high level of discretization or the high sampling frequency of an area is characterized by a big amount of point $g_i$ to describing the area. The big amount mean to have an important density of point $g_i$ and consequently the value of $m$ is high. 
 
 %\begin{equation}
 %	G=\begin{bmatrix}
@@ -137,41 +146,32 @@ The high sampling frequency of an area is characterized by a big amount of point
 %Where m is the number of point into the grid.
 % \subparagraph{Advantage of the  high sampling frequency.}
 %////////////high sampling advantage////
-The advantage of it, is to have a better estimation of the coverage. More the area is finely discretize more the estimation of the coverage will be sharp. In \citep{171*horster2006} an example of high frequency sampling is given in order to have sharp estimation of the area. \\
+The main advantage, is to have a better estimation of the coverage. More the area is finely discretize more the estimation of the coverage will be sharp. In \citep{171*horster2006} an example of high frequency sampling is given in order to have sharp estimation of the area. \\
 The high sampling frequency allows the cameras position to be much more accurate and make a very small adjustment.
 %////////////high sampling disadvantage////\\
-\\On another side, the disadvantage to have a too high sampling frequency is the time computation. Rather to refine the solution the too high level of discretization of the area will make the optimization too long and more complex. Indeed to control the coverage, it is necessary to control if each point of the grid is covered by a camera.  
+\\On another side, a too high sampling frequency lead to high computation times. Rather to refine the solution the too high level of discretization of the area will make the optimization too long and more complex. Indeed to control the coverage, it is necessary to control if each point of the grid is covered by a camera.  
 %\begin{equation} 
 %	\sum^m \sum^n \mbox{test of coverage}
 %\end{equation}
 %Where $m$ is the number of points in the grid and $n$ the number of camera. 
-That mean the number of test to estimate the coverage of each point of the grid, for a given set of cameras is $m\times n$. Where $m$ is the number of points in the grid and $n$ the number of camera. \\
- More the size of the grid is high, more the unity test of coverage (see in Section \ref{sec:CamerasCoverage}) must be done, and that at each step of the optimization process.  Consequently the size of the grid will greatly affect the time computation.  \\
+%That mean the number of test to estimate the coverage of each point of the grid, for a given set of cameras is $m\times n$. Where $m$ is the number of points in the grid and $n$ the number of camera. \\
+ More the size of the grid is high, more the unity test of coverage (see in Section \ref{sec:CamerasCoverage}) must be done, and that at each step of the optimization process. Consequently the size of the grid will greatly affect the time computation.  \\
 Also the high sampling frequency will affect the positioning of the cameras pose. In fact, higher is the sampling frequency of the area  more freedom has to be given to the  pose estimation of  each camera.
 
 
 %////////////////////////////////////
 
 %In fact the quality of the coverage estimation affect the positioning optimization. %A bad estimation of the area coverage due to the bad level of discretization will impact the quality of the answer and the precision of the cameras position by returned a approximate coverage rate. 
-\paragraph*{Low sampling frequency.}
+\paragraph*{Low sampling frequency}
 %///////////////////advantage of the low sampling///////
 At the opposite a lower sampling frequency can be a good solution to upgrade the convergence speed of the optimization process as that was presented in \cite{8*zhou2011}. In Zhou et al \cite{8*zhou2011} a small value of $m$ is chosen to have a real time solution for small area with just few cameras (up to  20). 
 %////////////low sampling disadvantage////
-In the other side, the low sampling frequency may generate a bad estimation of the area covered due to the too low density of points in the grid. The low density of points may give an approximated view of the area covered and some black hole can appear between the points of the grid. This black hole can be too small to be detected. Due to the low density of points. In this case, the optimization cannot take in account this black hole and the solution given after an optimisation will be in a real environment not good as aspect. \\
+On the other side, the low sampling frequency may generate a bad estimation of the area covered due to the too low density of points in the grid. The low density of points may give an approximated view of the area covered and some uncovered area (black hole) can appear between the points of the grid. This uncovered area can be too small to be detected. Due to the low density of points. In this case, the optimization cannot take in to account this uncovered area and the solution given after an optimisation will be in a real environment not good as aspect. Concretely, the difference between the coverage estimation of the discrete area and the  coverage estimation in continue must be high.    \\
 
 
 
 %////////////////////sumup//////////
-\begin{table}
-   \begin{tabular}{ |m{0.20\linewidth}| m{0.40\linewidth} | m{0.30\linewidth} |  }
-     \hline
-     &  \Emph{Advantage}   & \Emph{Disadvantage}    \tabularnewline \hline 
-	\Emph{High sampling frequency }			 & Best estimation of the area to cover  & Time consuming	    					\tabularnewline \cline{2-2}  
-							 & Give more precision on the cameras poses& \tabularnewline \hline  
-	  \Emph{Low sampling frequency }	      	 & Faster computation 	& Bad coverage estimation				 	 	\tabularnewline \hline
- 
-   \end{tabular} \caption{Sum-up of the low and high sampling frequancy adaventage or disadvantage. } \label{tab:samplingFrequency}
- \end{table}
+
 % tableau auto généré   bug 
 %\begin{table}[]
 %\centering
@@ -188,23 +188,39 @@ In the other side, the low sampling frequency may generate a bad estimation of t
 %\end{tabular}
 %\end{table}
 \paragraph*{Low or high sampling frequency}
-Finally the too low sampling frequency, instead to win computation time, may affect the quality of coverage  estimation and consequently the answer. But as explained, the impact of a too high sampling frequency in the solution has also  consequences, as is summarized in the Table \ref{tab:samplingFrequency} \\
-The density of the grid has to be adjusted depending than the goal and the precision required. One of the solutions proposed in Zhao et al \citep{22*zhao2008}  is to have a progressive refinement by increasing the grid density.
-
+Finally, the too low sampling frequency, instead to win computation time, may affect the quality of coverage  estimation. But in the contrary, the impact of a too high sampling frequency has consequences, as is summarized in the Table \ref{tab:samplingFrequency}. The choice of the sampling frequency have to be done carefully. \\
+The density of the grid has to be adjusted depending than the goal and the precision required. One of the solutions proposed in Zhao et al \citep{22*zhao2008} is to have a progressive refinement by increasing the grid density.
 %////////////progressive sampling/////
-Zhao et al \citep{22*zhao2008}  despite a low density of points at the beginning, the number of points are increased slowly to have a better density and refined results. Also the increasing points frequency is applied to refine the solution and add more cameras at each step of the optimisation to avoid the black hole.  \\
+Zhao et al \citep{22*zhao2008} despite a low density of points at the beginning, the number of points are increased slowly to have a better density and refined results. Also the increasing points frequency is applied to refine the solution and add more cameras at each step of the optimisation to avoid the uncovered area.  \\
 
 
 %////////////camera pose estimation linked//////////////////////
-\paragraph*{Cameras pose precision.}
-The frequency sampling is often linked to the pose precision of the camera as discussed previously. %The search space represent the domain to optimize or can be defined by the set of all possible solutions in our case the search space is all the position for all the cameras. 
-Therefore increase the number of points in the  grid will also increase in proportion the number of possible positions for each cameras. More the area is finely defined more is necessary to can slightly adjust the cameras positions. Consequently the possible camera position and the search space are increased to finally allow a more refine solution but also more complex to optimize.
+%!!!!!!!!!!!!!!!!move it somewhere!!!!!!!!!!!!!!!!!!!
+\subsubsection{Cameras pose precision}
+The frequency sampling of the grid is often linked to the pose precision of the camera as discussed previously. In some case as in  \citep{83*van2009,150*chakrabarty2002,195*choi2009,87*morsly2012}, the available position of the cameras are strongly linked to the grid map and the sampling frequency.
+ %The search space represent the domain to optimize or can be defined by the set of all possible solutions in our case the search space is all the position for all the cameras. 
+Increase the number of points in the grid will also increase in proportion the number of possible positions for each cameras. More the area is finely defined more it is necessary to can slightly adjust the cameras positions. Consequently the possible camera position and the search space are increased to finally allow a more refine solution but also more complex to optimize.
+
+On the other hand, the cameras poses can be limited at some specified area of the map. In \citep{171*horster2006,22*zhao2008} the cameras can be placed against the walls. In \cite{22*zhao2008} every wall  of the boundary can hold a camera. In \cite{171*horster2006} the camera can be placed only on the specified zone (see the   in the Figure \ref{fig:randomGridRef171}.d, the green wall shown the available position of the cameras).
+
+The cameras pose precision has a similar impact and consequences on the result then  for the gird map.
+A to big  number of possible pose allow to gain in precision but greatly increase the complexity, where a too small  number of possible pose help to converge faster but with a bad precision. 
+ %151*
  %The too high precision in the position of the camera will increase the complexity and some case where the value of $m$ is too high the optimization process cannot converge or find acceptable solution to the gain of the search space. \\ 
-
-
+%\\!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+% 171*  cam position sur les mure  see fig 4.3
+%22*   came position on the wall
+%151* cam pos wall 
+%8*  camera  free position low sampling F
+%83*  camera position is a miroring of the grid map
+%150*  capteur pose topologique 
+%195*  hover robot   218
+%215*  hover roboto exploration 
 \subsubsection{Distribution}
-The distribution is an important factor to manage for design an occupation grid. The distribution is how the  points of the grid are placed on the area to cover.
-Different distributions can be used, but commonly in the literature the grid pattern distribution and in a lesser extent the random distribution is applied (see Figure \figref{fig:GridVsRand}). 
+The distribution of the points over the grid, is an important factor to manage for the design of an occupation grid.% The distribution is how the points of the grid are placed on the area to cover.
+The points distribution can numerous and adapted to different specific case. Mainly two distribution are used. The grid pattern distribution is the more often seen in the literature and in a lesser extent the random distribution. These two distribution  are illustrated in the Figure \figref{fig:GridVsRand}.
+
+%Different distributions can be used, but commonly in the literature the grid pattern distribution and in a lesser extent the random distribution is applied (see Figure \figref{fig:GridVsRand}). 
 \begin{mfigures}[!]
 {Map representation using random distribution or uniform grid.}{fig:GridVsRand} \centering
 \mfigure{width=.4\linewidth}{img/GridVsRand1.png}{Grid with uniform and regular distribution.}{subfig:satimgTorcy}
@@ -236,43 +252,69 @@ Different distributions can be used, but commonly in the literature the grid pat
   \end{center}
 \end{figure}
 
- In the  \cite{83*van2009,171*horster2006} the random distribution is used to describe the area to cover. \\
-In Hoster et al \citep{171*horster2006} the points of the grid are randomly distributed to describe all the area to cover. The advantage of this article  \citep{171*horster2006} is to use the random distribution in order to manage the density of points in some specific region of the area. Especially, by increasing the density of points on some specific zones of the area. The increased density allocates more importance to these zones (see Figure \ref{fig:randomGridRef171}).\\
+ The random distribution is used to describe the area to cover as  for exemple in \cite{83*van2009,171*horster2006}. \\
+In Hoster et al \citep{171*horster2006} the points of the grid are randomly distributed to describe all the area to cover. The advantage of this article is to use the random distribution in order to manage the density of points in some specific region of the area. Especially, by increasing the density of points on some specific zones of the area. The increased density allocates more importance to these zones (see Figure \ref{fig:randomGridRef171}).\\
 Indeed the higher density will affect the optimization process. The area with more density will be comparatively more profitable to a low density area. In these cases, the zones with high density are covered in priority. This mechanism is even simplified due to the random distribution.
 
-The hengel et al \cite{83*van2009} have tested the random distribution and the uniform grid pattern distribution before to conclude the grid pattern and the random distribution proposes globally the same result, when there is no priority zones in the area. Based on this observation hengel et al \cite{83*van2009} decide to use the uniform grid notably because of its simplicity of implementation.
+The hengel et al \cite{83*van2009} have tested the random distribution and the uniform grid pattern distribution before to conclude the grid pattern and the random distribution proposes globally the same result, when there is no priority zones in the area. Based on this observation author (hengel et al \cite{83*van2009}) decided to use the uniform grid because of its simplicity of implementation.
 %///////random distribution   for reduce the uniforme grid //////////
-The "random distribution" is less popular but in \cite{22*zhao2008} a hybrid distribution is proposed. The idea is to reduce the number of points in the uniform grid when it has a to hight density. To reduce the number of points
-in the grid a random selection is used.  
+A  hybrid distribution is proposed is proposed in  Zhao et al \cite{22*zhao2008}.
+%The "random distribution" is less popular but in  a hybrid distribution is proposed. 
+The idea is to reduce the number of points in the uniform grid when it has a to hight density. To reduce the number of points in the grid a random selection is used. This hybrid implementation of a uniform grid with a random selection to decrease the sampling frequency are an example of hybrid distribution.
 
 
+\subsubsection{Spatial modelling (3D or 2D)}
+ The spatial modelling,  has an important impact on the grid design. After deciding the useful density and the distribution of the grid, the position in the space of the points $g_i$ which compose the grid  has to be discussed.  
+%In fact depending on the problem the grid can be modelled differently in order to properly cover the area to control.
+ Commonly the occupation grid is placed on the floor and calculate visibility only in 2D  by computing the  camera projection as in  \citep{164*valente2013,150*chakrabarty2002,8*zhou2011,170*yabuta2008,171*horster2006,22*zhao2008}, but depending on the context the grid has interest do describe a 3D space.  
+Hengel et al \cite{83*van2009} calculates the visibility, where it is relevant: for example, on the upper torso or head of the possible target rather than the floor. In this case a 2D grid is proposed, but inside the 3D space in order to  characterize properly the volume by placing the grid at a specific height.  
 
-\subsubsection{Spatial modelling (3D  or 2D)}
-To design the occupation grid, one other element should be taken in consideration. The spatial modelling, has an important impact on the grid design. After deciding the useful density and the distribution of the grid, the position in the space of the points $g_i$ which compose the grid  has to be studied.  
-In fact depending on the problem the grid can be modelled differently in order to properly cover the area to control. Commonly the occupation grid is placed on the floor and calculate visibility only in 2D  by computing the  camera projection as in  \citep{164*valente2013,150*chakrabarty2002,8*zhou2011,170*yabuta2008,171*horster2006,22*zhao2008}, but depending on the context the grid have interest do describe a 3D space.  
-In Hegle et al \cite{83*van2009}, calculates the visibility, where it is relevant: for example, on the upper torso or head of the possible target rather than the floor. In this case a 2D grid is proposed, but inside the 3D space in order to  characterize properly the volume by placing the grid at a specific height.  
-
-In \cite{82*chrysostomou2012} the grid is formalized in the full volumetric space by numerous “control points” to control the area. The points of the grid is uniformly (or can be randomly) distributed along the axis of $x, y$ and $z$. Also in \cite{87*morsly2012} the grid are formulated in the volumetric space by using a uniform 3D grid distribution. The formulation proposed shown the complexity even more important to use a 3 dimensional occupation grid. For practical reasons, mostly the inadequacy has computational power due to the increased complexity, the 3D grid is replaced by a 2D grid at a specific height to optimize the coverage. 
-While an occupation grid designed to estimate the volume cover along the $ x, y $ and $ z $ axes of the area already exist. His implementation is unusual due to the increasing difficulty of the optimization process.  
+In Chrysostomou et al \cite{82*chrysostomou2012} or also in \cite{226*nazarzehi2018}, the grid is formalized in the full volumetric space by numerous “control points” to control the area (illustrated in Figure \ref{fig:3Dgridfrom226}). The points of the grid are uniformly distributed along the axis of $x, y$ and $z$. The grid are formulated in the volumetric space by using a uniform 3D grid distribution.
+The uniform grid distribution in a 3D space increase greatly the complexity  due to the important augmentation of control point ($g_i$) and their dispersion. His implementation is unusual due to the increasing difficulty for the optimization process. 
+To avoid the increasing complexity the 3D grid is replaced by start of  2D grid at a specific height to optimize the coverage. 
+ %The formulation proposed shown the complexity even more important to use a 3 dimensional occupation grid. For practical reasons, mostly the inadequacy has computational power due to the increased complexity, the 3D grid is replaced by a 2D grid at a specific height to optimize the coverage. 
+%While an occupation grid designed to estimate the volume cover along the $ x, y $ and $ z $ axes of the area already exist. %His implementation is unusual due to the increasing difficulty of the optimization process.  
 Nevertheless some solution was discussed \citep{141*akbarzadeh2013,83*van2009} to take into account the volume of the area to cover which cannot be only limited to an occupation grid along the axes $ x $ and $ y $ as a simple 2D grid.
+\begin{figure}[t!]
+\begin{center}
+\minipage{0.65\textwidth}
+   \includegraphics[width=\linewidth]{img/3DgridFrom226.png}
+  \caption{3D grid with uniform distribution of the grid point to cover. Illustration from \cite{226*nazarzehi2018} }\label{fig:3Dgridfrom226}
+  \endminipage\hfill
+  \end{center}
+\end{figure}
 
-In  Van  Den Hengel et al\cite{83*van2009} is focussed on estimating the area to cover inside a 3 levels of a building. To estimate the coverage in the building the grid was placed at each level. This solution is efficient in order to limit the number of points compares then a full volumetric description of the area. Also this design allows to keep the 3 dimensional informations by adding a layer at each level of the building.  
+In  Hengel et al\cite{83*van2009} the authors are focussed on estimating the area to cover inside a 3 levels of a building. To estimate the coverage in the building the grid has been placed at each level. This solution is efficient in order to limit the number of grid points compares then a full volumetric description of the area. Also this design allows to keep the 3 dimensional informations by adding a layer at each level of the building (see Figure \figref{fig:gridByLevel83}). 
+ %*** from 83 ***
+ \begin{mfigures}[!]{Illustration of a grid layer in 3 level building from \citep{83*van2009}. In the figure (b) (d) (c) the uniform grid is visible with the black case of the grid represent the area uncovered and the colored case for the covered area.}{fig:gridByLevel83} \centering
 
-In Akbarzadeh et al\citep{141*akbarzadeh2013} propose a 2D grid adapted to the relief of the area. This article are focused on covering a large outside area with an important relief (hill and valley). To estimate properly the area to cover a grid has been placed following the altitude of the relief as showed in Figure \ref{fig:grilleRef141}. The spatial modelling is traditionally a 2D grid at fix altitude more or less equal to the floor ground. The other model  are commonly more greedy in term of point to describe the area. The 2D grid model is the easiest and can be adapted for numerous problems with allow to reduce the number of points and thus  the computation.  
+\mfigure{width=.4\linewidth}{img/buldingViewfrom83.png}{Building view.}{subfig:r4}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/Level1from83.png}{1$^{st}$ floor.}{subfig:r1}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/Level2from83.png}{2$^{nd}$ floor.}{subfig:r2}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/Level2from83.png}{3$^{rd}$ floor.}{subfig:r3}
+
+
+\end{mfigures} 
+
+Another way to deal with a volumetric space with not using a greedy 3D grid distribution is to adapt the 2D grid into the relief. In Akbarzadeh et al\citep{141*akbarzadeh2013} propose a 2D grid adapted to the relief of the area. This article are focused on covering a large outside area with an important relief (hill and valley). To estimate properly the area to cover a grid has been placed following the altitude of the relief as showed in Figure \ref{fig:grilleRef141}. The spatial modelling is traditionally a 2D grid at fix altitude more or less equal to the floor ground. 
+The 2D grid distribution adapted to a 3D environment is the easiest and can be customize for numerous problems with allow to reduce the number of control points ($g_i$) and thus  the computation time.  
 
 %%% figurir  from 141*
 \begin{figure}[t!]
 \begin{center}
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/grilleRef141.png}
-  \caption{Relief grid use to discretize  an area with taking in account the relief.}\label{fig:grilleRef141}
+  \caption{Relief grid use to discretize  an area with taking in account the relief. Illustration from \cite{141*akbarzadeh2013} }\label{fig:grilleRef141}
   \endminipage\hfill
   \end{center}
 \end{figure}
 
-\subsubsection{Zones of interest.} \label{sec:zoneOfInterest}
-Among the area to cover, some zones may have a particular interest to be covered. These zones can be discriminate, by the grid design. 
-The zones of interest are designate by different manner depending than the goal. Manly 3 methods can be discerned.
+\subsubsection{Zones of interest} \label{sec:zoneOfInterest}
+Among the area to cover, some zones may have a particular interest to be covered. These zones can be discriminated, by the grid design. 
+Mainly 3 methods can be discerned to highlight the zones of interest:
 \begin{itemize}
 	\item[-]	The multi coverage zones. 
 	\item[-]	The priority zones.  
@@ -281,61 +323,62 @@ The zones of interest are designate by different manner depending than the goal.
  
 
 \subparagraph{The multi coverage zones}
-The aim  of the multi coverage zones, is to have on a specific zone of the area controlled by numerous cameras.  Multiple coverage may be called $k$-coverage as in \cite{174*zhang2016}. Where refers $k$ to the number of cameras mandatory to cover the zones of interest. 
-Every points of the grid $G$ should be covered at least by one camera and for some specific zone of the area by $k$ cameras.\\
- Consequently a binary list of points is created to count the covered part of the grid $G$ which are noted as $Pc$.
+The aim of the multi coverage zones, is to have on a specific zone of the area controlled by numerous cameras.  Multiple coverage may be called $k$-coverage as in \cite{174*zhang2016}. Where refers $k$ to the number of cameras mandatory to cover the zones of interest. 
+Every points of the grid $G$ should be covered by at least one camera and for some specific zone of the area by $k$ cameras.\\
+ %Consequently a binary list of points is created to count the covered part of the grid $G$ which are noted as $Pc$.
 
 \begin{equation}\label{eq:PciK}
-Pc_i= \begin{cases} 1, & \mbox{if } g_i\mbox{ is covered by $k_i$ cameras} \\ 0, & \mbox{otherwise}   \end{cases}k_i \in K
+\forall g_i \in G, B^{(k)}(g_i)= \begin{cases} 1, & \mbox{if } g_i\mbox{ is covered by $k_i$ cameras, } k_i \in K \\ 0, & \mbox{otherwise}   \end{cases}
 \end{equation}
-Where $k_i$ is the number of cameras uses to cover the point $g_i$ of the grid. $K$ is the list of $k_i$ associate to the number of points in the grid. The list $K$ is initialized at one by default, excepted for the multi coverage zones,  where they have to be covered  by $k$ cameras as in \cite{82*chrysostomou2012}. 
+Where $k_i$ is the number of cameras used to cover the point $g_i$ of the grid. $K$ is the list of $k_i$ associate to the number of points in the grid. The list $K$ is initialized at one by default, excepted for the multi coverage zones,  where they have to be covered  by $k$ cameras as in \cite{82*chrysostomou2012}. 
 
-\subparagraph{The priority zones.}
+\subparagraph{The priority zones}
 The zones to cover in priority are used especially in the case where the number of cameras are not sufficient to fully cover the area. This priority of coverage can be expressed by different ways. \\
-One way  to express  the priority is with a grid uniformly distributed, where a  weighting on the points of the grid which need to be covered in priority is applied, as in \cite{141*akbarzadeh2013,84*xu2011}.
+One way is to express  the priority with a grid uniformly distributed, where a  weighting on the points of the grid which need to be covered in priority is applied, as in \cite{141*akbarzadeh2013,84*xu2011}.
  This method was implemented in \citep{141*akbarzadeh2013} to optimize the position of the camera on the road passing through the area to cover. \\
 %In \citep{171*horster2006} the weighting of the priority zone is made by increasing the sampling frequency of the zones thanks to random distribution  as in Figure \ref{fig:randomGridRef171}(b).
 Another way to  express the  weighting of the priority zone  for  the randomly distributed points, is  to increase the sampling frequency of the desired zones. Increase the sampling frequency of the priority zones is simplified due to the use of a random distribution as in Horster et al \citep{171*horster2006} and as Illustrate in the Figure \ref{fig:randomGridRef171}b.
- Using this method the zones of interest are more dense and that push the optimization process to cover this area in priority (more density mean more interest).\\
-Otherwise the priority zone in the uniform grid distribution can be formulate as: 
+ Using this method the zones of interest are more dense and that push the optimization process to cover this area in priority (more density means more interest).\\
+Otherwise the priority zone in the uniform grid distribution can be formulated as: 
   \begin{equation}\label{eq:PciP}
-Pc_i= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered and  $p_i$ is the weight} \\ 0, & \mbox{otherwise}  \end{cases}
+\forall g_i \in G, B^{(p)}(g_i)= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered and  $p_i$ is the weight, }p_i \in P  \\ 0, & \mbox{otherwise}  \end{cases}
 \end{equation}
-Where $p_i$ is the weight of the point $g_i$ on the grid $G$. $P $ is the list of $p_i$ which contain the weighting of the area associate to the points of the grid $g_i$ which have to be cover in priority. \\
+Where $p_i$ is the weight of the point $g_i$ on the grid $G$. $P $ is the list of $p_i$ which contain the weighting of the area associate to the points of the grid $g_i$ which have to be covered in priority. \\
 
-\subparagraph{Non-interesting zones.}\label{subsec:obstacleZone}
-Non-interesting zones are the zones without interest to be covered noted $U$, with the set $U$ composed of points $g_i$. These zones are not strongly prohibited. That mean the zones considering as non-interesting can be covered but their coverage or un-coverage has no impact on the estimation of the coverage of the area. In the case of random grid, distribution the non-interesting zones have a sampling frequency null as in \citep{141*akbarzadeh2013}. For uniform grid distribution in the non-interesting zones are removed to the list $Pc$. This method is currently used like in \cite{22*zhao2008,170*yabuta2008,141*akbarzadeh2013,171*horster2006,84*xu2011} . 
+\subparagraph{Non-interesting zones}\label{subsec:obstacleZone}
+Non-interesting zones are as it name suggests, the zones without interest to be covered by the set of cameras, noted $U$. The set $U$ is composed by the list of points $g_i$ with have no to be covered. These zones are not strongly prohibited. That mean the zones considering as non-interesting can be covered but their coverage or un-coverage has no impact on the coverage estimation of the area. In the case of random grid, distribution the non-interesting zones have a very low sampling frequency or null as in \citep{141*akbarzadeh2013}. For uniform grid distribution, the non-interesting zones are removed to the list $G$ in order to create a simplified list $G'$. This method is currently used like in \cite{22*zhao2008,170*yabuta2008,141*akbarzadeh2013,171*horster2006,84*xu2011}. 
 \begin{equation}\label{eq:setU}
-Pc=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intresting points} \}
+G'=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intresting points} \}
 \end{equation}
+Instead of defining the non-interesting zones as a set $G$ that excludes $U$ to have a smaller set $G'$, the non-interesting zones can be defined as priority zone with some $p$ equal to $0$ (in Equation \ref{eq:PciP}). This way of defining the non-interesting zones is more greedy in computation and so the formulation in Equation \ref{eq:setU} it is preferred  to the  0 weight of $p$ (Equation \ref{eq:PciP}). 
 
-
-Finally, these methods use to design the zones of interest are not fully independent and can be associate with the same model as in \cite{141*akbarzadeh2013,171*horster2006,84*xu2011}. The combination of all these  zones of interest can be formulated as : 
+Finally, these methods (Equation \ref{eq:setU}) use to design the zones of interest are not fully independent and can be associated with the same model as in \cite{141*akbarzadeh2013,171*horster2006,84*xu2011}. The combination of all these zones of interest can be formulated as : 
  \begin{align}\label{eq:PcFull}
-Pc_i= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered  by $k_i$ and  $p_i$ is the weight} \\ 0, & \mbox{otherwise}  \end{cases}
-\\ Pc=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intresting points} \}
+\forall g_i \in G', B^{(k,p)}(g_i)= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered  by $k_i$ and  $p_i$ is the weight, } p_i \in P \mbox{ and } k_i \in K \\ 0, & \mbox{otherwise}  \end{cases}
+%\\ G'=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intresting points} \}
 \end{align}
-
+Where $G'$ is the restricted point of list to cover which take  in account the removal of the non-interesting zones (as in Equation \ref{eq:setU}). $P$ and $K$ are respectively the priority zones and the  multi coverage zones.
    
 \subsubsection{Atypical design}  
 
-Previously the method to set-up a classical occupation grid depending on the problem has been discussed. Few other solutions more atypical have been developed. On solution coming from the field of wireless sensor network is the topologies grid. 
+Previously the method to set-up a classical occupation grid depending on the problem has been discussed. Few other solutions more atypical have been developed. One solution coming from the field of wireless sensor network is the topologies grid. 
  The topologies grid is clearly explained in Chakraborty et al \cite{150*chakrabarty2002}. The interest of these methodologies is to reduce the number of points to cover. But in this case the number of points is not related to the resolution wished  but by the sensor range. Indeed the size between the points of the grid has been defined by the size of the minimum sensors range. The distance of the minimum sensor range are used as nodes for a topological relation. \\
-Another atypical solution is to develop a grid composed by rectangles. Each rectangle may have different size adapted to the obstacle in the area. A rectangle is considered as covered if most of the area of the rectangle is covered by the cameras as in \citep{170*yabuta2008}. This method is adapted to the area with few obstacles as is shown in the Figure \ref{fig:from170}.
+Another atypical solution is to develop a grid composed by rectangles. Each rectangle may have different sizes adapted to the obstacles in the area. A rectangle is considered as covered if most of the area of the rectangle is covered by the cameras as in \citep{170*yabuta2008}. This method is adapted to the area with few obstacles as is shown in the Figure \ref{fig:from170}.
 \begin{figure}[t!]
 \begin{center}
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/from170.png}
-  \caption{Observed regions from camera candidate. Grid representaiton form \citep{170*yabuta2008}.}\label{fig:from170}
+  \caption{Observed regions from camera candidate. Grid representaiton from \citep{170*yabuta2008}.}\label{fig:from170}
   \endminipage\hfill
   \end{center}
 \end{figure}
 
 \newcolumntype{M}[6]{>{\raggedright}m{#1}}
 
-\paragraph*{Sum-up}
+\subsubsection{ Grid map design sum-up }
 
-The following paragraph surmise the different ways presented to design the map of the area. The area represented has to be covered by set of cameras. The grid map may be used to represent different objectives  and constraints of the problems. The map representation take an crucial role in the area coverage. The design aborted previously  are summarized here in this Table \ref{tab:mapSumUp}. This table show the  more important aspect of each grid representation  in different paper.
+%The following paragraph surmise the different ways presented to design the map of the area. The area represented has to be covered by set of cameras.
+ The grid map may be used to represent different objectives  and constraints of the problems. The map representation take an crucial role in the area coverage. The design aborted previously are summarized here in this Table \ref{tab:mapSumUp}. This table summarize the more important aspect of each grid representation in different papers.
 
 
 
@@ -361,7 +404,7 @@ The following paragraph surmise the different ways presented to design the map o
 % \end{center}
 %	 
 
-
+\begin{landscape}
 \begin{table}[!h]
 
 \begin{tikzpicture}[right]
@@ -378,43 +421,44 @@ The following paragraph surmise the different ways presented to design the map o
 \end{tabular}
 };
 
-\node[yshift=-3.89cm,xshift=-1cm] (b) at (a.south) 
+\node[yshift=-4.789cm,xshift=-1cm] (b) at (a.south) 
 {
-\begin{tabular}{l | m{0.031\linewidth} | m{0.024\linewidth} | m{0.29\linewidth} | m{0.2\linewidth} | m{0.031\linewidth} }
+\begin{tabular}{l | m{0.031\linewidth} | m{0.024\linewidth} | m{0.255\linewidth} | m{0.18\linewidth} | m{0.1631\linewidth} }
 \hline
 \toprule
 
 \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{8*zhou2011} zhou2011}   		&	 \ding{52}	 &	     & 	   						  & For real-time    &  \ding{52} \tabularnewline   \hline 	
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{8*zhou2011} Zhou2011}   		&	 %\ding{52} 
+	 &	     & 	   				2D gird		  & For real-time    &  \ding{55} \tabularnewline    	
 \rowcolor[HTML]{EFEFEF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{22*zhao2008} zhao2008}  		&	  \ding{52}	 &	  \ding{52}   & 	   						  & Incremental	 	 &  \ding{52} \tabularnewline \hline     
+\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{22*zhao2008} Zhao2008}  		&	  \ding{52}	 &	  \ding{52}   & 	   	2D gird at torso hight	  & Incremental	 	 &  Non-interesting zones  \tabularnewline \hline     
  \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{82*chrysostomou2012} chrysostomou2012}  &	  \ding{52}	 &	     &	3D grid					  &  				 &  \ding{52} \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{82*chrysostomou2012} Chrysostomou2012}  &	  \ding{52}	 &	     &	3D grid for volumetric space  &  	Non specified			 &  Non-interesting zones  $\&$ possible k-coverage \tabularnewline 
 \rowcolor[HTML]{EFEFEF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \citep{83*van2009} van2009 } 		&	  \ding{52}	 &	  \ding{52}  & 	2D grid at each level  	  &  				 &	\tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \citep{83*van2009} Hengel2009 } 		&	  \ding{52}	 &	  \ding{52}  & 	2D grid at torso hight for each level  of a bulding  &  	Hight sampling	 & Non-interesting zones  $\&$ k-coverage	\tabularnewline 
   \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{87*morsly2012} morsly2012} 	 	&	  \ding{52}	 &	     &  Superposition of 2D grid  &  	Adaptable	 &	\tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{87*morsly2012} Morsly2012} 	 	&	  \ding{52}	 &  & 2D grid  &  	Adaptable	 &   \ding{55}	\tabularnewline 
 \rowcolor[HTML]{EFEFEF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{141*akbarzadeh2013} akbarzadeh2013 }      &	  \ding{52}	 &	     & 	2D grid on relief 		  &  		 		 &  \ding{52} \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{141*akbarzadeh2013} Akbarzadeh2013 }      &	  \ding{52}	 &	     & 	2D grid on the relief (Figure \ref{fig:grilleRef141})  &  	Very hight sampling 		 &  Non-interesting zones  $\&$ priority coverage \tabularnewline 
   \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} \cite{150*chakrabarty2002} chakrabarty2002}    &	  \ding{52}	 &	     & 	  	 					  & Topologies sensor&	\tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} \cite{150*chakrabarty2002} Chakrabarty2002}    &	  \ding{52}	 &	     & 	  	 	2D grid		  & Topologies sensor (low sampling) & \ding{55}	\tabularnewline 
 \rowcolor[HTML]{EFEFEF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{164*valente2013} valente2013}       &	  \ding{52}	 	&	     &overlap by shifting of z  &  				 &	\tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{164*valente2013} Valente2013}       &	  \ding{52}	 	&	     & 2D grid with overlap by shifting of z  &  	Low sampling frequancy			 &	\ding{55}\tabularnewline 
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} \cite{170*yabuta2008} yabuta2008}         &	 .	 & 	     &		  					  &For zone segmentation 	 &  \ding{52} \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} \cite{170*yabuta2008} Yabuta2008}         &	  \ding{72}	 & 	     &		  	2D grid (Figure \ref{fig:from170})	  & Grid paterne at initialisation then zones segmented  & Non-interesting zones  $\&$ priority coverage \tabularnewline 
 \rowcolor[HTML]{EFEFEF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{171*horster2006}  horster2006}   &	  	 &	  \ding{52}   & 	  	 					  &  		 	 	 &  \ding{52} \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF} \cite{171*horster2006}  Horster2006}   &	  	 &	  \ding{52}   & 	  	 	2D grid (Figure \ref{fig:randomGridRef171})		  &  	Hight sampling 	 	 	 &  Non-interesting zones  $\&$ priority coverage \tabularnewline \hline
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{174*zhang2016}  zhang2016}    &	  	 	&	     & 	 	 					  & 				 &  \ding{52} \tabularnewline \hline
+%\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}\cite{174*zhang2016}  Zhang2016}    &	  \ding{52}	 	&	     & 	 	 			2D grid   & 				 &  \ding{52} \tabularnewline \hline
 
     	 
 \end{tabular}
 };
 %\draw[->,ultra thick](a)--(b);
-\draw [->,very thick] (4.25,1.02) -- (16,1.02) -- (16,-2);
-\draw [->,very thick] (4.25,0.51) -- (14,0.51) -- (14,-2);
-\draw [->,very thick] (4.25,0.0) -- (9,0.) -- (9,-2);
-\draw [->,very thick] (4.25,-0.51) -- (7,-0.5) -- (7,-2);
+\draw [->,very thick] (4.25,1.02) -- (21,1.02) -- (21,-2);
+\draw [->,very thick] (4.25,0.51) -- (16,0.51) -- (16,-2);
+\draw [->,very thick] (4.25,0.0) -- (11,0.) -- (11,-2);
+\draw [->,very thick] (4.25,-0.51) -- (7.5,-0.5) -- (7.5,-2);
 \draw [->,very thick] (4.25,-1.02) -- (6.2,-1.02) -- (6.2,-2);
 
 %\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
@@ -422,11 +466,17 @@ The following paragraph surmise the different ways presented to design the map o
 \end{tikzpicture}
  \caption{Sum-up of the grid map.}\label{tab:mapSumUp}
 \end{table}	
- 
+\end{landscape}
  
 \subsection{Our approach}
- Based on the designs  studied the one finally adopted is a grid $G$ as in Eq \ref{eq:Grid} with an uniform repartition following the 2D grid pattern. The frequency adopted is fixed depending than the size of the area, the precision required and the cameras property. The frequency adopted as to be considered as dense (high sampling frequency).
-  The grid is placed on the floor of the area to control. Floor is always considered as flat without relief. The zone of interest can vary depending on the need of the experimentation, but the design chosen is flexible to apply if necessary the formulation form the Eq:\ref{eq:PcFull} with mostly $k=1$ and $p=1$, also a set $U$ is used to represent the non-interesting zone as it was presented in eq \ref{eq:setU}.
+ Based on the designs  studied the one finally adopted is a grid $G$ as in Eq \ref{eq:Grid} with an uniform repartition following the 2D grid pattern. The grid pattern has been selected due to this facility of implementation and  flexibility.
+  The frequency adopted is fixed depending on the size of the area, the precision required and the cameras properties. The frequency adopted as to be considered as dense (high sampling frequency).
+  Also, due to the high sampling frequency the 2D grid pattern is a better choice and allow a reasonable number of points to describe a complex area. 
+  The grid is placed on the floor of the area to control. Floor is always considered as flat without relief.
+  In our case the zones of interest can be varied and may include non-interesting zones, priorities zones  and  multi coverage. \\
+  To can possibly allow all these zones of interest feature, the selected design of the grid is based on the formulation form the Eq:\ref{eq:PcFull}. During the experiment presented in the following  chapters the priorities zones and multi coverage are not exploited. Consequently the $k=1$ and $p=1$.  Although some rapid tests were carried out with k-coverage and priority zone constraints, the results obtained were judged to be of little relevance, hence the choice to focus on constant priorities and single camera coverage for the entire area to be covered.
+ Although some rapid tests were carried out with constraints of k-coverage and priority zones, the results obtained were considered irrelevant hence the choice to focus on constant priorities and single camera coverage for the entire area ($k=1$ and $p=1$).
+%   The zone of interest can vary depending on the need of the experimentation, but the design chosen is flexible to apply if necessary the formulation form the Eq:\ref{eq:PcFull} with mostly $k=1$ and $p=1$, also a set $U$ is used to represent the non-interesting zone as it was presented in eq \ref{eq:setU}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -443,17 +493,17 @@ To verify if each points of the grid is covered by a camera. It is primordial to
 The closest projection model to the human view is the perspective projection. The perspective projection is also the more common and more especially in the field of area coverage as in examples \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional with a $360^{\circ}$ of field of view as \citep{43*erdem2006,150*chakrabarty2002,174*zhang2016}. 
 Here we are only focussing  on the camera perspective due to its wide use. 
 
-The pin hole or in Latin the "camera obscura" (see Figure\ref{fig:cameraObscura}) is at the origin of the geometry model for the perspective projection.\\
+The pinhole or in Latin the "camera obscura" (see Figure\ref{fig:cameraObscura}) is at the origin of the geometry model for the perspective projection.\\
 \begin{figure}[t!]
 \begin{center}
  \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/PinholeCam.png}
-  \caption{Pin hole camera model.}\label{fig:cameraObscura}
+  \caption{Pinhole camera model.}\label{fig:cameraObscura}
   \endminipage\hfill
 \end{center}
 \end{figure} 
- The pin hole model is commonly composed by a box (or  a chamber) hermetically closed to light, excepted by a small pin hole on the middle of the front side. All the ray of light reflected by the objects of the world and passing by the small hole are projected onto the back side of the box. Each ray of light passing by the hole is  projected on the plan ( the back side of the inside box). This plan became the reversed image of the world and can be recorded by a film or a digital sensor. 
- Due to the simplicity of the pin hole model, the calibration and camera projection estimation is simplified. To estimate the projection just view element has to be knew:
+ The pinhole model is commonly composed by a box (or  a chamber) hermetically closed to light, excepted by a small pinhole on the middle of the front side. All the ray of light reflected by the objects of the world and passing by the small hole are projected onto the back side of the box. Each ray of light passing by the hole is  projected on the plan ( the back side of the inside box). This plan became the reversed image of the world and can be recorded by a film or a digital sensor. 
+ Due to the simplicity of the pinhole model, the calibration and camera projection estimation is simplified. To estimate the projection just view element has to be knew:
 %  Based on it, the camera projection is dependent then few parameters intrinsic (as focal length, sensor size,...) and extrinsic (as the position $x,y,z$ and orientation $\alpha,\beta,\gamma$). 
   
  
@@ -498,7 +548,7 @@ Therefore, $V$ represent a camera networks and also a initial set of parameter f
  
     
 The hole in the box is called the projection center. It is the point were each ray of light are crossing together.  \\
-Based on this model, a 3D point $^CP=(^Cx,^Cy,^Cz,1)^T$ defined in the pin hole reference noted $ ^C\Re$ can be convert in to a 2D point  $^rp=(^ru,^rv,1)^T$ in the sensor reference (back side of the box) by using  the perspective projection model $pr() $: 
+Based on this model, a 3D point $^CP=(^Cx,^Cy,^Cz,1)^T$ defined in the pinhole reference noted $ ^C\Re$ can be convert in to a 2D point  $^rp=(^ru,^rv,1)^T$ in the sensor reference (back side of the box) by using  the perspective projection model $pr() $: 
 \begin{equation}
 ^rp=(^ru,^rv)= pr(^CP) \mbox{ with } \begin{cases} u= f.\frac{^Cx}{^Cz} \\  v= f.\frac{^Cy}{^Cz} 
 \end{cases} 
@@ -517,7 +567,7 @@ where $^ip$  is the point $p$ in the image reference composed by $(u,v) \in ^i\R
 % resource http://ksimek.github.io/2013/08/13/intrinsic/
 %https://jeux.developpez.com/tutoriels/OpenGL-ogldev/tutoriel-12-projection-perspective/
 The cameras is called calibrated when the intrinsic parameters ($K$)are defined.  
- The intrinsic matrix $K$ is parametrized by Hartley and Zisserman and it is composed permit to represent the properties of the camera. To design the intrinsic matrix $K$ some part of the pin hole camera have to be defined :\\
+ The intrinsic matrix $K$ is parametrized by Hartley and Zisserman and it is composed permit to represent the properties of the camera. To design the intrinsic matrix $K$ some part of the pinhole camera have to be defined :\\
   \begin{itemize}
   
  	\item $f$ is  the focal length. The focal length is the distance between the pinhole and the sensor (a.k.a. image plane)
@@ -540,7 +590,7 @@ The cameras is called calibrated when the intrinsic parameters ($K$)are defined.
 		\end{pmatrix} 
 	\label{eq:K}
 	\end{equation}
-Finally, in order to estimate the positions of a 3D point in the pin hole camera reference $^C\Re$ in to the image reference $^i\Re$ 
+Finally, in order to estimate the positions of a 3D point in the pinhole camera reference $^C\Re$ in to the image reference $^i\Re$ 
 $$
 ^ip=K.pr(^CP)
 $$ 	  
@@ -557,15 +607,15 @@ $$
 \subsubsection{Coverage estimation in the literature}
 
 %To estimate the coverage of a set of camera $V$  the cameras projection of each $v_i$ has to be computed individually.
- In order to compute the camera projection onto a grid the pin hole model is used with the parameters of the vector $v$.\\
-The detail to estimate the camera projection on to the floor, based on the pin hole model and the parameters ($v$), has been detailed numerous times as in \cite{193*fu2014,181*wang2017,165*jiang2010}. In \cite{193*fu2014,181*wang2017,165*jiang2010} the camera projection is used to estimate if a point is visible by a camera, for each point of the grid. These articles handles the classic camera projection, with  the 6 Degree of Freedom (DoF) in \citep{193*fu2014} and 5DoF in \citep{181*wang2017}). Both are used to estimate the 2D projection of the camera onto the floor. \\
+ In order to compute the camera projection onto a grid the pinhole model is used with the parameters of the vector $v$.\\
+The detail to estimate the camera projection on to the floor, based on the pinhole model and the parameters ($v$), has been detailed numerous times as in \cite{193*fu2014,181*wang2017,165*jiang2010}. In \cite{193*fu2014,181*wang2017,165*jiang2010} the camera projection is used to estimate if a point is visible by a camera, for each point of the grid. These articles handles the classic camera projection, with  the 6 Degree of Freedom (DoF) in \citep{193*fu2014} and 5DoF in \citep{181*wang2017}). Both are used to estimate the 2D projection of the camera onto the floor. \\
 In  \citep{193*fu2014}, the camera projection has been computed for several rotations for all the DoF. In this case, the projection can have numerous shapes (mostly parallelogram shape).
 In \citep{181*wang2017}, the model of camera projection begins to be simplified by assuming some fixed parameters. The fix parameters allow more efficient by economizing part of projection computation of the camera at each time.  \\
 In \citep{165*jiang2010}, the model of camera projection is used to compute one time for a fix pan and roll in order to have a coverage estimation use in a 2D map. The camera projection is finally simplified by using a kind of triangle shape.\\
  Some of them as \citep{165*jiang2010,181*wang2017,141*akbarzadeh2013} include the object occlusion. To detected the part of the area occluded by an object, the solution commonly proposed (as is well explain in  \citep{181*wang2017}) is to check the line made between a point covered ($g_i \in Pc$) and his camera. If this line is intersected by at least by one object in the scene, the point $g_i$ cannot be considered any-more as covered. 
 %  Despite the simplicity of the computation numerous operation have to be done to compute the camera projection onto the floor. \\
 
-To go further other model and formulation inspired by the pin hole model has been proposed as \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010}. These models are inherited for the camera projection and adapted to fit their problems. \\
+To go further other model and formulation inspired by the pinhole model has been proposed as \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010}. These models are inherited for the camera projection and adapted to fit their problems. \\
 In \cite{87*morsly2012,194*fu2010} the camera is considered to be placed on the floor with a fix pan (with the looking direction almost parallel to the floor). Therefore the camera projection is simplified by an isosceles triangle where the shape depends on the focal length.\\
 In \citep{141*akbarzadeh2013} the camera projection is also simplified in order to have a kind of isosceles triangle shape with considering the depth of view of the camera.\\
 In \citep{146*li2011} thanks to a fix pan and focal length, the camera projection is simplified in order to have a rectangle projection onto the ground. The sweep is designed consequently to the size of the camera projection, in order to minimize the overlap and have full coverage of the area.  
@@ -746,7 +796,7 @@ By associating the altitude boundaries (from Eq\ref{eq:boundaryZ}), a cube bound
   \end{array} 
  \end{equation} 
  
- \subparagraph{Non rectangle map with possible hole.} \label{subPara:MapConstraintAndObstacle}
+ \subparagraph{Non rectangle map with possible hole} \label{subPara:MapConstraintAndObstacle}
 Despite the rectangle boundaries of the area, the map to cover can be much more complex than a simple rectangle and may take any kind of shape. Also the shape of the area can be composed by holes. The Figure \ref{fig:boundaryMap} illustrate the map complexity. The black part of the map are the zone with are out. That mean these sub-parts have not interest to be covered.
  \begin{figure}[t!]
  \begin{center}

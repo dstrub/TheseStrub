@@ -604,8 +604,17 @@ Computation to compute the $\eta, \upsilon$. Where $\eta, \upsilon$ are the hori
 	\end{equation}
 	The Equation \ref{eq:etaUpsilon} is to complete the Figure \ref{fig:cam_proj}.
  
-
-
+Sum-up table for the impact of the of the low and high sampling frequency for the grid map.
+\begin{table}
+   \begin{tabular}{ |m{0.20\linewidth}| m{0.40\linewidth} | m{0.30\linewidth} |  }
+     \hline
+     &  \Emph{Advantage}   & \Emph{Disadvantage}    \tabularnewline \hline 
+	\Emph{High sampling frequency }			 & Best estimation of the area to cover  & Time consuming	    					\tabularnewline \cline{2-2}  
+							 & Give more precision on the cameras poses& \tabularnewline \hline  
+	  \Emph{Low sampling frequency }	      	 & Faster computation 	& Bad coverage estimation				 	 	\tabularnewline \hline
+ 
+   \end{tabular} \caption{Sum-up of the low and high sampling frequancy adaventage or disadvantage. } \label{tab:samplingFrequency}
+ \end{table}
 
 
 
@@ -701,7 +710,7 @@ weighting of the area   &	Section	:\ref{sec:Grid}     &	Only the Section \ref{se
 %\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
 %\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2);
 \end{tikzpicture}
- \caption{Sum-up of the grid map.}\label{tab:mapSumUp}
+ \caption{Sum-up of the grid map.}\label{tab:SumUpFormulation1}
 \end{table}	
 
 %%%%%%%%%%%%%%% table 2
@@ -790,7 +799,7 @@ weighting of the area   &	Section	:\ref{sec:Grid}     &	Only the Section \ref{se
 %\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
 %\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2);
 \end{tikzpicture}
- \caption{Sum-up of the grid map.}\label{tab:mapSumUp}
+ \caption{Sum-up of the grid map.}\label{tab:SumUpFormulation1}
 \end{table}	
 
 
