@@ -125,7 +125,7 @@ $B$ is the set of grid points, which are at "1"  if covered by at least one of t
 \end{figure*}
 \\ The design of the grid is an important element of the problem formulation. Many solution has been proposed, with different advantage depending on the situation (constraint and objective).\\
 
-\subsection{How to design a grid map}%Related work for the grid design
+\subsection{How to design a grid map} \label{sec:GridMap}%Related work for the grid design
 
 The following section is focused on the different grids design, based on the literature. The use of grid to describe the area to cover is common and several design has been invented and used depending then the constraints and objectives.  
 
@@ -485,15 +485,16 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
 
 
 Once the area to cover is described by the grid, the next step is to verify for each point of the grid if one or more cameras cover it, based on Eq: \ref{eq:PcFull} with $k=1$ and $p=1$.\\
-To verify if each points of the grid is covered by a camera. It is primordial to talk about what is a camera, what kind of cameras are appropriate and their projection model. 
+To verify if each points of the grid is covered by a camera. It is primordial to discuses the camera properties and introduce the projection model.
+%to talk about what is a camera, what kind of cameras are appropriate and their projection model. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Cameras definition}\label{sec:CamerasDefinition}
+\subsection{Camera definition}\label{sec:CamerasDefinition}
 
-The closest projection model to the human view is the perspective projection. The perspective projection is also the more common and more especially in the field of area coverage as in examples \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional with a $360^{\circ}$ of field of view as \citep{43*erdem2006,150*chakrabarty2002,174*zhang2016}. 
-Here we are only focussing  on the camera perspective due to its wide use. 
-
-The pinhole or in Latin the "camera obscura" (see Figure\ref{fig:cameraObscura}) is at the origin of the geometry model for the perspective projection.\\
+The perspective projection is often use to define a camera. The camera projection has the advantage to be anamorphic 
+%The closest projection model to the human view is the perspective projection. 
+Thus the perspective projection is also the more common and more especially in the field of area coverage as in examples \cite{101*topcuoglu2009,33*reddy2012,8*zhou2011,82*chrysostomou2012,22*zhao2008}. Other model of cameras or vision sensor can be used as for example omnidirectional with a $360^{\circ}$ of field of view as \citep{43*erdem2006,150*chakrabarty2002,174*zhang2016}. 
+In the following chapters we are only focussing on the camera perspective due to its wide use and it is also the most suitable to be embedded in the UAV for path planning. 
 \begin{figure}[t!]
 \begin{center}
  \minipage{0.65\textwidth}
@@ -502,8 +503,9 @@ The pinhole or in Latin the "camera obscura" (see Figure\ref{fig:cameraObscura})
   \endminipage\hfill
 \end{center}
 \end{figure} 
- The pinhole model is commonly composed by a box (or  a chamber) hermetically closed to light, excepted by a small pinhole on the middle of the front side. All the ray of light reflected by the objects of the world and passing by the small hole are projected onto the back side of the box. Each ray of light passing by the hole is  projected on the plan ( the back side of the inside box). This plan became the reversed image of the world and can be recorded by a film or a digital sensor. 
- Due to the simplicity of the pinhole model, the calibration and camera projection estimation is simplified. To estimate the projection just view element has to be knew:
+\\The pinhole or in Latin the "camera obscura" (see Figure\ref{fig:cameraObscura}) is at the origin of the geometry model for the perspective projection.\\
+The pinhole model is commonly composed by a box (or  a chamber) hermetically closed to light, excepted by a small pinhole on the middle of the front side. All the ray of light reflected by the objects of the world and passing by the small hole are projected onto the back side of the box. Each ray of light passing by the hole is  projected onto the plan ( the back side of the inside box). This plan became the reversed image of the world and can be recorded by a film or a digital sensor. 
+ Due to the simplicity of the pinhole model, the calibration and camera projection estimation is simplified. To estimate the projection only few element has to be knew:
 %  Based on it, the camera projection is dependent then few parameters intrinsic (as focal length, sensor size,...) and extrinsic (as the position $x,y,z$ and orientation $\alpha,\beta,\gamma$). 
   
  
@@ -519,14 +521,15 @@ The pinhole or in Latin the "camera obscura" (see Figure\ref{fig:cameraObscura})
 %In fact the useful elements to define the projection of a camera perspective, can be stated as a set of parameters composed by:\\
 \begin{itemize}
 \item Three degrees of freedom for the camera position : $(x, y, z)$;
-\item Three degrees of freedom for the camera orientation  orientation: with the  the rotation in pan, tilt, and roll angles: $(\alpha,\beta, \gamma)$ 
-\item Optical parameters including: the focal length $f$ of the lens, the sensor size $Sw\times Sh$, $u_{0}$ (the digital sensor or the film) and $v_0 $  which would be ideally in the centre of the image. $\sigma_{uv}$ represents the skew coefficient between the $x$ and the $y$ axis.
+\item Three degrees of freedom for the camera orientation : pan, tilt, and roll angles: $(\alpha,\beta, \gamma)$ 
+\item Optical parameters including: the focal length $f$ of the lens, %{the sensor size $Sw\times Sh$,
+ $u_{0}$ and $v_0 $  which would be ideally in the centre of the image. $\sigma_{uv}$ represents the skew coefficient between the $x$ and the $y$ axis.
 \end{itemize}
 %$s$ is composed by two elements $Sw$ and $Sh$ for the size of width and height (also called  the scale factor).\\
 
 Among the parameters of the camera, only  some of them are useful to estimate the projection. They can be formalized as a vector:
 \begin{equation}\label{eq:v}
-v=(x,y,z,\alpha ,\beta,\gamma,f,Sw\times Sh)%,u_0,v_0,\sigma_{uv}
+v=(x,y,z,\alpha ,\beta,\gamma,f)%,u_0,v_0,\sigma_{uv} %v=(x,y,z,\alpha ,\beta,\gamma,f,Sw\times Sh)
 \end{equation}
 
 Each element of the vector $v$ are used to compute the camera projection on the discretized floor (the grid $G$). 
@@ -607,42 +610,51 @@ $$
 \subsubsection{Coverage estimation in the literature}
 
 %To estimate the coverage of a set of camera $V$  the cameras projection of each $v_i$ has to be computed individually.
- In order to compute the camera projection onto a grid the pinhole model is used with the parameters of the vector $v$.\\
-The detail to estimate the camera projection on to the floor, based on the pinhole model and the parameters ($v$), has been detailed numerous times as in \cite{193*fu2014,181*wang2017,165*jiang2010}. In \cite{193*fu2014,181*wang2017,165*jiang2010} the camera projection is used to estimate if a point is visible by a camera, for each point of the grid. These articles handles the classic camera projection, with  the 6 Degree of Freedom (DoF) in \citep{193*fu2014} and 5DoF in \citep{181*wang2017}). Both are used to estimate the 2D projection of the camera onto the floor. \\
-In  \citep{193*fu2014}, the camera projection has been computed for several rotations for all the DoF. In this case, the projection can have numerous shapes (mostly parallelogram shape).
-In \citep{181*wang2017}, the model of camera projection begins to be simplified by assuming some fixed parameters. The fix parameters allow more efficient by economizing part of projection computation of the camera at each time.  \\
+ In order to compute the camera projection onto a grid the pinhole model is used with the parameters of the vector $v$, previously defined.\\
+The detail to estimate the camera projection on to the floor, based on the pinhole model and the parameters ($v$), has been detailed numerous times as in \cite{193*fu2014,181*wang2017,165*jiang2010}. In \cite{193*fu2014,181*wang2017,165*jiang2010} the camera projection is used to estimate if a point $g_i$ of the grid is visible by a given camera, and that for each point of the grid. These articles handle the classic camera projection, with  the 6 Degree of Freedom (DoF) in \citep{193*fu2014} and 5 DoF in \citep{181*wang2017}). Both are used to estimate the 2D projection of the camera onto the floor (as in Figure \ref{fig:cam_projOnGrid}). \\
+In  \citep{193*fu2014}, the camera projection has been computed for several rotations for all the DoF. In this case, the projection can have numerous shapes (mostly parallelogram shape).\\
+In \citep{181*wang2017}, the model of camera projection begins to be simplified by assuming some fixed parameters. The fix parameters allow more efficient estimation, by economizing part of projection computation of the camera at each time. The fixed parameters allow to pre-estimate  all of part of the shape.  \\
 In \citep{165*jiang2010}, the model of camera projection is used to compute one time for a fix pan and roll in order to have a coverage estimation use in a 2D map. The camera projection is finally simplified by using a kind of triangle shape.\\
- Some of them as \citep{165*jiang2010,181*wang2017,141*akbarzadeh2013} include the object occlusion. To detected the part of the area occluded by an object, the solution commonly proposed (as is well explain in  \citep{181*wang2017}) is to check the line made between a point covered ($g_i \in Pc$) and his camera. If this line is intersected by at least by one object in the scene, the point $g_i$ cannot be considered any-more as covered. 
-%  Despite the simplicity of the computation numerous operation have to be done to compute the camera projection onto the floor. \\
-
 To go further other model and formulation inspired by the pinhole model has been proposed as \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010}. These models are inherited for the camera projection and adapted to fit their problems. \\
 In \cite{87*morsly2012,194*fu2010} the camera is considered to be placed on the floor with a fix pan (with the looking direction almost parallel to the floor). Therefore the camera projection is simplified by an isosceles triangle where the shape depends on the focal length.\\
-In \citep{141*akbarzadeh2013} the camera projection is also simplified in order to have a kind of isosceles triangle shape with considering the depth of view of the camera.\\
+In \citep{141*akbarzadeh2013} the camera projection is also simplified in order to have a kind of isosceles triangle shape with considering the depth of view of the camera. In this case the  camera projection has a shape of "piece of pie" \\
 In \citep{146*li2011} thanks to a fix pan and focal length, the camera projection is simplified in order to have a rectangle projection onto the ground. The sweep is designed consequently to the size of the camera projection, in order to minimize the overlap and have full coverage of the area.  
 
-
-One of the common point of the method present in \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010,22*zhao2008,33*reddy2012,193*fu2014,181*wang2017,165*jiang2010}   is the computation of a camera projection on to a grid. The computations necessary to estimate, if a point of the area is covered are not considered as really greedy (in time). But have to be done to each point $g_j$ of the grid and for each camera $v_i$ of the network.
+One of the common point of the present in \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010,22*zhao2008,33*reddy2012,193*fu2014,181*wang2017,165*jiang2010}   is the computation of a camera projection on to a grid. 
+The computation of the function $f()$ which has to estimate, if  a point $g_i$ of the grid is cover by a cameras $v_j$ of the network,  is not considered as really greedy (in time). But the coverage estimation using $f(g_i,v_j)$ for a point $g_i$ by a camera $v_j$ have to be done for each point of the grid and for each camera of the network in order to can estimate properly the complete area coverage.
 	\begin{equation} \label{eq:sum sum v g}
-		\sum_{j=1}^{m}\sum_{i=1}^{n}f( v_i,g_j)
-	\end{equation}
-Where $n$ the number of cameras in the network; $m$ the number of point in the grid; \\
-This equation (Equation \ref{eq:sum sum v g}) does not take in account the occlusion by few obstacle $Obj$. If we add the potential occlusion by $k$ object: 
+		\mbox{Coverage Rate}=\sum_{i=1}^{m}\sum_{j=1}^{n}f( v_j,g_i)
+	\end{equation} % for Eq Cf:87* 150*  171* voir 165*
+Where $n$ the number of cameras ($v_j$) in the network; $m$ the number of point in the grid ($g_i$));  \\
+%%%%%%%%%%%%%%%%%% object oclution%%%%%%%%%%%%
+The solution proposed until know to estimate the camera projection onto the grid (as in Equation \ref{eq:sum sum v g})  do not take in account the occlusion made by potential obstacle.
+The occlusion  made by  the obstacle has to be taking in account depending then the camera projection.
+ %Some of them as \citep{165*jiang2010,181*wang2017,141*akbarzadeh2013} include the object occlusion. 
+ To detected the part of the area occluded by an object, the solution commonly proposed (as is well explain in  \citep{181*wang2017}) is to check the line made between a point covered ($g_i \in Pc$) and his camera. If this line is intersected by at least by one object in the scene, the point $g_i$ cannot be considered any-more as covered. 
+%  Despite the simplicity of the computation numerous operation have to be done to compute the camera projection onto the floor. \\
+
+To take in account the potential occlusion by a obstacle $Obj_l$ the Equation \ref{eq:sum sum v g} can be extended : 
 	\begin{equation}
-		 \sum_{k=1}^{k}\sum_{j=1}^{m}\sum_{i=1}^{n}f( v_i,g_j,Obj_k)
+		 \mbox{Coverage Rate}=\sum_{l=1}^{k}\sum_{j=1}^{m}\sum_{i=1}^{n}f( v_i,g_j,Obj_l)
 	\end{equation} 
  
-The function $f(...)$ in charge to compute a camera projection will be called in the worst case for each camera, in order to evaluate the complete coverage of the area. This numerous calls will greatly increase the time computation of the coverage. It is even worst when numerous cameras projection ($n$) has to be computed at each turn of a long optimisation process.\\
-In this condition the efficiency of the function $f(...)$ in charge  than the computation of the coverage estimation, is primordial due to the numerous calls.
-
+The function $f(...)$ in charge to compute a camera projection will be called for each camera, each point of the grid and each obstacle, in order to evaluate the complete coverage of the area (with the occluded part). This numerous calls will greatly increase the time computation of the coverage. It is even worst when numerous cameras projection has to be computed at each turn of a long optimisation process.\\
+In this condition the efficiency of the function $f(...)$ in charge of the computation of the coverage estimation, is primordial due to the numerous calls. 
+%%%%%%%%
 
 
 \subsubsection{Coverage estimation optimization} \label{sec:coverageEstimation}
-To design an efficient cost function is necessary to reduce the time computation and estimates the area covered. A good estimation of the area covered is primordial for the optimisation process. 
-  The computation of a camera projection have to be minimized with some basic assumption related to	the problems.\\
-Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, without any rotations in $\alpha$ (pan) and $\beta$ (tilt). It is possible to compute for a given altitude the area covered by one camera, based on these given parameters. Especially the focal length $f$, the altitude of the cameras $A$ and the sensor size $Sw\times Sh$. \\
-In this model the camera projection is always a rectangle as described in Figure \ref{fig:cam_proj}. In fact the camera is  placed  on an UAV and have a direct look to the ground floor.  the looking direction of the  cameras is  perpendicular then the floor, thus the rectangle projection.
-The altitude is the distance between the grid and the cameras, in the simple case $A$ is considered to be equal to $z$, when the grid is on the floor.  \\
-Based on the useful parameters form the camera $(f ,Sw\times Sh ,A)$ the computation to estimate the size of a camera projection ($Wr$,$Hr$) is :
+To design an efficient cost function it is necessary to reduce the  computation time and estimates the covered area . %A good estimation of the covered area  is primordial for the optimisation process. 
+  The camera projection model has to be simplified with some basic assumption related to the problems.\\
+Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, (without any rotation in $\alpha$ pan and $\beta$ tilt). 
+In this model the camera projection is always a rectangle as shown in Figure \ref{fig:cam_proj}. In fact the camera is  placed on an UAV and have a direct look to the ground floor. The looking direction of the cameras is  perpendicular then the floor, thus the rectangle projection.
+The area covered  by the camera is defined by the rectangle with : $Wr\times Hr$ 
+It is possible to compute the size of the covered rectangle for a given altitude by one camera, based on these given parameters. 
+%To compute the size of the projected rectangle the focal length $f$, the altitude of the cameras $A$ and the sensor size $Sw\times Sh$ is required. 
+%Especially the focal length $f$, the altitude of the cameras $A$ and the sensor size $Sw\times Sh$. \\
+
+%The altitude is the distance between the grid and the cameras, in the simple case $A$ is considered to be equal to $z$, when the grid is on the floor.  \\
+Based on the useful parameters form the camera $(f ,Sw\times Sh ,z)$ the computation to estimate the size of a camera projection ($Wr$,$Hr$) is :
 
 %\begin{equation}
 %s= [Sw ; Sh]  %\mbox{   } Sw,Sh \in \mathbb{N} 
@@ -664,8 +676,8 @@ Based on the useful parameters form the camera $(f ,Sw\times Sh ,A)$ the computa
 	
 	\begin{equation} \label{eq:WrHr1}
 	\begin{split}
-			Wr=(\frac{1}{f} . Sw).A\\
-			Hr=(\frac{1}{f} . Sh).A
+			Wr=(\frac{1}{f} . Sw).z\\
+			Hr=(\frac{1}{f} . Sh).z
      \end{split} 
 	\end{equation}
 	
@@ -689,48 +701,63 @@ Based on the useful parameters form the camera $(f ,Sw\times Sh ,A)$ the computa
 %    	 \end{split} 
 %	\end{equation}
 %Therefore, to any altitude $z$ is existing $A.Coef$ where the size of the camera projection onto the floor is $(Wr.coef, Hr.coef)$. Thanks to this the eq: \ref{eq:etaUpsilon} and eq: \ref{eq:WrHr1} have to be compute once  for a given focal length $f$ and sensor $s$ with an simple $A=z$. Adding simple $Coef$ the size of camera projection can be easily simplified in order to limit the useless computation (only 2 multiplication instead then equation \ref{fig:cam_proj} and \ref{eq:etaUpsilon}.
-The model of camera projection is greatly simplified by the UAV assumption (fixed pan, tilt and focal length). That permits to consider the camera projection as a simple rectangle with a size directly related to the altitude. The altitude is assuming to be a coefficient of  the Equation \ref{eq:WrHr1}\\
+
+When $f$ represent the focal length, $z$ the altitude of the cameras and  $Sw$, $Sh$ the sensor size.
+%The model of camera projection is greatly simplified by the UAV assumption (fixed pan, tilt and focal length).
+Thanks to this model of camera projection as a simple rectangle, the size of the rectangle projection is directly related to the altitude. The altitude is assuming to be a coefficient of the Equation \ref{eq:WrHr1}\\
 %The simplification by modelling all the cameras with a fix orientation and same ability (in order to have a rectangle projection onto the ground) 
 All these simplifications helps the cost function to be fast and efficient.  In fact in the Equation \ref{eq:WrHr1} the parameters focal length and the sensor size are fixed and do not need to be recomputed for each camera position only the altitude $A$ has to be updated.\\
 
 \subsection{Parameters to optimize }\label{sec:parameterToOptimize}
 % en raison de    ref 191*
-By dint of the simplification presented previously the vector of parameters (see Equation \ref{eq:v}) can be simplified.
-To summarize,  the computation of one camera projection onto the floor, where the floor is represented by a grid of the area to cover, and the camera is in altitude with a looking direction orthogonal to the floor. Just few parameters are necessary as showed in equation  \ref{eq:WrHr1}. Thanks to this design the Equation \ref{eq:v} can be reduced with keeping only the position of the camera and the roll as:
+By dint of the simplification presented previously the parameters vector (see Equation \ref{eq:v}) can be reduced.
+The computation of one camera projection onto a grid (as in Section \ref{sec:GridMap}, and the camera is in altitude with a looking direction orthogonal to the floor. Based on the Equation \ref{eq:WrHr1}
+Just few parameters are necessary as showed in Equation \ref{eq:WrHr1}. Thanks to the proposed assumption,  Equation \ref{eq:v} can be reduced by keeping only the position of the camera $(x,y,z)$ and the roll ($\gamma)$ as:
 	\begin{equation}\label{eq:v2}
 		v=(x,y,z,\gamma ) 
 	\end{equation}
 
+In our case the roll $\gamma$ can take different state, portrait or landscape with a rotation of $0^\circ$ or $90^\circ$.
+Reducing the number of  parameters, passing to the equation \ref{eq:v} to \ref{eq:v2} are to reduce the number of parameters to optimize. 
 
-Reducing the number of  parameters, passing to the equation \ref{eq:v} to \ref{eq:v2} are really usefully to optimize the problem. The reduction of the number of parameters will greatly affect the optimisation process.
- Indeed, in addition to reduce the time computation, this simplification reduce the number of parameters to optimize.   
+ % The reduction of the number of parameters will greatly affect the optimisation process.
+ %Indeed, in addition to reduce the time computation, this simplification reduce the number of parameters to optimize.   
 
 Until now, the camera projection estimation was addressed with only one camera. But we want to compute the coverage for a set of cameras. 
 The solution is based on the previous estimation for the camera projection, but adapts to the location of each camera. By positioning the rectangle projection to have the center of it at the $x$ and $y$ position and compute the occupation grid.
 
-In order to win a bit of time, each point of the grid already cover by a camera are note tested for the next cameras. This small modification will impact positively the computation time for the coverage estimation of a network of cameras. That mean in the equation \ref{eq:sum sum v g} the value of $m$ decrease as $i$ increase. More exactly the size of $m$ decrease as the area coverage increase.  
+In order to win a bit of time, each point of the grid already covered by a camera are not tested for the next cameras. %This small modification will impact positively the computation time for the coverage estimation of a network of cameras. 
+That mean in the equation \ref{eq:sum sum v g} the value of $m$ decrease as $i$ increase. More exactly the size of $m$ decrease as the area coverage increase.  
 
 
-\subparagraph{Representation of the parameters to optimize. \\}
+\subparagraph{Parameters representation. \\}
 
-To represent the problem we need a set of cameras. The precedent notation can be extended to have a set of $V$ composed by $n$ cameras defined by the parameters of $v$:
+To represent the problem we need a set of cameras. The precedent notation can be extended to have a set $V$ of $n$ cameras defined according to:
 
-	\begin{equation}\label{eq:V}
+\begin{equation}\label{eq:V}
 		\begin{split}
-			V= \{v_i\} \mbox{  , } \forall i=[1;n] \mbox{ , } n\in \mathbb{N}^*
+			V= {v_1,v_2,...,v_n} \mbox{  , } n\in \mathbb{N}^*
 				\\
-			\mbox{ and } v_i= (x_i,y_i,z_i,\gamma_i)
+			\mbox{ with } v_i= (x_i,y_i,z_i,\gamma_i)
 		\end{split}
 	\end{equation}
+	
+%	\begin{equation}\label{eq:V}
+%		\begin{split}
+%			V= \{v_i\} \mbox{  , } \forall i=[1;n] \mbox{ , } n\in \mathbb{N}^*
+%				\\
+%			\mbox{ and } v_i= (x_i,y_i,z_i,\gamma_i)
+%		\end{split}
+%	\end{equation}
 \noindent Where $n$ is the given number of cameras in the network. The coordinate of a camera $v_i$ with are the $i$th camera of the network is defined  with $x_i, y_i, z_i,$ in a given room and $\gamma_i$ the roll rotation (portrait or landscape). The parameters not contained in $V$ and used to compute the cameras projection are  identical for all the set $V$, and are fixed at the beginning of the optimization.\\
 Therefore, $V$ represents a solution. $V$ contain all individual positions and orientations of the set of cameras for a predefined focal length, sensor size and related map depending on the problem.% wish also include the potential constraint as  some restriction on the map.\\
  Obviously all the solution $V$ are not a "possible solution" for our problem. Some solution $V$ does not respect the set of constraint noted $E$. E represent the set of constraint ( the set E is defined  more in detail latter). 
 
-So that the $V$ should respect the constraints of the set $E$ (see Eq.\ref{eq:Vs}). Among the constraint few of them was already disused, as the occlusion, the map restriction, the k-coverage, or some constraint more specific to the problems (as saw in chapter \ref{chap:stateOfTheArt}).\\
+In addition the solution $V$ should respect a set of constraints  $E$ (see Eq.\ref{eq:Vs}). Among the constraint few of them was already discussed, as the occlusion, the map restriction, the k-coverage, or some constraint more specific to the problems (as saw in chapter \ref{chap:stateOfTheArt}).\\
  The "possible solution" $Vs$ must take in consideration with the set $E$ as :
 
 \begin{equation}\label{eq:Vs}
-Vs=V \mbox{ , iff } E(V)=\begin{cases}1, & \mbox{  iff } E_i(V)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
+Vs=V \mbox{ , iff } E(V)=\begin{cases} 1, & \mbox{  iff } E_i(V)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
 \end{cases} 
 \end{equation}
 Where $E_i(V)$ is the function applied to verify  the $i$th constrains of the set $E$ on the solution $V$. $Nc$ is the number of constraints needs to be satisfied to have an acceptable solution.
@@ -740,7 +767,7 @@ The problem of monitoring an area and more specifically the problem of area cove
 The constraints have to be defined depending on the problem and the goal.
 
 \section{Cost Function}
-The cost function has to evaluate the quality of an given answer. To estimate the quality of an answer one of the main criteria is the coverage rate. The precedent section has been focus on the computation of the coverage rate. \\
+The cost function has to evaluate the quality of a given solution. To estimate the quality of a solution one of the main criteria is the coverage rate. The precedent section has been focus on the computation of the coverage rate. \\
 To create an efficient cost function, other criteria has to be taken in to account as the constraints.  
  To establish the cost function a list constraint has to be done. Each constraint of this list does not have the same importance. In order to split the constraints depending then their impact on the problem two types of constraints are introduced in the  following sections before to discuss about.
  
@@ -763,20 +790,20 @@ To create an efficient cost function, other criteria has to be taken in to accou
 %	\item The resolution.\\
 %
 %\end{itemize} 
-\subparagraph{Fixes number of the cameras}
-One of the first constraint is the fix number of cameras. This constraint as some others (detailed latter) are  useful to simplify and restrict the possibility of the problem. This constraint permits us to focus on the fine optimisation (as in \citep{22*zhao2008} where both are tested). The number of cameras is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  
+\subparagraph{Fixed number of the cameras}
+One of the first constraint is the fixed number of cameras. This constraint as some others (detailed latter) are  useful to simplify and restrict the possibility of the problem. This constraint permits us to focus on the fine optimisation (as in \citep{22*zhao2008} where both are tested). The number of cameras is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  
 
-\subparagraph{Fixes parameters of camera and no rotations}
-Fixes parameters of the cameras and no rotations ($\alpha$ and $\beta$) has been introduced previously (section \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV are also an advantage for the optimization by simplifying the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization. Thanks to this constraint the optimization  has to focus on the precise  cameras positioning.
+\subparagraph{Fixed parameters of camera and no rotations}
+Fixed parameters of the cameras and no rotations ($\alpha$ and $\beta$) has been introduced previously (section \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV are also an advantage for the optimization by simplifying the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization. Thanks to this constraint the optimization  has to focus on the precise  cameras positioning.
 
-\subparagraph{Fixes altitude}
- The fix altitude is a constraint use in order to limit the number of parameters to optimize. The use of this constraint is used to reduce the difficulty by reducing the possible search space (see section \ref{sec:OptimizationComplexity}). It is also useful for other assumptions, as a cameras on the celling or for a submarine  \cite{66*galceran2013}. This constraint is an optional constraint and is not always used in the experiments presented in the following sections.   
+\subparagraph{Fixed altitude}
+ The fixed altitude is a constraint use in order to limit the number of parameters to optimize. The use of this constraint is used to reduce the difficulty by reducing the possible search space (see section \ref{sec:OptimizationComplexity}). It is also useful for other assumptions, as a cameras on the celling or for a submarine  \cite{66*galceran2013}. This constraint is an optional constraint and is not always used in the experiments presented in the following sections.   
 
 \subparagraph{The altitude boundaries}\label{sec:altitudeBoundary}
  When the altitude is not fixed some limits must be chosen to avoid the extremely high and low altitudes. The highest altitudes will be fixed depending on the UAV ability and other restrictions as the laws. The lowest altitude has to be fixed for the safety of the users under the UAV.  
 In practice the  altitude boundary is defined with :
  \begin{equation}\label{eq:boundaryZ}
-   \inf A\leq A\leq \sup A  
+   \inf z\leq z\leq \sup z  
  \end{equation} 
  Where $\sup A$ is the maximal altitude of the camera and $\inf A$ the minimum altitude. $A$ is the altitude between the camera and the grid. %$A$ is the fix altitude of a camera where the camera projection has been computed with $A=z$ with only $coef$ vary as introduced in Equation \ref{eq:A.coef}. 
  
