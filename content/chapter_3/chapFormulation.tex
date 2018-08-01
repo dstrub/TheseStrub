@@ -119,9 +119,9 @@ $B$ is the set of grid points, which are at "1"  if covered by at least one of t
 \begin{figure*}[t!]
 		\centering
 		\minipage{0.85\textwidth}
-  		\includegraphics[width=\linewidth]{img/CamProjectOnGrid.png}
+  		\includegraphics[width=\linewidth]{img/CamProjectOnGrid2.png}
   
- 	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid $G$ is placed on the floor to discretize the area covered with numerous grid points $g_i$. The point covered by the camera $Pc$ are noted in red.}\label{fig:cam_projOnGrid}
+ 	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid $G$ is placed on the floor to discretize the area covered with numerous grid points $g_i$. The point covered by the camera $B()$ are noted in red.}\label{fig:cam_projOnGrid}
 \end{figure*}
 \\ The design of the grid is an important element of the problem formulation. Many solution has been proposed, with different advantage depending on the situation (constraint and objective).\\
 
@@ -343,7 +343,7 @@ Otherwise the priority zone in the uniform grid distribution can be formulated a
   \begin{equation}\label{eq:PciP}
 \forall g_i \in G, B^{(p)}(g_i)= \begin{cases} 1*p_i, & \mbox{if } g_i\mbox{ is covered and  $p_i$ is the weight, }p_i \in P  \\ 0, & \mbox{otherwise}  \end{cases}
 \end{equation}
-Where $p_i$ is the weight of the point $g_i$ on the grid $G$. $P $ is the list of $p_i$ which contain the weighting of the area associate to the points of the grid $g_i$ which have to be covered in priority. \\
+Where $p_i$ is the weight of the point $g_i$ on the grid $G$. $p_i \in P $ is the list of $p_i$ which contain the weighting of the area associate to the points of the grid $g_i$ which have to be covered in priority. \\
 
 \subparagraph{Non-interesting zones}\label{subsec:obstacleZone}
 Non-interesting zones are as it name suggests, the zones without interest to be covered by the set of cameras, noted $U$. The set $U$ is composed by the list of points $g_i$ with have no to be covered. These zones are not strongly prohibited. That mean the zones considering as non-interesting can be covered but their coverage or un-coverage has no impact on the coverage estimation of the area. In the case of random grid, distribution the non-interesting zones have a very low sampling frequency or null as in \citep{141*akbarzadeh2013}. For uniform grid distribution, the non-interesting zones are removed to the list $G$ in order to create a simplified list $G'$. This method is currently used like in \cite{22*zhao2008,170*yabuta2008,141*akbarzadeh2013,171*horster2006,84*xu2011}. 
@@ -469,7 +469,7 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
 \end{landscape}
  
 \subsection{Our approach}
- Based on the designs  studied the one finally adopted is a grid $G$ as in Eq \ref{eq:Grid} with an uniform repartition following the 2D grid pattern. The grid pattern has been selected due to this facility of implementation and  flexibility.
+ Based on the designs studied the one finally adopted is a grid $G$ as in Eq \ref{eq:Grid} with an uniform repartition following the 2D grid pattern. The grid pattern has been selected due to this facility of implementation and  flexibility to the additional constraints.
   The frequency adopted is fixed depending on the size of the area, the precision required and the cameras properties. The frequency adopted as to be considered as dense (high sampling frequency).
   Also, due to the high sampling frequency the 2D grid pattern is a better choice and allow a reasonable number of points to describe a complex area. 
   The grid is placed on the floor of the area to control. Floor is always considered as flat without relief.
@@ -641,7 +641,38 @@ To take in account the potential occlusion by a obstacle $Obj_l$ the Equation \r
 The function $f(...)$ in charge to compute a camera projection will be called for each camera, each point of the grid and each obstacle, in order to evaluate the complete coverage of the area (with the occluded part). This numerous calls will greatly increase the time computation of the coverage. It is even worst when numerous cameras projection has to be computed at each turn of a long optimisation process.\\
 In this condition the efficiency of the function $f(...)$ in charge of the computation of the coverage estimation, is primordial due to the numerous calls. 
 %%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{landscape}	
+%	\begin{table}[]
+%\centering
+%\caption{Sum-up ref}
+%\label{tab:sum-up1}
+% %              ref           |x|y |z|       tilt| |focal  coverage     nmb   
+%\begin{tabular}{@{}l|p{2.4cm}    l  p{0.62cm}lp{1.3cm}p{1.57cm}p{1.5cm}p{1.6cm}p{1.3cm}p{1.2cm}@{}}
+%\toprule
+%\multicolumn{1}{|l|}{\textbf{Ref}}   & \multicolumn{1}{l|}{Y}              & \multicolumn{1}{l|}{Pan} & \multicolumn{1}{l|}{Tilt} & \multicolumn{1}{l|}{Roll} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}p{1.55cm}@{}}Coverage\\  room\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Number\\ of \\ cameras\end{tabular}} & \begin{tabular}[c]{@{}l@{}}Secondary objectives \\ and constraints\end{tabular} &                      &               \multicolumn{1}{l|}{} \\ \midrule
+%\rowcolor[HTML]{FFFFFF} 
+%\citep{193*fu2014}   Fu 2014                                                                                                                                    & \ding{52}                                   &  \ding{52}                        & 0                         & 0                                                       & 2D                                                                                      & $\approx 10                                                                        $                                                           & barrier coverage                                                               & conection dependance &                                     \\
+%\rowcolor[HTML]{EFEFEF} 
+%\cite{181*wang2017}    Wang 2017                                                                                                          & 0                        & 0                         & 0                                                       & 2D                                                                                      & $\approx 600                                                                        $ & resolution                                                                     & tracking             &                                     \\
+%\rowcolor[HTML]{FFFFFF} 
+%\citep{165*jiang2010}   jiang 2010                                                                                                                                    & \ding{52}                                   &  \ding{52}                        & 0                         & 0                                                       & 2D                                                                                      & $\approx 10                                                                        $                                                           & barrier coverage                                                               & conection dependance &                                     \\
+%\rowcolor[HTML]{EFEFEF} 
+%\citep{141*akbarzadeh2013}  Akbarzadeh 2013                                                  &  \ding{52}                                   &  \ding{52}                        &  \ding{52}                         & 0                         &  \ding{52} & 2D                                                                                      & 9 to 15                                                                           & region of interest                                                              & big area             &                                     \\ 
+%\rowcolor[HTML]{FFFFFF} 
+%\citep{87*morsly2012}   Morsly 2012                                                                                                                    & \ding{52}                                   &  \ding{52}                        & 0                         & 0                                                     & 2D                                                                                      & $\approx 10                                                                        $                                                           & barrier coverage                                                               & conection dependance &                                     \\
+%\rowcolor[HTML]{EFEFEF} 
+%\cite{146*li2011}    Li 2011                             & 0                        & 0                         & 0                                                       & 2D                                                                                      & $\approx 600                                                                        $ & resolution                                                                     & tracking             &                                     \\ 
+%\rowcolor[HTML]{FFFFFF} 
+%\citep{194*fu2010}  Fu 2010                                                       & \ding{52}                                   &  \ding{52}                        & 0                         & 0                                                        & 2D                                                                                      & $\approx 10                                                                        $                                                           & barrier coverage                                                               & conection dependance &                                     \\
+%\rowcolor[HTML]{EFEFEF} 
+%\citep{22*zhao2008}  Zhao 2008                                         &  \ding{52}                         & 0                         &  \ding{52} & 2D                                                                                      & 9 to 15                                                                           & region of interest                                                              & big area             &                                     \\ 
+%\rowcolor[HTML]{FFFFFF} 
+%\citep{33*reddy2012}  Reddy 2012                   &  \ding{52}                        & 0                         & 0                         & fix                               & 2D                                                                                      & $\approx 10                                                                        $                                                           & barrier coverage                                                               & conection dependance &                                     \\\bottomrule
+%\end{tabular}
+%\end{table}
+%\end{landscape}	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Coverage estimation optimization} \label{sec:coverageEstimation}
 To design an efficient cost function it is necessary to reduce the  computation time and estimates the covered area . %A good estimation of the covered area  is primordial for the optimisation process. 
@@ -824,7 +855,7 @@ By associating the altitude boundaries (from Eq\ref{eq:boundaryZ}), a cube bound
  \end{equation} 
  
  \subparagraph{Non rectangle map with possible hole} \label{subPara:MapConstraintAndObstacle}
-Despite the rectangle boundaries of the area, the map to cover can be much more complex than a simple rectangle and may take any kind of shape. Also the shape of the area can be composed by holes. The Figure \ref{fig:boundaryMap} illustrate the map complexity. The black part of the map are the zone with are out. That mean these sub-parts have not interest to be covered.
+The map to cover can be much more complex than a simple rectangle and may take any shape with can be composed by holes. The Figure \ref{fig:boundaryMap} illustrates the map complexity.% The black part of the map are the zone with are out. That mean these sub-parts have not interest to be covered.
  \begin{figure}[t!]
  \begin{center}
 \minipage{0.85\textwidth}
@@ -833,36 +864,43 @@ Despite the rectangle boundaries of the area, the map to cover can be much more 
   \endminipage\hfill
   \end{center}
 \end{figure}
-To take in account this constraint the gird has been designed with removing some of this points.
-The grid $G$ is reduced in order to have only the points in the white sub-part. In this example each white pixel of the map is point of the grid to cover. 
-Concretely this implementation is easier for the complex map and has also some advantage. \\
-Among the advantage, the flexibility of the grid customization. That allows the optimization to try some exotic solutions, as allowing the camera position on the black sub-part or in a border of it during the optimization.  Obviously the exotic solution with a camera position on the black side does not increase the coverage rate  but if the optimisation converge correctly no camera will be on the the black sub-part of the map (or small part of it).
+To take into account the complex shape map % the gird has been designed with removing some of this points.
+the grid $G$ is reduced in order to keep only the points in the white sub-part. In the example (see Figure \ref{fig:boundaryMap}) each white pixel of the map is a point of the grid to cover. 
+Concretely this implementation by using a grid map has some advantage as  the flexibility of the grid customization . \\
+%Among the advantage, the flexibility of the grid customization. 
+In addition, it allows the optimization to test some exotic solutions, as allowing the camera position on the black sub-part or in a border of it. Obviously the exotic solution with a camera position on the black side does not increase the coverage rate  but with a correct converge  the camera are not  covering the black sub-part of the map (or small part of it). The interest of leave this freedom to the optimization is double, first control the quality of the the solution obtained, the second is the variety introduced during the exploration of the black sub-part of the map. 
+
 %
 %\subparagraph{Some fix cameras in the set}
 %Having some fix cameras position in the set of cameras, is an optional constraint. This allows to have few manual cameras position from an user or other algorithms.
 %One case can be to have some specific area as the entrance where have to be surveyed by a cameras dedicated to.  
 %To implement this constraint the solution applied during the experiments (presented later) is to adapt the map by removing the point of the grid $G$ cover by the sub-set of fix cameras (as if these points of the grid was covered).
 
-\subparagraph{The resolution}
-The resolution of the images is related then the sensor size (in px) and the distance between the camera and the object filmed. In our case, the sensor size is fixed by the properties of the camera mounted on the UAV and the object filmed is the floor of the area to cover. In this case, the distance between the camera and floor is the altitude. \\
-The resolution constraint has to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be the lower possible.\\
-Considering only the resolution (or objective) as minimizing the average altitude of the cameras is harmful for the coverage optimization.
-Consequently, during the optimization a trade off between the altitude (and the related resolution) and the coverage rate have to be done.
- The altitude of the set of cameras  as to be  minimized, the average of the altitude is used as index for estimate the resolution  ($\min{\frac{\sum^n_{i=1}{z_i}}{n}}$ ). In order to manage this trade off, the average altitude of the cameras is included in the cost function  and has to be minimized(see section  \ref{sec:costFun}).  \\
+\subparagraph{Resolution}
+The resolution of the images is related then the sensor size (in px) and the distance between the camera and the object. In our case, the sensor size is dependent on the properties of the camera mounted on the UAV.% and the object filmed is the floor of the area to cover.
+ The distance between the camera and floor (or the object) is the altitude as  defined in the Section \ref{sec:altitudeBoundary}. \\
+The resolution constraint has to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be as lower as possible.\\
+Considering only the minimisation of the average altitude of the cameras is harmful for the coverage.
+Consequently, during the optimization process a trade off between the altitude (and the related resolution) and the coverage rate have to be done.
+ The altitude of the cameras  as to be  minimized, the average of the altitude is used as index estimate the resolution  %($\min{\frac{\sum^n_{i=1}{z_i}}{n}}$ )
+ . In order to manage this trade off, the average altitude of the cameras is included in the cost function  and has to be minimized (see section  \ref{sec:costFun}).  \\
  
 \subsection{Constraint types}
  
-Among the constraints listed different priorities and restrictions exist. Indeed the constraint can be considered in 2 sub-class. The two sub-class are the hard constraint and the soft constrain  presented in the following paragrapher.
+Among the constraints listed different priorities and restrictions exist. Indeed the constraint can be considered as hard or soft constraint. %The two sub-class are the hard constraint and the soft constrain  presented in the following paragrapher.
 
 \subparagraph{Hard Constraint}
- Some of the constraints presented are called "Hard constraint". \\
- The hard constraints limit the possible solution by do not allowing the solution with does not respect it. These hard constraints is directly used during in the optimisation process to prohibit any solution to be out of these boundaries. These hard constraints has to be integrate in the optimization process in order to cannot generate a solution with does not respect it. Consequently the hard constraints may some times slow down the generation of the individuals due to the specific generation and test required.\\ 
- For example, the 3D boundary as defined in Equation \ref{eq:3dBoundary} is a hard constraint. Each cameras position must be inside the 3D boundary. Otherwise  if one of the camera are out all the solution must be rejected. \\
+ %Some of the constraints presented are called "Hard constraint". \\
+ The hard constraints limit the possible solution by do not allowing the solution with does not respect it. These hard constraints is directly used during the optimisation process to prohibit any solution to be out of these boundaries. These hard constraints has to be integrate in the optimization process in order to cannot generate a solution with does not respect it. Consequently the hard constraints may slow down the generation of the individuals due to the specific generation and required test.\\ 
+ For example, the 3D boundary as defined in Equation \ref{eq:3dBoundary} is a hard constraint. Improving that, each camera must be inside the 3D boundary.\\ %Otherwise  if one of the camera are out all the solution must be rejected. 
  
  \subparagraph{Soft Constraint}
- In the other case, some constraint can be considered as "Soft Constraint".\\ 
- The soft constraints has to minimize the set of error. If a soft constraint is not fully respected the solution can be considered as acceptable and this small amount of error does not affect so much the final answer. In this case the soft constraint is assimilate to small acceptable error. \\
- The soft constraint leaves the possibility during the optimization to do some mistake in order to learn about it.  
+ %In the other case, some constraint can be considered as "Soft Constraint".\\ 
+ The soft constraints have to minimize a set of errors. 
+A solution that does not fully respect the soft constraint can be considered as acceptable if the
+% If a soft constraint is not fully respected the solution can be considered as acceptable and this small
+ amount of error does not affect so much the final answer. The soft constraint is assimilate to acceptable error. \\
+ The soft constraint leaves the possibility during the optimization process to allow some mistakes in order to learn about it.  
  If the soft constraint is noted $\epsilon$ and the hard constraint are noted $ \varepsilon '$ like that the constraint set is $E=\epsilon+\varepsilon'$.\\
  
 % \begin{equation}
