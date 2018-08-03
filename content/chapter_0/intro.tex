@@ -3,24 +3,30 @@
 \minitoc
 
 
-\section{The origin}
-The project of self  camera organisation  has been initiated by a partnership between the CISIR and the previously called Le2i. The project has to aim the research for UAV work cooperation for smart surveillance and control.  
-The project start with a basic idea to develop a smart system composed by camera mounted on UAVs. 
-The first step, is to manage the different position of a UAVs inside the area to control. The aim here is to find the best point of view for the surveillance.
-For that is important to find the relevant waypoints and create a shorter path passing by this waypoints in order to can efficiently control a given zone. Our concern here is to find the strategic positions (for the waypoints) to control the area despite the environmental constraints. The constraint can be various but as discussed in detail in the following section the shape of the area, the UAV limitation, the camera properties , are some example of constraints. 
-Estimating efficiently the path plan with strategic waypoint poses is an important technical lock for create a complete and autonomous system of smart cameras mounted UAVs. 
+%\section{The origin}
+The project of self camera organisation has been initiated by a partnership between the CISIR and the previously called Le2i (Invia). The project has to aim to develop a smart system composed by camera mounted on UAVs. The system has to be available to self-organize and auto-adapt to a dynamic environment. Concretely the aim of the system is to has  cooperation work between UAVs, to detect security issue in a complex and dynamic environment. This initial project is ambition and full of technical. To be realistic  this project must be resized and the research have to be focussed.%  lock and must be resized to begin. 
+
+The project start with a basic idea to develop a smart system composed by a camera mounted on a UAV. 
+The first step, is to manage the different positions of a UAV, inside the area to control. The aim here is to find the best point of view for the surveillance. To surveille correctly the point of view must cover  quasi totality  of  the environment.
+For that is important to find the relevant waypoints and create a shorter path passing by all of then in order to can efficiently control a given zone. Our concern here is to find the strategic positions for the waypoints, to control the area despite the environmental constraints. The constraint can be various as discussed in detail in the following sections (the shape of the area, the UAV limitation, the image qualities requirement, are some example of constraints). 
+Estimating efficiently the path plan with strategic waypoints poses is an important technical lock for create a complete and autonomous system of smart cameras mounted on UAVs. So far no optimal solution has been found. Nevertheless, some solution has been applied (see Section \ref{chap:stateOfTheArt}) depending then different constraints but all of the solution proposed in the literature are imperfect and can be upgraded. 
+In order to propose a novel approach for estimating the best path planning for UAV under constraints. The solution  propose are taking this complex problem and split it in sub-part. 
+The first sub-part is to estimate the position of each waypoints and the second part is to compute a path passing by the waypoints previously founded. Despite the apparent simplicity of the proposed solution numerous problem appear nobly the difficulty to find the optimal position for all the waypoints. 
+Estimating the best waypoints position is finally similar then cameras positioning. The major part of this these is focus on finding the best cameras positionning (or waypoints) which is an open challenge. In the second time, the path planning passing by the waypoints is addressed with include the estimated number of waypoints.
 
 
-The first step, is to create a smart and autonomous system of dynamic camera network is to pass over some technical lock. The first and our concern here is to find the strategic position to control the area despite the environmental constraints. 
 
-\section{Challenge}
-The challenge here is to unlock the camera positioning with environmental constraints.
-\section{...}
-   we beguine to focus the work on estimating a set of best waypoint for a complex environmnent  
-   once this important work  done  the next step is to estimate a  path passing by all this waypoint which is essential to can cover an complex area   with  the mimnimum of one camera mounted on UAV 
+
+%The first step, is to create a smart and autonomous system of dynamic camera network is to pass over some technical lock. The first and our concern here is to find the strategic position to control the area despite the environmental constraints. 
+
+%\section{Challenge}
+%The challenge here is to unlock the camera positioning with environmental constraints.
+%\section{...}
+%   we beguine to focus the work on estimating a set of best waypoint for a complex environmnent  
+%   once this important work  done  the next step is to estimate a  path passing by all this waypoint which is essential to can cover an complex area   with  the mimnimum of one camera mounted on UAV 
 \section{Camera positioning }\label{sec:camerasPositioning}
 
-The first step for solving the area coverage problem is the camera positioning, i.e. how to estimate an optimal viewpoint selection to ensure an acceptable coverage. It is known that an efficient camera positioning is a bottleneck in many applications, as for example in the video surveillance field \cite{11*herrera2012,12*soto2009,18*ding2012,151*zhao2013,84*xu2011}, where an efficient camera positioning is essential to monitor correctly an area.  
+The first step for solving the problem of camera positioning, i.e. how to estimate an optimal viewpoint selection to ensure an acceptable coverage. It is known that an efficient camera positioning is a bottleneck in many applications, as for example in the video surveillance field \cite{11*herrera2012,12*soto2009,18*ding2012,151*zhao2013,84*xu2011}, where an efficient camera positioning is essential to monitor correctly an area.  
 The following section will deal with the question of: 
 \begin{itemize}
 \item[-]What is a good position and orientation for a camera (i.e. a good camera pose)?
@@ -34,9 +40,9 @@ These questions have already been investigated and some solutions have been prop
 The first point to address is defining the pose of the camera (or set of cameras). In computer vision, the pose of a camera is composed of its position in space and orientation (or looking direction), i.e. of 3 translations and 3 rotations in a world coordinate frame. The second point to be addressed is how to define a "good" or "optimal" camera pose(s)?\\
  To do so, it is essential to identify the purposes, tasks and priorities of the application: 
  \begin{itemize}
- \item [-] what is the final goal?
- \item [-] what are the important features for the application (e.g. to track an object, to have a high-resolution mapping, etc.)?
- \item [-] what are the shooting conditions and physical constraints?
+ \item [-] What is the final goal?
+ \item [-] What are the important features for the application (e.g. to track an object, to have a high-resolution mapping, etc.)?
+ \item [-] What are the shooting conditions and physical constraints?
  \end{itemize}
    All of these aspects will have an incidence on the definition and formalization of a "good camera poses". For instance, in \cite{22*zhao2008}, the purpose is to detect tags placed on people torso which forces the camera to be positioned at a certain height with a looking direction almost parallel to the ground; on the contrary, in \cite{146*li2011}, a camera is mounted on a UAV to monitor a vast outdoor area, which forces it to have a looking direction almost perpendicular to the ground. 
 

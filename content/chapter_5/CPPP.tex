@@ -292,7 +292,7 @@ Thanks to these experiments the limit of our method begins to appears. The princ
  
  
  \subsubsection{Camera contraint by the trajectory} \label{sec:holonomie path}
-  \begin{mfigures}[!]{Outdoor simulation of the coverage path planning. The camera projection FOV is $40 \times 60 px$  and fix altitude(with  a scare projection of 40px wild for the positioning optimisation).}{fig:FleyPathPlan} \centering
+  \begin{mfigures}[!]{Outdoor simulation of the coverage path planning. The camera projection FoV is $40 \times 60 px$  and fix altitude(with  a scare projection of 40px wild for the positioning optimisation).}{fig:FleyPathPlan} \centering
 %\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room}{subfig:RoomPy}
 \mfigure{width=.4\linewidth}{img/fig13a.png}{115 waypoints poses after optimisation for a coverage of $94.3\%$.}{subfig:FleytfullRoomPathHolonom}
 \hspace{1cm}
@@ -414,7 +414,7 @@ In this new estimation of the coverage by taking in account not only the coverag
   \begin{equation} \label{eq:CostF2}
 f=\sum_{i=1}^{n}Pc_i + \frac{\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 10}  
 \end{equation}  
-Where $\sum_{i=1}^{n}Pc_i$ is the number of points cover by the path plan (as discussed in the paragraph \ref{par:CPPestimation} and  Section \ref{eq:Pci}) and the $Distance$  is  the size of the path. The $0.5$ is an empirical coefficient to minimize a bite the distance importance in favour to the coverage.
+Where $\sum_{i=1}^{n}Pc_i$ is the number of points cover by the path plan (as discussed in the paragraph \ref{par:CPPestimation} and  Equation \ref{eq:PcFull}) and the $Distance$  is  the size of the path. The $0.5$ is an empirical coefficient to minimize a bite the distance importance in favour to the coverage.
 
 
 

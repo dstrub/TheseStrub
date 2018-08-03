@@ -801,7 +801,7 @@ The following sections are focused on the definition of the WRP, the solution pr
 \mfigure{width=.4\linewidth}{img/WRPillustration.png}{}{subfig:WRPi}
 \hspace{1cm}
 \end{mfigures}	
-The Watchman Route Problem is introduced for the first time by Chin and Ntafos in 1987 \cite{54*chin1988}. The problem of the WMP can be summarized in one sentence :
+The Watchman Route Problem is introduced for the first time by Chin and Ntafos in 1987 \cite{54*chin1988}. The problem of the WRP can be summarized in one sentence :
 
 \textbf{"How to calculate a shortest route contained inside a polygon such that any points inside this polygon is visible from at least one point of the route?"}.  
 
@@ -831,7 +831,7 @@ The WRP problem can be solve in some condition. The solution to solve it are app
 \hspace{1cm}
 \end{mfigures}	
 
-To solve the WRP few algorithms were developed. Step by step the algorithms proposed in the literature allow a faster solution. The first interesting algorithm for the WRP with the simple polygon is the early work of Tan, X \cite{234*tan2001}. In Tan et al.\citep{234*tan2001}  propose an algorithm for a fast computation time. The solution proposed work in the simple polygon composed by $n$ vertices in a polynomial time $O(n^5)$. \\
+To solve the WRP few algorithms were developed. Step by step the algorithms proposed in the literature allow a faster solution. The first interesting algorithm for the WRP with the simple polygon is the early work of Tan et al \cite{234*tan2001}. In Tan et al.\citep{234*tan2001}  propose an algorithm for a fast computation time. The solution proposed work in the simple polygon composed by $n$ vertices in a polynomial time $O(n^5)$. \\
 Others algorithms proposed to go a bit further. Dror et al. \cite{233*dror2003} assume to have a better  time complexity. In fact, in \cite{233*dror2003} the solution proposed for the WRP in a simple polygon is working in $O(n^3 log n)$.  The deterministic solution applied is also usable in closely relate problem of the WRT as the zoo-keeper problem and safari problem.
 This two algorithms \citep{234*tan2001,233*dror2003} are usable only in the case of simple polygons to delivered the optimal solution which is the shortest path for a full room coverage. 
 
@@ -977,7 +977,7 @@ The global path distance has to be reduced by an appropriate path passing by eac
 	To have an adapted sweep the footprint has to be defined depending then the camera ability and the objectives. In \cite{144*torres2016} the size of the sweep is dependent then the area cover by a camera and a sufficient amount of overlaps for the 3D reconstruction (see also\citep{191*di2016}). In Li et al.  \citep{146*li2011} the foot print of the camera with a small pan is took in account. Due to the pan the camera projection is not a rectangle but a trapezoid. Consequently the sweep size is adapted by taking the larger side of the trapezoid for the sweep dimension.
 	Also for the grid decomposition the sweep size is directly related the coverage ability of the mobile robots (as example in \citep{215*lee2010,195*choi2009}).  % also 216*+48  215*  195* +55 218*+12  use a sensing camera at the front).
 	
-	One extra element to take in account for the sweep can be in some case the external element as the wind. In \citep{215*lee2010,190*hsu2014 }%!![190*] !! 
+	One extra element to take in account for the sweep can be in some case the external element as the wind. In \citep{215*lee2010,190*hsu2014}  %!![190*] !! 
 	the external condition are taking in account in the cost function and influence the sweep.
 	
 	

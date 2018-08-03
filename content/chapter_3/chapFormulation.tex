@@ -787,10 +787,15 @@ Therefore, $V$ represents a solution. $V$ contain all individual positions and o
 In addition the solution $V$ should respect a set of constraints  $E$ (see Eq.\ref{eq:Vs}). Among the constraint few of them was already discussed, as the occlusion, the map restriction, the k-coverage, or some constraint more specific to the problems (as saw in chapter \ref{chap:stateOfTheArt}).\\
  The "possible solution" $Vs$ must take in consideration with the set $E$ as :
 
-\begin{equation}\label{eq:Vs}
-Vs=V \mbox{ , iff } E(V)=\begin{cases} 1, & \mbox{  iff } E_i(V)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
-\end{cases} 
-\end{equation}
+%\begin{equation}\label{eq:Vs}
+%Vs=V \mbox{ , iff } E(V)=\begin{cases} 1 & \mbox{iff } E_i(V)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise} 
+%\end{cases} 
+%\end{equation}
+ \begin{align}\label{eq:Vs}
+Vs=V \mbox{ , iff } E(V)= \begin{cases} 1, & \mbox{iff } E_i(v)=1 \mbox{ , with } i=1...Nc \\ 0, & \mbox{otherwise}  \end{cases}
+%\\ G'=G-U \mbox{ ,    }  \mbox{ }U= \{ g_i | g_i \in G, g_i \mbox{ are the non intresting points} \}
+\end{align}
+
 Where $E_i(V)$ is the function applied to verify  the $i$th constrains of the set $E$ on the solution $V$. $Nc$ is the number of constraints needs to be satisfied to have an acceptable solution.
 That mean among all the possibles combination of parameters $V$ only the one intersect the set of the constraint $E$ are an possible solution.  If we are considering  all the $V$ and all the $E$ as two subset $Vs$ is defined as $Vs=V\subset E$. 
 
