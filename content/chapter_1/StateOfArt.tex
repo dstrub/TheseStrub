@@ -144,11 +144,12 @@ One interesting point to study is the impact of these constraints on the full co
 
 %Until now the problem was presented in term of objectives and constraint in order to be used in a concrete situation.
 
-The Art Gallery Problem (AGP) is a theoretical and historical problem closely related than the camera positioning. The AGP is commonly cited  in the literature as a source of the problem and also used. The AGP paradigm is used to formulate the problem of camera positioning (as example \citep{44*chvatal1975,53*packer2008,149*mavrinac2013}). For these reasons the AGP as to be well understood before to go further.
+The Art Gallery Problem (AGP) is a theoretical and historical problem closely related to the camera positioning. The AGP is commonly cited  in the literature as a source of the problem of camera positioning (for full coverage). It is also commonly used to estimate the complexity of the task (notably due to the room shape) and  as starting point to find an appropriate answer. 
+The problem of cameras positioning can be formulate as the AGP paradigm (as example \citep{44*chvatal1975,53*packer2008,149*mavrinac2013}). For these reasons the AGP as to be well understood before to go further.
 
 %Until now the problem of coverage was studied to place cameras. The use of cameras (fix or mounted on mobile robot) are the limited field of view  and  depth field of the sensor. An interesting paradigm closely related is to use human guards  instead  of the set of cameras.  This paradigm is called the Art Gallery Problem (AGP). The AGP is an interesting  paradigm with propose some efficient solution. 
 
-In the following sections a definition of the AGP is given with a brief historic. Next to this introduction on AGP, some of the more interesting solution proposed are discussed before to see the limits of this paradigm.
+In the following sections a definition of the AGP is given with a brief history. After a more general introduction to AGP, we will describe some interesting solutions found in the literature and discuss their limitations.
 
 %The problem of camera positioning is a tricky problem. The positioning of the set of cameras depend on many factor. To solve this problems is importatant to know more about the relat
 % %finality of the camera networks and the formulation the camera pose will be affected.\\
@@ -164,28 +165,29 @@ In the following sections a definition of the AGP is given with a brief historic
   \caption{Illustration of the AGP. The gallery is cover by  4 guard ($x_1;...;x_4$) for a polygon  composed by $n$ vertice ($v_1;...;v_n$).}\label{fig:AGP}
   \endminipage\hfill
 \end{figure}
-	The art gallery problem is a geometrical problem introduced by Victor Klee in 1973. The problem was to estimate the number and the position, of useful guards to cover an art gallery. 
-The particularity of a art gallery is the complexity of the room shape, with many walls to dispose the painting. The shape complexity of the room make the estimation of guards number even more difficult.\\
+	The art gallery problem is a geometrical problem introduced by Victor Klee in 1973. The problem was to estimate the number and the position of useful guards to cover an art gallery. 
+The particularity of a art gallery is the complexity of the room shape, with many walls to place the paintings. The shape complexity of the room make the estimation of guards number even more difficult.\\
 In order to formulate properly the problem, the room is assimilated as a polygon $P$, composed by $n$ vertices ($v_1; v_2;…v_n$). The vertices are linked by $n$ edges ($v_1 v_2;…; v_{n-1} v_n$) to make the shape of the Polygon $P$ (or room).
 
-A guard $x$ is inside the room $x \in P$. A guard $x$ can cover or see any point $y \in P$ if the segment $xy$ is not intersect by one of boundary ( a wall) of the polygon $P$, in order to have $ xy \subseteq P$.
-The polygon $P$ is considered as fully cover when for any position of the point $y$ in the polygon, at least one guard can see it .\\
-A guard $x$ can have a $360^\circ$ field of view to cover all around him, with no depth of field limitation (except the wall obstacle). Clearly that mean the guard can see and monitor the entire length of the room one side to another side if no obstacle around to occlude. For example, if the shape of the room is a triangle, quadrilateral or another convex simple polygon, at any position taken by one guard, this guard can monitor all the area despite the size of the art gallery (see Figure \ref{fig:AGP}). 
+A guard $x$ is inside the room $x \in P$. A guard $x$ can cover or see any point $y \in P$ if the segment $xy$ is not intersect by one of boundary (a wall) of the polygon $P$, in order to have $ xy \subseteq P$.
+The polygon $P$ is considered as fully covered when for any position of the point $y$ in the polygon, at least one guard can see it .\\
+A guard $x$ can have a $360^\circ$ field of view to cover all around him, with no depth of field limitation (except the wall obstacle). Clearly that means the guard can see and monitor the entire room from one side to the other side if no obstacle around to occlude. For example, if the shape of the room is a triangle, quadrilateral or another convex simple polygon, at any position taken by one guard, this guard can monitor all the area despite the size of the art gallery (see Figure \ref{fig:AGP}). 
 
 When the polygon is more complex, it is necessary to estimate the minimum number $g$ of guards $x$ and the position of the guards $x$ in polygon $P$. 
- The set of minimum number of guards are listed in $X$. Where $X$ contain the useful $x$ to fully cover the polygons $P$, with $g$ the minimums number of guard in order to have a set of points $X=\{x_1…x_i…. x_g\}$. So that every point $y$ in $P$  are cover by at least on guard $x$ of the set of $X$. \\
-The AGP in addition to estimating the numbers of guards also are interested on finding the optimal position of this restricted number of guards. 
-This 2 questions can be solved at the same time by using one of the solutions proposed.
+ The set of minimum number of guards are listed in $X$. Where $X$ contains the useful $x$ to fully cover the polygons $P$, with $g$ the minimums number of guard in order to have a set of points $X=\{x_1…x_i…. x_g\}$. So that every point $y$ in $P$  are cover by at least on guard $x$ of the set of $X$. \\
+The AGP in addition to estimating the numbers of guards,  is also interested in finding the optimal position of this restricted number of guards. 
+This two questions can be solved at the same time by using one of the solutions proposed.
 
 
 	\subsubsection{Solution }
 	
-	The advances on the AGP since this formulation in 1973 are numerous. The following paragraphs present the major advance on it.\\
-	 The first and one of the more important is the proof given by Chvàtal in 1975 \cite{44*chvatal1975}.  The polygon must have to be covered by a minimum of guard, the proof of Chvàtal propose to link the minimum number of guards to the number of vertices $n$. 
-A polygon composed by $n$ vertices need in the worst case a minimum number of guards equal at $n/3$. The Chvàtal proof is based on the triangulation of the polygon. The Triangulation is made based on the vertices of the polygon.\\
+	The advances on the AGP since its formulation in 1973 are numerous. The following paragraphs present some of the main proposals and contributions..\\
+	 The first and one of the more important is the proof given by Chvàtal in 1975 \cite{44*chvatal1975}.  The proposed polygon must have to be covered by a minimum of guards, the proof of Chvàtal propose to link the minimum number of guards to the number of vertices $n$. 
+A polygon composed by $n$ vertices need in the worst case a minimum number of guards equal at $n/3$. The Chvàtal proof is based on the triangulation of the polygon. The triangulation is made based on the vertices of the polygon.\\
 	 % For a polygon composed by $n$ vertices in the worst case the minimum guard necessary to cover it, is $X=n/3$.
-	     The proof given by Chvàtal is also confirmed by the work of Fisk  few years later (1978). The work of Fisk is also based on triangulation and colouring node. It is probably the easiest to understand and also give a solution to estimate the pose of each guard. It is recommended to begin by the Fisk proof before the Chvàtal despite the chronology order as it is recommended in \cite{219*orourke1987}. The book of O'ROURKE et al. \cite{219*orourke1987} is an early work about the AGP with the formulation, proofs and advancement of the field clearly explained. \\
-Once the proof of the minimum number in the worst case founded the objective became to find an optimal guard position for all kind of polygon in reasonable time. \\
+	     The proof given by Chvàtal is also confirmed by the work of Fisk  few years later (1978). The work of Fisk is also based on triangulation and colouring node. It is probably the easiest way to understand and also give a solution to estimate the pose of each guard. It is recommended to begin by the Fisk proof before the Chvàtal one, despite the chronology order as it is recommended in \cite{219*orourke1987}. The book of O'Rourke et al. \cite{219*orourke1987} is an early work about the AGP with the formulation, proofs and advancement of the field clearly explained. \\
+After the important work of Chvàtal which allow to can estimate the minimum number of guards in the worst case and consequently fix a limit to the AGP. Thus, the research has been oriented toward the optimal guard positioning. The goal is to find the best algorithms to solve the AGP for all kind of polygon while reducing the complexity in time (reducing the $O(...)$).\\
+%Once the proof of the minimum number in the worst case founded the objective became to find an optimal guard position for all kind of polygon in reasonable time. \\
 For that the work of Toussaint and Avis (in 1981) is the reference and propose a solution working in $O(n log n)$. This work has been follow and upgrade until the solution of Couto, Resend and Souza  2011 \cite{224*couto2011}. The solution  finally proposed work in $O(n^3)$ complexity in the worst case. 
 
 %It is a short overview of the AGP solution but also the solution proposed are very specific to the AGP and cannot be re-use for problem little different.
@@ -193,53 +195,54 @@ For that the work of Toussaint and Avis (in 1981) is the reference and propose a
 	
 	\subsubsection{Limit of AGP and camera coverage relation}
 
-The AGP can be considered as a reduction of the best cameras pose estimation to maximize the coverage of a complex area. Based on the algorithm developed to solve the AGP and the strong relation between AGP and the cameras positioning for maximum coverage problem. It is logic to have some proposed algorithm which tries to extend the AGP to the  problem of camera positioning as example in \cite{221*fleishman2000,33*reddy2012,43*erdem2006}.\\
+The AGP can be considered as a reduction of the best cameras pose estimation to maximize the coverage of a complex area. Based on the algorithms developed to solve the AGP and the strong relation between AGP and the cameras positioning (for maximum coverage problem), it is logic to have some proposed algorithms which tries to extend the AGP to the  problem of camera positioning as example in \cite{221*fleishman2000,33*reddy2012,43*erdem2006}.\\
 %The problem of positioning cameras for maximum coverage is quite close then the AGP. The AGP is a reduction of the camera positioning for a total coverage of a complex areas. The camera positioning is the logical continuation of AGP and once the AGP is solved , the problem can be extended as is for example show in \cite{221*fleishman2000,33*reddy2012,43*erdem2006}.
 The algorithm developed for AGP cannot be applied directly on the problem of cameras positioning for maximum coverage. The main reasons are the cameras limitations as field of view and depth of field (see \cite{82*chrysostomou2012,170*yabuta2008}). The cameras limitation makes  unreadable the algorithm proposed to solve the AGP.
  Because the AGP considering the guard with no limitation for the depth of field and field of view. Due to these differences the geometric model of AGP may not be applicable for perspective cameras.
-Also another reason make the AGP solution not applicable for the camera positioning can be the diversity of cameras in the same system.
- The AGP may have many guard, they are all interchangeable. The interchangeability is due to the guard ability (or skill) to monitor the area. In contrary it is possible to have for a cameras network different kind of cameras with different lens. 
-Finally the  perfect assumption for the AGP formulation create important weakness when is time to replace the guards by cameras. These weakness make the algorithms form AGP not adapted in our problem, as is showed in \cite{81*nikolaidis2009,171*horster2006}.
+Also another reason make the AGP solution not applicable for the camera positioning can be the diversity of cameras in the same system (as cameras perspective with different focal length or associate to non perspective cameras as omnidirectional camera).
+ The AGP may have many guards, they are all interchangeable. The interchangeability is due to the guards ability (or skill) to monitor the area. In contrary it is possible to have for a camera network different kind of cameras with different lenses. 
+Finally the  perfect assumption for the AGP formulation create important weakness when is time to replace the guards by cameras. These weaknesses make the algorithms form AGP not adapted in our problem, as is showed in \cite{81*nikolaidis2009,171*horster2006}.
 %This weakness in the AGP formulation associate to the limited field of view  make the solution form AGP note adapted as  is showed in \cite{81*nikolaidis2009,171*horster2006}.\\Due to this limitation, the solution developed for AGP are not applicable. 
 
-However, some part of the AGP formulation and especially some proof has their importance, as the proof of Chvàtal \cite{44*chvatal1975} or the NP-hard complexity proof. 
-In fact, the AGP is proof as a NP-hard problems \cite{219*orourke1987}. The NP-hard proof is available on the book of O’Rourke section 9.2 of the book \cite{219*orourke1987}.  The NP-hard mean the problem cannot be solve in a deterministically way in a reasonable time. 
-To proof the AGP is  NP-hard, the first part is to reduce the  problem to an other problem well known for this complexity. The relation is made by reducing the AGP with a polygon composed by  holes to another standard problem (in the demonstration the 3SAT is used to be exact). 
-Once the AGP is reduced to 3SAT and because 3SAT is an NP-complete problem the AGP is  also considered as NP-complete or  NP-hard but only  when the room is composed with holes. Also another work of Lee and Lin 1986 proof the complexity of AGP without hole also by reducing the AGP ton another well known problem (for more explication see the book of O’Rourke  section 9.3 \cite{219*orourke1987})).
-Despite the limit of AGP, numerous articles are based on the AGP to formulate the problem as in \cite{43*erdem2006,53*packer2008}. For example in \cite{43*erdem2006} a similar approaches then the AGP is used in order to estimate the occluded regions. 
-As explained earlier the cameras positioning can be reduced as an AGP \cite{53*packer2008} notably by removing most of the constraint due to the camera properties (as depth of field and field of views). 
+However, some part of the AGP formulation and especially some proofs are still importance, as the proof of Chvàtal \cite{44*chvatal1975} or the NP-hard complexity proof. 
+In fact, the AGP is proof as a NP-hard problems, the proof is available on the book of O’Rourke section 9.2 of the book \cite{219*orourke1987}.  The NP-hard mean the problem cannot be solved in a deterministically way in a reasonable time. 
+In order to proof the AGP is  NP-hard, the first part is to reduce the  problem to an other problem well known for this complexity. The relation is made by reducing the AGP with a polygon composed by  holes to another standard problem (in the demonstration the 3SAT is used to be exact). 
+The 3SAT is a restriction of the SAT problem with atleast 3 literal in each clause (example of  1 clause wiht 3 literal $(x\lor \neg y \land z)$) , The SAT as to satisfy a boolean expression (written with only AND $\land$, OR $\lor$, NOT $\not$) by assigning the appropriate value to the variable of the boolean expression (True and False).\\
+Once the AGP is reduced to 3SAT (see \citep{227*tovey1984}) and because 3SAT is an NP-complete problem the AGP is  also considered as NP-complete or  NP-hard but only  when the room is composed with holes. Also another work of Lee and Lin 1986 proofed the complexity of AGP without hole also by reducing the AGP on another well known problem (for more explication see the book of O’Rourke  section 9.3 \cite{219*orourke1987}).
+Despite the limit of AGP, numerous articles are based on the AGP to formulate the problem as in \cite{43*erdem2006,53*packer2008}. For example in \cite{43*erdem2006} a similar approach to AGP is used in order to estimate the occluded regions. 
+As explained earlier the cameras positioning can be reduced as an AGP \cite{53*packer2008} notably by removing most of the constraints due to the camera properties (as depth of field and field of views). 
 
-In the literature numerous articles use the AGP as reference to explain the complexity of the problem as for example \cite{26*moeini,44*chvatal1975,149*mavrinac2013,151*zhao2013}. Where their assumes the problem is at least NP-hard or NP-complete. 
+In the literature numerous articles use the AGP as reference to explain the complexity of the problem of camera positioning as for example \cite{26*moeini,44*chvatal1975,149*mavrinac2013,151*zhao2013}. The problem of camera positioning for maximum coverage is at least NP-hard or NP-complete. 
 The complexity of the problem will have an impact on the solution used  to try to solve it and optimize it.\\
-One other impact of AGP in the problem of camera positioning is the shape of the rooms. In \cite{170*yabuta2008,171*horster2006,33*reddy2012,43*erdem2006} the shape of the room to cover are close then the definition of an art gallery. The art gallery room is a complex polygon composed by many vertices which may occlude the view. This phenomena can be imputed to the link did between the number of vertices and the useful number of guards to cover it. 
+One other impact of AGP in the problem of camera positioning is the shape of the rooms. In \cite{170*yabuta2008,171*horster2006,33*reddy2012,43*erdem2006} the shape of the room to cover are similar then the definition of an art gallery (in AGP). The art gallery room is a complex polygon composed by many vertices which may occlude the view (as explain in Section \ref{sec:AGPdef} and like in the Figure \ref{fig:AGP}). This phenomena can be imputed to the link did between the number of vertices and the useful number of guards to cover it. 
 In addition the occlusion formulation made for the AGP is commonly used.
 The occlusion in AGP is defined  by  a segment $xy \not\subset P$   where $x \in P$ is the guard position $y \in P$ is a points in the room $P$. 
 Moreover the use of a complex room inspired by AGP is therefore a good choice in order to verify the effectiveness of the algorithms developed for the cameras positioning in a complex environment.
 %The complexity of this problem is also an important factor which makes the relation of camera positioning and AGP. \\
 
 
-The AGP can be at same time for part, the  historical source of the cameras positioning and give some beginning of answer about the problem, this formulation and this complexity. Despite that, the AGP is not the only source to refer about the cameras positioning for maximize the coverage. Some clue and algorithms can be found in other related fields. 
+The AGP can be at same time for part, the  historical source of the cameras positioning and give a beginning of an answer about the problem, this formulation and this complexity. Despite that, the AGP is not the only source to refer about the cameras positioning for maximize the coverage. Some clue and algorithms can be found in other related fields. 
 
 
 \subsection{Wireless sensor network }
 
-The Wireless Sensor Network (WSN) can be as AGP considered as inspiration for the problem of cameras positioning to maximize the coverage. The WSN is an active field of research and in many aspects related to the cameras positioning. These sections are focused on the WSN and this relation with the cameras positioning.\\  To begin:
+The Wireless Sensor Network (WSN) can be as AGP considered an inspiration for the problem of cameras positioning to maximize the coverage. The WSN is an active field of research related in many aspects to camera positioning. These sections are focused on the WSN and this relation with the cameras positioning.\\  To begin:
 
 \textbf{What is the Wireless Sensor Network (WSN)? }
 
- The WSN is a distributed network of sensors or in some case actuators, is also called WSAN (Wierless Sensors and Actuators Network). Each sensor of the network is a relay for the information to the rest of the network.  
-The sensors are at same time the nodes and the relay for the network. The node has to objective to transmit by relaying the information to the other node. 
+ The WSN is a distributed network of sensors or in some cases actuators, is also called WSAN (Wireless Sensors and Actuators Network). Each sensor of the network acts as a relay for the information to the rest of the network.  
+The sensors are at the same time the nodes and the relay for the network. The node has the purpose to transmit the information to the other node. 
 The information can be centralized or not :
 \begin{itemize}
-\item When the system is centralized the information has to be transmit node by node until the centralized agent. The computation and the decision about the network is taken by this centralized agent before to be transmit back to the node. 
-\item Otherwise the node have to be the sensors for collect informations and decided to communique with the others nodes depending then the situation.  The nodes has to manage alone or with this neighbourhood the informations and computation before to react in consequences. 
+\item When the system is centralized the information has to be transmitted node by node until the centralized agent. The computation and the decision about the network is taken by this centralized agent before to be transmitted back to the node. 
+\item Otherwise the node have to be the sensors to collect informations and decide to communicate with the others nodes depending on the situation (example when the target is detected in their field). The nodes have to manage alone or with this neighbourhood the informations and computation before to react in consequences. 
 
 \end{itemize}
  
 The information collected by the sensors are vast depending on the final application and the capacities of the sensors ability. 
-The WSN is used in different field for various application as for telecom with antenna positioning \cite{59*wang2008}, military surveillance field \cite{38*liu2010,101*topcuoglu2009}, airport surveillance \cite{37*ma2012}, video surveillance and tracking \cite{38*liu2010}, environmental monitoring \cite{42*bulusu2001}... 
-Logically numerous sensor and information can be collected depending then the need as temperature, movements, images, song and also some  actuator can be used as radio frequency for example.\\
- The application of WSN are wide, especially since the WSN has more than one discipline. The WSN try to optimize a network of sensors in different aspects as for example \cite{39*wu2011} focus on an adapted architecture efficient enough for data transfer (here the data are images) or like in \cite{40*sohrabi2000} the WSN are dedicate to adapt the network around static nodes and energetic resources in order to keep the network connected.  \\
+The WSN is used in different field for various applications as for Telecom with antenna positioning \cite{59*wang2008}, military surveillance field \cite{38*liu2010,101*topcuoglu2009}, airport surveillance \cite{37*ma2012}, video surveillance and tracking \cite{38*liu2010}, environmental monitoring \cite{42*bulusu2001}... 
+Logically the sensors can collect numerous type of informations depending the need as temperature, movements, images, song and also some  actuator can be used as radio frequency for example.\\
+ The application of WSN are wide, especially since the WSN can be useful in many application field. The WSN try to optimize a network of sensors in different aspects as for example \cite{39*wu2011} focus on an adapted architecture efficient enough for data transfer (here the data are images) or like in \cite{40*sohrabi2000} the WSN are dedicate to adapt the network around static nodes and energetic resources in order to keep the network connected.  \\
 For our case the aspect the more interesting of the WSN, is the coverage of an area with his and secondary objectives.
  The other discipline of the WSN as the network optimisation will not be addressed in the following document. Only the problem of coverage is studied the other discipline are not considered as the first or main objective but can be some secondary objectives after the problem of coverage which has to be taking in account for the optimization. 
 
@@ -255,13 +258,13 @@ For our case the aspect the more interesting of the WSN, is the coverage of an a
 
 	
 
-The WSN refer commonly to sensors or actuators  with no restriction in the view angle, it is considering to have a $360^\circ$ field of view. The sensor Field of view can be represented in a 2D plan  as in \cite{200*kulkarni2011, 174*zhang2016,150*chakrabarty2002} (as illustrate in the Figure \ref{fig:WsnSensor1}) and in some case a spherical for the 3D environment example in \cite{175*medhi2013,59*wang2008}.  \\
+The WSN refer commonly to sensors or actuators  with no restriction in the view angle, it is considered to have a $360^\circ$ field of view. The sensor field of view can be represented in a 2D plan  as in \cite{200*kulkarni2011, 174*zhang2016,150*chakrabarty2002} (as illustrate in the Figure \ref{fig:WsnSensor1}) and in some case a spherical for the 3D environment example in \cite{175*medhi2013,59*wang2008}.  \\
 Each sensor have a position $x$ in the area and a power range. From the sensor power  the radius $r$ of the circle is deduced from $x$ as center (see Figure \ref{fig:WsnSensor1}). This circle give the area cover by a sensor in the simplest case. 
-The simplest case correspond to a flat area without any obstacle, or it is negligible with do not impact the covered area as in \cite{200*kulkarni2011,174*zhang2016} (see the Figure \ref{fig:WsnSensorNet}).  
+The simplest case correspond to a flat area without any obstacle as in \cite{200*kulkarni2011,174*zhang2016} (see the Figure \ref{fig:WsnSensorNet}).  
 Others more complex solutions can be used. A more complex solution but also more realistic as in Wang et al. \cite{59*wang2008}. Where are taking in account the relief and obstacle. 
-In Zhang et al. \cite{174*zhang2016} more complex model have been developed, where despite of a flat ground without obstacle each sensor is composed by a perception radius and a communication radius. The communication radius a bit bigger then the perception radius. These 2 radius correspond to area covered for one antenna (sensors and actuators) and the distance of emission/reception of the data.  In order to have an efficient coverage of the area, the antennas must be place in order to have connection with other antenna but without too much overlap of the perception sensor.\\
+In Zhang et al. \cite{174*zhang2016} more complex model has been developed, where despite of a flat ground without obstacle each sensor is represented by a perception radius and a communication radius. The communication radius a bit bigger than the perception radius. These 2 radius with the same center correspond, first to area covered for one antenna (sensors for the perception) and the second raduse to the distance of emission/reception of the data (actuators for the transition).  In order to have an efficient coverage of the area, the antennas must be place in order to have connection with other antenna but without too much overlap of the perception sensor.\\
 
-The solution proposed in order to optimize the positioning of the WSN for a circular sensor can be varied. Mostly two different ways are applied for the sensor with have circular angle of view or spherical.\\
+The solution proposed in order to optimize the positioning of the WSN for a circular sensors can be varied. Mostly two different ways are applied for the sensor which have circular angle of view or spherical.\\
 \begin{figure}[t!]
 	\center
 \minipage{0.65\textwidth}
@@ -272,15 +275,15 @@ The solution proposed in order to optimize the positioning of the WSN for a circ
 \begin{itemize}
 
 
-\item	The first solution use an heuristic based on geometry construction as in  Medhi et al. \cite{175*medhi2013}. This approache give a good coverage solution but is usually greedy and can be quickly limited in term of number of sensors. Moreover if some external constraint are added.  For example in zhang et al. \cite{174*zhang2016} the greedy solution was tested and optimized by using a "partition and shifting" strategy in order to upgrade the result.
-The limit of this solution despite the greedy consumption resources is also not applicable to the problem of cameras positioning due to the reduced field of views of a cameras.  \\
-\item	The second solution, try to find an efficient and quick solution to optimize  random position for each sensor of the network.  
-This solution include many different families of algorithms focused on optimization.
+\item	The first solution use a heuristic based on geometry construction as in  Medhi et al. \cite{175*medhi2013}. This approach gives a good coverage solution but is usually greedy and can be quickly limited due to an important number of sensors required, moreover if some external constraints are added.  For example in Zhang et al. \cite{174*zhang2016} the greedy solution was tested and optimized by using a "partition and shifting" strategy in order to upgrade the result.
+The limit of this solution,  is this greedy consumption resources and it is not applicable to the problem of cameras positioning due to the reduced field of views of a cameras.  \\
+\item	The second solution, intends to find an efficient and quick solution to optimize initial randomly position, for each sensor of the network.  
+This solution includes many different families of algorithms focused on optimization.
 Among the family of algorithms, the evolutionary algorithms (disused in detailed in Chapter \ref{chap:EA}) is commonly used as in \cite{200*kulkarni2011,59*wang2008}, and \cite{150*chakrabarty2002}. \\
-These solutions propose to optimize the position in order to maximize the coverage depending on constraints and the secondary objectives. The method of optimization have to be adapted to the problem. 
-In Chakrabarty et al. \cite{150*chakrabarty2002} the integer linear programming  is chosen in order to maximize the coverage with two types of sensors. One standard with a smaller area coverage but with a smaller cost (can have a $100m$ radius for 150\$) and the other sensors can cover a wider region (can have a $200m$  radius for 200\$) and the objective is to cover the region with a second objective is to reduce the financial cost. The solution proposed is to use the integer linear programming adapted to the problem of coverage optimization with the financial cost as constraint. \\
+These solutions propose to optimize the position in order to maximize the coverage depending on constraints. The method of optimization have to be adapted to the problem. 
+In Chakrabarty et al. \cite{150*chakrabarty2002} the integer linear programming  is chosen in order to maximize the coverage with two types of sensors. One standard with a smaller area coverage but with a smaller cost (can have a $100m$ radius for 150\$) and the other sensors can cover a wider region (can have a $200m$  radius for 200\$) and the objective is to cover the region while reducing the financial cost. The solution proposed is to use the integer linear programming adapted to the problem of coverage optimization with the financial cost as constraint. \\
 In \cite{59*wang2008} and \cite{200*kulkarni2011} the solution proposed is based on two different evolutionary algorithms in order to optimize the sensors positioning. 
-In kulkarni et al. \cite{200*kulkarni2011} the camera positing with a multi coverage is solved with using an evolutionary algorithm called Particles Swarm Optimization (PSO). The objective is to optimize the position of the sensor in order to have an efficient coverage of the area and also enough redundancy to keep the network workable if one or few sensors fail. In Wang et al. \cite{59*wang2008} one evolutionary algorithms is also used to optimize the position of antennas. The objectives in this paper is to give the best coverage of an area with taking in count the relief of the area. The relief make the coverage estimation of each sensor even more complex and costly in terms of time computation. The genetic algorithm is used in order to find quickly a position for each antenna of the network. 
+In Kulkarni et al. \cite{200*kulkarni2011} the camera positioning with a multi coverage is solved by using an evolutionary algorithm called Particles Swarm Optimization (PSO). The objective is to optimize the position of the sensor in order to have an efficient coverage of the area and also enough redundancy to keep the network workable if one or few sensors fail. In Wang et al. \cite{59*wang2008} one evolutionary algorithms is also used to optimize the position of antennas. The objectives in this paper is to give the best coverage of an area with taking in count the relief of the area. The relief make the coverage estimation of each sensor even more complex and costly in terms of time computation. The genetic algorithm is used in order to find quickly a position for each antenna of the network. 
 \end{itemize}
 
 Among the solution proposed, the second, based on optimize a set of sensors position  depending then  the secondary objectives, is the more interesting and the more flexible to the add of new constraints (and secondary objectives). \\
