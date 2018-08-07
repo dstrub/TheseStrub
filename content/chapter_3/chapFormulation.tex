@@ -625,7 +625,7 @@ The computation of the function $f()$ which has to estimate, if  a point $g_i$ o
 	\begin{equation} \label{eq:sum sum v g}
 		\mbox{Coverage Rate}=\sum_{i=1}^{m}\sum_{j=1}^{n}f( v_j,g_i)
 	\end{equation} % for Eq Cf:87* 150*  171* voir 165*
-Where $n$ the number of cameras ($v_j$) in the network; $m$ the number of point in the grid ($g_i$));  \\
+Where $n$ the number of cameras ($v_j$) in the network; $m$ the number of point in the grid ($g_i$).  \\
 %%%%%%%%%%%%%%%%%% object oclution%%%%%%%%%%%%
 The solution proposed until know to estimate the camera projection onto the grid (as in Equation \ref{eq:sum sum v g})  do not take in account the occlusion made by potential obstacle.
 The occlusion  made by  the obstacle has to be taking in account depending then the camera projection.
@@ -843,7 +843,7 @@ In practice the  altitude boundary is defined with :
  \end{equation} 
  Where $\sup A$ is the maximal altitude of the camera and $\inf A$ the minimum altitude. $A$ is the altitude between the camera and the grid. %$A$ is the fix altitude of a camera where the camera projection has been computed with $A=z$ with only $coef$ vary as introduced in Equation \ref{eq:A.coef}. 
  
- \subparagraph{The map boundaries}
+ \subparagraph{The map boundaries} \label{sec:MapBoundaries}
 The map boundaries, is a constraint similar then the altitude boundary. Despite the shape of an area to cover some maximum boundary can be made. In fact for any shape as complex as it, it is  possible to encapsulate in a rectangle. The rectangle map boundary is defined by a width $W$ and height $H$. The boundary on $x$ and $y$ are:
  \begin{equation}
   \begin{array}{lcl}
@@ -890,7 +890,7 @@ Consequently, during the optimization process a trade off between the altitude (
  The altitude of the cameras  as to be  minimized, the average of the altitude is used as index estimate the resolution  %($\min{\frac{\sum^n_{i=1}{z_i}}{n}}$ )
  . In order to manage this trade off, the average altitude of the cameras is included in the cost function  and has to be minimized (see section  \ref{sec:costFun}).  \\
  
-\subsection{Constraint types}
+\subsection{Constraint types} \label{sec:ConstraintTypesSoftHard}
  
 Among the constraints listed different priorities and restrictions exist. Indeed the constraint can be considered as hard or soft constraint. %The two sub-class are the hard constraint and the soft constrain  presented in the following paragrapher.
 
@@ -899,7 +899,7 @@ Among the constraints listed different priorities and restrictions exist. Indeed
  The hard constraints limit the possible solution by do not allowing the solution with does not respect it. These hard constraints is directly used during the optimisation process to prohibit any solution to be out of these boundaries. These hard constraints has to be integrate in the optimization process in order to cannot generate a solution with does not respect it. Consequently the hard constraints may slow down the generation of the individuals due to the specific generation and required test.\\ 
  For example, the 3D boundary as defined in Equation \ref{eq:3dBoundary} is a hard constraint. Improving that, each camera must be inside the 3D boundary.\\ %Otherwise  if one of the camera are out all the solution must be rejected. 
  
- \subparagraph{Soft Constraint}
+ \subparagraph{Soft Constraint} 
  %In the other case, some constraint can be considered as "Soft Constraint".\\ 
  The soft constraints have to minimize a set of errors. 
 A solution that does not fully respect the soft constraint can be considered as acceptable if the
