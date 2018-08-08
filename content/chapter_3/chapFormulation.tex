@@ -931,22 +931,22 @@ To evaluate the coverage of a set of cameras is essential to can estimate the ca
 
 Based on, the simplest cost function is the coverage estimation.
 \begin{equation}\label{eq:CostFBase}
-C(Vs) =  \frac{\sum_{i=1}^N{Pc_i} }{m}   
+C(Vs) =  \frac{\sum_{i=1}^n{Pc_i} }{m}   
 \end{equation}
-Where $N$ is the number of cameras; 
+Where $n$ is the number of cameras; 
 $m$ represent the number of points needed to describe the grid $G$ (as in Equation \ref{eq:Grid}); $Vs$ is the solution with respect the hard constraints.
 The cost function $C(Vs)$ give the quality of the solution $Vs$.
 
 This version of the cost function $C(Vs)$ does not take in account the resolution constraint. The resolution is  strongly linked with the camera altitude $z$ (as show in Section \ref{sec:altitudeBoundary}).
  A criteria must be added in the cost function formula of the Equation \ref{eq:CostFBase}. The average of the altitude $z$ is used and have to be included in the cost function.
  \begin{equation}\label{eq:CostFResolutionPart1}
-\overline{z}= \frac{\sum_{i=1}^N z_i}{N}     
+\overline{z}= \frac{\sum_{i=1}^n z_i}{n}     
 \end{equation}
 
  If the resolution is strongly related then the altitude the average of it $\overline{z}$ can be considered as a part of the soft constraint ($\epsilon$)  in the Equation \ref{eq:constraintEpsilon} and the Equation \ref{eq:CostFBase} may be updated as : 
  
  \begin{equation}\label{eq:CostFResBase}
-C =  \frac{\sum_{i=1}^N {Pc_i}}{m}  - \frac{\sum_{i=1}^N z_i}{N}     
+C =  \frac{\sum_{i=1}^n {Pc_i}}{m}  - \frac{\sum_{i=1}^n z_i}{n}     
 \end{equation}
  
 The Equation \ref{eq:CostFResBase} is used in the cost function to add the resolution constraint. Consequently, the optimization  try to minimize the average altitude and maximize the coverage with no priority. Concretely by just applying this Equation  \ref{eq:CostFResBase} the optimization will first minimize the average altitude by positioning all the cameras at the minimum altitude (with respect the hard constraint of altitude boundary) and in second time try to maximize the position (on $x$ and $y$) of the cameras. 
@@ -956,13 +956,13 @@ The weight has to be auto-adaptable depending on area covered. In order to give 
 The best solution, is to link the weight of the resolution criteria with the coverage rate.
 
 \begin{equation}\label{eq:CostFResPondere}
-  \sigma \times \sum_{i=1}^N {Pc_i} \times \frac{\sum_{i=1}^N z_i}{N}     
+  \sigma \times \sum_{i=1}^n {Pc_i} \times \frac{\sum_{i=1}^n z_i}{n}     
 \end{equation}
 Where $\sigma$ is a weighting coefficient at 0.06 to reduce the priority on the resolution criteria. 
 Based on it the final cost function is: 
 
 \begin{equation}\label{eq:CostF}
-C(Vs) =  \frac{\sum_{i=1}^N{Pc_i}  - \delta  \times \sum_{i=1}^N {Pc_i} \times \frac{\sum_{i=1}^N z_i}{N}  }{m}   
+C(Vs) =  \frac{\sum_{i=1}^n{Pc_i}  - \sigma  \times \sum_{i=1}^n {Pc_i} \times \frac{\sum_{i=1}^n z_i}{n}  }{m}   
 \end{equation}
 
 Thanks to this formula, a proposed answer $Vs$ can be evaluated and returns the quality of the solution for the problem of the coverage maximisation and the minimization of the altitude in the second time. The cost function integrate all the soft constraint either by the design of the grid or by the formula of the cost function $C(...)$.
@@ -1011,9 +1011,9 @@ The problem of the search space is the propensity to increase rapidly as the are
 %It is possible to express the size of the search space as a succession of product for estimate the number of feasible position on $x, y, z $ and $ \gamma$ for each combination of the set cameras : 
 %\overset{N}{\underset{Sp}{e}
  \begin{equation} \label{eq:Combinaison}
- \begin{pmatrix} n \\ Sp \end{pmatrix}  = \frac{Sp!}{n!(Sp-n)!} = |Vs|
+ \begin{pmatrix} N \\ Sp \end{pmatrix}  = \frac{Sp!}{N!(Sp-N)!} = |Vs|
  \end{equation} 
- Where $|Vs|$ is the number of possible solution for a set of $n$ cameras in the worst case. %$|Vs|$ is the 
+ Where $|Vs|$ is the number of possible solution for a set of $N$ cameras in the worst case. %$|Vs|$ is the 
  %  \begin{equation} \label{eq:SearchSpace}  \sum_{n=1}^N \sum_{x=1}^{W} \sum_{y=1}^{H} \sum_{z=1}^{)} \sum_{\gamma=1}^{2}Pc_i  - \sum_{k=1}^{E}Pc_i=Vs  \end{equation}
  In fact the size of the search space of one camera ( as Eq. \ref{eq:SearchSpace}) associate to the set of $n$ cameras (as Eq.\ref{eq:Combinaison}) make an exponential number of possible solution depending mainly then the size of the area and the number of the cameras in the network. \\
  Obviously in view of this behaviour the use of a deterministic solution based on a heuristic does not seem to be a good answer to have an efficient solution. In addition the number of possible solutions $|Vs|$ makes the computation of an optimal almost impossible due to the numerous local minima. 

@@ -447,7 +447,7 @@ The main advantage of this formulation is the beside to optimize the CPP problem
 	About the optimization we can observe the average number of generations of the GA required is around 47 generation for a set of experiment between 3 to 9. The average number of generations  are  comparable to the number of generations needed to optimize the waypoints positioning ( see in Section \ref{sec:maskGAPSO}), where for 25 waypoints to pose estimate 67 generation was needed. 
 	The fast studies of these experiments, show some limits of using the unique optimization for the problem of CPP. In the other hand, the formulation despite the inconclusive, but promising result appear interesting and the cause of the inconclusive results are explored.
 	
-	\paragraph*{Why inconclusive results?}
+	\paragraph*{Why inconclusive results?} \label{sec:inconclusiveResults}
 			  
 		
 		Despite inconclusive results during the first experiments made, it is an interesting track to follow  which must  be more explored.  
@@ -463,7 +463,7 @@ The main advantage of this formulation is the beside to optimize the CPP problem
 		Where $W$ and $H$ are the size as width and height of the area to cover. $Sp$  is simplified due to the reduced number of dimensions optimized. In fact, the altitude is fixed and identical for all the waypoints as the pant and tilt. Regarding the roll depend then the path plane.
 		Despite the important decreasing size of the search space for each waypoint ($Sp$), the global search space for the CPP increase dramatically  due to the number of waypoint and the ordered constraint. In fact due to the ordered constraints and the global search space is re-defined as :
 		\begin{equation} \label{eq:ArrangmentCPP}
-			A^{Sp}_{n}=\frac{Sp!}{(Sp-n)!} = |Vs|
+			A^{Sp}_{N}=\frac{Sp!}{(Sp-N)!} = |Vs|
 		\end{equation}
  Where $|Vs|$ is the number of possible solution for a set of $n$ cameras. Due to the importance of the waypoints order in the optimization process the number of possible solution increase greatly. Obviously due to the complexity of the problem  (the  complexity is comparable to the WRP see in Section \ref{sec:WRP}) and the increased size of the global search space for CPP problem  can be one of the important reason of the inconclusive result.
  \end{itemize}
