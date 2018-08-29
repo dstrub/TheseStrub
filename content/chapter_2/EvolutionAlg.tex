@@ -254,7 +254,7 @@ Consequently, how to determine when is time to stop the optimisation. Because at
 \item  \textbf{Fixed time criterion}: is to stop the algorithm after a fixed numbers of iterations or time limit. The limit is measured in term of time computing, also the numbers of iteration must be fixed by the user. The main interest of this method is to control the computation time of the problem which require a solution in a determined time (as for a real time). The risk of this method is to stop before finding an efficient solution. \\
 %This solution can be mixed with other method to reduce the number of useless iteration.% for control the case where the  other method are too long.  
 
-\item \textbf{Update criterion}: is to stop the algorithm (before the convergence) if no better solution is found after a predefined number of iteration. This criteria can be useful for the complex problem or if many solution can have the same quality. 
+\item \textbf{Update criterion}: Is to stop the algorithm (before the convergence) if no better solution is found after a predefined number of iteration. This criteria can be useful for the complex problem or if many solution can have the same quality. 
 The advantage of this stopping criteria is to can stop before the convergence with a solution close or identical then the one reached at the convergence. 
 The inconvenient is to stop too early. In fact, if the update criteria is not properly chosen the optimization  may stop at the beginning.   \\
 To use this stopping criterion a correct number of iterations has to  be selected. 
@@ -263,7 +263,7 @@ A long time lock in local minima may append mostly at the early time of the opti
  %In contrary a stopping criterion with a too big number of iteration became use less. In the worst case, the convergence point will be reached  before the too big number of iterations.
 %si la meilieur solution est pas ammélioré 
 
-\item \textbf{Convergence criterion}: is to stop the algorithm by waiting the convergence point. The convergence is reached when the actual population is composed by a set of identical solutions. That means the same solution has been founded by all the individuals of the population. \\..
+\item \textbf{Convergence criterion}: Is to stop the algorithm by waiting the convergence point. The convergence is reached when the actual population is composed by a set of identical solutions. That means the same solution has been founded by all the individuals of the population. \\
  The best solution found push the other to evolve in the same direction, by contagion all the individual of the population evolves to reach the convergence point. \\ 
  This solution found during the optimisation process is supposed to be the best one. In this case, the population has been converging to an optimized solution.% At least no better solution can be found during this optimization.\\
 \end{itemize}

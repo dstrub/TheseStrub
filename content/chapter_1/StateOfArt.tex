@@ -21,9 +21,9 @@ These questions have already been investigated and some solutions have been prop
 The first point to address is defining the pose of the camera (or set of cameras). In computer vision, the pose of a camera is composed of its position in space and orientation (or looking direction), i.e. of 3 translations and 3 rotations in a world coordinate frame. The second point to be addressed is how to define a "good" or "optimal" camera pose(s)?\\
  To do so, it is essential to identify the purposes, tasks and priorities of the application: 
  \begin{itemize}
- \item [-] what is the final goal?
- \item [-] what are the important features for the application (e.g. to track an object, to have a high-resolution mapping, etc.)?
- \item [-] what are the shooting conditions and physical constraints?
+ \item [-] What is the final goal?
+ \item [-] What are the important features for the application (e.g. to track an object, to have a high-resolution mapping, etc.)?
+ \item [-] What are the shooting conditions and physical constraints?
  \end{itemize}
    All of these aspects will have an incidence on the definition and formalization of a "good camera poses". For instance, in \cite{22*zhao2008}, the purpose is to detect tags placed on people torso which forces the camera to be positioned at a certain height with a looking direction almost parallel to the ground; on the contrary, in \cite{146*li2011}, a camera is mounted on a UAV to monitor a vast outdoor area, which forces it to have a looking direction almost perpendicular to the ground. 
 
@@ -300,35 +300,41 @@ The following sections is dedicated to see if these solutions is applicable to t
   \endminipage\hfill
 \end{figure}
 	
-Logically, the result obtained with the Omni-directional sensors are interesting. These results must be applied to the problem with even more constraints and objectives for the positioning of Visual Sensor Network (VSN). The term of  visual sensor contains several types of cameras with several constraints and properties. Despite these several types of cameras, the more commonly used and studied is the perspective camera (as in \citep{149*mavrinac2013,174*zhang2016,193*fu2014,42*bulusu2001,165*jiang2010})(see Figure \ref{fig:Coverage165}). 
-  In fact the visual sensor or camera have a limited depth of field but also a limited field of view. This new constraints makes the cameras positioning more complex, as that was for AGP (see Section \ref{sec:AGP}) to passes from guard to camera.
- The advantage in this case, is first the sensor has been designed with a limited depth of field (the sensor has a limited power range). 
- Moreover the solution applied previously for circular sensor was not only geometric or based on heuristic algorithms. The problem has also been formalized as an optimization problem. These problem formulations allow to use optimization algorithms and meta-heuristics. In addition, these problem formulations appear as the more suitable to add constraints and secondary objectives. Thanks to that, the solutions developed for the WSN can mostly be adapted to the problem of cameras positioning. 
- The following sections as to aims to disuse about the algorithms applied until now to the problem of camera positioning.
+%Logically, the result obtained with the Omni-directional sensors are interesting.
+% These methods of  omni-directional sensors must be applied to the problem with even more constraints and objectives for the positioning of Visual Sensor Network (VSN).
+The previous methods must be  even more constrained when used with perspective camera due to the limited field of view.  
+Visual sensors embed different types of cameras and  modalities, even though the most commonly used and studied is the perspective camera such  as in \citep{149*mavrinac2013,174*zhang2016,193*fu2014,42*bulusu2001,165*jiang2010} (see Figure \ref{fig:Coverage165}). 
+%The term of  visual sensor contains several types of cameras with several constraints and properties. Despite these several types of cameras, the more commonly used and studied is the perspective camera ()
+  %In fact, the visual sensor or camera have a limited depth of field but also a limited field of view. 
+  These constraints make the camera positioning more complex, as it is for AGP (see Section \ref{sec:AGP}) to pass from guard to camera.
+   On the contrary, WSN already takes into account the  limited depth of field  which  makes them more  suited  to perspective cameras.
+   
+Heuristic-based solutions applied to omnidirectional sensors cannot be deployed for perspective cameras (which would require the definition of new heuristics and not only an adaptation), however optimization-based solutions can be adapted to it by only adjusting the constraints. The following sections will discuss such kind of techniques and solutions. 
+ 
+ 
+ 
  %but also the problem is formalized as optimization problems with some solutions based on optimization and meta-heuristic. This way to present the problem is appear as the more suitable to add constraint and secondary objectives. Also the solution and the formulation for the problem of VSN are mostly the same then the problems of cameras positioning and is discussed in the following parts  \\
   
 
 	\section{Solution not based on evolutionary method}\label{sec:NonEAmethod}
 	
-The algorithms used to pose a set of cameras in order to maximize the coverage are various.  Among the possible algorithms manly two families can be describe. The algorithms proposed they come from numerous sources and paradigm  which AGP and WSN.\\
- The first family is to construct a solution using a heuristic to have an appropriated cameras position. The second way is to formalize the problem as optimization problem and applied meta-heuristics. 
+The algorithms used to estimate the pose of a set of cameras in order to maximize the coverage are various. Two main classes can be defined: the first one, which we called "constructive", is a step-by-step positioning of the cameras, one after the other; the second one comprises the optimisation-based solutions. Most of these approaches fall under either the AGP paradigm or the WSN paradigm, or even a combination of both.\\
 
 \subsection{The constructive solution}
 
-The cameras pose can be done by construction. By construction that mean a deterministic method is applied to pose iteratively one camera after another or to adjust their positions based an initial set-up.\\
-In Liu et al. \cite{38*liu2010} a constructive solution is applied in order to select the smart cameras of the network. Each smart camera, are a node of the network to transmit informations and images. The smart cameras are fully autonomous in term of energies and decision-making ability (no central master). 
-The nodes can be  in 3 different types of mode:
+The camera positioning can be done by a progressive construction, i.e. a deterministic method is applied to locate iteratively one camera after another or to adjust their positions based on an initial set-up.\\
+For instance, in Liu et al. \cite{38*liu2010} a constructive solution is applied in order to select the smart cameras of a network. Each smart camera is  a node of the network to transmit information and images. The smart cameras are fully autonomous in terms of energy and decision-making ability (no central master). 
+The nodes can be set to three different modes:
 \begin{itemize}
-\item[-] Sleepy mode. The sleepy mode is used in order to economize a maximum of the energy. To do that the camera is turn off. That mean no computation and just the network is listen at regular intervals to wait the wakeup call.   \\
+\item[-] Sleepy mode. The sleepy mode is used in order to save the energy consumption. To do that the camera is turned off which means no computation tasks but the network is listened at regular intervals to wait for the wakeup call.   \\
 
-\item[-] Detection mode. The detection mode the camera is turn on, but with a low frame rate. Just a few computations are done to detect if a target is enter in the field of views. Some information may be transmit by network. This mode consume more energy of the previews but the smart cameras can stay in this mode during a long time.\\
+\item[-] Detection mode. In this mode, the camera is turned on, but with a low frame rate. Just a few computations are done to detect if a target enters the field of view. Some information may be transmitted by the network. This mode consumes more energy than the previous one, however the smart cameras can still stay in this mode for a long time.\\
 
-\item[-] Tracking mode. This mode is the more active, thus energy consumer. The camera is turn on, with a high frame rate and numerous computation has been done to track and localize the targets. Also more informations have to be transmit by the network. The informations are useful to localize the targets by communicate with the potential other smart cameras with may have a view on the targets. 
+\item[-] Tracking mode. This mode is the more active, thus the more energy consumer. The camera is turned on with a high frame rate and numerous computations are done to track and localize the targets. Also more informations have to be transmitted by and to the network. Localizing and tracking a target is a collaborative and distributed task between several smart cameras of the network.  
 \end{itemize}
-The objective in \cite{38*liu2010} are multiples, depending on the state of the cameras. The one the more interesting for us is to keep under control the longest time as possible the area for target detection. Numerous smart camera are randomly dispersed in the area (as an air-drop in a battlefield) and the aim is to select the cameras in order to maximize the coverage of the cameras turn on detection mode. The solution proposed by Liu et al. in \cite{38*liu2010} is to use a constructive algorithms. The network of camera self-recognized by a talk between each smart cameras. Also each smart cameras is able to estimate precisely this localization, it is an important assumption to select the cameras. The solution proposed is directly inspired by the distributed network talks. \\
-To begin all sensor are in sleepy mode. The camera wake up regularly and send a call at the neighbour, if they receive no answer that mean no other camera is awake around and the camera stay in detection mode. If no enough answers have been received, that mean the required density of the camera around are not enough. Thus the camera stay turn on detection mode. Otherwise the camera return on sleepy mode until another wake-up later. This procedure is applied in each smart camera with all have their own pace. After a certain time the network is well organize to cover the area in detection mode. The area is considered covered when the density of camera is good enough. \\
- The method introduce by Liu et al. in \cite{38*liu2010} is efficient enough. The solution proposed has the advantage to can work in wide area and to be dynamic. As example if a camera do not have any more power the network will self-recognize.  
-This algorithms is efficient with a high density of sensor to have a relatively low coverage (just enough to detect target in the sparse sensor placement). Also the method presented is really dependent then the network communication and the capability to localize precisely each sensor. Finally the solution proposed to select a set of sensor among a randomly posed sensor is not enough optimized and precise (see illustration in Figure \ref{fig:Coverage38}). 
+The objectives in \cite{38*liu2010} are multiple, depending on the state of the cameras. The more interesting for us is to keep under control the area as long as possible, for target detection. Numerous smart cameras are randomly distributed in the area (as an air-drop in a battlefield) and the aim would be to select the minimal number of cameras which allow to maximize the coverage by setting them in detection mode. The solution proposed by Liu et al. in \cite{38*liu2010} is to use a constructive algorithm. The network of cameras self-organized after a "discussion" between them. Also each smart camera is able to estimate precisely its own localization: this is a key information to select the cameras to set up in detection mode. The solution proposed is directly inspired by the distributed network communication protocol. \\
+All the sensors are in sleepy mode at starting. The cameras wake up regularly and send a call at the neighbourhood: if they receive no reply, this means no other camera is awake around and the camera switches to the detection mode. If a few replies are received (the threshold must be set up), this means that the required density of the camera around is not reached yet. Thus the camera switches or keeps on detection mode. Otherwise the camera switches back on sleepy mode until the next wake-up (in this case, the density threshold is reached). Each smart camera follows this protocol but the sleeping time is inherent to each camera to avoid they all wake-up simultaneously. After a certain time, the network is well enough organized to cover the area in detection mode. The area is considered covered when the density of camera is good enough. \\
+ The method introduced by Liu et al. in \cite{38*liu2010} is efficient. The solution proposed has the advantage to work in wide areas and to be dynamic. For example, if a camera does not have any more power the network will self-reconfigured. But it suffers also some drawbacks. First, it requires a high number of cameras with some of them being "useless" because of the sleepy mode. Also this method is really dependent on the network communication and the capability to localize accurately each camera. Finally, extracting a sub-set of cameras among a randomly distributed network (in which the cameras are static) does not give a sufficiently accurate localization to allow a sufficiently good coverage (see Figure \ref{fig:Coverage38}). 
 	\begin{figure}[t!]
 	\center
 \minipage{0.65\textwidth}
