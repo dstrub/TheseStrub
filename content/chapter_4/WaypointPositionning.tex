@@ -1,6 +1,10 @@
 \chapter{Waypoints positioning experimentation} \label{chap:waypointPoseExp}
 \minitoc
-To remind, the main objective is to compute  an efficient path to cover an area with complex shape using a camera mounted on an UAV. The solution proposed here, is to focus in a first time on optimizing the position of a cameras set, to fully cover a vast and complex area. When the set of optimized cameras pose is found the positions can be used as waypoints for an UAVs path. Indeed find an optimized position for each camera of a given set is primordial. The following sections are dedicated to the optimization of the waypoints positions. 
+
+
+
+
+%To remind, the main objective is to compute  an efficient path to cover an area with complex shape using a camera mounted on an UAV. The solution proposed here, is to focus in a first time on optimizing the position of a cameras set, to fully cover a vast and complex area. When the set of optimized cameras pose is found the positions can be used as waypoints for an UAVs path. Indeed find an optimized position for each camera of a given set is primordial. The following sections are dedicated to the optimization of the waypoints positions. 
 
 
 
@@ -9,22 +13,25 @@ To remind, the main objective is to compute  an efficient path to cover an area 
 
 
 
-\section{Waypoint positioning context of experiments} \label{sec:contextOfExp}
+%\section{Waypoint positioning context of experiments} \label{sec:contextOfExp}
 
- During the previous sections, the problem was discussed as an optimization problem. The formulation of the problem was presented and also the complexity of the problems was discussed in the Section \ref{sec:OptimizationComplexity}. 
-The precedent sections has introduce all the useful elements to solve the problems of camera positioning in a complex environment. \\
-This chapter is dedicate to the different experimentations done to test the efficiency of the proposed methods. 
-For the first experiment, different environment are proposed. The parameters of the environment has been adapted and carefully chosen. \\
-The environment have been designed to have a various shape and size. The rooms shape are used to estimate the impact of the shape on the proposed solution.
-The shapes of the rooms are designed to estimate the exact number of cameras in order to have a ground trough (for the first set of experiments).
-Moreover the rooms propose few sizes. The sizes of the rooms may have two main impacts on the optimization.
-First, the increased  size of a room, will increased in proportion the size of the search space. On the other hand a bigger room allow to place more waypoints. More the number of waypoints to place is important more the number of dimensions to optimize raise-up. The increasing number of dimensions is used to test the robustness of the algorithms.\\
+ During the previous sections, the problem was discussed as an optimization problem. The formulation  and the complexity of the problem was presented were described in the Section \ref{sec:OptimizationComplexity}.
+  The cameras position has to be optimized to can offer the best waypoints for the path planning. In fact has discussed  our approach to find the best path planning for maximize the coverage is to split the problem  by using the best cameras position as a waypoints for a path. 
+%The precedent sections has introduce all the useful elements to solve the problems of waypoint positioning in a complex environment. \\
+%This chapter is dedicate to the different experimentations done to test the efficiency of the proposed methods. 
+For the first experiment, different environments are proposed. %The parameters of the environment has been adapted and carefully chosen. \\
+The environments have been designed to have various shape and size. The various shapes are used to estimate their impact  on the proposed solution.
+The rooms are designed to can estimate the exact number of waypoints, in order to have a known  Ground Trough (GT).
+ The room sizes  may have two main impacts on the optimization.
+First, size of a room impact in proportion the search space. %the increased  size of a room, will increased in proportion the size of the search space. 
+On the other hand a bigger room allow to place more waypoints. The increased  number of waypoints logically raises-up the number of dimensions to optimize. %eMore the number of waypoints to place is important more the number of dimensions to optimize raise-up.
+ The increasing number of dimensions is used to evaluate the robustness of the algorithms.\\
  The room finally used for the experimentations are proposed in the Figure \figref{fig:Rooms_shapes}.
 
  
 
  In addition of the rooms parameters, the number of dimensions is also tested by added various possible altitudes for each waypoint. The waypoints can be in the simplest version placed only on $x$ and $y$ coordinate. In the second time $z$ coordinate can be optimized inside a given range of altitudes. 
- Two sets of scenarios has been tested one with a fix value of $z$ and another set of scenarios with a range of $z$.  This is to evaluate the impact of the altitude on the optimization process.
+ Two sets of scenarios has been tested. One with a fix value of $z$ and another set of scenarios with a range of $z$.  This is to evaluate the impact of the altitude on the optimization process.
 % Due to the use of a non heuristic algorithms the shape can be considered as complex. The rooms are depicted in Figure \figref{fig:Rooms_shapes}, with areas of different size and shapes, where:  ...  
 %,
 
@@ -33,52 +40,58 @@ First, the increased  size of a room, will increased in proportion the size of t
 
 \section{Other algorithm used}
 
-In order to compare carefully our proposed method, other algorithms has to be introduce. The following sections show the two algorithms used for the comparison to the proposed GA. The environment introduced in \ref{sec:contextOfExp} is used to make the comparisons.  
-The particles swarm optimisation (PSO) and a random selections are described in the following sections. The PSO is used due to this importance in the literature for similar problems. The RS for this simplicity to evaluate the optimization, being a reference point.  
+In order to compare carefully our proposed method, two other algorithms were introduced. The following sections explain the two algorithms used. %The environment introduced in \ref{sec:contextOfExp} is used to make the comparisons.  
+The Particles Swarm Optimisation (PSO) and a Random Selections (RS) are described in the following sections. The PSO is used due to its importance in the literature for similar problems and the RS for this simplicity to evaluate the optimization. The RS  act as a reference point for the other optimization.  
 
 \subsection{Particles Swarm Optimisation } \label{sec:PSOdetail}
 
-The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is a stochastic algorithms from the family of evolutionary algorithms (see Chapter \ref{chap:EA}). 
-The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 \cite{148*eberhart1995}. The concept of PSO is to optimize iteratively a continuous non linear function. To do that the PSO is inspired by the behaviour of animals. As it appends here from the birds flocking, fish schooling and swarming theory. These  animals are working in group (or swarm) to seek food. 
-The direction to take is not decided by one leader, but by all individuals in the swarm by relaying just few informations as what quantities of foods they found. 
-The swarm composed by numerous individuals became smarter and more efficient to reach their objective. 
+The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is a stochastic algorithm from the family of evolutionary algorithms (see Chapter \ref{chap:EA}). 
+The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 \cite{148*eberhart1995}.% The concept of PSO is to optimize iteratively a continuous non linear function. 
+To do so, the PSO is inspired by the behaviour of animals.% As it appends here from the birds flocking, fish schooling and swarming theory. 
+Animals such as the birds flocking, fish schooling and swarming theory which are working in group (or swarm) to seek food. 
+The direction to take is not decided by one leader, but by all individuals from the swarm, by relaying few informations such as what quantities of foods they found. 
+The swarm composed by numerous individuals becomes smarter and more efficient to reach their objective. 
 The algorithm proposed by Russel Eberhart and James Kennedy in  \cite{148*eberhart1995} are directly inspired by these behaviours.
 
-The methodologies used, is to examine each individual or also called particles as a solution of the problems. The problem is optimized at each iteration. To do that each solution must be comparable and quantifiable. At each iteration, each particle has to be tested by a cost function in order to discriminate the best particles of the swarm. The cost function and the design of it has been detailed in the Chapter \ref{chap:formulation}.
-When the best particle is found at the end of an iteration, the other particles of set, try to change their initial direction to converge more or less quickly to the actual best. 
+The methodology used here, is to examine each individual or also called particles as a solution of the problems. The problem is optimized at each iteration. To do that each solution must be comparable and quantifiable. At each iteration, each particle has to be tested by a cost function in order to discriminate the best particles of the swarm. The cost function used in our case has been designed and detailed in the Chapter \ref{chap:formulation}.
+When the best particle is found at the end of an iteration, all other particles of swarm,
+ try to change their initial direction to converge more or less quickly to the currently best particle. 
+In such a way that the other particles can converge towards the current best, each particle have to adapt its direction according to its own velocity and  previous direction. The change of direction is slowed down by the inertia of the system. 
 Indeed the power of this algorithm is to obtain a very basic individuals behaviour to guide the particles. 
 Each particle is guided by 3 behaviours.
  \begin{itemize}
- \item  This own velocity $V_k$. 
- \item  This own best solution $P_i$.
- \item  The best solution from the swarm $P_g$.
+ \item  Its own velocity $V_k$. 
+ \item  Its own best solution $P_i$.
+ \item  Its best solution from the swarm $P_g$.
 \end{itemize}  
-Here the velocity represents the useful speed of the particle to converge to the best solution. More the velocity is high more the step at each iteration will be long. 
+Here the velocity represents the useful speed of the particle to converge to the best solution. 
+%More the velocity is high more the step at each iteration will be long.
+Higher the inertia is harder is for the particle with a high velocity to can converge quickly.
 The behaviour of the particles $X_k$ are modelled by the following equation to obtain the new position $X_{k+1}$ :
 \begin{equation} \label{eq:PSO}
 \begin{split}
- V_{k+1}= \omega V_k +b1(P_i -X_k)+b2(P_g-X_k)
+ V_{k+1}= \omega V_k +b_1(P_i -X_k)+b_2(P_g-X_k)
 \\
 \mbox{ and } \\ X_{k+1}=X_k+V_{k+1}
 \end{split}
 \end{equation}
 
-Where $\omega$ is the inertia. $b1$ is random value between 0 and $\phi_p$ and $b2$ is random value between 0 and $\phi_g$. $\phi_g$ and $\phi_p$  are the scaling factors to search away from the particles. These factor are also called learning factors and push to learn or discover  (Default: 0.5). 
+Where $\omega$ is the inertia, $b_1$ is a random value between 0 and $\phi_p$ and $b_2$ is random value between 0 and $\phi_g$. $\phi_g$ and $\phi_p$  are the scaling factors to search away from the particles. These factor are also called learning coefficient and push to learn or discover.%  (Default: 0.5). 
 
-Thanks to this basic behaviour of the particles, the swarm can coverage to a global solution. 
+Thanks to this basic behaviour of the particles, the swarm can converge to a global solution. 
 To have an efficient optimization just few parameters must be set-up for the PSO.  
 The more important are the inertia of the particles, the size of the swarm and the initial dispersion.
 \begin{itemize}
 \item The inertia will globally help the particles to keep their initial velocity. The consequences of the high inertia, is to explore more the search space and therefore the convergence will be longer. 
-\item The size of the swarm  have an impact on the convergence time (more exactly in the  number of iterations). Thus the time computation. Indeed a big amount of particles in the swarm  means more exploration of the search space at each iteration, but also more comparison to find the best particles (the comparison may have a non negligible computation time). 
-The swarm size is commonly fixed but can be as the population in the GA (see section \ref{sec:Population} ) dynamically adjusted during the optimization process. 
+\item The size of the swarm  have an impact on the convergence time (as the  number of iterations).  Indeed a big amount of particles in the swarm  means more exploration of the search space at each iteration, but also more comparisons to find the best particles. The comparison may have a non negligible computation time. 
+The swarm size is commonly fixed but can be as the population in the GA (see section \ref{sec:Population} ) dynamically adjusted during the optimization process as in \cite{228*leong2008}. 
 
-\item The initial dispersion of the swarm can be a decisive element as the population for the GA (see in \ref{sec:initPOP}). For the PSO the use of an heuristic to initialize all the particles of the swarm is not recommended due to this important risk to converge prematurely in a local minimum. The random dispersion appear as the more appropriate for a global optimization. On the other hand the fast convergence and the PSO ability to climb the small hill to go out of the local minima can be used in order to refine an other optimized solution. The principal risk is to optimize around the initial dispersion and do not explore correctly the search space.  
-\item Other criteria as $\phi_g$ and $\phi_i$ are minor but can be useful to have a realy fine adjusted PSO.
+\item The initial dispersion of the swarm can be a decisive element as the population for the GA (see in \ref{sec:initPOP}). For the PSO the use of an heuristic to initialize all the particles of the swarm is not recommended due to the important risk to converge prematurely in a local minimum. The random dispersion appears as the more appropriate for a global optimization. On the other hand the fast convergence and the PSO ability to climb the small hill to go out of the local minima can be used in order to refine an other optimized solution. The principal risk is to optimize around the initial dispersion and do not explore correctly the search space.  
+%\item Other criteria as $\phi_g$ and $\phi_i$ are minor but can be useful to have a realy fine adjusted PSO.
 \end{itemize}
 
 Finally to summarize the PSO is efficient in term of optimization despite a very basic behaviour of each  particle. Each particle has this own velocity defined part way by the random and controlled by a global parameter; the inertia.
- The power of PSO is at the same time this efficiency to solve the optimization problem and this simplicity of use it. In fact, the PSO needs at minima few elements to works properly:
+ The power of PSO is at the same time its efficiency to solve the optimization problem and its simplicity of use it. In fact, the PSO needs at minima few elements to works properly:
  A cost function, an inertia parameter and the size of the swarm. These efficiency and simplicity of use explain this popularity during the last decades.
  
 
@@ -98,7 +111,9 @@ The Random Selections (RS) is a very basic algorithm. It serves as a reference p
 
 The random selections works by randomly generate numerous solutions. Among the solutions randomly generated the best solution is kept as the optimized global solution. The RS allows to look through the search space by randomly try many possible solutions. The search space exploration by the RS is only made by random sampling without other optimization method. 
 Indeed the RS is invoked as a reference points for the other algorithms. If the RS get a similar result with the same numbers of the cost function calls, the algorithm compared can be considered as not more efficient then a simple random solution. 
-The RS objective is to serve as reference point for the other optimization algorithms. It will be a perfect reference to judge the efficiency of the optimization from other algorithms.  To be efficient for the comparison several RS has to be made to can have an average optimized value of RS solutions.  
+%The RS objective is to serve as reference point for the other optimization algorithms. It will be a perfect reference to judge the efficiency of the optimization from other algorithms.  
+To can use the RS as reference point several optimization has to be done to obtain an average solution.
+%To be efficient for the comparison several RS has to be made to can have an average optimized value of RS solutions.  
   
 %
 %PSO camera position 
@@ -121,9 +136,11 @@ The RS objective is to serve as reference point for the other optimization algor
 \mfigure{width=.4\linewidth}{img/fig7-e2.png}{Big room L.}{subfig:r5}
 \end{mfigures}  
 To solve the problem of cameras positioning (or waypoints positioning) the usable algorithms are varied as that was discussed in the Chapter \ref{chap:stateOfTheArt} (see the sum-up Tables \ref{tab:sum-up1} and \ref{tab:sum-upEA1}).
-Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints of our problem. The EA is a vast family of algorithms. Among this family the more used for our problem is the PSO (see  Table \ref{tab:sum-upEA1}). The PSO gives a good and fast result in many case. In the EA family, the GA is one of the founders and was one of the more popular due to this great flexibility and efficiency.
- After more investigation the GA is under estimate for the problem of camera positioning unlike the PSO (see \citep{33*reddy2012,8*zhou2011,84*xu2011,143*maji2015,193*fu2014,194*fu2010}). \\
- The  conscientiously comparison  of GA and PSO was proposed by Boeringer et al in \citep{78*boeringer2004}. The conclusions  of the comparison in \citep{78*boeringer2004} is relatively open and highlights the similarity of results between the two algorithms and the importance of evaluate them for each new problems. Consequently an  set  of experimentations has to be done to find the best algorithm for the problem of cameras position in a complex environments. 
+Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints of our problem. The EA is a vast family of algorithms. Among this family the more used for our problem is the PSO (see  Table \ref{tab:sum-upEA1}). The PSO gives a good and fast result in many cases. In the EA family, the GA is one of the founders and was one of the more popular due to its great flexibility and efficiency.
+ After more investigation the GA is under estimate for the problem of camera positioning unlike the PSO (see \citep{33*reddy2012,8*zhou2011,84*xu2011,143*maji2015,193*fu2014,194*fu2010} as discussed in section \ref{sec:SolutionBasedonEA}) . \\
+ The  conscientiously comparison  of GA and PSO was proposed by Boeringer et al in \citep{78*boeringer2004}. The conclusions  of the comparison in \citep{78*boeringer2004} is open. In fact Boeringer et al.  \citep{78*boeringer2004} conclude after several the comparison applied to several optimisation problems, Neither PSO nor GA offers a solution that is objectively better in all cases. Due to the average similarity of results between the two algorithms its highlight the importance to evaluate them for each new problem.
+  Therefore, there is no real tool to estimate that one or the other of algorithms will be better than the other on a given problem.
+ Consequently an  set  of experimentations has to be done to find the best algorithm for the problem of cameras position in a complex environments. 
 
 
 
@@ -160,24 +177,43 @@ The comparison is applied on different scenario as that was introduced in the se
 
 
 The design of the experiments in Table \ref{table:table1} has been set up to identify the most efficient algorithm for the positioning of a set of cameras with maximum coverage depending on the numerous cases. 
-The Design of Experiments (DoE) has been made to take in account; the  shapes, sizes, some constraints as the fix altitude and  various size for the set of waypoints. The DoE has been established to highlight the impact of the constraints on the optimization process with the GA and PSO.
+The Design of Experiments (DoE) has been made to take into account; shapes, sizes and constraints as the fix altitude and various size for the set of waypoints. The DoE has been established to highlight the impact of the constraints on the optimization process with the GA and PSO.
 
+
+%\begin{table} [!htb]
+%\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+%  \hline
+%  \multicolumn{2}{|l|}{ \Emph{z=1} } &\multicolumn{2}{|c|}{\Emph{GA}}  & \multicolumn{2}{|c|}{\Emph{PSO}} & \multicolumn{2}{|c|}{\Emph{RS}}  \\  \hline
+%  \multicolumn{2}{|c|}{ } & \textbf{GT} & \textbf{NW} & \textbf{GT} & \textbf{NW} & \textbf{GT} & \textbf{NW} \\ \hline
+%  \Emph{Room} &  \textbf{120x80} & 16 &20 & 16 & 20 & 16 & 20\\ \cline{2-8}
+%     &  \textbf{240x160} & 64 &70 & 64 & 70 & 64 & 70 \\ \hline
+%  \Emph{Room U} &  \textbf{120x80} & 12 &20 & 12 & 20 & 12 & 20\\ \hline
+%  \multicolumn{2}{|l|}{\Emph{z=2} } &\multicolumn{2}{|c|}{\Emph{GA}}  & \multicolumn{2}{|c|}{\Emph{PSO}}& \multicolumn{2}{|c|}{\Emph{RS}}  \\  \hline
+%  \multicolumn{2}{|c|}{ } & \textbf{GT} & \textbf{NW} & \textbf{GT} & \textbf{NW} & \textbf{GT} & \textbf{NW} \\ \hline
+% \Emph{Room} &  \textbf{120x80} & 4 &10 & 4 & 10 & 4 & 10\\ \cline{2-8}
+%     &  \textbf{240x160} & 16 &20 & 16 & 20 & 16 & 20 \\ \hline
+% \Emph{Room L}&  \textbf{120x80} & 3 &10 & 3 & 10 & 3 & 10\\ \cline{2-8}
+%     &  \textbf{240x160} & 15 &20 & 15 & 20 & 15 & 20 \\ \hline
+%  
+%\end{tabular}
+%\caption{Design of the experiment for comparing the efficiency of PSO and GA in different conditions.  (GT is Ground Truth and NW is Number of Waypoints).}\label{table:table1}
+%
+%\end{table}
 
 \begin{table} [!htb]
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l|}
   \hline
-  \multicolumn{2}{|l|}{ \Emph{z=1} } &\multicolumn{2}{|c|}{\Emph{GA}}  & \multicolumn{2}{|c|}{\Emph{PSO}} & \multicolumn{2}{|c|}{\Emph{RS}}  \\  \hline
-  \multicolumn{2}{|c|}{ } & \textbf{GT} & \textbf{NW} & \textbf{GT} & \textbf{NW} & \textbf{GT} & \textbf{NW} \\ \hline
-  \Emph{Room} &  \textbf{120x80} & 16 &20 & 16 & 20 & 16 & 20\\ \cline{2-8}
-     &  \textbf{240x160} & 64 &70 & 64 & 70 & 64 & 70 \\ \hline
-  \Emph{Room U} &  \textbf{120x80} & 12 &20 & 12 & 20 & 12 & 20\\ \hline
-  \multicolumn{2}{|l|}{\Emph{z=2} } &\multicolumn{2}{|c|}{\Emph{GA}}  & \multicolumn{2}{|c|}{\Emph{PSO}}& \multicolumn{2}{|c|}{\Emph{RS}}  \\  \hline
-  \multicolumn{2}{|c|}{ } & \textbf{GT} & \textbf{NW} & \textbf{GT} & \textbf{NW} & \textbf{GT} & \textbf{NW} \\ \hline
- \Emph{Room} &  \textbf{120x80} & 4 &10 & 4 & 10 & 4 & 10\\ \cline{2-8}
-     &  \textbf{240x160} & 16 &20 & 16 & 20 & 16 & 20 \\ \hline
- \Emph{Room L}&  \textbf{120x80} & 3 &10 & 3 & 10 & 3 & 10\\ \cline{2-8}
-     &  \textbf{240x160} & 15 &20 & 15 & 20 & 15 & 20 \\ \hline
-  
+  \multicolumn{2}{|l|}{ \Emph{z=1} } &\multicolumn{2}{|c|}{\Emph{GA / PSO / RS}}    \\  \hline
+  \multicolumn{2}{|c|}{ } & \textbf{GT } & \textbf{NW} \\ \hline
+  \Emph{Room} &  \textbf{120x80} & 16 &20 \\ \cline{2-4}
+     &  \textbf{240x160} & 64 &70  \\ \hline
+  \Emph{Room U} &  \textbf{120x80} & 12 &20 \\ \hline
+  \multicolumn{2}{|l|}{\Emph{1$\leq$ z$\leq$2} } &\multicolumn{2}{|c|}{\Emph{GA / PSO / RS}}   \\  \hline
+  \multicolumn{2}{|c|}{ } & \textbf{GT} & \textbf{NW}  \\ \hline
+ \Emph{Room} &  \textbf{120x80} & 4 &10 \\ \cline{2-4}
+     &  \textbf{240x160} & 16 &20  \\ \hline
+ \Emph{Room L}&  \textbf{120x80} & 3 &10 \\ \cline{2-4}
+     &  \textbf{240x160} & 15 &20  \\ \hline
 \end{tabular}
 \caption{Design of the experiment for comparing the efficiency of PSO and GA in different conditions.  (GT is Ground Truth and NW is Number of Waypoints).}\label{table:table1}
 
