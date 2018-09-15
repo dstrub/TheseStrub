@@ -219,10 +219,12 @@ The Design of Experiments (DoE) has been made to take into account; shapes, size
 
 \end{table}
 
-The Ground Truth (GT) is the minimum number of waypoints required to fully cover a given area. The sizes and the shapes of the area has been selected so that the GT can be easily estimated. 
+The Ground Truth (GT) is the minimum number of waypoints required to fully cover a given area. The sizes and the shapes of the area has been selected so that the GT can be determined. 
 NW is the maximum Number of Waypoints (or cameras) used for the experiments.  
-At each experiment a solution is computed for a number of cameras from 1 until NW. To compare the different algorithms fairly, only 10 000 calls of the cost function are allowed for each optimization.
-The optimization has been executed 8 times for each optimization process. 8 times is the minimum number of test has to be done to can have a usable average despite the hight volatility due to the randomness of the algorithms.\\ % 420*8 =3 360 test.
+At each experiment a solution is computed for a number of cameras from 1 until NW. To compare the different algorithms fairly, only 10 000 calls of the cost function are allowed for each optimization (as in \cite{78*boeringer2004}). 
+The optimization has been executed 8 times for each optimization process. The number eight has been chosen to can have a usable average despite potential the hight volatility of the algorithms tested. The volatility is due to the use of random on its. The eight has been fixed empirically due to a well knowledge of the algorithms in the problem and its is also recommended by a tutorial to make a  appropriate DoE ( see http://3dc.asso-web.com/actualite-12-creer-un-plan-d-experience-methode-rapide-et-efficace-sans-anova.html ).
+
+%8 times is the  number of test has to be done to can have a usable average despite the hight volatility due to the randomness of the algorithms.\\ % 420*8 =3 360 test.
 
 
 \subsection{Analysis of the results }
