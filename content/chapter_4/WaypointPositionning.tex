@@ -129,11 +129,11 @@ To can use the RS as reference point several optimization has to be done to obta
  \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px).}{fig:Rooms_shapes} \centering
 \mfigure{width=.4\linewidth}{img/fig7-a.png}{Simple room.}{subfig:r1}
 \hspace{1cm}
-\mfigure{width=.4\linewidth}{img/fig7-b.png}{Big room.}{subfig:r2}
+\mfigure{width=.4\linewidth}{img/fig7-b.png}{Room with high ratio.}{subfig:r2}
 %\mfigure{width=.4\linewidth}{img/fig7-c.png}{Room U.}{subfig:r3}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/fig7-d.png}{Room L.}{subfig:r4}
-\mfigure{width=.4\linewidth}{img/fig7-e2.png}{Big room L.}{subfig:r5}
+\mfigure{width=.4\linewidth}{img/fig7-e2.png}{Room L with high ratio.}{subfig:r5}
 \end{mfigures}  
 To solve the problem of cameras positioning (or waypoints positioning) the usable algorithms are varied as that was discussed in the Chapter \ref{chap:stateOfTheArt} (see the sum-up Tables \ref{tab:sum-up1} and \ref{tab:sum-upEA1}).
 Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints of our problem. The EA is a vast family of algorithms. Among this family the more used for our problem is the PSO (see  Table \ref{tab:sum-upEA1}). The PSO gives a good and fast result in many cases. In the EA family, the GA is one of the founders and was one of the more popular due to its great flexibility and efficiency.
@@ -244,16 +244,33 @@ The optimization has been executed 8 times for each optimization process. The nu
   \caption{Comparison of eight solutions given by the GA, with eight solutions given by PSO algorithms with a Z between $[1/2; 2]$ in the room with L shape $120\times80$ and ground truth equal to 3.}\label{fig:RLz2}
    \endminipage\hfill
 \end{figure}
+
+
+
+ \begin{mfigures}[!]{For the experiments: (a), (b), (c) the blue rectangle represents the field of view of one camera projected onto the ground  with z=1 ($30 \times 20 $px) and (d), (e) with z=2 ($60 \times 40 $px).}{fig:Rooms_shapes} \centering
+\mfigure{width=.48\linewidth}{img/DoE/5Room120X80z=1.png}{}{subfig:graf5}
+\mfigure{width=.48\linewidth}{img/DoE/6Room240X160z=1.png}{}{subfig:graf6}
+\hspace{1cm}
+\mfigure{width=.48\linewidth}{img/DoE/7RoomL120X80z=1.png}{}{subfig:graf7}
+\mfigure{width=.48\linewidth}{img/DoE/2Room120X80z2.png}{}{subfig:graf2}
+\hspace{1cm}
+\mfigure{width=.48\linewidth}{img/DoE/3Room240X160z2.png}{}{subfig:graf3}
+\mfigure{width=.48\linewidth}{img/DoE/4RoomL120X80z2.png}{}{subfig:graf4}
+\hspace{1cm}
+
+\mfigure{width=.48\linewidth}{img/DoE/1RoomL240X160z2.png}{}{subfig:graf1}
+\mfigure{width=.48\linewidth}{img/DoE/legend.png}{}{subfig:legendgraf}
+\end{mfigures}  
 %After performing several experiments (see Table \ref{table:table1}), 
 In the experiments described in the Table \ref{table:table1}, it appears that the GA and PSO algorithms are close in performance in numerous cases. Among several experiments of the DoE some particularities appears despite the globally close results between GA and PSO. Also as expected the RS are always the worst solutions.
  In the following subsection just the most revealing experiments are taken to illustrate the interesting specificity and advantage between the GA and PSO for our problems.
 
-In the case where the search space is large and numerous dimension have to be optimized by the GA appears globally more efficient as in Figure \ref{fig:bigRz1}. In contrary in these cases (room with high ratio and z=1) the PSO gives a very bad answer close than simple RS.
+In the case where the search space is large and numerous dimension have to be optimized by the GA appears globally more efficient as in Figure \ref{fig:bigRz1}. In contrary in these cases (room with high ratio and z=1) the PSO gives a solution close than simple RS with is not a sufficient solution.
 %What is appearing in some case as in Figure \ref{fig:bigRz1} is the  GA is much more efficient where the search space is large (big room and big number of cameras),  as the example in Figure \ref{fig:bigRz1}. 
- Instead, PSO is more effective for optimizing small areas as in Figure \ref{fig:RLz2}. In the small room in L shape with a $z$ between $1/2$ and $2$, the PSO reach quickly (quicker than the 10 000 calls) to the optimal solution. Where, here the optimal solution is known and equal to GT. In the same case the GA propose an optimized solution (compared then the RS) but far from the PSO.
+ Instead, PSO is more effective for optimizing small areas as in Figure \ref{fig:RLz2}. In the small room in L shape with a $z$ between $1/2$ and $2$, the PSO reach quickly (quicker than the 10 000 calls) to the optimal solution. Where, here the optimal solution is known and equal to GT. In the same case the GA proposes an optimized solution (compared then the RS) but far from the PSO.
  
  This efficiency can be explained by the slight variation of the solution introduced by the PSO. However, this slight variation is not enough to find an optimized solution in a big search space that occurs when many cameras are required or when the local minimum is deeper. The PSO appears really efficient in a relatively small search space where the number of dimensions to optimize is not too high.
- On the other hand, the variety  introduced by the GA allows to escape from  the local minima. This variety is helpfully  in the big search space in order to explore quickly a wide part of it. The variety introduced by the GA became a handicap for a more fine optimization. That explains the relatively bad results obtained during the experiment in the small rooms. The variety of the GA negatively affects the accuracy of the solutions and may require a further optimization step to refine. 
+ On the other hand, the variety  introduced by the GA allows to escape from local minima. This variety is helpfully  in the big search space in order to explore quickly a wide part of it. The variety introduced by the GA became a handicap for a more fine optimization. That explains the relatively bad results obtained during the experiment in the small rooms. The variety of the GA negatively affects the accuracy of the solutions and may require a further optimization step to refine. 
  
 %-------- ajouté un exemple entre 2 forme differente qui on un resulta proche ------------ file Grafig roomShape.txt-----\\
 %The DoE have been design with different shape in order to see the impact of it on the algorithms. What is appearing during the experiment is the low impact of the shape on the result of the algorithms. The experiment made in the small room (120X80) and the small room in L shape with a z between [1/2; 2](see Figure !!! and Figure !!!). The graphics (see Figure !!! and Figure !!!)  present a similar result, proof of the small impact of the shape on the algorithms.
