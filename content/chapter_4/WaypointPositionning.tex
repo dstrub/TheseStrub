@@ -2,12 +2,7 @@
 \minitoc
 
 
-
-
 %To remind, the main objective is to compute  an efficient path to cover an area with complex shape using a camera mounted on an UAV. The solution proposed here, is to focus in a first time on optimizing the position of a cameras set, to fully cover a vast and complex area. When the set of optimized cameras pose is found the positions can be used as waypoints for an UAVs path. Indeed find an optimized position for each camera of a given set is primordial. The following sections are dedicated to the optimization of the waypoints positions. 
-
-
-
 
 %\section{An optimization problem.}
 
@@ -498,8 +493,10 @@ For this first experiment with the binary mask to describe the area to cover, a 
 The solution proposed being to apply a GAPSO. The PSO will allow the refinement of the GA solution.
 %Consequently, the GA is performed  firstly to optimize the position of the waypoints . 
 %The optimized waypoints positioning, cover $90.76\%$ of the area with 25 cameras and the GA converge after just 67 generation. The solution given by the single GA is already good enough despise the complexity of the map. Although can be refined by apply a PSO. 
-The PSO is used with an initialisation from the first optimisation (using  the GA solution). 
+The PSO is used with an initialisation from the first optimisation (using the GA solution). 
 Finally the result presented in the Figure \figref{subfig:coverageGAPSOTorcy} shown a much more refined coverage with significant reduction in the amount of black holes and overlaps (coverage is over $92.8\%$). 
+
+The overlaps of the camera projection is reduced by the use of GAPSO. In fact the coverage with simple GA has an overlap of $26.43\%$  of the area covered  when the  solution obtained with  GAPSO has $23.39\%$ of overlapping.
 
 The main result of this experiment was to evaluate if the area design modification may have a significant impact on the waypoints positioning.
  The conclusion of this experiment is, yes a bit,  but is compensated by the use of GAPSO. Despite the increased complexity due to the area shape (possible by the mask) the use of the hybrid GAPSO permit to compensated it. The experiments allows also to evaluate the improvement made by the GAPSO. The GAPSO hybridization is robust and flexible despite the strong constraints due to the non geometric area.  
@@ -536,7 +533,9 @@ During this experimentation, a high coverage rate is required. We expect more th
 %/!\ The image given is not a falide mask dif : -1396
 
 In order to cover the area with high ratio, the solution can be to use a bigger focal length or higher altitude to have a wide area covered at each waypoint, thus keep few waypoints to control the area. The other solution is to increase the number of waypoints. The increased number of waypoints can be a source of difficulty for the optimization. Although the difficulty to manage more waypoints,  the GAPSO associate to the adapted cost function allows the to manage it as in example Figure \figref{subfig:satimgcoverageFley}. 
- In the Figure \figref{subfig:satimgcoverageFley} and \figref{subfig:satimgNoncoverFley} the area is covered by 80 waypoints for $98.48\%$ of coverage. To reach this coverage rate the GA convergence is achieved after 4'856 generations. The important number of necessary generation before the convergence of the GA and a similar  increasing time computation for the PSO, allow us to glimpse the limits of the GAPSO for the too big search space with numerous waypoints to pose estimate. Despite this potential future limitation the answer of the GAPSO is relatively fast (4'856 generations) and efficient (cover $98.48\%$ of the area) .\\
+ In the Figure \figref{subfig:satimgcoverageFley} and \figref{subfig:satimgNoncoverFley} the area is covered by 80 waypoints for $98.48\%$ of coverage. To reach this coverage rate the GA convergence is achieved after 4'856 generations. The important number of necessary generation before the convergence of the GA and a similar  increasing time computation for the PSO, allow us to glimpse the limits of the GAPSO for the too big search space with numerous waypoints to pose estimate. Despite this potential future limitation the answer of the GAPSO is relatively fast (4'856 generations) and efficient (cover $98.48\%$ of the area). The gain offer by the GAPSO  compare than  the simple GA is to 0.079 which allow to pass  to $98.40\%$ to $98.48\%$ of coverage.  The overlap is $12.79\%$ of the all area which is  $30.59\%$ of the covered area. 
+% The overlap is  0.127872866078% of the all area
+%The overlap is  0.305926079756% of the covered area\\
  
 
 		\subsubsection{Biggest map with numerous waypoints}\label{sec:biggestMapcalWaypoint}
@@ -554,8 +553,8 @@ The precedent experiments (see Section \ref{sec:fey_map}) shown the efficiency a
 
 %For these experiments, the area proposed here is the biggest never tested yet. 
 The grid is composed by almost 1 million of points, with more than 616 thousands points to cover. The map proposed here is the biggest tested compared. The number of waypoints to cover this vast area, has been increased to reach the 110 waypoints. 
-The number of waypoints to pose estimate, is  among the more important compared to the literature for examples, in \citep{8*zhou2011,33*reddy2012,82*chrysostomou2012,143*maji2015, 151*zhao2013, 152*wang2009, 165*jiang2010, 193*fu2014, 181*wang2017, 18*ding2012}. %, ,83*van2009   bug ?
-The GAPSO is executed with success and the final coverage is over $98.26\%$.  
+The number of waypoints to pose estimate, is among the more important compared to the literature for examples, in \citep{8*zhou2011,33*reddy2012,82*chrysostomou2012,143*maji2015, 151*zhao2013, 152*wang2009, 165*jiang2010, 193*fu2014, 181*wang2017, 18*ding2012}. %, ,83*van2009   bug ?
+The GAPSO is executed with success and the final coverage is over $98.26\%$. The GAPSO allow to upgrade sightly the GA optimization ($98.19\%$ of coverage) by increase the coverage by  0.069 points. The overlap is $15.80\%$ of the all area which is  $24.74\%$ of the covered area. 
 	
 	 To reach this coverage rate, the GA optimization converge after 170'501 generations. \\
 	 The important number of generations before to reach the convergence with the GA in a first time, and  proceed to a PSO optimization for a second time reveals a long time computation before the final solution given by the GAPSO. 
