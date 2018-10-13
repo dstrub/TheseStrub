@@ -475,13 +475,15 @@ The main advantage of this formulation is the beside to optimize the CPP problem
 		Despite inconclusive results during the first experiments made, it is an interesting track to follow  which must  be more explored.  
 		The inconclusive results of the experiment can be from : %the algorithms used, the cost function or the increased complexity and search space size.
 		\begin{itemize}
-		\item The algorithms: As that was introduced the GAPSO  with a similar set-up than the previous experiment for the waypoints positioning (see Chapitre \ref{chap:waypointPoseExp}) are used. Few inconclusive tests have been done to slightly modify the set-up of the GAPSO by adding more mutation for example. The inconclusive preliminary result push to consider the GAPSO proposed previously good enough and the other reason has to be explored.
-		\item The cost function: The cost function presented in the Equation \ref{eq:CostF2} is the more appropriate due to our experiments. Despite that the cost function has some coefficients which they were found empirically. The coefficients could be an interesting track which must be thorough in order to reduce their uncertainty.
+		\item The algorithms: As that was introduced the GAPSO  with a similar set-up than the previous experiment for the waypoints positioning %(see Chapitre \ref{chap:waypointPoseExp})
+		 are used. Few inconclusive tests have been done to slightly modify the set-up of the GAPSO by adding more mutation for example. The inconclusive preliminary result push to consider the GAPSO proposed previously good enough.
+		\item The cost function: The cost function presented in the Equation \ref{eq:CostF2} is the more appropriated due to our experiments. Despite that the cost function has some coefficients which they were found empirically. The coefficients could be an interesting track which must be thorough in order to reduce their uncertainty.
 		\item Complexity and search space: 
-		The last potential reason of the inconclusive results obtained can be the increased size of the search space and complexity. The size of the search space was discussed in the Section \ref{sec:OptimizationComplexity}. The search space estimation was made for the problem of optimizing the waypoints positions and can be reused by part for the problem of CPP for a unique optimization. First the Equation \ref{eq:SearchSpace} can be simplified.  
-		\begin{equation} \label{eq:SearchSpaceCPP}
-		 Sp=(W\times H)  
-		\end{equation}
+		The last potential reason of the inconclusive results obtained can be the increased size of the search space and complexity. %The size of the search space was discussed in the Section \ref{sec:OptimizationComplexity}. 
+		The search space estimation was made for the problem of optimizing the waypoints positions and can be reused by part for the problem of CPP for a unique optimization. In this case the  search space is simplified(Sp \ref{eq:SearchSpace}), only  the waypoints position in 2 axis are taken in consideration. %First the Equation \ref{eq:SearchSpace} can be simplified.  
+	%	\begin{equation} \label{eq:SearchSpaceCPP}
+	%	 Sp=(W\times H)  
+	%	\end{equation}
 		Where $W$ and $H$ are the size as width and height of the area to cover. $Sp$  is simplified due to the reduced number of dimensions optimized. In fact, the altitude is fixed and identical for all the waypoints as the pant and tilt. Regarding the roll depend then the path plane.
 		Despite the important decreasing size of the search space for each waypoint ($Sp$), the global search space for the CPP increase dramatically  due to the number of waypoint and the ordered constraint. In fact due to the ordered constraints and the global search space is re-defined as :
 		\begin{equation} \label{eq:ArrangmentCPP}
