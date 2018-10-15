@@ -366,7 +366,46 @@
 %%--------------------
 %% The content of the PhD thesis
 \mainmatter
- 
+ \section{Acronym list}
+UAV - Unmounted Aerial Vehicle \\
+PTZ - Pan Tilt Zoom \\
+AGP - Art Gallery Problem \\
+NP-Hard - Non Polynomial Hard  \\ 
+NP-Complete - Non Polynomial Complete  \\ 
+WSN - Wireless Sensor Network \\
+WSAN - Wireless Sensor and Acutor Network\\
+PSO - Particles Swarm Optimization \\
+VSN - Visual Sensor Network \\
+BIP - Binary Integer Programming \\
+EA - Evolutionary Algorithm \\
+SA - Simulated Annealing \\
+CMA-ES - Covariance Matrix Adaptation Evolution Strategy\\
+BFGS - Broyden-Fletcher-Goldfarb-Shanno (Quasi-Newton method)\\
+MAGA - Multi-Agent Genetic Algorithm \\
+HEA - Hybrid Evolutionary Algorithms  \\
+PCB - Printed Circuit Board  \\
+PI-PSO  - Probability Inspired binary PSO \\
+CR-PSO - Craziness based PSO  \\
+CPP - Coverage Path Planing   \\
+WRP - Watchman Route Problem \\ 
+TSP - Travelling Salesman Problem \\ 
+PNWCC - Novel Previous-Next Waypoints Coverage Constraint \\ 
+DNA - DeoxyriboNucleic Acid \\
+MOEA - Multi Objective Evolutionary Algorithms \\
+MOP - Multi Objective Problem \\
+SGA - Simple Genetic Algorithm  \\
+MOEA/D - Multi Objective Evolutionary Algorithms  decomposed\\
+NSGA - Non-dominated Sorting GA \\
+NSGA-II - Non-dominated Sorting GA II \\
+BMPGA - Bi-objective Multi Populations GA \\
+QGA - Quantum-inspired GA \\
+DoF - Degree of Freedom \\
+RS - Random Selections \\
+DoE - Design of Experiments \\
+GT - Ground Truth \\
+NW - Number of Waypoints \\
+GAPSO -  Genetic Algorithm Particles Swarm Optimization  \\
+FoV - Field of View \\
 
 \include{content/chapter_0/intro}
 %\chapter{Introduction}
@@ -556,46 +595,7 @@
 %the camera positioning.
 %\include{content/Glosaire/glossaire}
 \chapter{ Annexes}
-\section{Acronym list}
-UAV - Unmounted Aerial Vehicle \\
-PTZ - Pan Tilt Zoom \\
-AGP - Art Gallery Problem \\
-NP-Hard - Non Polynomial Hard  \\ 
-NP-Complete - Non Polynomial Complete  \\ 
-WSN - Wireless Sensor Network \\
-WSAN - Wireless Sensor and Acutor Network\\
-PSO - Particles Swarm Optimization \\
-VSN - Visual Sensor Network \\
-BIP - Binary Integer Programming \\
-EA - Evolutionary Algorithm \\
-SA - Simulated Annealing \\
-CMA-ES - Covariance Matrix Adaptation Evolution Strategy\\
-BFGS - Broyden-Fletcher-Goldfarb-Shanno (Quasi-Newton method)\\
-MAGA - Multi-Agent Genetic Algorithm \\
-HEA - Hybrid Evolutionary Algorithms  \\
-PCB - Printed Circuit Board  \\
-PI-PSO  - Probability Inspired binary PSO \\
-CR-PSO - Craziness based PSO  \\
-CPP - Coverage Path Planing   \\
-WRP - Watchman Route Problem \\ 
-TSP - Travelling Salesman Problem \\ 
-PNWCC - Novel Previous-Next Waypoints Coverage Constraint \\ 
-DNA - DeoxyriboNucleic Acid \\
-MOEA - Multi Objective Evolutionary Algorithms \\
-MOP - Multi Objective Problem \\
-SGA - Simple Genetic Algorithm  \\
-MOEA/D - Multi Objective Evolutionary Algorithms  decomposed\\
-NSGA - Non-dominated Sorting GA \\
-NSGA-II - Non-dominated Sorting GA II \\
-BMPGA - Bi-objective Multi Populations GA \\
-QGA - Quantum-inspired GA \\
-DoF - Degree of Freedom \\
-RS - Random Selections \\
-DoE - Design of Experiments \\
-GT - Ground Truth \\
-NW - Number of Waypoints \\
-GAPSO -  Genetic Algorithm Particles Swarm Optimization  \\
-FoV - Field of View \\
+
 
 Computation to compute the $\eta, \upsilon$. Where $\eta, \upsilon$ are the horizontal and vertical camera field of view.
 	\begin{equation} \label{eq:etaUpsilon}
@@ -619,6 +619,25 @@ Sum-up table for the impact of the of the low and high sampling frequency for th
    \end{tabular} \caption{Sum-up of the low and high sampling frequancy adaventage or disadvantage. } \label{tab:samplingFrequency}
  \end{table}
 
+
+
+\begin{mfigures}[!]{Path plan for maximizing the covered area. The area is covered  with 15 and 30 waypoints and several cost function has been tested}{fig:TorCPP} \centering
+\mfigure{width=.4\linewidth}{img/annexCPP/TorMapCPPGAPSOdist_10_costF5covrage0_552189distance5708_622087cam15.png}{Distance 5708px for 15 Waypoints with 96.22\% of coverage. Optimized with GAPSO. $\sum_{i=1}^{n}Pc_i + \frac{400\times\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 5}/400.$}{subfig:CPPTorcymapGA}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/annexCPP/TorMapCPPGAPSOcovrage0_761568distance2955_391933cam30.png}{Distance 2955px for 30 Waypoints with 76.15\% of coverage. Optimized with GAPSO. $\sum_{i=1}^{n}Pc_i + \frac{400\times\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 5}$}{subfig:CPPTorcymapGAPSO}
+\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/annexCPP/TorMapCPPGAPSOcovrage0_730807distance2074_505239cam30.png}{Distance 2074px for 30 Waypoints with 73.08\% of coverage. Optimized with GAPSO. $\sum_{i=1}^{n}Pc_i + \frac{400\times\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 3}$}{subfig:CPPTorcymapGAPSO}
+\hspace{1cm}
+%\mfigure{width=.4\linewidth}{img/annexCPP/TorMapCPPGAcovrage0_752788distance3504_989905cam30.png}{Distance 2955px for 30 Waypoints with 76.15\% of coverage. Optimized with GAPSO. $\sum_{i=1}^{n}Pc_i + \frac{400\times\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 5}$}{subfig:CPPTorcymapGAPSO}
+%\hspace{1cm}
+\mfigure{width=.4\linewidth}{img/annexCPP/TorMapCPPGAPSOcovrage0_727784distance2233_782695cam30.png}{Distance 2233px for 30 Waypoints with 72.77\% of coverage. Optimized with GAPSO. $\sum_{i=1}^{n}Pc_i + \frac{400\times\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 0.01}\times100$}{subfig:CPPTorcymapGAPSO}
+\hspace{1cm}
+\end{mfigures}
+		
+
+%\mfigure{width=.4\linewidth}{img/annexCPP/TorMapCPPGAPSO dist_10_costF5optimizeBinaireTcamPose WeekTest2 covrage 0.761568 distance 2955.391933 cam30.png}{Distance 936.61px for 5 waypoints with 93.76\% of coverage. Optimized with GAPSO.% coverageCost= coverPoint.sum()+((400.*coverPoint.sum())/((distTotalPath/N)*5))
+%}{subfig:CPPTorcymapGAPSO}
+%\end{mfigures}
 
 
 \section{Equation variable} 

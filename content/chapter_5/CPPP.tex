@@ -432,8 +432,8 @@ In this new estimation of the coverage by taking into account not only the cover
  The proposed cost function can be written:
  
   \begin{equation} \label{eq:CostF2}
-f=\sum_{i=1}^{n}Pc_i + \frac{\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 10}  
-\end{equation}  
+f=\sum_{i=1}^{n}Pc_i + \frac{\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 5}  
+\end{equation}  % \times 10
 Where $\sum_{i=1}^{n}Pc_i$ is the number of points cover by the path plan (as  in  Equation \ref{eq:PcFull}) and the $Distance$  is  the size of the path. The $0.5$ is an empirical coefficient to minimize a the distance importance in favour to the coverage.
 
 
@@ -477,24 +477,36 @@ The main advantage of this formulation is the beside to optimize the CPP problem
 		\begin{itemize}
 		\item The algorithms: As that was introduced the GAPSO  with a similar set-up than the previous experiment for the waypoints positioning %(see Chapitre \ref{chap:waypointPoseExp})
 		 are used. Few inconclusive tests have been done to slightly modify the set-up of the GAPSO by adding more mutation for example. The inconclusive preliminary result push to consider the GAPSO proposed previously good enough.
-		\item The cost function: The cost function presented in the Equation \ref{eq:CostF2} is the more appropriated due to our experiments. Despite that the cost function has some coefficients which they were found empirically. The coefficients could be an interesting track which must be thorough in order to reduce their uncertainty.
+		\item The cost function: The cost function presented in the Equation \ref{eq:CostF2} is the more appropriated due to our experiments (some summarized result are presented in the following Table \ref{tab:CPPcostF}) . Despite that the cost function has some coefficients which they were found empirically. The coefficients could be an interesting track which must be thorough in order to reduce their uncertainty. 
+%		\begin{table}\caption{Some experiments made with different cost functions for 3 to 9 waypoints.}
+		\begin{tabular}{l|p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}}\label{tab:CPPcostF}
+\textbf {Cost function} &\textbf {3}  &\textbf{4  }       & \textbf{5  } &\textbf{6  }&\textbf{7  }&\textbf{9  }\\ \hline
+\cellcolor[HTML]{F2F2FF}{$\sum_{i=1}^{n}Pc_i + \frac{400\times\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 2.} /400$}  &  \cellcolor[HTML]{F2F2FF}{56.23\%  458px}       & \cellcolor[HTML]{F2F2FF}{ 60.54\%  652px} & \cellcolor[HTML]{F2F2FF}{65.15\%   817px}& \cellcolor[HTML]{F2F2FF}{ 65.85\%  1114px}& \cellcolor[HTML]{F2F2FF}{ 69.41\%  1077px}& \cellcolor[HTML]{F2F2FF}{ 90.67\%  1396px}\\ \hline
+\cellcolor[HTML]{FFFFFF}{$\sum_{i=1}^{n}Pc_i + \frac{\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 5.}$}  &  \cellcolor[HTML]{FFFFFF}{56.15\%  444px}       & \cellcolor[HTML]{FFFFFF}{ 59.34\%  645px} & \cellcolor[HTML]{FFFFFF}{64.93\%  859px}& \cellcolor[HTML]{FFFFFF}{ 70.14\%  1051px}& \cellcolor[HTML]{FFFFFF}{ 76.59\%  1001px}& \cellcolor[HTML]{FFFFFF}{ 86.77\%  1381px}\\ \hline
+\cellcolor[HTML]{F2F2FF}{$\sum_{i=1}^{n}Pc_i + \frac{\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 0.1}$}  &  \cellcolor[HTML]{F2F2FF}{57.78\%  426px}       & \cellcolor[HTML]{F2F2FF}{ 58.33\%  638px} & \cellcolor[HTML]{F2F2FF}{61.84\%   845px}& \cellcolor[HTML]{F2F2FF}{ 70.96\%  962px}& \cellcolor[HTML]{F2F2FF}{ 69.64\%  1099px}& \cellcolor[HTML]{F2F2FF}{ 82.50\%  1318px}\\ \hline
+\end{tabular}
+%\end{table}
+%%%% coverage before corection
+%		\begin{tabular}{l|p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}}\label{tab:CPPcostF}
+%\textbf {Cost function} &\textbf {3}  &\textbf{4  }       & \textbf{5  } &\textbf{6  }&\textbf{7  }&\textbf{9  }\\ \hline
+%\cellcolor[HTML]{F2F2FF}{$\sum_{i=1}^{n}Pc_i + \frac{400\times\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 2.} /400$}  &  \cellcolor[HTML]{F2F2FF}{52.50\%  458px}       & \cellcolor[HTML]{F2F2FF}{ 54.23\%  652px} & \cellcolor[HTML]{F2F2FF}{56.08\%   817px}& \cellcolor[HTML]{F2F2FF}{ 55.96\%  1114px}& \cellcolor[HTML]{F2F2FF}{ 57.79\%  1077px}& \cellcolor[HTML]{F2F2FF}{ 66.32\%  1396px}\\ \hline
+%\cellcolor[HTML]{FFFFFF}{$\sum_{i=1}^{n}Pc_i + \frac{\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 5.}$}  &  \cellcolor[HTML]{FFFFFF}{52.47\%  444px}       & \cellcolor[HTML]{FFFFFF}{ 53.75\%  645px} & \cellcolor[HTML]{FFFFFF}{55.99\%  859px}& \cellcolor[HTML]{FFFFFF}{ 58.08\%  1051px}& \cellcolor[HTML]{FFFFFF}{ 60.67\%  1001px}& \cellcolor[HTML]{FFFFFF}{ 64.75\%  1381px}\\ \hline
+%\cellcolor[HTML]{F2F2FF}{$\sum_{i=1}^{n}Pc_i + \frac{\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 0.1}$}  &  \cellcolor[HTML]{F2F2FF}{53.12\%  426px}       & \cellcolor[HTML]{F2F2FF}{ 53.34\%  638px} & \cellcolor[HTML]{F2F2FF}{54.75\%   845px}& \cellcolor[HTML]{F2F2FF}{ 58.41\%  962px}& \cellcolor[HTML]{F2F2FF}{ 57.99\%  1099px}& \cellcolor[HTML]{F2F2FF}{ 63.04\%  1318px}\\ \hline
+%\end{tabular}
 		\item Complexity and search space: 
 		The last potential reason of the inconclusive results obtained can be the increased size of the search space and complexity. %The size of the search space was discussed in the Section \ref{sec:OptimizationComplexity}. 
 		The search space estimation was made for the problem of optimizing the waypoints positions and can be reused by part for the problem of CPP for a unique optimization. In this case the  search space is simplified(Sp \ref{eq:SearchSpace}), only  the waypoints position in 2 axis are taken in consideration. %First the Equation \ref{eq:SearchSpace} can be simplified.  
 	%	\begin{equation} \label{eq:SearchSpaceCPP}
 	%	 Sp=(W\times H)  
 	%	\end{equation}
-		Where $W$ and $H$ are the size as width and height of the area to cover. $Sp$  is simplified due to the reduced number of dimensions optimized. In fact, the altitude is fixed and identical for all the waypoints as the pant and tilt. Regarding the roll depend then the path plane.
-		Despite the important decreasing size of the search space for each waypoint ($Sp$), the global search space for the CPP increase dramatically  due to the number of waypoint and the ordered constraint. In fact due to the ordered constraints and the global search space is re-defined as :
-		\begin{equation} \label{eq:ArrangmentCPP}
-			A^{Sp}_{N}=\frac{Sp!}{(Sp-N)!} = |Vs|
-		\end{equation}
- Where $|Vs|$ is the number of possible solution for a set of $n$ cameras. Due to the importance of the waypoints order in the optimization process the number of possible solution increase greatly. Obviously due to the complexity of the problem  (the  complexity is comparable to the WRP see in Section \ref{sec:WRP}) and the increased size of the global search space for CPP problem  can be one of the important reason of the inconclusive result.
+	%	Where $W$ and $H$ are the size as width and height of the area to cover. $Sp$  is simplified due to the reduced number of dimensions optimized.
+	 In fact, the altitude is fixed and identical for all the waypoints as the pan and tilt. The roll of the camera projection is depending than the trajectory thus this removal from the criteria to optimize reducing the search space.
+	% Regarding the paththe roll depend then the path plane.
+		Despite the important decreasing size of the search space for each waypoint, the global search space for the CPP increase dramatically  due to the number of waypoints and the ordered constraint. In fact due to the ordered constraints and the global search space is defined as $A^{Sp}_{N}=\frac{Sp!}{(Sp-N)!} = |Vs|$
+ Where $|Vs|$ is the number of possible solution for a set of $n$ cameras. Due to the importance of the waypoints order in the optimization process the number of possible solution increase greatly. Obviously due to the complexity of the problem and the increased size of the global search space for CPP problem  can be one of the important reason of the inconclusive result.
  \end{itemize}
 		
-The conclusion is despite the low quality of the answer obtained with these methodologies the interesting track and possible gain must push the research to continue to explore the GAPSO optimization to solve the problem of coverage path planning problem as a one optimization problem. But caution the increased search space can become break of the optimization despite the reducing of the number of dimensions to optimize. In fact, the number of dimensions is reduced by fixing the altitude and the camera orientation and moreover with this  unique optimization  the number of required waypoints are greatly reduced. 
-The main risk of using  a unique optimization for the problems of CPP is the complexity and the associate search space. In fact, among the reason to explain the inconclusive results, the complexity due to the fusion of 2 NP-hard and NP-complete problems could be the cause. \\
-		
+For all this reason the  optimization of Coverage path planning  in one optimization by ordering the waypoints does not appear efficient enough and the solution proposed before appear more much more efficient and flexible.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
