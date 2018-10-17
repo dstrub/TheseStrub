@@ -243,7 +243,7 @@ The points distribution can numerous and adapted to different specific case. Mai
 \begin{center}
 \minipage{0.65\textwidth}
    \includegraphics[width=\linewidth]{img/randomGridRef171.png}
-  \caption{Example of  map to cover with a randomized area sampling. Illustration form Horster et al \citep{171*horster2006} \\
+  \caption{Example of  map to cover with a randomized area sampling. Illustration from Horster et al \citep{171*horster2006} \\
   (a) Area  to cover.\\ 
   (b) Area with the random points of the grid to cover \\
   (c) Importance weighting of the area (zone of the interest.\\  
@@ -474,7 +474,7 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
   Also, due to the high sampling frequency the 2D grid pattern is a better choice and allow a reasonable number of points to describe a complex area. 
   The grid is placed on the floor of the area to control. Floor is always considered as flat without relief.
   In our case the zones of interest can be varied and may include non-interesting zones, priorities zones  and  multi coverage. \\
-  To can possibly allow all these zones of interest feature, the selected design of the grid is based on the formulation form the Eq:\ref{eq:PcFull}. During the experiment presented in the following  chapters the priorities zones and multi coverage are not exploited. Consequently the $k=1$ and $p=1$.  Although some rapid tests were carried out with k-coverage and priority zone constraints, the results obtained were judged to be of little relevance, hence the choice to focus on constant priorities and single camera coverage for the entire area to be covered.
+  To can possibly allow all these zones of interest feature, the selected design of the grid is based on the formulation from the Eq:\ref{eq:PcFull}. During the experiment presented in the following  chapters the priorities zones and multi coverage are not exploited. Consequently the $k=1$ and $p=1$.  Although some rapid tests were carried out with k-coverage and priority zone constraints, the results obtained were judged to be of little relevance, hence the choice to focus on constant priorities and single camera coverage for the entire area to be covered.
  Although some rapid tests were carried out with constraints of k-coverage and priority zones, the results obtained were considered irrelevant hence the choice to focus on constant priorities and single camera coverage for the entire area ($k=1$ and $p=1$).
 %   The zone of interest can vary depending on the need of the experimentation, but the design chosen is flexible to apply if necessary the formulation form the Eq:\ref{eq:PcFull} with mostly $k=1$ and $p=1$, also a set $U$ is used to represent the non-interesting zone as it was presented in eq \ref{eq:setU}.
 
@@ -575,7 +575,7 @@ The cameras is called calibrated when the intrinsic parameters ($K$)are defined.
   
  	\item $f$ is  the focal length. The focal length is the distance between the pinhole and the sensor (a.k.a. image plane)
   	\item $k_u et k_v$ are the magnification factors of the image on width and heigh ; related to the image sensor format%  les facteurs  aggrandisement de l'image 
-  	\item $u_0 v_0$  are the coordinate  of  the principal point of the image ( projection of the centre optic on to the image plan)  %the les coordonnées de la projection du centre optique de la caméra sur le plan image 
+  	\item $u_0 v_0$  are the coordinate  of  the main point of the image ( projection of the centre optic on to the image plan)  %the les coordonnées de la projection du centre optique de la caméra sur le plan image 
   	%\item $s_uv$ qui traduit la non-orthogonalité potentielle des lignes et des colonnes de cellules électroniques photosensibles qui composent le capteur de la caméra. La plupart du temps, ce paramètre est négligé et prend donc une valeur nulle.\\
   	  \end{itemize}
 		Once these elements are known the matrix $K$ can be designed :
@@ -616,7 +616,7 @@ In  \citep{193*fu2014}, the camera projection has been computed for several rota
 In \citep{181*wang2017}, the model of camera projection begins to be simplified by assuming some fixed parameters. The fix parameters allow more efficient estimation, by economizing part of projection computation of the camera at each time. The fixed parameters allow to pre-estimate  all of part of the shape.  \\
 In \citep{165*jiang2010}, the model of camera projection is used to compute one time for a fix pan and roll in order to have a coverage estimation use in a 2D map. The camera projection is finally simplified by using a kind of triangle shape.\\
 To go further other model and formulation inspired by the pinhole model has been proposed as \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010}. These models are inherited for the camera projection and adapted to fit their problems. \\
-In \cite{87*morsly2012,194*fu2010} the camera is considered to be placed on the floor with a fix pan (with the looking direction almost parallel to the floor). Therefore the camera projection is simplified by an isosceles triangle where the shape depends on the focal length.\\
+In \cite{87*morsly2012,194*fu2010} the camera is considered to be placed on the floor with a fix pan (with the viewing direction almost parallel to the floor). Therefore the camera projection is simplified by an isosceles triangle where the shape depends on the focal length.\\
 In \citep{141*akbarzadeh2013} the camera projection is also simplified in order to have a kind of isosceles triangle shape with considering the depth of view of the camera. In this case the  camera projection has a shape of "piece of pie" \\
 In \citep{146*li2011} thanks to a fix pan and focal length, the camera projection is simplified in order to have a rectangle projection onto the ground. The sweep is designed consequently to the size of the camera projection, in order to minimize the overlap and have full coverage of the area.  
 
@@ -677,15 +677,15 @@ In this condition the efficiency of the function $f(...)$ in charge of the compu
 \subsubsection{Coverage estimation optimization} \label{sec:coverageEstimation}
 To design an efficient cost function it is necessary to reduce the  computation time and estimates the covered area . %A good estimation of the covered area  is primordial for the optimisation process. 
   The camera projection model has to be simplified with some basic assumption related to the problems.\\
-Considering our case, where a camera is fixed on a UAV with a looking direction orthogonal to the ground, (without any rotation in $\alpha$ pan and $\beta$ tilt). 
-In this model the camera projection is always a rectangle as shown in Figure \ref{fig:cam_proj}. In fact the camera is  placed on an UAV and have a direct look to the ground floor. The looking direction of the cameras is  perpendicular then the floor, thus the rectangle projection.
+Considering our case, where a camera is fixed on a UAV with a viewing direction orthogonal to the ground, (without any rotation in $\alpha$ pan and $\beta$ tilt). 
+In this model the camera projection is always a rectangle as shown in Figure \ref{fig:cam_proj}. In fact the camera is  placed on an UAV and have a direct look to the ground floor. The viewing direction of the cameras is  perpendicular then the floor, thus the rectangle projection.
 The area covered  by the camera is defined by the rectangle with : $Wr\times Hr$ 
 It is possible to compute the size of the covered rectangle for a given altitude by one camera, based on these given parameters. 
 %To compute the size of the projected rectangle the focal length $f$, the altitude of the cameras $A$ and the sensor size $Sw\times Sh$ is required. 
 %Especially the focal length $f$, the altitude of the cameras $A$ and the sensor size $Sw\times Sh$. \\
 
 %The altitude is the distance between the grid and the cameras, in the simple case $A$ is considered to be equal to $z$, when the grid is on the floor.  \\
-Based on the useful parameters form the camera $(f ,Sw\times Sh ,z)$ the computation to estimate the size of a camera projection ($Wr$,$Hr$) is :
+Based on the useful parameters from the camera $(f ,Sw\times Sh ,z)$ the computation to estimate the size of a camera projection ($Wr$,$Hr$) is :
 
 %\begin{equation}
 %s= [Sw ; Sh]  %\mbox{   } Sw,Sh \in \mathbb{N} 
@@ -742,7 +742,7 @@ All these simplifications helps the cost function to be fast and efficient.  In 
 \subsection{Parameters to optimize }\label{sec:parameterToOptimize}
 % en raison de    ref 191*
 By dint of the simplification presented previously the parameters vector (see Equation \ref{eq:v}) can be reduced.
-The computation of one camera projection onto a grid (as in Section \ref{sec:GridMap}, and the camera is in altitude with a looking direction orthogonal to the floor. Based on the Equation \ref{eq:WrHr1}
+The computation of one camera projection onto a grid (as in Section \ref{sec:GridMap}, and the camera is in altitude with a viewing direction orthogonal to the floor. Based on the Equation \ref{eq:WrHr1}
 Just few parameters are necessary as showed in Equation \ref{eq:WrHr1}. Thanks to the proposed assumption,  Equation \ref{eq:v} can be reduced by keeping only the position of the camera $(x,y,z)$ and the roll ($\gamma)$ as:
 	\begin{equation}\label{eq:v2}
 		v=(x,y,z,\gamma ) 
@@ -915,7 +915,7 @@ A solution that does not fully respect the soft constraint can be considered as 
  	\max f(Vs) - \min \epsilon  \mbox{  } \forall Vs \subset \varepsilon'
  \end{equation}
  
-The objective is to maximize the coverage of a set of cameras ($f(Vs)$) with respect the hard constraints $\varepsilon'$ and minimized the error form the soft constraints $\epsilon$.
+The objective is to maximize the coverage of a set of cameras ($f(Vs)$) with respect the hard constraints $\varepsilon'$ and minimized the error from the soft constraints $\epsilon$.
 Concretely the soft constraints are commonly integrated in the Cost Function as can be the resolution or  the  complex shape of the map thanks to the grid design. 
 
 
@@ -925,7 +925,7 @@ The cost function has the mission to estimate the quality of an answer. In our c
 
 The cost function has to estimate the area cover by a set of cameras in order to do that the area is discretized by a grid as in Section \ref{sec:Grid}. \\
 The grid customization permit to introduce some of the soft constraints as the complex shape of the map by removing the points out of the area to cover.  \\
-The grid modification  allow the cameras position to cover the area already covered and removed form the grid. The consequence of it are to reduce the coverage rate possibility. The optimization have to minimized this error.
+The grid modification  allow the cameras position to cover the area already covered and removed from the grid. The consequence of it are to reduce the coverage rate possibility. The optimization have to minimized this error.
 
 To evaluate the coverage of a set of cameras is essential to can estimate the cameras projection of each, as detailed in the Section \ref{sec:CamerasDefinition}. The area cover by the $j$-Th camera is noted as in Equation \ref{eq:PciK} (where $Pc\in G$). By iteratively repeated this for each camera of the set the full area coverage is computed (as Equation\ref{eq:sum sum v g}). 
 

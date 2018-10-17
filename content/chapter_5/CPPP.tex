@@ -297,7 +297,7 @@ The simple sweep path is computed based on the camera projection at the highest 
 
 The solution proposed give a shorter path compared than the swept method (8173px versus 8582px) for a high level of waypoints coverage. The difference between the 2 paths are not so important  %even more considering the  return to the starting point to the swept method (around 770px)
 in term of distance. Nerveless the difference of trajectories complexity gives an important advantage of the method proposed.\\
-Thanks to these experiments the limit of our method begins to appears. The principal limitation is due to the difficulty to optimize numerous waypoints. %(as that was discussed in the Section \ref{sec:biggestMapcalWaypoint}).
+Thanks to these experiments the limit of our method begins to appears. The main limitation is due to the difficulty to optimize numerous waypoints. %(as that was discussed in the Section \ref{sec:biggestMapcalWaypoint}).
  The increased number of waypoints associate to a high level of coverage rate required and push the GAPSO optimization to this limits. Numerous generations are necessary before converging. On the other hand, the path plan computation appear efficient despite the increased number of waypoints and globally the solutions proposed give a better CPP in term of distance and trajectories complexity for a high coverage rate than the classical sweep.
 
 %During this experiment the limit of the proposed solution begin to appear. The principal reason of this limitation is due of the waypoints positioning  optimization (see in Section \ref{sec:biggestMapcalWaypoint}) and the path plan
@@ -407,7 +407,7 @@ To formulate properly the CPP problem it is essential to estimate the area cover
 %The area covered by the path planning need to be computed for that path passing by all the waypoints is required.
  Once the path known the coverage estimation can start. \\
  The idea is to consider all the points of the grid $G$ (see Section \ref{sec:Grid} for the grid definition) between two waypoints as covered. To compute the points cover are during the fly over two waypoints the camera fixed on the UAV has to be known in term of projection size onto the floor and the direction. %In fact, the size of the camera projection and the direction will change the coverage.
-  The direction is directly deducted from the waypoints positions and the size of the camera projection form the camera parameters as its altitude %(see Section \ref{sec:CamerasDefinition}). 
+  The direction is directly deducted from the waypoints positions and the size of the camera projection from the camera parameters as its altitude %(see Section \ref{sec:CamerasDefinition}). 
   Based on the projection size onto the floor the area covered between the waypoints are deduced as illustrate in Figure \figref{fig:coverageCPP}.
 
  

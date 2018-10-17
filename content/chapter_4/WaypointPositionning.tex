@@ -81,7 +81,7 @@ The more important are the inertia of the particles, the size of the swarm and t
 \item The size of the swarm  have an impact on the convergence time (as the  number of iterations).  Indeed a big amount of particles in the swarm  means more exploration of the search space at each iteration, but also more comparisons to find the best particles. The comparison may have a non negligible computation time. 
 The swarm size is commonly fixed but can be as the population in the GA (see section \ref{sec:Population} ) dynamically adjusted during the optimization process as in \cite{228*leong2008}. 
 
-\item The initial dispersion of the swarm can be a decisive element as the population for the GA (see in \ref{sec:initPOP}). For the PSO the use of an heuristic to initialize all the particles of the swarm is not recommended due to the important risk to converge prematurely in a local minimum. The random dispersion appears as the more appropriate for a global optimization. On the other hand the fast convergence and the PSO ability to climb the small hill to go out of the local minima can be used in order to refine an other optimized solution. The principal risk is to optimize around the initial dispersion and do not explore correctly the search space.  
+\item The initial dispersion of the swarm can be a decisive element as the population for the GA (see in \ref{sec:initPOP}). For the PSO the use of an heuristic to initialize all the particles of the swarm is not recommended due to the important risk to converge prematurely in a local minimum. The random dispersion appears as the more appropriate for a global optimization. On the other hand the fast convergence and the PSO ability to climb the small hill to go out of the local minima can be used in order to refine an other optimized solution. The main risk is to optimize around the initial dispersion and do not explore correctly the search space.  
 %\item Other criteria as $\phi_g$ and $\phi_i$ are minor but can be useful to have a realy fine adjusted PSO.
 \end{itemize}
 
@@ -442,7 +442,7 @@ In the following section only the more significant steps has been presented.
 %	C:\Users\stru\Documents\python\camfix 	
 \begin{mfigures}[!]
 {Coverage area from satellite images with 75 cameras for a coverage of $76.39\%$ using the the GA.}{fig:Le2iCubeMap} \centering
-\mfigure{width=.4\linewidth}{img/LE2Imap.png}{The area to cover taken form satellite images.}{subfig:Le2iCube}
+\mfigure{width=.4\linewidth}{img/LE2Imap.png}{The area to cover taken from satellite images.}{subfig:Le2iCube}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/EmptyCubRoom.png}{The mask of the area to cover.}{subfig:satimgMask}
 \mfigure{width=.4\linewidth}{img/LE2I_GAevolvTurnComplex76_47481899.png}{Area cover by the network of cameras using the GA.}{subfig:IUTCoverage}
@@ -466,7 +466,7 @@ The result obtained by the GA optimization (see Figure \figref{subfig:IUTCoverag
 
 \begin{mfigures}[!]
 {Coverage area from satellite images with 25 cameras for $90.76\%$ of coverage using the GA and $92.81\%$ of coverage using the GAPSO.}{fig:TorcyMap} \centering
-\mfigure{width=.4\linewidth}{img/torcy3.png}{The area to cover taken form satellite images.}{subfig:satimgTorcy}
+\mfigure{width=.4\linewidth}{img/torcy3.png}{The area to cover taken from satellite images.}{subfig:satimgTorcy}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/torcy4.png}{The mask of the area to cover.}{subfig:satimgMaskTorcy}
 \mfigure{width=.4\linewidth}{img/Torcyz90GANcam25.png}{Area cover by the network of cameras using the GA $90.76\%$.}{subfig:coverageGATorcy}
@@ -510,7 +510,7 @@ Thanks to these tries the size of the area to cover and the number of waypoints 
 		\subsubsection{Vast and complex outdoor}\label{sec:fey_map}
 
 \begin{mfigures}[!]{Optimization of the waypoints poses with a vast outside area and just a few  black holes.}{fig:fleyExp} \centering
-\mfigure{width=.4\linewidth}{img/fig12-a2.png}{The area to cover taken form satellite images.}{subfig:satimgFley}
+\mfigure{width=.4\linewidth}{img/fig12-a2.png}{The area to cover taken from satellite images.}{subfig:satimgFley}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/fig12-b2.png}{The mask of the area to cover.}{subfig:satimgMaskFley}
 \mfigure{width=.4\linewidth}{img/fig12-c2.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverageFley}
@@ -539,8 +539,8 @@ In order to cover the area with high ratio, the solution can be to use a bigger 
  
 
 		\subsubsection{Biggest map with numerous waypoints}\label{sec:biggestMapcalWaypoint}
-\begin{mfigures}[!]{Optimization of the waypoints pose with a big outside area: (a) is the area to cover take form a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoints position, (d) is the representation of the black hole.}{fig:CalvissonExp} \centering
-\mfigure{width=.4\linewidth}{img/calvisson2+mask.png}{The area to cover taken form satellite images.}{subfig:satimgCalvisson}
+\begin{mfigures}[!]{Optimization of the waypoints pose with a big outside area: (a) is the area to cover take from a satellite images,(b) is a mask of the area to cover, (c) is a result of the coverage with the waypoints position, (d) is the representation of the black hole.}{fig:CalvissonExp} \centering
+\mfigure{width=.4\linewidth}{img/calvisson2+mask.png}{The area to cover taken from satellite images.}{subfig:satimgCalvisson}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/calvisson2mask.png}{The mask of the area to cover.}{subfig:satimgMaskCalvisson}
 \mfigure{width=.4\linewidth}{img/zcalvisson2result1cout_98_260375_gen_170501_Ncam_110.png}{The result of the coverage with the waypoints position.}{subfig:satimgcoverageCalvisson}
