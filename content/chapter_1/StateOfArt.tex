@@ -348,7 +348,7 @@ The solutions proposed is based on a greedy search heuristic. The objective is t
 In \cite{171*horster2006} a first greedy search solution has been presented before an other algorithms with extend the greedy solution. The algorithms developed in \cite{171*horster2006} is called Dual Sampling.\\
 The dual sampling is an incremental method. 
 First step, is to initialize the position of all the cameras. A random initialization for the position and the orientation must be appropriate.  \\
-Second step, is to select one point of the area non covered yet. The area is discretized by several points, with each point must be covered by at least one camera. Around the selected point several position and orientation are tested for the cameras at proximity. The possible position are obtained by sampling the area around the point to cover. Finally the best cameras position and orientation is kept. The best cameras positions and orientations depend then the number of other points globally covered in the area. 
+Second step, is to select one point of the area non covered yet. The area is discretized by several points, with each point must be covered by at least one camera. Around the selected point several position and orientation are tested for the cameras at proximity. The possible position are obtained by sampling the area around the point to cover. Finally the best cameras position and orientation is kept. The best cameras positions and orientations depend on the number of other points globally covered in the area. 
 The second step, is repeated and the set of uncovered control points are reduced at each iteration. This procedure is applied until the stopping criterion are reached. That mean enough points of the area are covered. \\
 The constructive solution have some inconvenient notably in terms of efficiency. Indeed this solution is limited by the number of cameras and size of the area due to the exponential difficulty. %In fact, bigger area mean more point and more camera mean more position and orientation to test at each iteration.
 
@@ -423,7 +423,7 @@ Soto et al. \cite{12*soto2009} propose a network of a dozen of PTZ cameras. That
 The need has been defined by a utility function (or local cost function). The goal is to track most of the targets as possible with the better resolution. The cameras score when they obtained a desired image resolution for all the visible targets.
  The multi-target issue can seem far from the coverage maximization we are interested in. But the number of targets may be higher than the number of cameras. The higher number of targets push the camera tracking to be an interesting solution to maximize the coverage of an area. In this case, the quality of the coverage will also depend on the number of targets and the importance of the resolution constraint.  \\
 	 In \cite{18*ding2012} and \cite{25*song2008}, different experiments have been proposed with a number of targets which increases progressively.\\
-	  Furthermore, the decentralized solution (as proposed in \cite{25*song2008} and \cite{18*ding2012})is more adapted to prevent the security issue, as wrong transitions and interceptions by hostile opponents.  Obviously the security and the integrity of the system are primordial in the surveillance application. %The decentralization of the system allow to process directly the information.  %(or more exactly in this case for tracking)
+	  Furthermore, the decentralized solution (as proposed in \cite{25*song2008} and \cite{18*ding2012})is more adapted to prevent the security issue, as wrong transmission and interceptions by hostile opponents.  Obviously the security and the integrity of the system are primordial in the surveillance application. %The decentralization of the system allow to process directly the information.  %(or more exactly in this case for tracking)
 To have the decentralized system the cameras must have some autonomy. \\
 In the experiment proposed in \cite{12*soto2009} and \cite{18*ding2012,25*song2008} each camera is smart enough to have its own tracking and control module. Also the cameras are able to communicate with each other, until a consensus is reached. The consensus is when a Nash equilibrium is found between the two contradictory objectives. In this case it is a win win situation for both objectives.\\
 So the objectives are not independently optimize, moreover the solution proposed have to optimize the objectives  simultaneously in order to reach a consensus. The consensus is reached when it became impossible to upgrade one of the objectives without downgraded the other one.\\
@@ -945,7 +945,7 @@ The more important branches to optimize the CPP is the use of sweep associate to
 \mfigure{width=.4\linewidth}{img/CellDecop.png}{}{}
 
 \end{mfigures}	
-To solve the CPP problem the solution the most common is to use the cellular decomposition. The cellular decomposition is by some aspect inspired by the methodologies presented from the WRP.
+To solve the CPP problem the solution the most common is to use the cellular decomposition. The cellular decomposition is by some aspects inspired by the methodologies presented from the WRP.
 To remember one of the interesting solution for the WRP  is to split the problem in two sub-problems and optimize its independently. The first sub-problem is to find the best waypoints and the second sub-problem is to find the shorter path passing by all the waypoints (as a TSP).
  The Cellular decomposition also split the problem of CPP in two sub-problems. The first sub-problem is focus on the decomposition of the complex area in several cells. Each cell has to be a simple polygon (basically a rectangle or latter any quadrilateral polygon). Inside each cell a sweeping has be applied in order to cover all the area (see Figure \figref{fig:CellDecp}). The second sub-problem is to find the path which can connect each simple polygon. The problem has to take in account, the sweep start and end to find the global optimized shorter path. Where the global optimized shorter path take in account the sweep trajectory of each simple polygon and the path between the simple polygons.
  
@@ -1008,7 +1008,7 @@ The global path distance has to be reduced by an appropriate path passing by eac
 	To have an adapted sweep the footprint has to be defined depending then the camera ability and the objectives. In \cite{144*torres2016} the size of the sweep is dependent then the area cover by a camera and a sufficient amount of overlaps for the 3D reconstruction (see also\citep{191*di2016}). In Li et al.  \citep{146*li2011} the foot print of the camera with a small pan is took in account. Due to the pan the camera projection is not a rectangle but a trapezoid. Consequently the sweep size is adapted by taking the larger side of the trapezoid for the sweep dimension.
 	Also for the grid decomposition the sweep size is directly related the coverage ability of the mobile robots (as example in \citep{215*lee2010,195*choi2009}).  % also 216*+48  215*  195* +55 218*+12  use a sensing camera at the front).
 	
-	One extra element to take in account for the sweep can be in some case the external element as the wind. In \citep{215*lee2010,190*hsu2014}  %!![190*] !! 
+	One extra element to take in account for the sweep can be in some cases the external element as the wind. In \citep{215*lee2010,190*hsu2014}  %!![190*] !! 
 	the external condition are taking in account in the cost function and influence the sweep.
 	
 	
@@ -1052,7 +1052,7 @@ To optimize the TSP numerous algorithms was tested and some of them has been spe
 
 	In the survey of Carreras et Galceran \citep{66*galceran2013} the solutions proposed to solve the TSP is to computes an exhaustive walk trough the adjacency graph. This solution is workable only for compute small adjacency graph. The GA is popular to optimize the TSP and is commonly use to evaluate the influence of this parameter as in \citep{68*muhlenbein1989} \citep{80*serpell2010}. About the CPP problem the GA is also used to optimize the TSP part as in Jimenez et al. \citep{217*jimenez2007}. Where the GA is applied to find an optimized schedule after an exact cellular decomposition of a complex polygon. \\
 The GA is announced well appropriate to have an optimized solution for the TSP. 
-In some situation a  TSP is not realistic and some external constraint can be added as the wind effect, the turbulences, or holonomy constraint as in \citep{56*davies2006,102*ware2016,66*galceran2013}). The add of external constraints may become more complex the scheduling  of the cells. 
+In some situations a  TSP is not realistic and some external constraints can be added as the wind effect, the turbulences, or holonomy constraint as in \citep{56*davies2006,102*ware2016,66*galceran2013}). The add of external constraints may become more complex the scheduling  of the cells. 
  
  
 %236* proof of NP complet and NP-hard
