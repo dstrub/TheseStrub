@@ -7,38 +7,45 @@
 Finally it is the end, i hope that was easer and faster to read it then for me to write it.
 
 During this thesis, the problems of coverage path planning are solved with a new adaptive methods. The new methods introduced has been developed based on all the work carried out previously. 
-About the coverage path planning the naive and probably the first idea is to apply a sweeping inside the area to cover. This method can be efficient in numerous cases but may has many disadvantage as the size of the path (usually longueur) and its low robustness to additional constraints (as: path in 3 dimension, complex area, trajectory constraint,...). In fact, as discussed the different methods based on sweeping are workable but not much optimised and rigid to numerous constraints. 
-The solution proposed is a two steps optimisation by splitting the problems of coverage path planning into two sub-problems. The first sub-problem is to find the best waypoints for the coverage path planning. 
+About the coverage path planning the naive and probably the first idea is to apply a sweeping inside the area to cover. This method can be efficient in numerous cases but may has many disadvantage as the size of the path (usually longueur) and its low robustness to additional constraints (as: path in 3 dimension, complex area, trajectory constraint,...). In fact,  the different methods based on sweeping are workable but not much optimised and rigid to numerous constraints. \\
+The solution proposed is a two steps optimisation by splitting the problems of coverage path planning into two sub-problems. 
+The first sub-problem is to find the best waypoints position in order to cover the area. 
 The goal of this first sub-problem is to estimate the best position for a set of waypoints. 
-The best position  for a set of waypoints can be lead by several indicators and constraints depending then the case but in our case the main interest is the coverage rate of the area. Based on it a cost function has been developed to can estimate the coverage rate and integrate some of constraints.
+The best position for a set of waypoints can be lead by several indicators and constraints depending then the application but in our case the main interest is the coverage rate of the area. Based on it a cost function has been developed to can estimate the coverage rate and integrate some of constraints.\\
 %The best position depends then few constraints and the more important aspect to evaluate the waypoints position is the global coverage of the areas. 
-Consequently the goal became to find the best way to optimise the position for a set of waypoints, in order to maximize the coverage depending then the additional constraints. The problem of positioning waypoints is tricky and cannot be solved perfectly at each time (np-hard problems) hence the need to find an acceptable approximation to place the set of waypoints. An acceptable solution is the solution which maximizes the coverage and minimizes the potential constraints.
-The set of waypoints positioning is closely related than the camera positioning. We saw in the state of the art the principal solutions applied to optimize the problem of camera positioning.
-Among them the meta-heuristic and the evolutionary algorithm family and in particular the PSO (Particular Swarm Optimisation) are the most commonly used and most promising.
+Consequently the goal became to find the best way to optimise the position for a set of waypoints, in order to maximize the coverage depending then additional constraints. The problem of positioning waypoints is tricky and cannot be solved perfectly at each time (np-hard problems) hence the need to find an acceptable approximation to place the waypoints. An acceptable solution is the solution which maximizes the coverage and minimizes the potential constraints, so that even if the solution found is not perfect it remains exploitable and can be considered as the best possible.
+The set of waypoints positioning is closely related than the camera positioning. We saw in the state of the art the principal solutions applied to optimize the problem of camera positioning.\\
+Among them the meta-heuristic with the evolutionary algorithm family and in particular the PSO (Particular Swarm Optimisation) are the most commonly used and most promising.
  The PSO may offers a fast solution with is flexible and easily tunable for different constraints. Despite the great potential of PSO, another algorithm is introduced and compared to give more fine result for our problems.
 The GA (Genetic Algorithms) from the same family than PSO, has been under estimate for this problem. During this thesis, the GA has been investigated more carefully. 
-To distinguish  between the 2 algorithms the GA and PSO have been compared in several condition to can conclude the on the advantage of using GA for the camera positioning in the wide and complex area when the PSO is faster and close then optimal solution  in the small area which .
+To distinguish between the 2 algorithms the GA and PSO have been compared in several condition to can conclude on the advantage of using GA for the camera positioning in the wide and complex area when the PSO is faster and close then optimal solution in the small area.
 Finally the solution proposed is to combine the advantage of these two algorithms to offer an appropriate and flexible solution by using a hybridized GAPSO. 
 The GAPSO used has the advantage to offer a flexible and appropriate answer to all the situation but that implies a longueur computation. 
-The innovative solution is introduced to solve the waypoints positioning problem thus allows the first sub-problems to be solved.
+The innovative solution is introduced to upgrade optimization of the waypoints positioning problem thus allows the first sub-problems to have a better solution.
 
-The second step is to find a path passing by all the waypoints positioned using the GAPSO. The problems of estimating the shorter path passing by a set of given waypoints are closely related than a well known problem. The TSP (Traveller Sell-man Problem) has the same goal and numerous works have been done to try to find the best algorithms to solve it. Unforgettably the TSP is one of the NP-complete problems and cannot be completely solved. The best way to get an acceptable solution for the TSP is to use a GA for combinatory problem as is advocated in the literature. 
+The second sub-problem is to find a path passing by all the waypoints positioned using the GAPSO. The problems of estimating the shorter path passing by a set of given waypoints are closely related than a well known problem. The TSP (Traveller Sell-man Problem) has the same goal and numerous works have been done to try to find the best algorithms to solve it. Unforgettably the TSP is one of the NP-complete problems and cannot be completely solved. The best way to get an acceptable solution for the TSP is to use a GA for combinatory problem as is advocated in the literature. 
 The idea is to find the good order to pass by all the waypoints before to come back to the starting one, while  minimizing the length path. 
 In this thesis this two sub-problem has been addressed and an efficient answer has been proposed. 
 
 Finally the innovative solution proposed is based on an original problem splitting to offer 2 independent optimization phases. Where some advanced algorithm has been applied to solve more efficiently the problem of waypoints (or cameras) positioning. An important work has been made on the algorithms for the waypoints positioning and allows us to affirm that an appropriate GA is more efficient than the PSO for large spaces and for a large number of waypoints despite previous works in the literature. Moreover the GAPSO allows an even more robust solution to constraints and give more flexibility to the proposed solution. 
 
 The solution proposed to can design an efficient path planning is at same time, shorter and more adaptable to the constraints. During the experiments presented few constraints has been added and the solution proposed shown this adaptability and efficiency. 
-The adventage of the solution proposed is the adaptability and flexibility to new constraint.  A future work  may be focus on the adding new constraints. Among the constraints 
+%The advantage of the solution proposed is the adaptability and flexibility to new constraint.  A future work  may be focused on the adding new constraints. 
+The advantage of the solution proposed is the adaptability and flexibility to new constraint and  a future work may be based on it. %Among the constraint unexplored until now . In fact, more work can be done to estimating an efficient path planing depending then constraint as for example mobility constraint.  
+Among the constraints unexplored so far, the one concerning the creation of the path is probably the most interesting.  Indeed many constraints of trajectory can be added to obtain an optimized path for different kind of UAVs. This type of constraints must be added according to physical property of the UAV used and deserve to be experimentally validated. 
+The experimental validation is also an important track of research. In fact, in this thesis the experimentation proposed are only based on simulation and the add of robotics experimentation may be a good way to validated and more over add some environmental constraints.  
+An other perspective for a future work can be to use the waypoints position and path plan computed as an initial guard tour before to work on a dynamic adaptation depending then the environment.
 
-... correct and continue ...
+
+
+... Correct and continue ...
 
  
- The smart idea is to decompose the problem the coverage path planning problem into two problems. 
- from CPP : 
- The conclusion is despite the low quality of the answer obtained with these methodologies the interesting track and possible gain must push the research to continue to explore the GAPSO optimization to solve the problem of coverage path planning problem as a one optimization problem. But caution the increased search space can become break of the optimization despite the reducing of the number of dimensions to optimize. In fact, the number of dimensions is reduced by fixing the altitude and the camera orientation and moreover with this unique optimization the number of required waypoints are greatly reduced. 
-The main risk of using a unique optimization for the problems of CPP is the complexity and the associate search space. In fact, among the reason to explain the inconclusive results, the complexity due to the fusion of 2 NP-hard and NP-complete problems could be the cause. \\
-		
+% The smart idea is to decompose the problem the coverage path planning problem into two problems. 
+% from CPP : 
+% The conclusion is despite the low quality of the answer obtained with these methodologies the interesting track and possible gain must push the research to continue to explore the GAPSO optimization to solve the problem of coverage path planning problem as a one optimization problem. But caution the increased search space can become break of the optimization despite the reducing of the number of dimensions to optimize. In fact, the number of dimensions is reduced by fixing the altitude and the camera orientation and moreover with this unique optimization the number of required waypoints are greatly reduced. 
+%The main risk of using a unique optimization for the problems of CPP is the complexity and the associate search space. In fact, among the reason to explain the inconclusive results, the complexity due to the fusion of 2 NP-hard and NP-complete problems could be the cause. \\
+%		
 		
 		Sum up,\\ 
 		advantage theses\\
