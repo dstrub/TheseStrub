@@ -1,17 +1,18 @@
 \chapter{Introduction}\label{chap:Intro}
 
-\minitoc
+%\minitoc
 
 
 %\section{The origin}
-The project of self camera organisation has been initiated by a partnership between the CISIR and the previously called Le2i (Invia). The project has to aim to develop a smart system composed by camera mounted on UAVs. The system has to be available to self-organize and auto-adapt to a dynamic environment. Concretely the aim of the system is to has  cooperation work between UAVs, to detect security issue in a complex and dynamic environment. This initial project is ambition and full of technical lock. To be realistic  this project must be resized and the research have to be focussed.%  lock and must be resized to begin. 
+The project of self camera organisation has been initiated by a partnership between the CISIR and the previously called Le2i and since January 2019 ImVia. The project has to aim to develop a smart system composed by camera mounted on UAVs. The system has to be available to self-organize and auto-adapt to a dynamic environment. Concretely the aim of the system is to has  cooperation work between UAVs, to detect security issue in a complex and dynamic environment. This initial project is ambition and full of technical lock. To be realistic  this project must be resized and the research have to be focussed.%  lock and must be resized to begin. 
 
 The project start with a basic idea to develop a smart system composed by a camera mounted on a UAV. 
-The first step, is to manage the different positions of a UAV, inside the area to control. The aim here is to find the best point of view for the surveillance. To monitor correctly the point of view must cover  quasi totality  of  the environment.
+The first step, is to manage the different positions of a UAV, inside the area to control. The aim here is to find the best viewpoints  for the surveillance. To monitor correctly the area, the viewpoints selected must cover the quasi totality  of  the environment.\\
 For that is important to find the relevant waypoints and create a shorter path passing by all of then in order to can efficiently control a given zone. Our concern here is to find the strategic positions for the waypoints, to control the area despite the environmental constraints. The constraint can be various as discussed in detail in the following sections (the shape of the area, the UAV limitation, the image qualities requirement, are some example of constraints). 
-Estimating efficiently the path plan with strategic waypoints poses is an important technical lock for create a complete and autonomous system of smart cameras mounted on UAVs. So far no optimal solution has been found. Nevertheless, some solution has been applied (see Section \ref{chap:stateOfTheArt}) depending then different constraints but all of the solution proposed in the literature are imperfect and can be upgraded. 
+Estimating efficiently the path plan with strategic waypoints poses is an important technical lock for create a complete and autonomous system of smart cameras mounted on UAVs. So far no optimal solution has been found. Nevertheless, some solution has been applied (see Section \ref{chap:stateOfTheArt}) depending then different constraints but all of the solution proposed in the literature are imperfect and can be upgraded. \\
 In order to propose a novel approach for estimating the best path planning for UAV under constraints. The solution  propose are taking this complex problem and split it in sub-part. 
-The first sub-part is to estimate the position of each waypoints and the second part is to compute a path passing by the waypoints previously founded. Despite the apparent simplicity of the proposed solution numerous problem appear nobly the difficulty to find the optimal position for all the waypoints. 
+
+The first sub-part is to estimate the position of each waypoints and the second part is to compute a path passing by the waypoints previously founded. Despite the apparent simplicity of the proposed solution numerous problem appear nobly the difficulty to find the optimal position for all the waypoints. \\
 Estimating the best waypoints position is finally similar then cameras positioning. The major part of this these is focus on finding the best cameras positionning (or waypoints) which is an open challenge. In the second time, the path planning passing by the waypoints is addressed with include the estimated number of waypoints.
 
 
@@ -57,10 +58,17 @@ The first point to address is defining the pose of the camera (or set of cameras
 %The objectives  vary and depending than the finality the cameras position is greatly affected.
 These two articles share the same objective, i.e. to get the best possible coverage of an area, but since the constraints and secondary objectives they must comply with are different (e.g. number of cameras, resolution, luminosity, tracking, etc.), it leads to different formulation and approach. 
 
-The next section focuses on positioning the camera to maximize viewing areas. The viewing area or coverage rate of the area is directly related to the estimated position of each camera and their orientation. To get the best coverage, it is essential to find the best pose for each camera, depending on the constraints and possible secondary goals.\\
+The next sections of this theses focuses on positioning the camera to maximize the viewing areas. The viewing area or coverage rate of the area is directly related to the estimated position of each camera and their orientation. To get the best coverage, it is essential to find the best pose for each camera, depending on the constraints and possible secondary goals.\\
 %(!!!! The finality and thus the secondary objective greatly, have an important influence on the camera positioning.!!!!!)
 
-Camera positioning for maximizing the coverage rate has been studied these past decades, using many different approaches. The following sub-section will provide an overview of different ways of defining the coverage drawn from the literature.
+The camera positioning for maximizing  the coverage rate is an open challenge studied this last decade and still open. 
+In the following chapters we will introduce  the problem and some of the more interesting solution studied in the literature.
+The research of the last decades  shows the complexity of the problem in its plurality and the solutions that have been provided to try to fix it.\\
+Thanks to the literature the problem complexity and the multiplicity of constraints is studied. In fact it will appear the importance of the constraints depending then the solution proposed and the importance of well targeted constraints for the problem formulation and the solutions adopted. \\
+Based on state of the art  in the chapter \ref{chap:stateOfTheArt} a sharp problem formulation is proposed adapted to the UAVs constraints in the chapter \ref{chap:formulation} and the algorithms provided to answer it in the chapter \ref{chap:EA}. \\
+The last chapters of this theses is dedicated to our solution and the experimental results obtained by simulations of complex area in first time for waypoints positioning in chapter \ref{chap:waypointPoseExp}, followed by the coverage path planning in the chapter \ref{chap:Coverage path planning problem}.
+ 
+%Camera positioning for maximizing the coverage rate has been studied these past decades, using many different approaches. The following sub-section will provide an overview of different ways of defining the coverage drawn from the literature.
 
 %The approaches was greatly influenced by finality. In fact the finality will involve a main objective and potential some other secondary objective with their constraint. In many case the coverage maximization is the main objective but the impact of the secondary objectives are not negligible. In numerous cases, the maximization of the coverage is only the first part of the problem, hence the importance of secondary objectives.
 %The following sections are dedicated on what kind of area is covered  what is exactly the coverage with the secondary objectives  associated too.
@@ -68,90 +76,90 @@ Camera positioning for maximizing the coverage rate has been studied these past 
 %%His approach is applicable depending on the formulation of the constraints and objectives. In numerous cases, the maximization of the coverage is only the first part of the problem, hence the importance of secondary objectives.\\
 %%The following part is focused on what kind of area is covered what is exactly called coverage and with the secondary objectives associated too.
 
-\subsection{Objective: Coverage }\label{sec:FirstObjCover}
-
-Before formalising the coverage rate to be maximised, it is necessary to define exactly what is meant by coverage: is the aim to maximise the surface area of a three-dimensional object or a 2D zone whose perimeter has been circumscribed? Is there a priori knowledge of the area to be covered (its perimeter, its bounding box, etc.) or not? Is the area to be covered homogeneous or does it contain prioritized sub-areas? 
-% Among the huge possible definition more or less restrictive the more interesting to studied is discussed: 
-
-
-\begin{itemize}
-%-------------------------------------------------
-\item Object coverage: \\
-\begin{figure}[t!]
-\center
-\minipage{0.75\textwidth}
-   \includegraphics[width=\linewidth]{img/objectCoverFrom142.png}
-  \caption{Full coverage of an object in the 3D space. The coverage is made by selecting a set of adapted waypoints. the coverage must be good enough to can reconstruct the 3D shape of the object without any occlusion. This result is from Hoppe et al. \cite{142*hoppe2012}.}\label{fig:ObjectCover142}
-  \endminipage\hfill
-\end{figure}
-   %The definition of a coverage can be varied this is a good example. 
-   In Hoppe et al. \cite{142*hoppe2012} a good coverage is defined by the ability to have full 3D reconstruction of an object (in their 3 dimensions) with no occlusion. In this work, some prior knowledge on the object is exploited such as a rough surface description (mesh). The camera follows a trajectory "around" the object and its looking direction is oriented towards the center of the mesh (see Figure \ref{fig:ObjectCover142}). 
-  Since it is a matter of covering the 3D surface of an object, in a next-best-view strategy, this application remains too far from the one we wish to implement.  It is therefore barely applicable to our problem. \\ 
-   %-------------------------------------------------
-   \item Path to cover: \\
-   \begin{figure}[t!]
-\center
-\minipage{0.75\textwidth}
-   \includegraphics[width=\linewidth]{img/PathToCover[81].png}
-  \caption{The path to cover is illustrate in the work of Nikolaidis et al. \cite{81*nikolaidis2009}. The aim is to is focused on cover a road (walk path) in a small room by using 3 cameras. }\label{fig:pathToCover81}
-  \endminipage\hfill
-\end{figure}
-   The point here is to observe the entire trajectory commonly taken by users (car, pedestrian, …). When the area to cover is a well-known place, the main trajectory taken by the users can be estimated or extracted \cite{27*bodor2005}. If the area to cover is a road, for instance, then the trajectory of the driver is known \cite{14*lu2011}. In this condition, the aim is to cover the common trajectory of the user as presented in  \cite{14*lu2011,27*bodor2005,30*bodor2005,81*nikolaidis2009} (see the Figure \ref{fig:pathToCover81}). The path coverage is interesting due to the restricted area to cover: not an entire area, but only a path within a given area, that can be seen as a priority sub-area. \\
-   %-------------------------------------------------
-   \item Coverage priority: \\
-      \begin{figure}[t!]
-\center
-\minipage{0.75\textwidth}
-   \includegraphics[width=\linewidth]{img/MapRoI165.png}
-  \caption{Map of an area to cover with crucial sub-area (region of interest) the normal sub-area  and obstacle. This map is an example of area coverage  introduce in  Jiang et al. \cite{165*jiang2010}. }\label{fig:MapRoI165}
-  \endminipage\hfill
-\end{figure}
-   A natural way of defining the coverage in a context of insufficient number of cameras, is to define as priority.
-    In \cite{84*xu2011,165*jiang2010,171*horster2006}, some predefined regions are set as "priority" and called respectively "region of interest", "crucial sub-area" (see Figure \ref{fig:MapRoI165}) and "importance space weighting".  In the solutions proposed  by \cite{84*xu2011,165*jiang2010,171*horster2006}, the camera poses are in priority affected to this specific and restricted region which has the effect to neglect the other parts of the area. \\
-If the environment is composed of some regions of interest, there should be also "normal" sub-areas. These "normal sub-areas" should be covered, but with lower priority. Furthermore, some  sub-areas can be defined as "no interest", which mean "not to be covered". In \cite{165*jiang2010,171*horster2006} for example, the obstacles are defined as "no interest" regions with also the consequence to  be occluding area. The idea is to keep a maximum of freedom in the camera network positioning and allow the system to handle local priority and constraints.\\
-%-------------------------------------------------
-\item Inside or outside area:\\ 
-Another important feature to define the coverage is related to indoor/outdoor scenes. The area to cover can be typically a room with walls (indoor). Each wall must be a considered as an obstacle occluding the camera field of view,  which results in having to manage the visibility of the environment according to these obstacles and to the position of the cameras. For outdoor scenes, it is often necessary to take into account the size of the environment according to the reduced field of view of the camera. This has the effect of increasing the number of required cameras (or views) and leveraging the combinatory. 
-
-%(also in the inside area the constraint must be the restricted posibel position of the camera (the camera must be placed on the wall for exemple))
-   
-\end{itemize}
-  
-
-The common points in all the examples discussed is the aim of maximizing the coverage rate. The positioning of the cameras, and its effects on the coverage rate, is thus constrained by the application itself, the context  and the type of observed scenes.\\
-%!!!!!!
-%The common points in all this coverage definition is the importance to maximize it, despite the other objectives. In the examples presented the coverage was always the first and for some of them the only objective. Despite the interest for maximizing the coverage some other elements has to be taken in account to have a useful cameras position depending on the finality. 
-Of course, additional constraints can have also a significant impact on the camera pose. Some of the more common constraints found in the literature are listed below:\\
-\begin{itemize}
-\item  The numbers of cameras: \\ In many cases,  the number of cameras used for the coverage should be minimised such as in  \cite{151*zhao2013,171*horster2006,22*zhao2008}. Limiting the number of cameras is primordial to decrease the computation time and the bandwidth. It also reduces the cost of the setup \cite{82*chrysostomou2012}. Reducing the number of cameras and optimising their poses to get an optimal coverage are closely related tasks, not necessarily competing. Too few cameras can shrink the coverage rate by leaving black-holes in some areas of the scene. Too many cameras can result in too much overlap and unnecessary redundancy.\\
-
-\item Object tracking: \\
-\begin{mfigures}[!]{Illustration of an covered area for tracking target. Experiment  form Ding et al. \citep{18*ding2012} }{fig:Tracking18} \centering
-\mfigure{width=.65\linewidth}{img/coverageTrackingDing[18]a.png}{Initial coverage for 5 cameras dedicated to detect the  input of target.}{subfig:taget18a}
-\hspace{1cm} \\
-\mfigure{width=.65\linewidth}{img/coverageTrackingDing[18]b.png}{The covered area when the objective have to track several target.}{subfig:taget18b}
-\end{mfigures}	
- Constraints can arise by the objective of detecting and localising a given target \cite{18*ding2012,12*soto2009,23*liu2009,39*wu2011,40*sohrabi2000,22*zhao2008}. In such a case, camera poses must be estimated in order to track one or more targets, and possibly, dynamically adapted. These applications very often require an adaptation of the camera orientation (looking direction) more than its position. This is the reason why they actually use PTZ cameras (Pan, Tilt and Zoom) as in \cite{18*ding2012,38*liu2010,12*soto2009} (see Figure \citep{18*ding2012}).
-Keeping a full area covered and at the same time tracking efficiently one or more targets can be contradictory. The solution is then the result of a trade-off between coverage and tracking, as in \cite{18*ding2012} and \cite{38*liu2010}.
- In Liu et al. \cite{38*liu2010} target tracking in a wide area is decomposed in two steps: detection and localisation. Each of these steps is done independently on each camera. Area coverage is essential to detect the targets, less for localisation as the priority is, in this step, to track a target previously detected within the covered area. In the entire camera network used, one camera may be in detection mode while another is in location mode. Obviously, by adding target tracking as a constraint, camera poses and coverage are usually less efficient because of the subset of cameras assigned to the tracking.  \\
-
-\item  Luminosity and environmental setup:\\ Intrinsic image quality is also a constraint that can guide area coverage. The quality of an image can result in sufficient brightness or an almost uniformly distributed histogram, etc. In other words, the captured images must be such that they guarantee a usable signal. For example, Reddy et al. \cite{33*reddy2012} addressed first the coverage problem of a complex area and in second time,  target localization. In order to decide which target must be tracked, the quality of the image is taking into account to avoid dark areas where the target is hardly detectable. In this case, the tracking and coverage trade-off discussed in the previous paragraph is  ruled by the image quality. \\
-
-\item  Energetic cost:
-\\ Authors suggest to estimate camera positioning or path planning by minimizing a cost function that represents the energy consumption, such as in  \cite{38*liu2010,42*bulusu2001}. For instance, in Lui et al. \cite{38*liu2010}, the  objective is to cover most of an area to detect whether a target is entered in or not. In a second time, the target is tracked by smart and autonomous cameras of the network. The set of cameras are randomly distributed in the area and the coverage problem is, in this case, to select the best cameras in order to detect the target. The selection of the cameras is estimated by both maximizing the area coverage and minimizing the energy consumption. The consumption can be obviously reduced by restricting the number of cameras set in detection mode. Indeed, the cameras are more or less power-consuming depending on the activated mode (which can be "detection", "tracking" or "sleepy"). If we consider now path planning, the energy cost can be represented by the distance between two cameras or views and energy minimization is equivalent to finding the shortest path \cite{191*di2016,218*meiting2007}.  
-\\
-\item Multi coverage:\\
- Among the numerous possible constraints, the multi-coverage is interesting (as for example in \cite{149*mavrinac2013,151*zhao2013,152*wang2009,174*zhang2016,175*medhi2013}). It can be seen as a coverage problem where one or a few specific sub-areas must be covered by a minimum of $k$ cameras at the  same time, that's why it is also called $k$-coverage. Multi-coverage does not necessarily mean priority: a sub-area which is to be covered by several cameras is not necessarily a sub-area which must be covered in priority (more details in Section \ref{sec:zoneOfInterest}). However, mobilizing multiple cameras in a given sub-area means that fewer cameras can be used to cover the rest of the area, which can be compensated by adding cameras, if allowed. On the contrary full-coverage of the area and k-coverage of some sub-areas will conflict and lead to a trade-off. 
- %This secondary objective in the case of limit will generate a conflict between the full coverage of the area and the $k$-coverage requirement even more with a restricted number of cameras. 
-\\ 
-\item  Resolution:\\ In order to keep or increase the quality of the captured images, a minimum resolution threshold or value can be fixed and used as a constraint \cite{27*bodor2005,33*reddy2012,171*horster2006,152*wang2009,43*erdem2006}. The focal length, the size of the pixel grid or the camera-target distance can served as a measure for the resolution. However, in many applications, it is easier to adapt the distance than to change the focal length (which can be fixed or affect the calibration) or, of course, to change the size of the pixel grid. In most of the cited works, the distance from the target to the camera along the optical axis is therefore used as a measure for the resolution.\\
-%The resolution is also model as the acceptable the depth of field.
-Full coverage will tend to move the cameras at the farther distance (or higher elevation) in order to maximise the field of view. Resolution constraint will impose the cameras to be positioned in a certain range of distance or elevation. Full coverage and resolution constraint will lead to a trade-off between guaranteeing most of the area to be covered and a sufficient image resolution. The trade-off is particularly beneficial when the number of cameras is more important than the optimal need, in this case, the distance will be reduced and the resolution mechanically increased. \\
-   In \cite{33*reddy2012} the problem has been formalized by using a Gaussian function in order to define the proper distance between the cameras and the target to keep an acceptable resolution for the application. \\
-Here, the depth of view is used to define the range of distances. The focus point and the aperture of the camera will define the optimal distance and range in which the target is optimally focused \cite{193*fu2014}. Constraining the positioning with the depth of view can be seen somehow as a constraint on the resolution itself. 
-
-\end{itemize}
-
-The constraints are numerous and varied, we just introduced a few of them which seems interesting to us and related to our work. Among them, some are closely related and can be interconnected, they can even be combined as in \cite{33*reddy2012}, where the targets coverage, luminosity, resolution, are all associated to find the best camera positions maximizing the area coverage and the tracking target with good visibility condition. \\
-One interesting point to study is the impact of these constraints on the full coverage itself as we have seen that they introduce a trade-off between their own particular goal and the main goal of area coverage but also between themselves. No need to say thus, that the constraints have to be chosen carefully and accordingly weighted as in any multi-objective problems. 
-
+%\subsection{Objective: Coverage }\label{sec:FirstObjCover}
+%
+%Before formalising the coverage rate to be maximised, it is necessary to define exactly what is meant by coverage: is the aim to maximise the surface area of a three-dimensional object or a 2D zone whose perimeter has been circumscribed? Is there a priori knowledge of the area to be covered (its perimeter, its bounding box, etc.) or not? Is the area to be covered homogeneous or does it contain prioritized sub-areas? 
+%% Among the huge possible definition more or less restrictive the more interesting to studied is discussed: 
+%
+%
+%\begin{itemize}
+%%-------------------------------------------------
+%\item Object coverage: \\
+%\begin{figure}[t!]
+%\center
+%\minipage{0.75\textwidth}
+%   \includegraphics[width=\linewidth]{img/objectCoverFrom142.png}
+%  \caption{Full coverage of an object in the 3D space. The coverage is made by selecting a set of adapted waypoints. the coverage must be good enough to can reconstruct the 3D shape of the object without any occlusion. This result is from Hoppe et al. \cite{142*hoppe2012}.}\label{fig:ObjectCover142}
+%  \endminipage\hfill
+%\end{figure}
+%   %The definition of a coverage can be varied this is a good example. 
+%   In Hoppe et al. \cite{142*hoppe2012} a good coverage is defined by the ability to have full 3D reconstruction of an object (in their 3 dimensions) with no occlusion. In this work, some prior knowledge on the object is exploited such as a rough surface description (mesh). The camera follows a trajectory "around" the object and its looking direction is oriented towards the center of the mesh (see Figure \ref{fig:ObjectCover142}). 
+%  Since it is a matter of covering the 3D surface of an object, in a next-best-view strategy, this application remains too far from the one we wish to implement.  It is therefore barely applicable to our problem. \\ 
+%   %-------------------------------------------------
+%   \item Path to cover: \\
+%   \begin{figure}[t!]
+%\center
+%\minipage{0.75\textwidth}
+%   \includegraphics[width=\linewidth]{img/PathToCover[81].png}
+%  \caption{The path to cover is illustrate in the work of Nikolaidis et al. \cite{81*nikolaidis2009}. The aim is to is focused on cover a road (walk path) in a small room by using 3 cameras. }\label{fig:pathToCover81}
+%  \endminipage\hfill
+%\end{figure}
+%   The point here is to observe the entire trajectory commonly taken by users (car, pedestrian, …). When the area to cover is a well-known place, the main trajectory taken by the users can be estimated or extracted \cite{27*bodor2005}. If the area to cover is a road, for instance, then the trajectory of the driver is known \cite{14*lu2011}. In this condition, the aim is to cover the common trajectory of the user as presented in  \cite{14*lu2011,27*bodor2005,30*bodor2005,81*nikolaidis2009} (see the Figure \ref{fig:pathToCover81}). The path coverage is interesting due to the restricted area to cover: not an entire area, but only a path within a given area, that can be seen as a priority sub-area. \\
+%   %-------------------------------------------------
+%   \item Coverage priority: \\
+%      \begin{figure}[t!]
+%\center
+%\minipage{0.75\textwidth}
+%   \includegraphics[width=\linewidth]{img/MapRoI165.png}
+%  \caption{Map of an area to cover with crucial sub-area (region of interest) the normal sub-area  and obstacle. This map is an example of area coverage  introduce in  Jiang et al. \cite{165*jiang2010}. }\label{fig:MapRoI165}
+%  \endminipage\hfill
+%\end{figure}
+%   A natural way of defining the coverage in a context of insufficient number of cameras, is to define as priority.
+%    In \cite{84*xu2011,165*jiang2010,171*horster2006}, some predefined regions are set as "priority" and called respectively "region of interest", "crucial sub-area" (see Figure \ref{fig:MapRoI165}) and "importance space weighting".  In the solutions proposed  by \cite{84*xu2011,165*jiang2010,171*horster2006}, the camera poses are in priority affected to this specific and restricted region which has the effect to neglect the other parts of the area. \\
+%If the environment is composed of some regions of interest, there should be also "normal" sub-areas. These "normal sub-areas" should be covered, but with lower priority. Furthermore, some  sub-areas can be defined as "no interest", which mean "not to be covered". In \cite{165*jiang2010,171*horster2006} for example, the obstacles are defined as "no interest" regions with also the consequence to  be occluding area. The idea is to keep a maximum of freedom in the camera network positioning and allow the system to handle local priority and constraints.\\
+%%-------------------------------------------------
+%\item Inside or outside area:\\ 
+%Another important feature to define the coverage is related to indoor/outdoor scenes. The area to cover can be typically a room with walls (indoor). Each wall must be a considered as an obstacle occluding the camera field of view,  which results in having to manage the visibility of the environment according to these obstacles and to the position of the cameras. For outdoor scenes, it is often necessary to take into account the size of the environment according to the reduced field of view of the camera. This has the effect of increasing the number of required cameras (or views) and leveraging the combinatory. 
+%
+%%(also in the inside area the constraint must be the restricted posibel position of the camera (the camera must be placed on the wall for exemple))
+%   
+%\end{itemize}
+%  
+%
+%The common points in all the examples discussed is the aim of maximizing the coverage rate. The positioning of the cameras, and its effects on the coverage rate, is thus constrained by the application itself, the context  and the type of observed scenes.\\
+%%!!!!!!
+%%The common points in all this coverage definition is the importance to maximize it, despite the other objectives. In the examples presented the coverage was always the first and for some of them the only objective. Despite the interest for maximizing the coverage some other elements has to be taken in account to have a useful cameras position depending on the finality. 
+%Of course, additional constraints can have also a significant impact on the camera pose. Some of the more common constraints found in the literature are listed below:\\
+%\begin{itemize}
+%\item  The numbers of cameras: \\ In many cases,  the number of cameras used for the coverage should be minimised such as in  \cite{151*zhao2013,171*horster2006,22*zhao2008}. Limiting the number of cameras is primordial to decrease the computation time and the bandwidth. It also reduces the cost of the setup \cite{82*chrysostomou2012}. Reducing the number of cameras and optimising their poses to get an optimal coverage are closely related tasks, not necessarily competing. Too few cameras can shrink the coverage rate by leaving black-holes in some areas of the scene. Too many cameras can result in too much overlap and unnecessary redundancy.\\
+%
+%\item Object tracking: \\
+%\begin{mfigures}[!]{Illustration of an covered area for tracking target. Experiment  form Ding et al. \citep{18*ding2012} }{fig:Tracking18} \centering
+%\mfigure{width=.65\linewidth}{img/coverageTrackingDing[18]a.png}{Initial coverage for 5 cameras dedicated to detect the  input of target.}{subfig:taget18a}
+%\hspace{1cm} \\
+%\mfigure{width=.65\linewidth}{img/coverageTrackingDing[18]b.png}{The covered area when the objective have to track several target.}{subfig:taget18b}
+%\end{mfigures}	
+% Constraints can arise by the objective of detecting and localising a given target \cite{18*ding2012,12*soto2009,23*liu2009,39*wu2011,40*sohrabi2000,22*zhao2008}. In such a case, camera poses must be estimated in order to track one or more targets, and possibly, dynamically adapted. These applications very often require an adaptation of the camera orientation (looking direction) more than its position. This is the reason why they actually use PTZ cameras (Pan, Tilt and Zoom) as in \cite{18*ding2012,38*liu2010,12*soto2009} (see Figure \citep{18*ding2012}).
+%Keeping a full area covered and at the same time tracking efficiently one or more targets can be contradictory. The solution is then the result of a trade-off between coverage and tracking, as in \cite{18*ding2012} and \cite{38*liu2010}.
+% In Liu et al. \cite{38*liu2010} target tracking in a wide area is decomposed in two steps: detection and localisation. Each of these steps is done independently on each camera. Area coverage is essential to detect the targets, less for localisation as the priority is, in this step, to track a target previously detected within the covered area. In the entire camera network used, one camera may be in detection mode while another is in location mode. Obviously, by adding target tracking as a constraint, camera poses and coverage are usually less efficient because of the subset of cameras assigned to the tracking.  \\
+%
+%\item  Luminosity and environmental setup:\\ Intrinsic image quality is also a constraint that can guide area coverage. The quality of an image can result in sufficient brightness or an almost uniformly distributed histogram, etc. In other words, the captured images must be such that they guarantee a usable signal. For example, Reddy et al. \cite{33*reddy2012} addressed first the coverage problem of a complex area and in second time,  target localization. In order to decide which target must be tracked, the quality of the image is taking into account to avoid dark areas where the target is hardly detectable. In this case, the tracking and coverage trade-off discussed in the previous paragraph is  ruled by the image quality. \\
+%
+%\item  Energetic cost:
+%\\ Authors suggest to estimate camera positioning or path planning by minimizing a cost function that represents the energy consumption, such as in  \cite{38*liu2010,42*bulusu2001}. For instance, in Lui et al. \cite{38*liu2010}, the  objective is to cover most of an area to detect whether a target is entered in or not. In a second time, the target is tracked by smart and autonomous cameras of the network. The set of cameras are randomly distributed in the area and the coverage problem is, in this case, to select the best cameras in order to detect the target. The selection of the cameras is estimated by both maximizing the area coverage and minimizing the energy consumption. The consumption can be obviously reduced by restricting the number of cameras set in detection mode. Indeed, the cameras are more or less power-consuming depending on the activated mode (which can be "detection", "tracking" or "sleepy"). If we consider now path planning, the energy cost can be represented by the distance between two cameras or views and energy minimization is equivalent to finding the shortest path \cite{191*di2016,218*meiting2007}.  
+%\\
+%\item Multi coverage:\\
+% Among the numerous possible constraints, the multi-coverage is interesting (as for example in \cite{149*mavrinac2013,151*zhao2013,152*wang2009,174*zhang2016,175*medhi2013}). It can be seen as a coverage problem where one or a few specific sub-areas must be covered by a minimum of $k$ cameras at the  same time, that's why it is also called $k$-coverage. Multi-coverage does not necessarily mean priority: a sub-area which is to be covered by several cameras is not necessarily a sub-area which must be covered in priority (more details in Section \ref{sec:zoneOfInterest}). However, mobilizing multiple cameras in a given sub-area means that fewer cameras can be used to cover the rest of the area, which can be compensated by adding cameras, if allowed. On the contrary full-coverage of the area and k-coverage of some sub-areas will conflict and lead to a trade-off. 
+% %This secondary objective in the case of limit will generate a conflict between the full coverage of the area and the $k$-coverage requirement even more with a restricted number of cameras. 
+%\\ 
+%\item  Resolution:\\ In order to keep or increase the quality of the captured images, a minimum resolution threshold or value can be fixed and used as a constraint \cite{27*bodor2005,33*reddy2012,171*horster2006,152*wang2009,43*erdem2006}. The focal length, the size of the pixel grid or the camera-target distance can served as a measure for the resolution. However, in many applications, it is easier to adapt the distance than to change the focal length (which can be fixed or affect the calibration) or, of course, to change the size of the pixel grid. In most of the cited works, the distance from the target to the camera along the optical axis is therefore used as a measure for the resolution.\\
+%%The resolution is also model as the acceptable the depth of field.
+%Full coverage will tend to move the cameras at the farther distance (or higher elevation) in order to maximise the field of view. Resolution constraint will impose the cameras to be positioned in a certain range of distance or elevation. Full coverage and resolution constraint will lead to a trade-off between guaranteeing most of the area to be covered and a sufficient image resolution. The trade-off is particularly beneficial when the number of cameras is more important than the optimal need, in this case, the distance will be reduced and the resolution mechanically increased. \\
+%   In \cite{33*reddy2012} the problem has been formalized by using a Gaussian function in order to define the proper distance between the cameras and the target to keep an acceptable resolution for the application. \\
+%Here, the depth of view is used to define the range of distances. The focus point and the aperture of the camera will define the optimal distance and range in which the target is optimally focused \cite{193*fu2014}. Constraining the positioning with the depth of view can be seen somehow as a constraint on the resolution itself. 
+%
+%\end{itemize}
+%
+%The constraints are numerous and varied, we just introduced a few of them which seems interesting to us and related to our work. Among them, some are closely related and can be interconnected, they can even be combined as in \cite{33*reddy2012}, where the targets coverage, luminosity, resolution, are all associated to find the best camera positions maximizing the area coverage and the tracking target with good visibility condition. \\
+%One interesting point to study is the impact of these constraints on the full coverage itself as we have seen that they introduce a trade-off between their own particular goal and the main goal of area coverage but also between themselves. No need to say thus, that the constraints have to be chosen carefully and accordingly weighted as in any multi-objective problems. 
+%
