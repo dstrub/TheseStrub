@@ -787,14 +787,15 @@ The popularity of the PSO is mostly due to the association of the quick implemen
 %####################TODO############################
 \section{Coverage path planning}\label{sec:CppLiterattur}
 
-The coverage path planning  as objective to design  the more efficient path to cover an area. the path has to cover all or  at least most of the area using  the shortest path. 
+The coverage path planning  as objective to design  the more efficient path to cover an area. the path has to cover all or  at least most of the area using  the shortest path. \\
 The solutions put forward in the literature until now was to to pose numerous cameras or robotics cameras (as PTZ cameras and smart camera) for vast area composed by numerous obstacles.
 The solutions proposed until now are interesting only to monitor a vast area continuously with several cameras. 
-The disadvantage of positioning a set of cameras appears quickly with the cost in time computation. The expensive cost is due to the several cameras and the communication network required to centralize the collected images. All the images must be collected in a real time. This costly system is not always useful. 
+The disadvantage of positioning a set of cameras appears quickly with the cost in time computation. The expensive cost is due to the several cameras and the communication network required to centralize the collected images. All the images must be collected in a real time. This costly system is not always useful. \\
 In fact, in some applications the area needs to be controlled periodically. The periodic control of the area does not require an installation for the set of fixed cameras. Until now the installation was composed by a set of immovable cameras unlike the solution presented in section see Section \ref{sec:SolutionBasedonEA} and \ref{sec:NonEAmethod}).
  The periodical control requirement can be illustrate with some example : the cartographies of the area is need just one time and can be completed with one fly over the area roughly bounded as in \citep{66*galceran2013,164*valente2013}, forest fire detection which requires a periodic fly over specific and vast region as in \cite{237*casbeer2006}, the hoovering robots which needs to cover all the room with possibility some on-line computation \citep{218*meiting2007,216*luo2002,215*lee2010,196*yang2004}  and the agriculture.
  About the agriculture application, an UAV needs to fly over the field few times the year in order to control by photography the hydration, the maturity and any thing else of the field as in \citep{164*valente2013,203*zarco2008,63*chao2008,105*long199,167*barrientos2011,177*lelong2008}. %\textbf{revoir les ref et trié un peu}.
-For all these applications the area must be covered but does not need a coverage of all the area instantly and continuously. The solution commonly proposed is to use only one sensor mounted on a mobile robot. The Mobile robot need to be adapted to the task and the environment, as flying  \citep{105*long1991}, driving \citep{30*bodor2005,213*roberts2008}, swimming \cite{66*galceran2013}. The mobile robot with the sensor moves in the space to cover all the area. In this case, the objective is to determine the best path for the mobile robot to cover  the area. The best path is dependent on the constraint of each problem. However, the common point in theses papers, is to have the shorter path.
+For all these applications the area must be covered but does not need a coverage of all the area instantly and continuously. The solution commonly proposed is to use only one sensor mounted on a mobile robot. The Mobile robot need to be adapted to the task and the environment, as flying  \citep{105*long1991}, driving \citep{30*bodor2005,213*roberts2008}, swimming \cite{66*galceran2013}.\\
+ The mobile robot with the sensor moves in the space to cover all the area. In this case, the objective is to determine the best path for the mobile robot to cover  the area. The best path is dependent on the constraint of each problem. However, the common point in theses papers, is to have the shorter path.
 The following section is focused on finding the best Coverage Path Planing (CPP) for a sensor mounted on a mobile robot. 
 In most cases,  the sensor is a camera perspective. To estimate the best CPP different algorithms and methodologies have been applied in the literature to solve the CPP problems.
 
@@ -905,8 +906,8 @@ In Faigl  \citep{235*faigl2010}  a similar method to the one proposed by Packer 
 
 The method proposed to solve the WRP are really interesting and give a good solution in some specific conditions. These conditions make his methods special cases.
  In fact the optimal solution, that means the shortest path which covers all the area (polygon) are usable only if the polygons respect some rules. The polygon must be simple and take into account the guard ability (no viewing constraints).  \\
-When the polygon is more complex the optimal solution cannot be reached. The method applied to solve the WRP for complex area are interesting. Especially by splitting the problem into sub-problems. Despite this interesting aspect the solution proposed are most of the time limited due to the area representation (must be a polygon composed by vertices). This representation associated to the geometric methodologies to find the waypoints give a crucial importance to the number of vertices in relation to the number of cameras. 
-A large  number of vertices imply the more the first sub-problem may be difficult and time-consuming to solve.
+When the polygon is more complex the optimal solution cannot be reached. The method applied to solve the WRP for complex area are interesting. Especially by splitting the problem into sub-problems. Despite this interesting aspect the solution proposed are most of the time limited due to the area representation (must be a polygon composed by vertices). This representation associated to the geometric methodologies to find the waypoints give a crucial importance to the number of vertices in relation to the number of cameras. \\
+A large  number of vertices imply  the first sub-problem may be difficult and time-consuming to solve.
 Consequently this method is not the more appropriate for the vast and complex outdoor area which would require  numerous vertices to describe it.
  The biggest limit of the WRP is the ability of the watchman. In fact in the original problem, the watchman is considered to have a perfect visibility. The solution proposed to the WRP are not usable with the add of new visibility constraint. 
 In Faigl \citep{235*faigl2010} the WRP begin to be extended by adding a constraint on the visibility. In this condition the problem is slightly modified to self-organizing map in the way to became a coverage path planning. But despite adding of a restricted  depth of field  the solution based on geometric heuristic do not allow to add more constraints.
@@ -955,7 +956,7 @@ To remember one of the interesting solution for the WRP  is to split the problem
  \paragraph*{Decomposition}\label{par:decomposition}
 
  The decomposition in cells, has to objective to split a complex area in several sub-area. The sub-area has to be simpler in term of shape in order to can applies a sweep. 
-Since the 90s numerous algorithms has been developed for the cellular decomposition. Among the algorithms for cellular decomposition, 3 types of decomposition has been made. As it is explained in the survey of Choset  \cite{214*choset2001} and  Galceran and al \cite{66*galceran2013}. 
+Since the 90s, numerous algorithms has been developed for the cellular decomposition. Among the algorithms for cellular decomposition, 3 types of decomposition has been made. As it is explained in the survey of Choset  \cite{214*choset2001} and  Galceran and al \cite{66*galceran2013}. 
 \begin{itemize}
 	\item Approximate: 
 		An approximate decomposition is based on a discretization of the area. The free space of the area is representative by a set of cases (gird). Each case of the grid has to be cover by the mobile robot. A case is considered completely cover if the robot is on this position. That mean the frequency of the grid is defined by the covered area of the mobile robot. 
@@ -963,7 +964,7 @@ Since the 90s numerous algorithms has been developed for the cellular decomposit
 	 
 	\item Semi approximate: 
 	 \begin{mfigures}[!]
-{Illustration of a semi approximate decomposition issue of the survey  of Choset \citep{214*choset2001}. The 4 figures illustrate the trajectory of the robot in the time.}{fig:choset214SemiAprox} \centering
+{Illustration of a semi approximate decomposition outcome from the survey  of Choset \citep{214*choset2001}. The 4 figures illustrate the trajectory of the robot in the time.}{fig:choset214SemiAprox} \centering
 \mfigure{width=.95\linewidth}{img/Choset214SemiDecomp.png}{}{subfig:WRPi}
 \hspace{1cm}
 \end{mfigures}	
@@ -1002,8 +1003,8 @@ The global path distance has to be reduced by an appropriate path passing by eac
 	 \item The finishing  positions (start and stop from the same side or opposite side)
 \end{itemize}	
 	 The sweep can be also alternatively switch for a spiral as proposed in Jimenez et al. \citep{217*jimenez2007}. The proposed sweep and spiral in  \citep{217*jimenez2007}  are adaptable depending then the context. The sweep can have two directions and for the spiral two turn sides (clockwise or counter-clockwise).  The different sweeps and spirals are illustrated in the Figure \figref{fig:sweepSpiral}. 
-	  \begin{mfigures}[!]{Different sweeps and spirals}{fig:sweepSpiral} \centering
-\mfigure{width=.4\linewidth}{img/SweepSpiral.png}{}{}
+	  \begin{mfigures}[!]{Illustration of the different sweeps and spirals}{fig:sweepSpiral} \centering
+\mfigure{width=.55\linewidth}{img/SweepSpiral.png}{}{}
 \end{mfigures} 
 
 	To have an adapted sweep the footprint has to be defined depending then the camera ability and the objectives. In \cite{144*torres2016} the size of the sweep is dependent then the area cover by a camera and a sufficient amount of overlaps for the 3D reconstruction (see also\citep{191*di2016}). In Li et al.  \citep{146*li2011} the foot print of the camera with a small pan is took in account. Due to the pan the camera projection is not a rectangle but a trapezoid. Consequently the sweep size is adapted by taking the larger side of the trapezoid for the sweep dimension.

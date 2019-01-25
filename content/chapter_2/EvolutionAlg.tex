@@ -288,7 +288,7 @@ The combination of these stopping criterion, always provide a solution optimize 
 
 \section{Genetic algorithms} \label{sec:GAdetail}
 Among the evolutionary algorithms one of those was very close to the Darwin theory by reusing the operating principle of natural selection and was also based on the genetic with the influence of the crossover and mutation (see section \ref{subsec:BioEvolv}). This algorithm is called Genetic Algorithm (GA) and was introduced for the first time by Holland in 1962 \cite{111*Holland1962}. \\
-The genetic algorithm (GA) is one of the fundamental algorithms of the EA.
+The GA is one of the fundamental algorithms of the EA.
 The GA became popular at the late 80s and early 90s, particularly with Goldberg works \cite{112*goldberg1989}.Since the 90s, many details were redefined and explored in the knowledge of genetics to have a huge set-up and operator available for the GA.
   
 %\subsection{Ga in detail}  
@@ -329,7 +329,7 @@ To define the chromosome the direct or indirect coding is not the only element t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subparagraph*{Binary Coding}%(\cite{73*wright1991, 95*miller1995,97*goldberg1985,123*owais2008, 131*walters1995})  
-The binary coding offers to format the chromosomes as a bit string in which every gene of the chromosome can be covert on pack of bit with can have only 2 value 0 or 1. This coding method was studied since the beginning of the GA by Goldberg et al.  \cite{97*goldberg1985} and also used in other EA like PSO in \cite{87*morsly2012}. The binary coding is more efficient in the small search space or when the size of the chromosome is not too long. The advantage of the binary coding is the possibility to introduce lot of variety during the process of optimization \cite{73*wright1991}. The variety is traditionally from the mutation but in the case of the binary coding the crossover introduce variety by the potential split of the gene in 2 pack of bit.
+The binary coding offers to format the chromosomes as a bit string in which every genes of the chromosome can be covert on pack of bits with can have only 2 values 0 or 1. This coding method was studied since the beginning of the GA by Goldberg et al.  \cite{97*goldberg1985} and also used in other EA like PSO in \cite{87*morsly2012}. The binary coding is more efficient in the small search space or when the size of the chromosome is not too long. The advantage of the binary coding is the possibility to introduce lot of variety during the process of optimization \cite{73*wright1991}. The variety is traditionally from the mutation but in the case of the binary coding the crossover introduce variety by the potential split of the gene in 2 pack of bit.
 \\
 \subparagraph*{The combinatorial  }%(\cite{ 80*serpell2010,110*eiben2003} )
 The combinatorial  coding is commonly applied in some specific problems where the goal is to order all the element. In this case, the position of the gene in the chromosome is primordial as in \cite{ 110*eiben2003}. It is characteristically used to the problem as TSP \cite{80*serpell2010} (Travelling salesman problem).  When the combinatorial  coding is used for problem the aim is to optimize the order the element of the chromosome. With a combinatorial  coding the each chromosome already has all gene of the answer. An example, the TSP the aim is to order various cities (in the problem of TSP every gene represents a city) and all the possible cities are included in the initial solution (chromosome). In this case, the problem is to optimize the combination of the element composed by the initial solution. 
@@ -432,18 +432,18 @@ Even the cost of this function must be the most accurate, in some cases like in 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Population }\label{sec:Population}
 The population gathers a number N of solutions (or individuals) from the same generation. The individual can be represented into one or  more chromosomes(instead to have redundancy as in \cite{ 121*ronald1997}). Commonly each individual is composed by one chromosome. Therefore the two terms are regularly inverted in the literature.\\
-At every generation most or all the population is renewed (by using the selection and operator). Indeed the population can have an effect on the convergence and the result of the EA and different strategy or set up exist. About the population 2 main points need to be studied : the first is the initial population and the 2nd is the size of the population.  
+At every generation most or all the population is renewed (by using the selection and operator). Indeed the population can have an effect on the convergence and the result of the EA and different strategy or set up exist. About the population 2 main points need to be studied : the first is the initial population and the 2$^{nd}$ is the size of the population.  
 
 \subparagraph{Initialisation of the population}\label{sec:initPOP}
 Initialization of the population is one of the fundamental questions may affect the convergence of the problems. There are mainly 2 common proposed solutions with one using the full random generation or  using efficient and already approved heuristic.\\
  The method is based on heuristic involved a perfect knowledge  of the problem and can not be applied  for all the problem. The advantage of using heuristic, it can give very good starting individuals at the beginning the optimizations and also used the heuristic may give a solution more respectful of the constraint of the problem, obtusely if the problem include many constraints hard to satisfy. \\
 Although this advantage of using a heuristic to find the 1st generation of the population, can become a handicap and push the GA in the direction of the potential local minima. Indeed using one heuristic to build the first generation can have a population too similar with not enough variety. The variety is essential to run through all the searched space and allows do not converge too fast in a local minima (see \citep{64*matsui1999}).\\
 If using a heuristic to build the initial population is not always the good solution one other solution more versatile is to use the randomness to find initial population. The  randomness generates each individual randomly in the search space. One of the advantages is the individual can be well distributed around the search space to cover most of it  if the size of the population is big enough. 
-The random  distribution permits the algorithm  to cover a wide part of the search space quickly during the first generation and the spreading of the population is a good source of variety.
+The random  distribution allow the algorithm  to cover a wide part of the search space quickly during the first generation and the spreading of the population is a good source of variety.
 The random initialisation is commonly used and less often the heuristic solution.
 
 To initialise the population, the third method is to combine the full random with the one based on heuristic. 
-In this case, for examples a random solution is applied before, the heuristic is used to refine the initial solution. Otherwise different heuristics are used randomly to generate all individuals of  1st the population. Other combination are possible  see \cite{113*mais2010} for more detailed see.
+In this case, for examples a random solution is applied before, the heuristic is used to refine the initial solution. Otherwise different heuristics are used randomly to generate all individuals of  1st the population. Other combination are possible  see \cite{113*mais2010} for more details.
 
 \subparagraph{Population size}
 An other key point is to consider the size  of the population. The size of the population and this effect on the convergence are studies in many articles \cite{64*matsui1999,70*arabas1994,71*grefenstette1986,77*shi2005,97*goldberg1985,109*cerf1995}. 
@@ -473,7 +473,7 @@ A multitude of selection mode has been developed during the time (few of them ha
 	
 \subparagraph{The roulette wheel}
 -	The roulette wheel selection is at the same time one of the older selection mode used since 1989 but also one of most inspiring.  The roulette wheel  gives many methods inspired by this one like for example remainder stochastic sampling in  \cite{138*whitley1994}. The roulette wheel selection had a basic operating. Every chromosome is represented in the wheel and the size of the wedge are depended them the quality of the chromosome. This quality is computed from the fitness function.  With this technique, the chromosome with the best fitness function has the most luck (but not necessarily) to be selected. 
-Once the wheel was built by the random sampling can begin to select the new individual of the generation.  The wheel turns until all the individuals are selected.  
+Once the wheel was built by the random sampling can begin to select the new individual of the generation for the next generation.  The wheel turns until all the individuals are selected.  
 This method helps the better chromosomes to be more represented in the next generation but also accepted to have some time more or less bad individual conserve for keeping the variety. More the GA work more the size on the wheel of the best solution will increase and help to converge. \\
 
 \subparagraph{Tournament selection}
@@ -555,7 +555,7 @@ The crossover operator is directly inspired by the biologies. As 2 mammals repro
 The crossover operator is mixing 2 individuals to create a new child. The aim of this is to merge 2 workable solutions to have one other solution potentially a bit better. To merge the 2 individuals it is existing many way like studied in \cite{113*mais2010}.
  
  \subparagraph{Mutation}
-The mutation operator have to aim to add diversity by mutate some random alleles of the chromosome. This mutation must be randomly choose and are useful to keep the diversity of the population. As the crossover different mutation are existing \cite{113*mais2010}. The mutation mechanism affect only rare gene in all the population. The gene mutated is randomly selected and the is will be based on random. 
+The mutation operator have to aim to add diversity by mutate some random genes of the chromosome. This mutation must be randomly choose and are useful to keep the diversity of the population. As the crossover different mutation are existing \cite{113*mais2010}. The mutation mechanism affect only rare gene in all the population. The genes mutated are randomly selected and will be based on random. 
 
 \subparagraph*{Customized operators}
 This 2 principal operators need to be choose carefully and in most of the case redesigned.
@@ -580,8 +580,8 @@ Also one other reason to redesign the operators is to have operator fitting  to 
 
 \subparagraph{Operators rate}
  An other important element to take in consideration after the choice of the operator and their implementation is  rate of each of then. 
-The rate of an operator correspond to the usage percentage of the operator on the chromosome, higher the rate is,  more this operator will be used at each generation generation. 
-In the mutation the rate can be globally understood as a chance to one an gene to be muted. 
+The rate of an operator correspond to the usage percentage of the operator on the chromosome, higher the rate is,  more this operator will be used at each generation. 
+In the mutation the rate can be globally understood as a chance for one gene to be muted. 
 Finding the  best rate for every operators became a real challenge. The best solution to find the appropriate  operators and their associate rate for a specific problem no other choice to try the couple combination of operators with different rate like in \cite{73*wright1991,71*grefenstette1986,133*schwefel1984}.\\
 
  To conclude on the operators, they are an important factor to evolve generation after generation.  The operator have to keep the diversity  in order to have an efficient converge (not premature and not to late). The question of the diversity introduce by the operator was been studied in  \cite{80*serpell2010,95*miller1995} \cite{113*mais2010}. 
@@ -600,11 +600,11 @@ The variety is one of the factor useful to explain the convergence speed and the
 The variety is almost opposite of the convergence. It is when the chromosome  are all very different in the same generation but also generation after generation. A high variety is ideal at the beginning because this allows the optimization browse the search space and potentially help to jump the local minima. 
  As example if the finally solution is lock in a local minima after a to fast convergence that mean not enough variety has been introduce during the optimisation.
 
-During the choice of the ideal parameters for GA the variety is a important element to preserved and more at the beginning of the optimisation to browse the search space.\\
+During the choice of the ideal parameters for GA the variety is an important element to preserved and more at the beginning of the optimisation to browse the search space.\\
  
-However the GA stay complex to configure because of all this parameter to have a good answer quality in a reasonable period of convergence. Many aspect need to be adapted depending to the problem, constraint, size of the search space and … .   
-Using the simple GA that mean configure a set of parameter. The parameter can be formalized as a vector like in \cite{71*grefenstette1986}. This formulation is especially  efficient test numerous setting. 
-To set-up properly a GA few question need to be posed as in the table \ref{tab:GAsetting} and few setting must be test as in \cite{73*wright1991,71*grefenstette1986,133*schwefel1984}.
+However the GA stay complex to configure because of all these parameters to have a good answer quality in a reasonable period of convergence. Many aspect need to be adapted depending to the problem, constraint, size of the search space and … .  \\ 
+Using the simple GA that mean configure a set of parameters. The parameters can be formalized as a vector like in \cite{71*grefenstette1986}. This formulation is especially  efficient test numerous settings. 
+To set-up properly a GA few questions need to be posed as in the table \ref{tab:GAsetting} and few settings must be tested as in \cite{73*wright1991,71*grefenstette1986,133*schwefel1984}.
 
 		
  \begin{table}
@@ -622,7 +622,7 @@ To set-up properly a GA few question need to be posed as in the table \ref{tab:G
       	operators			 &	What implementation choice (customized operator or not)?	\tabularnewline \cline{2-2}
       						 &	What rate for each operators? 	 	  	\tabularnewline \hline
  Stopping criteria	 &	What stopping criteria to use? 									\tabularnewline \cline{2-2} & If  is  not by convergence what are the boundary?\tabularnewline  \hline  
-   \end{tabular} \caption{Sumarizing the question to ask to configure the GA.} \label{tab:GAsetting}
+   \end{tabular} \caption{Important question to ask for properly set-up a GA.} \label{tab:GAsetting}
  \end{table}
 %		coding : coding choice ( binary, combinatoric, real,...)\\
 %		cost function    
@@ -674,7 +674,7 @@ The GA have been studied for different objectives and optimization problems. The
  
 \end{itemize}
 
-GA have been well studied  and the literature about is vast. These last decades the GA  has been used for multi objectives problems, but its popularity has decreased in favour of algorithm which requires less configuration or other algorithm  more oriented on learning with memorization.  
+GA have been well studied  and the literature is vast about it . These last decades the GA  has been used for multi objectives problems, but its popularity has decreased in favour of algorithm which requires less configuration or other algorithm  more oriented on learning with memorization.  
 %III GA explication   
  % Ga historique 
 	%	SGA

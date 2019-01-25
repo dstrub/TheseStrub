@@ -121,7 +121,7 @@ $B$ is the set of grid points, which are at "1"  if covered by at least one of t
 		\minipage{0.85\textwidth}
   		\includegraphics[width=\linewidth]{img/CamProjectOnGrid2.png}
   
- 	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid $G$ is placed on the floor to discretize the area covered with numerous grid points $g_i$. The point covered by the camera $B()$ are noted in red.}\label{fig:cam_projOnGrid}
+ 	 	\endminipage\hfill\caption{Camera projection onto a grid. The grid $G$ is placed on the floor to discretize the area covered with numerous grid points $g_i$. The point covered by the camera, belonging to $B()$ are noted in red.}\label{fig:cam_projOnGrid}
 \end{figure*}
 \\ The design of the grid is an important element of the problem formulation. Many solution has been proposed, with different advantage depending on the situation (constraint and objective).\\
 
@@ -218,7 +218,7 @@ A to big  number of possible pose allow to gain in precision but greatly increas
 %215*  hover roboto exploration 
 \subsubsection{Distribution}
 The distribution of the points over the grid, is an important factor to manage for the design of an occupation grid.% The distribution is how the points of the grid are placed on the area to cover.
-The points distribution can numerous and adapted to different specific case. Mainly two distribution are used. The grid pattern distribution is the more often seen in the literature and in a lesser extent the random distribution. These two distribution  are illustrated in the Figure \figref{fig:GridVsRand}.
+ The points distribution can numerous and adapted to different specific case. Mainly two distribution are used. The grid pattern distribution is the more often seen in the literature and in a lesser extent the random distribution. These two distribution  are illustrated in the Figure \figref{fig:GridVsRand}.
 
 %Different distributions can be used, but commonly in the literature the grid pattern distribution and in a lesser extent the random distribution is applied (see Figure \figref{fig:GridVsRand}). 
 \begin{mfigures}[!]
@@ -246,7 +246,7 @@ The points distribution can numerous and adapted to different specific case. Mai
   \caption{Example of  map to cover with a randomized area sampling. Illustration from Horster et al \citep{171*horster2006} \\
   (a) Area  to cover.\\ 
   (b) Area with the random points of the grid to cover \\
-  (c) Importance weighting of the area (zone of the interest.\\  
+  (c) Importance weighting of the area (zone of the interest).\\  
   (b) allowed position for cameras position.}\label{fig:randomGridRef171}
   \endminipage\hfill
   \end{center}
@@ -256,11 +256,11 @@ The points distribution can numerous and adapted to different specific case. Mai
 In Hoster et al \citep{171*horster2006} the points of the grid are randomly distributed to describe all the area to cover. The advantage of this article is to use the random distribution in order to manage the density of points in some specific regions of the area. Especially, by increasing the density of points on some specific zones of the area. The increased density allocates more importance to these zones (see Figure \ref{fig:randomGridRef171}).\\
 Indeed the higher density will affect the optimization process. The area with more density will be comparatively more profitable to a low density area. In these cases, the zones with high density are covered in priority. This mechanism is even simplified due to the random distribution.
 
-The hengel et al \cite{83*van2009} have tested the random distribution and the uniform grid pattern distribution before to conclude the grid pattern and the random distribution proposes globally the same result, when there is no priority zones in the area. Based on this observation author (hengel et al \cite{83*van2009}) decided to use the uniform grid because of its simplicity of implementation.
+The Hengel et al \cite{83*van2009} have tested the random distribution and the uniform grid pattern distribution before to conclude the grid pattern and the random distribution proposes globally the same result, when there is no priority zones in the area. Based on this observation author (Hengel et al \cite{83*van2009}) decided to use the uniform grid because of its simplicity of implementation.
 %///////random distribution   for reduce the uniforme grid //////////
-A  hybrid distribution is proposed is proposed in  Zhao et al \cite{22*zhao2008}.
+A  hybrid distribution is proposed in  Zhao et al \cite{22*zhao2008}.
 %The "random distribution" is less popular but in  a hybrid distribution is proposed. 
-The idea is to reduce the number of points in the uniform grid when it has a to hight density. To reduce the number of points in the grid a random selection is used. This hybrid implementation of a uniform grid with a random selection to decrease the sampling frequency are an example of hybrid distribution.
+The idea is to reduce the number of points in the uniform grid when it has a to hight density. To reduce the number of points in the grid a random selection is applied. This hybrid implementation of an uniform grid with a random selection to decrease the sampling frequency is an example of hybrid distribution.
 
 
 \subsubsection{Spatial modelling (3D or 2D)}
@@ -299,7 +299,7 @@ In  Hengel et al\cite{83*van2009} the authors are focussed on estimating the are
 
 \end{mfigures} 
 
-Another way to deal with a volumetric space with not using a greedy 3D grid distribution is to adapt the 2D grid into the relief. In Akbarzadeh et al\citep{141*akbarzadeh2013} propose a 2D grid adapted to the relief of the area. This article are focused on covering a large outside area with an important relief (hill and valley). To estimate properly the area to cover a grid has been placed following the altitude of the relief as showed in Figure \ref{fig:grilleRef141}. The spatial modelling is traditionally a 2D grid at fix altitude more or less equal to the floor ground. 
+Another way to deal with a volumetric space with not using a greedy 3D grid distribution is to adapt the 2D grid into the relief. In Akbarzadeh et al\citep{141*akbarzadeh2013} propose a 2D grid adapted to the relief of the area. This article are focused on covering a large outside area with an important relief (hills and valleys). To estimate properly the area to cover a grid has been placed following the altitude of the relief as showed in Figure \ref{fig:grilleRef141}. The spatial modelling is traditionally a 2D grid at fix altitude more or less equal to the floor ground. 
 The 2D grid distribution adapted to a 3D environment is the easiest and can be customize for numerous problems with allow to reduce the number of control points ($g_i$) and thus  the computation time.  
 
 %%% figurir  from 141*
@@ -474,7 +474,7 @@ Another atypical solution is to develop a grid composed by rectangles. Each rect
   Also, due to the high sampling frequency the 2D grid pattern is a better choice and allow a reasonable number of points to describe a complex area. 
   The grid is placed on the floor of the area to control. Floor is always considered as flat without relief.
   In our case the zones of interest can be varied and may include non-interesting zones, priorities zones  and  multi coverage. \\
-  To can possibly allow all these zones of interest feature, the selected design of the grid is based on the formulation from the Eq:\ref{eq:PcFull}. During the experiment presented in the following  chapters the priorities zones and multi coverage are not exploited. Consequently the $k=1$ and $p=1$.  Although some rapid tests were carried out with k-coverage and priority zone constraints, the results obtained were judged to be of little relevance, hence the choice to focus on constant priorities and single camera coverage for the entire area to be covered.
+  To can possibly allow all these zones of interest feature, the selected design of the grid is based on the formulation from the Eq:\ref{eq:PcFull}. During the experiment presented in the following  chapters the priorities zones and multi coverage are not exploited. Consequently the $k=1$ and $p=1$.  Although some rapid tests were carried out with k-coverage and priority zone constraints, the results obtained were considered irrelevant, hence the choice to focus on constant priorities and single camera coverage for the entire area to be covered.\\
  Although some rapid tests were carried out with constraints of k-coverage and priority zones, the results obtained were considered irrelevant hence the choice to focus on constant priorities and single camera coverage for the entire area ($k=1$ and $p=1$).
 %   The zone of interest can vary depending on the need of the experimentation, but the design chosen is flexible to apply if necessary the formulation form the Eq:\ref{eq:PcFull} with mostly $k=1$ and $p=1$, also a set $U$ is used to represent the non-interesting zone as it was presented in eq \ref{eq:setU}.
 
@@ -617,10 +617,10 @@ In \citep{181*wang2017}, the model of camera projection begins to be simplified 
 In \citep{165*jiang2010}, the model of camera projection is used to compute one time for a fix pan and roll in order to have a coverage estimation use in a 2D map. The camera projection is finally simplified by using a kind of triangle shape.\\
 To go further other model and formulation inspired by the pinhole model has been proposed as \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010}. These models are inherited for the camera projection and adapted to fit their problems. \\
 In \cite{87*morsly2012,194*fu2010} the camera is considered to be placed on the floor with a fix pan (with the viewing direction almost parallel to the floor). Therefore the camera projection is simplified by an isosceles triangle where the shape depends on the focal length.\\
-In \citep{141*akbarzadeh2013} the camera projection is also simplified in order to have a kind of isosceles triangle shape with considering the depth of view of the camera. In this case the  camera projection has a shape of "piece of pie" \\
+In \citep{141*akbarzadeh2013} the camera projection is also simplified in order to have a kind of isosceles triangle shape with considering the depth of view of the camera. In this case the  camera projection has a shape of "piece of pie". \\
 In \citep{146*li2011} thanks to a fix pan and focal length, the camera projection is simplified in order to have a rectangle projection onto the ground. The sweep is designed consequently to the size of the camera projection, in order to minimize the overlap and have full coverage of the area.  
 
-One of the common point of the present in \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010,22*zhao2008,33*reddy2012,193*fu2014,181*wang2017,165*jiang2010}   is the computation of a camera projection on to a grid. 
+One of the common point of the present paper  \cite{87*morsly2012,141*akbarzadeh2013,146*li2011,194*fu2010,22*zhao2008,33*reddy2012,193*fu2014,181*wang2017,165*jiang2010}   , it is the computation of a camera projection on to a grid. 
 The computation of the function $f()$ which has to estimate, if  a point $g_i$ of the grid is cover by a cameras $v_j$ of the network,  is not considered as really greedy (in time). But the coverage estimation using $f(g_i,v_j)$ for a point $g_i$ by a camera $v_j$ have to be done for each point of the grid and for each camera of the network in order to can estimate properly the complete area coverage.
 	\begin{equation} \label{eq:sum sum v g}
 		\mbox{Coverage Rate}=\sum_{i=1}^{m}\sum_{j=1}^{n}f( v_j,g_i)
@@ -748,7 +748,7 @@ Just few parameters are necessary as showed in Equation \ref{eq:WrHr1}. Thanks t
 		v=(x,y,z,\gamma ) 
 	\end{equation}
 
-In our case the roll $\gamma$ can take different state, portrait or landscape with a rotation of $0^\circ$ or $90^\circ$.
+In our case the roll $\gamma$ can take two different states, portrait or landscape with a rotation of $0^\circ$ or $90^\circ$.
 Reducing the number of  parameters, passing to the equation \ref{eq:v} to \ref{eq:v2} are to reduce the number of parameters to optimize. 
 
  % The reduction of the number of parameters will greatly affect the optimisation process.
@@ -797,7 +797,7 @@ Vs=V \mbox{ , iff } E(V)= \begin{cases} 1, & \mbox{iff } E_i(v)=1 \mbox{ , with 
 \end{align}
 
 Where $E_i(V)$ is the function applied to verify  the $i$th constrains of the set $E$ on the solution $V$. $Nc$ is the number of constraints needs to be satisfied to have an acceptable solution.
-That mean among all the possibles combination of parameters $V$ only the one intersect the set of the constraint $E$ are an possible solution.  If we are considering  all the $V$ and all the $E$ as two subset $Vs$ is defined as $Vs=V\subset E$. 
+That mean among all the possibles combination of parameters $V$ only the one intersect the set of the constraint $E$ are a possible solution.  If we are considering  all the $V$ and all the $E$ as two subset $Vs$ is defined as $Vs=V\subset E$. 
 
 The problem of monitoring an area and more specifically the problem of area coverage may contain many constraints depending of the environment and the context. As example: the room shape, minimizing  the altitude,  have the best resolution, orientation of the camera, the possible occlusion,... All this constraints are included in the set $E$. 
 The constraints have to be defined depending on the problem and the goal.
@@ -827,7 +827,7 @@ To create an efficient cost function, other criteria has to be taken in to accou
 %
 %\end{itemize} 
 \subparagraph{Fixed number of the cameras}
-One of the first constraint is the fixed number of cameras. This constraint as some others (detailed latter) are  useful to simplify and restrict the possibility of the problem. This constraint permits us to focus on the fine optimisation (as in \citep{22*zhao2008} where both are tested). The number of cameras is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  
+One of the first constraint is the fixed number of cameras. This constraint as some others (detailed latter) are  useful to simplify and restrict the possibility of the problem. This constraint allows us to focus on the fine optimisation (as in \citep{22*zhao2008} where both are tested). The number of cameras is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  
 
 \subparagraph{Fixed parameters of camera and no rotations}
 Fixed parameters of the cameras and no rotations ($\alpha$ and $\beta$) has been introduced previously (section \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV are also an advantage for the optimization by simplifying the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization. Thanks to this constraint the optimization  has to focus on the precise  cameras positioning.
@@ -844,7 +844,7 @@ In practice the  altitude boundary is defined with :
  Where $\sup A$ is the maximal altitude of the camera and $\inf A$ the minimum altitude. $A$ is the altitude between the camera and the grid. %$A$ is the fix altitude of a camera where the camera projection has been computed with $A=z$ with only $coef$ vary as introduced in Equation \ref{eq:A.coef}. 
  
  \subparagraph{The map boundaries} \label{sec:MapBoundaries}
-The map boundaries, is a constraint similar then the altitude boundary. Despite the shape of an area to cover some maximum boundaries can be made. In fact for any shape as complex as it, it is  possible to encapsulate in a rectangle. The rectangle map boundary is defined by a width $W$ and height $H$. The boundary on $x$ and $y$ are:
+The map boundaries, is a constraint similar then the altitude boundary. Despite the shape of an area to cover some maximum boundaries can be made. In fact for any shape as complex as it is may be possible to encapsulate inside a rectangle. The rectangle map boundary is defined by a width $W$ and height $H$. The boundary on $x$ and $y$ are:
  \begin{equation}
   \begin{array}{lcl}
   	0\leq x\leq W \\
@@ -884,15 +884,15 @@ In addition, it allows the optimization to test some exotic solutions, as allowi
 \subparagraph{Resolution}
 The resolution of the images is related then the sensor size (in px) and the distance between the camera and the object. In our case, the sensor size is dependent on the properties of the camera mounted on the UAV.% and the object filmed is the floor of the area to cover.
  The distance between the camera and floor (or the object) is the altitude as  defined in the Section \ref{sec:altitudeBoundary}. \\
-The resolution constraint has to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be as lower as possible.\\
+ The resolution constraint has to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be as lower as possible.\\
 Considering only the minimisation of the average altitude of the cameras is harmful for the coverage.
-Consequently, during the optimization process a trade off between the altitude (and the related resolution) and the coverage rate have to be done.
+Consequently, during the optimization process a trade off between the altitude (with the related resolution) and the coverage rate have to be done.
  The altitude of the cameras  as to be  minimized, the average of the altitude is used as index estimate the resolution  %($\min{\frac{\sum^n_{i=1}{z_i}}{n}}$ )
  . In order to manage this trade off, the average altitude of the cameras is included in the cost function  and has to be minimized (see section  \ref{sec:costFun}).  \\
  
 \subsection{Constraint types} \label{sec:ConstraintTypesSoftHard}
  
-Among the constraints listed different priorities and restrictions exist. Indeed the constraint can be considered as hard or soft constraint. %The two sub-class are the hard constraint and the soft constrain  presented in the following paragrapher.
+Among the constraints listed different priorities and restrictions exist. Indeed the constraints can be classified depending their priorities and impact on the problems. The constraint classes considered mostly as hard or soft constraints. %The two sub-class are the hard constraint and the soft constrain  presented in the following paragrapher.
 
 \subparagraph{Hard Constraint}
  %Some of the constraints presented are called "Hard constraint". \\
