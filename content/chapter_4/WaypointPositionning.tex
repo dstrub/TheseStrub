@@ -36,9 +36,9 @@ On the other hand a bigger room allow to place more waypoints. The increased  nu
 \section{Other algorithm used}
 
 In order to compare carefully our proposed method, two other algorithms were introduced. The following sections explain the two algorithms used. %The environment introduced in \ref{sec:contextOfExp} is used to make the comparisons.  
-The Particles Swarm Optimisation (PSO) and a Random Selections (RS) are described in the following sections. The PSO is used due to its importance in the literature for similar problems and the RS for this simplicity to evaluate the optimization. The RS  act as a reference point for the other optimization.  
+The Particles Swarm Optimization (PSO) and a Random Selections (RS) are described in the following sections. The PSO is used due to its importance in the literature for similar problems and the RS for this simplicity to evaluate the optimization. The RS  act as a reference point for the other optimization.  
 
-\subsection{Particles Swarm Optimisation } \label{sec:PSOdetail}
+\subsection{Particles Swarm Optimization } \label{sec:PSOdetail}
 
 The PSO (Particle Swarm Optimization) is an algorithm dedicated to the optimization problems. It is a stochastic algorithm from the family of evolutionary algorithms (see Chapter \ref{chap:EA}). 
 The PSO is a relatively young compared then the other EA. It was developed by Russel Eberhart and James Kennedy in 1995 \cite{148*eberhart1995}.% The concept of PSO is to optimize iteratively a continuous non linear function. 
@@ -133,7 +133,7 @@ To can use the RS as reference point several optimization has to be done to obta
 To solve the problem of cameras positioning (or waypoints positioning) the usable algorithms are varied as that was discussed in the Chapter \ref{chap:stateOfTheArt} (see the sum-up Tables \ref{tab:sum-up1} and \ref{tab:sum-upEA1}).
 Among the algorithms studied in the literature the EA family appear as the more suitable to have an appropriate answer despite the numerous constraints of our problem. The EA is a vast family of algorithms. Among this family the more used for our problem is the PSO (see  Table \ref{tab:sum-upEA1}). The PSO gives a good and fast result in many cases. In the EA family, the GA is one of the founders and was one of the more popular due to its great flexibility and efficiency.
  After more investigation the GA is under estimate for the problem of camera positioning unlike the PSO (see \citep{33*reddy2012,8*zhou2011,84*xu2011,143*maji2015,193*fu2014,194*fu2010} as discussed in section \ref{sec:SolutionBasedonEA}) . \\
- The  conscientiously comparison  of GA and PSO was proposed by Boeringer et al in \citep{78*boeringer2004}. The conclusions  of the comparison in \citep{78*boeringer2004} is open. In fact Boeringer et al.  \citep{78*boeringer2004} conclude after several the comparison applied to several optimisation problems, Neither PSO nor GA offers a solution that is objectively better in all cases. Due to the average similarity of results between the two algorithms its highlight the importance to evaluate them for each new problem.
+ The  conscientiously comparison  of GA and PSO was proposed by Boeringer et al in \citep{78*boeringer2004}. The conclusions  of the comparison in \citep{78*boeringer2004} is open. In fact Boeringer et al.  \citep{78*boeringer2004} conclude after several the comparison applied to several optimization problems, Neither PSO nor GA offers a solution that is objectively better in all cases. Due to the average similarity of results between the two algorithms its highlight the importance to evaluate them for each new problem.
   Therefore, there is no real tool to estimate that one or the other of algorithms will be better than the other on a given problem.
  Consequently an  set  of experimentations has to be done to find the best algorithm for the problem of cameras position in a complex environments. 
 
@@ -493,7 +493,7 @@ For this first experiment with the binary mask to describe the area to cover, a 
 The solution proposed being to apply a GAPSO. The PSO will allow the refinement of the GA solution.
 %Consequently, the GA is performed  firstly to optimize the position of the waypoints . 
 %The optimized waypoints positioning, cover $90.76\%$ of the area with 25 cameras and the GA converge after just 67 generation. The solution given by the single GA is already good enough despise the complexity of the map. Although can be refined by apply a PSO. 
-The PSO is used with an initialisation from the first optimisation (using the GA solution). 
+The PSO is used with an initialisation from the first optimization (using the GA solution). 
 Finally the result presented in the Figure \figref{subfig:coverageGAPSOTorcy} shown a much more refined coverage with significant reduction in the amount of black holes and overlaps (coverage is over $92.8\%$). 
 
 The overlaps of the camera projection is reduced by the use of GAPSO. In fact the coverage with simple GA has an overlap of $26.43\%$  of the area covered  when the  solution obtained with  GAPSO has $23.39\%$ of overlapping.

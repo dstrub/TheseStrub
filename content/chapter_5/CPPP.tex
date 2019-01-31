@@ -76,7 +76,7 @@ At the end of these steps, we have the number and a good set of waypoints poses 
 %\end{mfigures} 
  
   \subsection{Sorted waypoints and path planning.} \label{sec:sorted}
-In the previous sections, the method to obtain the list of waypoints positions to have a desired coverage has been detailed. Now, the list of waypoints has to be sorted, in order to compute an efficient path with the shorter travelling distance passing by all the waypoints. In order to create an efficient path passing by all optimised waypoints the problem is formalized as a TSP. %The TSP was quickly introduced in the Paragraph \ref{par:TSPPathPlan} and more detail about is provided in the following sections.
+In the previous sections, the method to obtain the list of waypoints positions to have a desired coverage has been detailed. Now, the list of waypoints has to be sorted, in order to compute an efficient path with the shorter travelling distance passing by all the waypoints. In order to create an efficient path passing by all optimized waypoints the problem is formalized as a TSP. %The TSP was quickly introduced in the Paragraph \ref{par:TSPPathPlan} and more detail about is provided in the following sections.
 
 % \subsubsection*{a)}{Shortest Path Problem}
 % \\Normally, finding a shortest path between two points in configuration space is mature enough. In our case we assume the waypoints as multi goals. So the planning in this method will simply find at every waypoint the shortest Euclidean distance from the other available non-traversed waypoints. Based on that a ranked waypoints list will be generated. This will not guarantee a globally shortest distance, but will only choose the shortest distance every time a waypoint is visited.
@@ -127,7 +127,7 @@ To illustrate the GA ability one example using an adapted GA (high mutation rate
 Once the waypoints position estimated and the shorter path passing by all the waypoints computed it is important to evaluate the trajectory complexity. %The trajectory complexity can be a great clue of the path reliability.  It also be useful 
 The trajectory complexity is compared between our solution and the more classical sweep trajectory.
  
-To estimate the trajectory, two indicators are used to evaluate properly the path complexity. The first indicator is the distance of the trajectory. The distance allows to evaluate basically the optimization of the path planning. This indicator is directly included in the optimisation process as discussed before (see Section \ref{sec:TSP2}). 
+To estimate the trajectory, two indicators are used to evaluate properly the path complexity. The first indicator is the distance of the trajectory. The distance allows to evaluate basically the optimization of the path planning. This indicator is directly included in the optimization process as discussed before (see Section \ref{sec:TSP2}). 
 %Evaluate the trajectory only by using the distance indicator is not enough and another indicator must be associate to can evaluate quickly the trajectory complexity.
 To estimate the complexity in terms of curve for the UAV evolving in the 3D space the angles at each node is studied. 
 The complexity of trajectory indicator is computed as follow: 
@@ -156,7 +156,7 @@ The proposed method for the problem of CPP was tested during different experimen
 
 \subsection{Rectangle obstacle} \label{experiment}
 
- \begin{mfigures}[!]{Optimisation of the path planing}{fig:final_room2} \centering
+ \begin{mfigures}[!]{Optimization of the path planing}{fig:final_room2} \centering
 %\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room}{subfig:RoomPy}
 \mfigure{width=.4\linewidth}{img/room_full.png}{Room Coverage}{subfig:fullRoomPath}
 \hspace{1cm}
@@ -178,7 +178,7 @@ Finally the proposed solution allows a better path planning thanks to its optimi
 
 \subsection{Using Mask to describe area.}\label{coverageOutDoor}
 
-The gain for the indoor area is important. The gain is mostly due to the well optimised position of the waypoints. The experiment must be extended for a bigger and complex area with a higher coverage rate requirement.
+The gain for the indoor area is important. The gain is mostly due to the well optimized position of the waypoints. The experiment must be extended for a bigger and complex area with a higher coverage rate requirement.
 
 
 \subsubsection{Vast and complex area.} \label{fey_map_CPPP}
@@ -306,9 +306,9 @@ Thanks to these experiments the limit of our method begins to appears. The main 
  
  
  \subsubsection{Camera contraint by the trajectory} \label{sec:holonomie path}
-  \begin{mfigures}[!]{Outdoor simulation of the coverage path planning. The camera projection FoV is $40 \times 60 px$  and fix altitude(with  a square projection of 40px wild for the positioning optimisation).}{fig:FleyPathPlan} \centering
+  \begin{mfigures}[!]{Outdoor simulation of the coverage path planning. The camera projection FoV is $40 \times 60 px$  and fix altitude(with  a square projection of 40px wild for the positioning optimization).}{fig:FleyPathPlan} \centering
 %\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room}{subfig:RoomPy}
-\mfigure{width=.4\linewidth}{img/fig13a.png}{115 waypoints poses after optimisation for a coverage of $94.3\%$.}{subfig:FleytfullRoomPathHolonom}
+\mfigure{width=.4\linewidth}{img/fig13a.png}{115 waypoints poses after optimization for a coverage of $94.3\%$.}{subfig:FleytfullRoomPathHolonom}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/fig13b.png}{Coverage path planning for 99.71\% of coverage with a distance of 4785px.}{subfig:FleynPathPlanningHolonom}
 \tabsimuposeFleyPathHolonom
@@ -319,7 +319,7 @@ During this simulation we assume the UAV is not able to control the roll indepen
 The solution proposed in this section is adapted to the UAV trajectory to constrain the camera directions. 
 In the following experimentation the roll and the altitude are fixed for the waypoints positioning. The camera size is reduced as a square shape projection onto the ground 40x40px, corresponding to the smaller side of the camera projections. The camera is represented as a reduced square is used only for the optimization process.
  The reduction of the camera estimation, the fixed roll and also a fixed altitude allow us to make a coverage at minima of the area.
-The optimisation of the waypoints are computed (as in Chapter \ref{chap:waypointPoseExp}) with these new constraints. Once the waypoints positioned  
+The optimization of the waypoints are computed (as in Chapter \ref{chap:waypointPoseExp}) with these new constraints. Once the waypoints positioned  
 %The coverage estimation for the waypoint positionning is under-estimated due to the projection shape.
 the path planning can be computed as presented in Section \ref{sec:sorted} to have the sorted waypoints.
 
@@ -327,7 +327,7 @@ To estimate the final coverage of the area with a fixed camera on the UAV, the U
 Based on the path computed with the TSP formulation the UAV orientations are deduced by estimating the trajectory to go one waypoint to another.
 %The path the roll orientation of the camera can be deduced by the direction taked by the UAV to go one waypoint to an other. 
 The next step is to estimate the coverage of the area with the camera stream  record and the cameras FoV oriented depending of the trajectories (see Figure \figref{subfig:FleynPathPlanningHolonom}). The final stream coverage estimation is done with the camera size 60x40 pixel. \\
-Obviously the final coverage path planning is better than the estimation did it during the waypoints positioning, see  in the following example Figure \figref{subfig:FleytfullRoomPathHolonom}. The camera projection for the optimisation  is 40 pixel by 40 pixel with 115 waypoints for coverage pose estimation of $94.3\%$ and $99.71\%$ for stream coverage of the full room with the simulation of path planning and a camera projection to 40x60 pixel (see Figure \figref{subfig:FleynPathPlanningHolonom}). This gain is not taken into account during the phase of waypoints positioning optimization and in consequence not for estimate the number of waypoints.% (see Section \ref{sec:NmbWaypoint}).\\
+Obviously the final coverage path planning is better than the estimation did it during the waypoints positioning, see  in the following example Figure \figref{subfig:FleytfullRoomPathHolonom}. The camera projection for the optimization  is 40 pixel by 40 pixel with 115 waypoints for coverage pose estimation of $94.3\%$ and $99.71\%$ for stream coverage of the full room with the simulation of path planning and a camera projection to 40x60 pixel (see Figure \figref{subfig:FleynPathPlanningHolonom}). This gain is not taken into account during the phase of waypoints positioning optimization and in consequence not for estimate the number of waypoints.% (see Section \ref{sec:NmbWaypoint}).\\
 To confirm the gain of stream coverage an other experiment has been made with a similar condition but in a different map. The experiment is made with the map introduced in Section \ref{sec:biggestMapcalWaypoint} with the camera projection of 70 pixel by 70 pixel with 110 waypoints for a coverage estimation at 88.38\%  (see Figure \figref{subfig:CalvitfullRoomPathHolonom}) and 98.64\% (see Figure \figref{subfig:CalviPathPlanningHolonom}) for the full room after the simulation of fly.
 
 This experiment demonstrates the ability of our proposed method to do coverage path planning in a large area with a non convex shape with different constraints. The solution proposed being adaptable and flexible to the different conditions. This experiment also shows the non negligible gain of coverage between the waypoints positioning optimization and the final CPP with the stream coverage of the area.
@@ -342,7 +342,7 @@ This experiment demonstrates the ability of our proposed method to do coverage p
 
 
 
-  \begin{mfigures}[!]{Outdoor simulation of the coverage path planning. The camera projection FOV is $40 \times 60 px$  and fix altitude(with  a square projection of 40px wild for the positioning optimisation).}{fig:CalvissonPathPlan} \centering
+  \begin{mfigures}[!]{Outdoor simulation of the coverage path planning. The camera projection FOV is $40 \times 60 px$  and fix altitude(with  a square projection of 40px wild for the positioning optimization).}{fig:CalvissonPathPlan} \centering
 %\mfigure{width=.4\linewidth}{img/room_python.PNG}{Poses of every image captured in the room}{subfig:RoomPy}
 \mfigure{width=.4\linewidth}{img/fig14-a.png}{110 waypoints for $88.38\%$ of coverage
 fix altitude .}{subfig:CalvitfullRoomPathHolonom}
@@ -377,10 +377,10 @@ method Coverage path planning for 98.6\% of coverage with a distance of 8114px.}
 \section{CPP global optimization attempt}
 
 The experiments made previously were successful despite the different optimization steps. Indeed to compute an efficient CPP several optimization have been used (see in Section \ref{sec:experiment}). %with an increasing number of waypoints until reaching an acceptable threshold of coverage rate (see Section \ref{sec:NonEAmethod}).
-First number of waypoints has to be estimated and the waypoints poses has to be optimised. When the coverage rate is reached the optimized waypoints can be refined with a PSO to have an appropriate coverage. The final optimization is to use the TSP paradigm to compute a path passing by all the waypoints.% (as explained in Section \ref{sec:CPPsequantielMethod}). % The estimation of the number of waypoints appear as the most consumer of computation but the case shown during the experimentation the number of waypoints was fixed manual.% (due to the knowledge about each map). 
+First number of waypoints has to be estimated and the waypoints poses has to be optimized. When the coverage rate is reached the optimized waypoints can be refined with a PSO to have an appropriate coverage. The final optimization is to use the TSP paradigm to compute a path passing by all the waypoints.% (as explained in Section \ref{sec:CPPsequantielMethod}). % The estimation of the number of waypoints appear as the most consumer of computation but the case shown during the experimentation the number of waypoints was fixed manual.% (due to the knowledge about each map). 
 \\Despite the success of this greedy method a logical improvement clue maybe to reduce the number of successive optimizations. In the experiments proposed previously the waypoints positioning optimization shown some beginning of limits due to the too hight number of dimensions to optimize (see Section \ref{sec:waypointPoseLimite}). 
 In the experiment made for a camera constrain by the UAV trajectory, the streamed coverage area increase significantly compared to the waypoints coverage. This increased area covered is not taking in account until now. The idea is to try to limit the number of waypoints by using a global method to optimize the CPP problems.\\
-The method explored in the following sections is to merge the optimisation of the waypoints positioning and the sorted waypoints process to have only one global optimization for the CPP problem. 
+The method explored in the following sections is to merge the optimization of the waypoints positioning and the sorted waypoints process to have only one global optimization for the CPP problem. 
  
 		\subsection{Adapted formulation }
 %In order to find a solution for the problem of CPP, by one optimization of the waypoints positioning and the path planning, the problem has to be re-adapted.
@@ -414,7 +414,7 @@ To formulate properly the CPP problem it is essential to estimate the area cover
 % Concretely the implementation is to first estimate the direction and the trajectory to follow  between the two waypoints, estimate the area covered by the camera projection at regular interval on the trajectory. This  coverage path estimation is made between two point until the path is accomplished (to extend $Pc_i$ as in \ref{eq:Pci}).
  That mean in this case the roll of the camera is not optimized but taken into account depending then the trajectory to follows. Moreover in this case the altitude of the UAV is fixed in order to simplify the optimization computations and simplify the cost function.
 
-The proposed methodology to estimate the area covered by the path requires to have a ordered set of waypoints.  In the previous algorithms the TSP paradigms with a GA optimisation was used to order the waypoints, to have the shorter path passing by the set of optimized waypoints. In this new method, the path has to be computes in the same optimization step than the waypoints positioning. 
+The proposed methodology to estimate the area covered by the path requires to have a ordered set of waypoints.  In the previous algorithms the TSP paradigms with a GA optimization was used to order the waypoints, to have the shorter path passing by the set of optimized waypoints. In this new method, the path has to be computes in the same optimization step than the waypoints positioning. 
 %To do that the solution is to priories the chromosomes order (or particles). 
 The idea is to use the position of each genome inside the chromosome as important in the estimation. Where in this case a genome is the set of parameters of a waypoint. That mean the same genome at different position in the chromosome has not the same impact in the cost function. Consequently the optimization is not only focusing on finding the best coverage for a set of waypoints but also find the sequence of waypoints positions. This formulation add some combinator constraints inside each chromosome and particle.
 To illustrate, an example is provided in the Figure \figref{fig:orderedK} : \\
@@ -462,8 +462,8 @@ The GA was the best algorithms to solve the TSP problem and also well adapted to
   Once the map selected the optimization begin with three waypoints and the number of waypoints is slightly increased until reach 8 waypoints. For each number of waypoints  three optimizations have been made. In the Figure \figref{fig:TorCPP} some results example as been showed with the GA followed  by GAPSO. The result obtained offer a relatively high coverage for a minimum of waypoints. Despite this good coverage the path is worst than the solution obtained by the method proposed earlier.  
 
 	\paragraph*{Experiments and discussions}	
-The experiments made allow to see the advantage and limit of this optimisation. 
-The main advantage of this formulation is the beside to optimize the CPP problem in one unique optimisation is the reducing amount of waypoint compared to the waypoints positioning optimization. In fact for the map proposed only  5 waypoints are required to cover  the area (see Figure \figref{subfig:CPPTorcymapGAPSO}) compared to the waypoints positioning optimisation that requires 25 waypoints (see Figure \figref{subfig:coverageGAPSOTorcy}). Reducing the number of waypoints needed to cover an area is essential to have an better and faster optimization process. The reducing amount of the number of waypoints is even more important when the problem is complicated by the position order of the waypoints in a solution. 
+The experiments made allow to see the advantage and limit of this optimization. 
+The main advantage of this formulation is the beside to optimize the CPP problem in one unique optimization is the reducing amount of waypoint compared to the waypoints positioning optimization. In fact for the map proposed only  5 waypoints are required to cover  the area (see Figure \figref{subfig:CPPTorcymapGAPSO}) compared to the waypoints positioning optimization that requires 25 waypoints (see Figure \figref{subfig:coverageGAPSOTorcy}). Reducing the number of waypoints needed to cover an area is essential to have an better and faster optimization process. The reducing amount of the number of waypoints is even more important when the problem is complicated by the position order of the waypoints in a solution. 
 	On the other side, despite a good coverage of the area the path plan appear too long with many overflight (overlaps). Consequently, and despite the good  coverage the path appear not so well optimized. 
 	About the optimization we can observe that the average number of generations of the GA required is around 47 generations for a set of experiment between 3 to 9. The average number of generations  are  comparable to the number of generations needed to optimize the waypoints positioning ( see in Section \ref{sec:maskGAPSO}), where for 25 waypoints to pose estimate 67 generations was needed. 
 	It, show also some limits of using the unique optimization for the problem of CPP. In the other hand, the formulation despite the inconclusive, but promising result appear interesting and the cause of the inconclusive results are explored.

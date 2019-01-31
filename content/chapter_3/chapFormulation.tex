@@ -22,7 +22,7 @@
 %The problem formulation has to translate the objective with all this problematic into a simple formulation usable for different optimization algorithms. 
 The following chapter is dedicated to formulate in detail the problems of cameras positioning . 
 The objective here is to find the position for a set of cameras or waypoints. The position of this set of waypoints has to be optimized in order to cover most of the area. The area to cover maybe a vast and composed by complex zones.
-A good formulation is essential to design an efficient cost function. The cost function is used to quantifies the quality of the solutions. It is a crucial element for the optimisation processes.\\
+A good formulation is essential to design an efficient cost function. The cost function is used to quantifies the quality of the solutions. It is a crucial element for the optimization processes.\\
 This chapter present a formal definition of the problem based on the literature and our proposed formulation. 
 The formulation proposed is adapted to optimize the problem of cameras or waypoints position depending then many constraint as  a complex and vast map or  cameras mounted on UAV.
 %The formulation proposed is adapted to optimize the problems with evolutionary algorithm to have an efficient cameras position for maximizing the coverage, depending then many constraints as for example using a camera mounted on UAV.
@@ -54,7 +54,7 @@ First of all the area himself. The question of "How to represent the area?" is  
 %\item The constraints added to the systems (constraints and secondary objectives). \\
 %\end{itemize} 
  This three parts are discussed in the following sections. The area definition is discussed in the section \ref{sec:Grid} dedicate to the grid design. The camera definition is discussed in the section \ref{sec:CamerasCoverage} and the third part discuss about the constraints in the section \ref{sec:constraint}.\\
-Finally when the problem is clearly defined all the different elements are integrated to have an efficient cost function usable for the optimisation process in \ref{sec:costFun}.
+Finally when the problem is clearly defined all the different elements are integrated to have an efficient cost function usable for the optimization process in \ref{sec:costFun}.
 
    
 %;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; to do ;;;;;;;;;;;;;;;;;;
@@ -166,7 +166,7 @@ Also the high sampling frequency will affect the positioning of the cameras pose
 %///////////////////advantage of the low sampling///////
 At the opposite a lower sampling frequency can be a good solution to upgrade the convergence speed of the optimization process as that was presented in \cite{8*zhou2011}. In Zhou et al \cite{8*zhou2011} a small value of $m$ is chosen to have a real time solution for small area with just few cameras (up to  20). 
 %////////////low sampling disadvantage////
-On the other side, the low sampling frequency may generate a bad estimation of the area covered due to the too low density of points in the grid. The low density of points may give an approximated view of the area covered and some uncovered areas (black hole) can appear between the points of the grid. This uncovered area can be too small to be detected. Due to the low density of points. In this case, the optimization cannot take in to account this uncovered area and the solution given after an optimisation will be in a real environment not good as aspect. Concretely, the difference between the coverage estimation of the discrete area and the  coverage estimation in continue must be high.    \\
+On the other side, the low sampling frequency may generate a bad estimation of the area covered due to the too low density of points in the grid. The low density of points may give an approximated view of the area covered and some uncovered areas (black hole) can appear between the points of the grid. This uncovered area can be too small to be detected. Due to the low density of points. In this case, the optimization cannot take in to account this uncovered area and the solution given after an optimization will be in a real environment not good as aspect. Concretely, the difference between the coverage estimation of the discrete area and the  coverage estimation in continue must be high.    \\
 
 
 
@@ -191,7 +191,7 @@ On the other side, the low sampling frequency may generate a bad estimation of t
 Finally, the too low sampling frequency, instead to win computation time, may affect the quality of coverage  estimation. But in the contrary, the impact of a too high sampling frequency has consequences, as is summarized in the Table \ref{tab:samplingFrequency}. The choice of the sampling frequency have to be done carefully. \\
 The density of the grid has to be adjusted depending than the goal and the precision required. One of the solutions proposed in Zhao et al \citep{22*zhao2008} is to have a progressive refinement by increasing the grid density.
 %////////////progressive sampling/////
-Zhao et al \citep{22*zhao2008} despite a low density of points at the beginning, the number of points are increased slowly to have a better density and refined results. Also the increasing points frequency is applied to refine the solution and add more cameras at each step of the optimisation to avoid the uncovered area.  \\
+Zhao et al \citep{22*zhao2008} despite a low density of points at the beginning, the number of points are increased slowly to have a better density and refined results. Also the increasing points frequency is applied to refine the solution and add more cameras at each step of the optimization to avoid the uncovered area.  \\
 
 
 %////////////camera pose estimation linked//////////////////////
@@ -529,7 +529,7 @@ The pinhole model is commonly composed by a box (or  a chamber) hermetically clo
 
 Among the parameters of the camera, only  some of them are useful to estimate the projection. They can be formalized as a vector:
 \begin{equation}\label{eq:v}
-v=(x,y,z,\alpha ,\beta,\gamma,f)%,u_0,v_0,\sigma_{uv} %v=(x,y,z,\alpha ,\beta,\gamma,f,Sw\times Sh)
+v=(x,y,z,\alpha ,\beta,\gamma,f)%,u_0,v_0,\sigma_{uv} %v=(x,y,z,\alpha ,\beta,\gamma,f,S_w\times S_h)
 \end{equation}
 
 Each element of the vector $v$ are used to compute the camera projection on the discretized floor (the grid $G$). 
@@ -638,7 +638,7 @@ To take in account the potential occlusion by a obstacle $Obj_l$ the Equation \r
 		 \mbox{Coverage Rate}=\sum_{l=1}^{k}\sum_{j=1}^{m}\sum_{i=1}^{n}f( v_i,g_j,Obj_l)
 	\end{equation} 
  
-The function $f(...)$ in charge to compute a camera projection will be called for each camera, each point of the grid and each obstacle, in order to evaluate the complete coverage of the area (with the occluded part). This numerous calls will greatly increase the time computation of the coverage. It is even worst when numerous cameras projection has to be computed at each turn of a long optimisation process.\\
+The function $f(...)$ in charge to compute a camera projection will be called for each camera, each point of the grid and each obstacle, in order to evaluate the complete coverage of the area (with the occluded part). This numerous calls will greatly increase the time computation of the coverage. It is even worst when numerous cameras projection has to be computed at each turn of a long optimization process.\\
 In this condition the efficiency of the function $f(...)$ in charge of the computation of the coverage estimation, is primordial due to the numerous calls. 
 %%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -685,7 +685,7 @@ It is possible to compute the size of the covered rectangle for a given altitude
 %Especially the focal length $f$, the altitude of the cameras $A$ and the sensor size $Sw\times Sh$. \\
 
 %The altitude is the distance between the grid and the cameras, in the simple case $A$ is considered to be equal to $z$, when the grid is on the floor.  \\
-Based on the useful parameters from the camera $(f ,Sw\times Sh ,z)$ the computation to estimate the size of a camera projection ($Wr$,$Hr$) is :
+Based on the useful parameters from the camera $(f ,S_w\times S_h ,z)$ the computation to estimate the size of a camera projection ($Wr$,$Hr$) is :
 
 %\begin{equation}
 %s= [Sw ; Sh]  %\mbox{   } Sw,Sh \in \mathbb{N} 
@@ -707,8 +707,8 @@ Based on the useful parameters from the camera $(f ,Sw\times Sh ,z)$ the computa
 	
 	\begin{equation} \label{eq:WrHr1}
 	\begin{split}
-			Wr=(\frac{1}{f} . Sw).z\\
-			Hr=(\frac{1}{f} . Sh).z
+			Wr=(\frac{1}{f} . S_w).z\\
+			Hr=(\frac{1}{f} . S_h).z
      \end{split} 
 	\end{equation}
 	
@@ -733,7 +733,7 @@ Based on the useful parameters from the camera $(f ,Sw\times Sh ,z)$ the computa
 %	\end{equation}
 %Therefore, to any altitude $z$ is existing $A.Coef$ where the size of the camera projection onto the floor is $(Wr.coef, Hr.coef)$. Thanks to this the eq: \ref{eq:etaUpsilon} and eq: \ref{eq:WrHr1} have to be compute once  for a given focal length $f$ and sensor $s$ with an simple $A=z$. Adding simple $Coef$ the size of camera projection can be easily simplified in order to limit the useless computation (only 2 multiplication instead then equation \ref{fig:cam_proj} and \ref{eq:etaUpsilon}.
 
-When $f$ represent the focal length, $z$ the altitude of the cameras and  $Sw$, $Sh$ the sensor size.
+When $f$ represent the focal length, $z$ the altitude of the cameras and  $S_w$, $S_h$ the sensor size.
 %The model of camera projection is greatly simplified by the UAV assumption (fixed pan, tilt and focal length).
 Thanks to this model of camera projection as a simple rectangle, the size of the rectangle projection is directly related to the altitude. The altitude is assuming to be a coefficient of the Equation \ref{eq:WrHr1}\\
 %The simplification by modelling all the cameras with a fix orientation and same ability (in order to have a rectangle projection onto the ground) 
@@ -827,7 +827,7 @@ To create an efficient cost function, other criteria has to be taken in to accou
 %
 %\end{itemize} 
 \subparagraph{Fixed number of the cameras}
-One of the first constraint is the fixed number of cameras. This constraint as some others (detailed latter) are  useful to simplify and restrict the possibility of the problem. This constraint allows us to focus on the fine optimisation (as in \citep{22*zhao2008} where both are tested). The number of cameras is fixed at the beginning of the optimisation and no more camera will be added during the optimization process.  
+One of the first constraint is the fixed number of cameras. This constraint as some others (detailed latter) are  useful to simplify and restrict the possibility of the problem. This constraint allows us to focus on the fine optimization (as in \citep{22*zhao2008} where both are tested). The number of cameras is fixed at the beginning of the optimization and no more camera will be added during the optimization process.  
 
 \subparagraph{Fixed parameters of camera and no rotations}
 Fixed parameters of the cameras and no rotations ($\alpha$ and $\beta$) has been introduced previously (section \ref{sec:parameterToOptimize}). These constraints imposed by the use of an UAV are also an advantage for the optimization by simplifying the coverage estimation and limit the number of parameters to optimize. The parameters are fixed at each beginning of the optimization. Thanks to this constraint the optimization  has to focus on the precise  cameras positioning.
@@ -885,7 +885,7 @@ In addition, it allows the optimization to test some exotic solutions, as allowi
 The resolution of the images is related then the sensor size (in px) and the distance between the camera and the object. In our case, the sensor size is dependent on the properties of the camera mounted on the UAV.% and the object filmed is the floor of the area to cover.
  The distance between the camera and floor (or the object) is the altitude as  defined in the Section \ref{sec:altitudeBoundary}. \\
  The resolution constraint has to maximize the resolution. In order to maximize the resolution during the optimization the altitude criteria is modified in order to be as lower as possible.\\
-Considering only the minimisation of the average altitude of the cameras is harmful for the coverage.
+Considering only the minimization of the average altitude of the cameras is harmful for the coverage.
 Consequently, during the optimization process a trade off between the altitude (with the related resolution) and the coverage rate have to be done.
  The altitude of the cameras  as to be  minimized, the average of the altitude is used as index estimate the resolution  %($\min{\frac{\sum^n_{i=1}{z_i}}{n}}$ )
  . In order to manage this trade off, the average altitude of the cameras is included in the cost function  and has to be minimized (see section  \ref{sec:costFun}).  \\
@@ -896,7 +896,7 @@ Among the constraints listed different priorities and restrictions exist. Indeed
 
 \subparagraph{Hard Constraint}
  %Some of the constraints presented are called "Hard constraint". \\
- The hard constraints limit the possible solution by do not allowing the solution with does not respect it. These hard constraints is directly used during the optimisation process to prohibit any solution to be out of these boundaries. These hard constraints has to be integrate in the optimization process in order to cannot generate a solution with does not respect it. Consequently the hard constraints may slow down the generation of the individuals due to the specific generation and required test.\\ 
+ The hard constraints limit the possible solution by do not allowing the solution with does not respect it. These hard constraints is directly used during the optimization process to prohibit any solution to be out of these boundaries. These hard constraints has to be integrate in the optimization process in order to cannot generate a solution with does not respect it. Consequently the hard constraints may slow down the generation of the individuals due to the specific generation and required test.\\ 
  For example, the 3D boundary as defined in Equation \ref{eq:3dBoundary} is a hard constraint. Improving that, each camera must be inside the 3D boundary.\\ %Otherwise  if one of the camera are out all the solution must be rejected. 
  
  \subparagraph{Soft Constraint} 

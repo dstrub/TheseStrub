@@ -98,13 +98,13 @@ Another important feature to define the coverage is related to indoor/outdoor sc
    
 \end{itemize}
   
-\subsection{Additional constraints}
+\subsection{Additional constraints} \label{subsec:AddConst}
 The common points in all the examples discussed is the aim of maximizing the coverage rate. The positioning of the cameras, and its effects on the coverage rate, is thus constrained by the application itself, the context  and the type of observed scenes.\\
 %!!!!!!
 %The common points in all this coverage definition is the importance to maximize it, despite the other objectives. In the examples presented the coverage was always the first and for some of them the only objective. Despite the interest for maximizing the coverage some other elements has to be taken in account to have a useful cameras position depending on the finality. 
 Of course, additional constraints can have also a significant impact on the camera pose. Some of the more common constraints found in the literature are listed below:\\
 \begin{itemize}
-\item  The numbers of cameras: \\ In many cases,  the number of cameras used for the coverage should be minimised such as in  \cite{151*zhao2013,171*horster2006,22*zhao2008}. Limiting the number of cameras is primordial to decrease the computation time and the bandwidth. It also reduces the cost of the setup \cite{82*chrysostomou2012}. Reducing the number of cameras and optimising their poses to get an optimal coverage are closely related tasks, not necessarily competing. Too few cameras can shrink the coverage rate by leaving black-holes in some areas of the scene. Too many cameras can result in too much overlaps and unnecessary redundancies.\\
+\item  The numbers of cameras: \\ In many cases,  the number of cameras used for the coverage should be minimised such as in  \cite{151*zhao2013,171*horster2006,22*zhao2008}. Limiting the number of cameras is primordial to decrease the computation time and the bandwidth. It also reduces the cost of the setup \cite{82*chrysostomou2012}. Reducing the number of cameras and optimizing their poses to get an optimal coverage are closely related tasks, not necessarily competing. Too few cameras can shrink the coverage rate by leaving black-holes in some areas of the scene. Too many cameras can result in too much overlaps and unnecessary redundancies.\\
 
 \item Object tracking: \\
 \begin{mfigures}[!]{Illustration of an covered area for tracking target. Experiment  form Ding et al. \citep{18*ding2012} }{fig:Tracking18} \centering
@@ -244,7 +244,7 @@ The WSN is used in different field for various applications as for Telecom with 
 Logically the sensors can collect numerous type of informations depending the need as temperature, movements, images, song and also some  actuator can be used as radio frequency for example.\\
  The application of WSN are wide, especially since the WSN can be useful in many application field. The WSN try to optimize a network of sensors in different aspects as for example \cite{39*wu2011} focus on an adapted architecture efficient enough for data transfer (here the data are images) or like in \cite{40*sohrabi2000} the WSN are dedicate to adapt the network around static nodes and energetic resources in order to keep the network connected.  \\
 For our case the aspect the more interesting of the WSN, is the coverage of an area with his constraints.
- The other discipline of the WSN as the network optimisation will not be addressed in the following document. Only the problem of coverage is studied the other discipline are not considered as the first or main objective but can be some secondary objectives after the problem of coverage which has to be taking in account for the optimization. 
+ The other discipline of the WSN as the network optimization will not be addressed in the following document. Only the problem of coverage is studied the other discipline are not considered as the first or main objective but can be some secondary objectives after the problem of coverage which has to be taking in account for the optimization. 
 
 \subsubsection{Sensor at 360}
 %
@@ -319,7 +319,7 @@ Heuristic-based solutions applied to omnidirectional sensors cannot be deployed 
 
 	\section{Solution not based on evolutionary method}\label{sec:NonEAmethod}
 	
-The algorithms used to estimate the pose of a set of cameras in order to maximize the coverage are various. Two main classes can be defined: the first one, which we called "constructive", is a step-by-step positioning of the cameras, one after the other; the second one comprises the optimisation-based solutions. Most of these approaches fall under either the AGP paradigm or the WSN paradigm, or even a combination of both.\\
+The algorithms used to estimate the pose of a set of cameras in order to maximize the coverage are various. Two main classes can be defined: the first one, which we called "constructive", is a step-by-step positioning of the cameras, one after the other; the second one comprises the optimization-based solutions. Most of these approaches fall under either the AGP paradigm or the WSN paradigm, or even a combination of both.\\
 
 \subsection{The constructive solution}
 
@@ -355,7 +355,7 @@ The constructive solution have some inconvenient notably in terms of efficiency.
 
 In Nikolaidis et al. \cite{81*nikolaidis2009} the cameras placement is studied for cover a basic mobile robot trajectory.
 The trajectory of the mobile robot is modelled as the regions of interest, with a gradually decreasing interested from the trajectory center.\\
-  The solution applied in \cite{81*nikolaidis2009} is to do a local optimization one camera after another with the “steepest decent method (related to  the gradient decent)”. If this local optimization give a better solution the network of camera is modified otherwise the cameras stay at the same place. This operation is repeated until the convergent arrangement is obtained or no more upgrade can be found. The result presented in the experiment done by Nikolaidis in  \cite{81*nikolaidis2009} are interesting despite the simplicity of the area and the very small amount of cameras used (no more then four). The main limitation is due to the number of steps required for optimize independently each camera of the network. Also a multitude of local optimisation is not obviously the same or better then the global optimization.
+  The solution applied in \cite{81*nikolaidis2009} is to do a local optimization one camera after another with the “steepest decent method (related to  the gradient decent)”. If this local optimization give a better solution the network of camera is modified otherwise the cameras stay at the same place. This operation is repeated until the convergent arrangement is obtained or no more upgrade can be found. The result presented in the experiment done by Nikolaidis in  \cite{81*nikolaidis2009} are interesting despite the simplicity of the area and the very small amount of cameras used (no more then four). The main limitation is due to the number of steps required for optimize independently each camera of the network. Also a multitude of local optimization is not obviously the same or better then the global optimization.
 
 Ma et al. \cite{37*ma2012} propose a solution for the problem of finding the minimum camera barrier coverage. 
 The objective of the camera barrier is to cover only the boundary of an area, to be able to detect target intrusion  within the perimeter. 
@@ -371,7 +371,7 @@ The previous solutions and algorithms presented in \cite{38*liu2010, 37*ma2012,8
 % The iterative process has to chose the best position for each camera of the set. 
 This method has some consequence, notably the fast increasing number of iterations required to have a sufficiently accurate solution. The time complexity is even more problematic while increasing the size of the area and even more while  increasing the number of cameras. Also these solutions are extremely dependent on the formulation and the constraints and cannot be easily adapted to other closely related problems (new constraints  or modified objectives). The poor adaptability   of the method is mostly due to the  use of heuristics designed for very specific problems. 
 
-\subsection{Linear programming optimisation and limits}
+\subsection{Linear programming optimization and limits}
 	Different methods of linear optimization were applied and tested in the literature. Linear optimization, when based  on  a  judiciously  adapted  formulation, can be very effective on small convex areas  with remains very restrictive %In some cases, due to a well-adapted formulation, a specific shape of the area or cameras number the linear optimisation is efficient. 
  This is the reason why, linear optimization is often used for comparison with more flexible and efficient methods more as a research contribution (as in \cite{,151*zhao2013,82*chrysostomou2012}). 
 %The linear optimisation  has been  tested in the literature in order to have a reference point to compare the other more appropriate solutions (as example \cite{,151*zhao2013,82*chrysostomou2012}).
@@ -412,7 +412,7 @@ Wang et al. \cite{181*wang2017} propose a solution with an atypical problem form
 The main advantage of this solution is to propose an area representation with enough sharpness and a minimum number of points. Less points to describe the area to cover mean also a winning time efficiency  during the camera pose estimation (solving the cost function is faster).
 Despite this interesting solution, the results presented in the experiments do not appear to be conclusive.  
 
-The main problem of the linear optimisation appears when the problem becomes too complex. The complexity can come from the formulation and also from the additional constraints. But, in many cases, the increased complexity comes from the increased size of the search space. In practice, when the objective is to place a larger number of cameras or when the number of positions and orientations is too large, linear optimization may not work. 
+The main problem of the linear optimization appears when the problem becomes too complex. The complexity can come from the formulation and also from the additional constraints. But, in many cases, the increased complexity comes from the increased size of the search space. In practice, when the objective is to place a larger number of cameras or when the number of positions and orientations is too large, linear optimization may not work. 
 	 
 	
 \subsection{Game theory} 
@@ -540,7 +540,7 @@ The work of Zhao et al. \cite{151*zhao2013} presents few solutions to optimize t
 In Zhao et al. \cite{151*zhao2013}, the problem is formalized as a BIP (binary integer programming).
   The goal is to find among a restricted numbers of possible positions and orientations the best pose for a set of cameras. The best pose for the set of cameras should cover the area, despite of the obstacles and the regions of interest. \\
 Among the solutions proposed, the greedy algorithm has a good approximate solution, as long as the number of cameras is relatively low. The problem of the greedy algorithm and the integer programming solver is to have an important risk to be stuck in a local optimum (local minima). This risk increases proportionally with the size of the environment. Otherwise the sampling technique with the SA is more adapted to the problem with times constraint and offer a satisfactory solution.\\
-The solution proposed have some limitations; the major drawback is due to the experiment proposed. In fact, the experiment is made in a very small room with only few poses possible for each camera. Consequently, the solution proposed can appear better than a real situation and could be quite worse in a bigger area (in terms of computation time  and pose optimisation). The more interesting aspect in this work \citep{151*zhao2013} is the use of the SA from the EA family which allows to have an efficient coverage much faster than the integer programming solver for a similar result. 
+The solution proposed have some limitations; the major drawback is due to the experiment proposed. In fact, the experiment is made in a very small room with only few poses possible for each camera. Consequently, the solution proposed can appear better than a real situation and could be quite worse in a bigger area (in terms of computation time  and pose optimization). The more interesting aspect in this work \citep{151*zhao2013} is the use of the SA from the EA family which allows to have an efficient coverage much faster than the integer programming solver for a similar result. 
 
 In the recent work of Akbarzadeh et al. \cite{141*akbarzadeh2013} the cameras positioning for outdoor area, has been designed as an optimization problem with a few algorithms tested. Among the algorithms investigate the SA and GA (Genetic Algorithm) both from the EA Family are the more promising. 
 The work of Akbarzadeh et al. \cite{141*akbarzadeh2013} is interesting in many points. \\
@@ -561,11 +561,11 @@ The result of the comparison gives a clear advantage to the algorithms from the 
 The coverage of the area is related to the camera visibility and few constraints have been proposed to control it, as the visibility, viewing angle, field of view, resolution, viewing distance, and occlusions. The solution proposed to optimize the positions, orientations and some of the camera parameters (as the focal length), is to apply an algorithm from the EA family called Bee Colony. The Bee Colony is inspired by the Ant colony algorithm and associated to the bee exploration in the nature. The Bee Colony is in this paper \cite{82*chrysostomou2012} the more efficient of the two problems formulation (minimum of cameras and maximum of coverage with a fixed number of cameras) after a brief comparison with a GA and a branch and bound algorithms. \\
 The experiment proposed is relatively limited. Only one room has been tested with only one test per algorithm, which is not relevant for stochastic algorithm (due to the importance of randomness). Despite that the result proposed are encouraging. 
 
-The works presented in this section has the common point to apply different algorithms from the EA family to optimise the problem maximize the coverage for cameras positioning. The algorithms from the EA family appear well adapted to the problem. To go further in the EA some specific branch as the GA has to be studied.
+The works presented in this section has the common point to apply different algorithms from the EA family to optimize the problem maximize the coverage for cameras positioning. The algorithms from the EA family appear well adapted to the problem. To go further in the EA some specific branch as the GA has to be studied.
 
 \subsection{Solution used Genetic Algorithm or close related}
 
- Among the solutions applied from the EA to optimise the coverage area, the GA or the algorithms closely related have been studied, as in the following section with some examples.
+ Among the solutions applied from the EA to optimize the coverage area, the GA or the algorithms closely related have been studied, as in the following section with some examples.
  In the solutions proposed as in \cite{82*chrysostomou2012,33*reddy2012,141*akbarzadeh2013} the GA has been applied as a comparator. The GA and solution strongly inspired by the GA  are not only used as a comparator, but it can appear more efficient as in \cite{83*van2009,101*topcuoglu2009,165*jiang2010,152*wang2009}.
 
 
@@ -606,7 +606,7 @@ To maximize the coverage under various constraints the EA family are commonly us
  In Xu et al. \cite{84*xu2011} the PSO is used to optimize the orientation of several cameras (around 150).
 The cameras have been randomly positioned in the area. All the cameras have the same properties and cannot change position, but may adjust orientation to any directions (as a PTZ cameras). The area is designed in 2D and the viewing direction is described with only one rotation in pan (around  the z axis).  
 Finally the PSO is used to optimize the viewing directions in order to have the best coverage. The PSO optimize the cameras to reach a coverage around 65\% after 1000 iteration and 20 particles for each iteration.
-The gain between the initial random dispersion  and the optimized viewing direction (with PSO) is  around 12 points of percentage. The intimal coverage (before the optimisation) in the experiment was around 53\% after the random dispersion (see the result in Figure \ref{fig:Coverage84}. In this case, the PSO provides with a relatively quick optimization a much better solution.
+The gain between the initial random dispersion  and the optimized viewing direction (with PSO) is  around 12 points of percentage. The intimal coverage (before the optimization) in the experiment was around 53\% after the random dispersion (see the result in Figure \ref{fig:Coverage84}. In this case, the PSO provides with a relatively quick optimization a much better solution.
 
 In Fu x et al. \cite{194*fu2010} the same problem as in \cite{84*xu2011} is discussed, the optimization of the orientation for an important set of cameras (100 cameras) using PSO. The difference is the number of parameters to optimize. In \cite{194*fu2010} the viewing direction is not only optimized on pan but also with the tilt.  
 The PSO is compared with other algorithms as the SA. Finally the PSO outperforms the other solutions experimented in this article despite an important number of parameters to optimize (100 cameras with 2 parameters by camera).
@@ -620,7 +620,7 @@ An experiment in a bigger environment will probably show an even more important 
 As in Zhou et al. \cite{8*zhou2011}, Reddy et al. \cite{33*reddy2012} propose a similar solution for a similar problem formulation. The goal is to maximize the coverage depending on some target priority which must maximize the resolution using PSO.
 Moreover the solution proposed in \cite{33*reddy2012} has been also taken into account the visibility parameters as depth of field and light intensity. All these constraints affect greatly the coverage results. Finally the experiment shows the efficiency of PSO for a small environment with few camera (around 7 cameras) for a multi objectives problem. The advantage in \cite{33*reddy2012} is the addition of more objectives and constraints than in \cite{8*zhou2011}. Moreover the area has a better discretization which allows to confirm the efficiency of PSO for the coverage with multi objectives in a small room.
 
-In Fu y \cite{193*fu2014} the PSO is used to optimise the problem of maximum coverage as the other. 
+In Fu y \cite{193*fu2014} the PSO is used to optimize the problem of maximum coverage as the other. 
  The camera pose must cover the totality of a small square room.
 The orientation of the camera has to be optimized in pan and tilt. In addition, all the cameras have an identical focal length. It is a relatively basic objective with few common constraints. 
  The interesting part of this article \cite{193*fu2014} is the use of PI-PSO with is a Probability Inspired binary PSO. 
@@ -629,14 +629,14 @@ The orientation of the camera has to be optimized in pan and tilt. In addition, 
  In the recent work of Maji et al.\cite{143*maji2015} the finality is different but the problem can be considered similar to the problem of cameras positioning. 
 The objective is to position several transistors in a rectangular Printed Circuit Board (PCB).
 The transistors must have a rectangular shape with different sizes and ratios. 
-  Despite the apparent simplicity due to the rectangular shape for the chips, some potential additional constraints, as the relation dependence between chips, or the strict non-overlapping of the transistors, makes the problem of positioning transistor becomes more complex. The solution is to optimize the positions and orientations of the chips on the board using EA. The  PSO is chosen and more precisely the Craziness based PSO (CR-PSO). The interest of the CR-PSO is the variety of possible solution introduced during the optimization compared to a classical PSO. The variety introduced during the optimisation process by the CR-PSO  helps to pass over the several local minima. 
-  The more interesting aspect is to use a PSO in a similar problem as camera positioning which was commonly handled with a linear convex optimisation as in \citep{62*vijayan1991} and  based on the work on the floor planning defined Boyd and Vandenberghe in their book Convex optimization \cite{boyd2004convex}(8.8 page 438).  
+  Despite the apparent simplicity due to the rectangular shape for the chips, some potential additional constraints, as the relation dependence between chips, or the strict non-overlapping of the transistors, makes the problem of positioning transistor becomes more complex. The solution is to optimize the positions and orientations of the chips on the board using EA. The  PSO is chosen and more precisely the Craziness based PSO (CR-PSO). The interest of the CR-PSO is the variety of possible solution introduced during the optimization compared to a classical PSO. The variety introduced during the optimization process by the CR-PSO  helps to pass over the several local minima. 
+  The more interesting aspect is to use a PSO in a similar problem as camera positioning which was commonly handled with a linear convex optimization as in \citep{62*vijayan1991} and  based on the work on the floor planning defined Boyd and Vandenberghe in their book Convex optimization \cite{boyd2004convex}(8.8 page 438).  
   
 The solutions proposed based on PSO are promising. The PSO or closely related methods have numerous advantages as shown in the previous sections.
- The main advantages are the efficient and fast optimisation, as well as the fast implementation. In fact, the PSO is  relatively easy to implement and just few parameters need to be set-up toget an efficient result. The simplicity of the implementation is due to the numerous framework developed in all languages and the low numbers of parameters to set-up. Among the  few parameters to set-up mainly the number of particles and the global inertia have an important impact (see more about PSO latter in the Section  \ref{sec:PSOdetail}).
+ The main advantages are the efficient and fast optimization, as well as the fast implementation. In fact, the PSO is  relatively easy to implement and just few parameters need to be set-up toget an efficient result. The simplicity of the implementation is due to the numerous framework developed in all languages and the low numbers of parameters to set-up. Among the  few parameters to set-up mainly the number of particles and the global inertia have an important impact (see more about PSO latter in the Section  \ref{sec:PSOdetail}).
   On another side the PSO is not really efficient to optimize a lot of parameters at same time (compare then other EA). The PSO can quickly be limited as the increasing size and complexity of the area.
    Due to this limit the PSO has been customized as in \citep{143*maji2015}  and \citep{194*fu2010}. \\
-The popularity of the PSO is mostly due to the association of the quick implementation, fast computation and efficient enough optimisation for various problem as coverage optimization.
+The popularity of the PSO is mostly due to the association of the quick implementation, fast computation and efficient enough optimization for various problem as coverage optimization.
  
  \subsection{Sum-up} 
  In order to summarise the previous section the Table \ref{tab:sum-upEA} is proposed which contains the interesting articles.
@@ -971,7 +971,7 @@ Since the 90s, numerous algorithms has been developed for the cellular decomposi
  The semi approximate decomposition is by part based on the discretization of the space. The idea is to create a set of large cells. The width of the cells is fix and the height is relative then the area boundary (see in \citep{214*choset2001}). 
 	 The semi approximate cell decomposition allow to have cells with two parallel sides with a fix size (at the right and left) and  the  two other sides adapted to the boundary (at the up and down. See the illustration  of a semi approximation in Figure \figref{fig:choset214SemiAprox}).  The width  of  the cells are chosen depending then half of the focal length of the camera mounded on the mobile robot. The area is covered by following the boundary of the cells with sweep to pass cells  after cells.
 	 The advantage of this semi approximate decomposition is the facility to describe a vast area and the low computation required. Additionally, this decomposition can be made on-line by the robot and do not require a hight level of knowledge of the area. 
-	 The disadvantage is the non optimized path due to the cells decomposition. The simplicity  of this decomposition  can gender case, where the robot have to path many time by the same place. The semi approximate cellular decomposition do not allow to have a well optimised path planning. \\
+	 The disadvantage is the non optimized path due to the cells decomposition. The simplicity  of this decomposition  can gender case, where the robot have to path many time by the same place. The semi approximate cellular decomposition do not allow to have a well optimized path planning. \\
 	 
 	 %%%%% add fig from238* fig8 to --> from214
 	\item Exact cellular decomposition: 
@@ -1185,7 +1185,7 @@ In some situations a  TSP is not realistic and some external constraints can be 
 		
 		The work of Lee et al. \cite{215*lee2010} propose another solution based on smooth spiral path. The idea is to propose to follow the boundary of the room to fully cover and use a smoothed spiral to cover the area. The solution proposed is compared to other method. The main advantage of these method is the on-line ability and the smoothed trajectory(see also \citep{195*choi2009}).
 		
-		Before to conclude about some of the algorithms usable to optimise the coverage path planning the more elementary has to be discussed. In fact,  among the algorithms proposed until here the full random was not discussed. 
+		Before to conclude about some of the algorithms usable to optimize the coverage path planning the more elementary has to be discussed. In fact,  among the algorithms proposed until here the full random was not discussed. 
 		In Liu et al. \cite{242*liu2008} a really basic methods is developed to cover an area with an mobile robot (hover robot) for on-line path planning in a dynamic environment. The algorithm proposed is based on random direction. The basic idea is to move forward until the detection of an obstacle (ultrasonic or bumper). When an obstacle is detected the robot turn randomly. This solution is really basic and is based on the idea then if the room is not too big or not specially complex with enough time the mobile robot will cover all. Obviously this solution is not optimized and not acceptable in many cases. 
 		
 		

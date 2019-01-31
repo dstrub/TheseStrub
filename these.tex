@@ -107,7 +107,7 @@
 %% The second mandatory parameter is the date of the PhD defense.
 %% The third mandatory parameter is the reference number given by
 %% the University Library after the PhD defense.
-\declarethesis[with evolutionary algorithms.]{Coverage path planning based on waypoints optimisation, }{17 septembre 2017}{42}
+\declarethesis[with evolutionary algorithms.]{Coverage path planning based on waypoints optimization, }{04 April 2017}{42}
  
 %%--------------------
 %% Set the author of the PhD thesis
@@ -147,7 +147,7 @@ full mosaic of it. }
 %%--------------------
 %% Set the English keywords. They only appear if
 %% there is an English abstract
-\thesiskeywords[english]{optimisation, UAV, evolutionary algorithm, PSO, path planning, coverage }
+\thesiskeywords[english]{optimization, UAV, evolutionary algorithm, PSO, path planning, coverage }
  
 %%--------------------
 %% Set the French abstract
@@ -429,6 +429,340 @@ NW - Number of Waypoints \\
 GAPSO -  Genetic Algorithm Particles Swarm Optimization  \\
 FoV - Field of View \\
 
+
+\section{Equation variables} 
+
+\begin{table}[!h]
+
+\begin{tikzpicture}[right]
+\node (a) at (0,0)
+{
+
+\begin{tabular}{|c|}
+\hline
+   \textbf{Comment and context}\\ \hline  
+  \textbf{First definition}  \\\hline
+	\textbf{Definition}   \\\hline %\vdots
+   \textbf{Variable name} \\ \hline
+\end{tabular}
+};
+
+\node[yshift=-10.89cm,xshift=-1.5cm] (b) at (a.south) 
+{
+\begin{tabular}{l | m{0.35\linewidth} | m{0.205\linewidth} | m{0.150\linewidth} |   }
+\hline
+\toprule
+
+\rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$k$ and $k$-coverage}   	&	 Where $k$ represent the number of cameras useful to cover some region of the area.	 &Sub-section :\ref{subsec:AddConst}   & 	All  \tabularnewline   \hline 	
+
+\rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $P$}  		&Is  a Polygon  used to represent an art galery (room).	 & Sub-section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}  \tabularnewline \hline   
+
+ \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$n$}  &	Number of vertices of $P$ &	Section	:\ref{sec:AGPdef}  & Only the Section \ref{sec:AGP}  \tabularnewline  \hline
+
+\rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $v_i$}  		&Is  the $i^{th}$ vertices of the polygon $P$	 & Section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP} \tabularnewline  \hline
+    	
+  \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$x_i$}  &	Is the $i^{th}$  guard (coordinate position in $P$) &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}	 \tabularnewline \hline
+ 
+\rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $y$}  		&Is a point $y \in P$  & Section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}  \tabularnewline  \hline  
+ 
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$X$}  &	Is set to the minimum number of guards $X$ useful to fully cover the polygons $P$ &	Section	:\ref{sec:AGPdef}   &	Only the Section \ref{sec:AGP}  \tabularnewline \hline 
+ 
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$g$}  &	Is the number of guard $x$ need it to cover $P$ to have a set $X=\{x_1…x_i…. x_g\}$ &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}	  \tabularnewline \hline 
+
+    \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$x$}  &	Sensor position &	Section	:\ref{sec:WSNstateOfArt}     &	Only the Section \ref{sec:WSNstateOfArt}	 \tabularnewline  \hline
+
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$r$}  &	Sensor power radus  &	Section	:\ref{sec:WSNstateOfArt}     &	Only the Section \ref{sec:WSNstateOfArt}	 \tabularnewline \hline 
+
+    \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\vec{x}$}  & Input vector and possible solution &	Section	:{sec:GeneralEAform}     &	Only the Section \ref{sec:GeneralEAform} \tabularnewline \hline
+
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$f(\vec{x})$}  & Cost function to evaluate the $\vec{x}$ answer &	Section	:\ref{sec:GeneralEAform}     &	Only the Section \ref{sec:GeneralEAform} \tabularnewline \hline
+
+    \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\vec{X}$}  & Global optimum solution &	Section	:\ref{sec:GeneralEAform}   &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline  
+
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$E$}  & Set of $m$ constraints composed by $e_j$ for the $j^{th}$ constraint function &	Section	:\ref{sec:GeneralEAform}     &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline
+
+ \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $F(\vec{x})$}  & Cost fonction to include the $\vec{x}$ answer, with 
+evaluate also the constraints cost & Section	:\ref{sec:Grid}  & 	All	  \tabularnewline \hline
+
+  \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$G$}  &	Is an occupation grid of the area &	Section	:\ref{sec:Grid}     &	\ref{sec:Grid}	  \tabularnewline \hline  
+ 
+ \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $g_i$}  		& The i$^th$ point of the grid $G$ should be covered by a camera & Section	:\ref{sec:Grid}  & 	All	  \tabularnewline \hline
+
+
+  
+\end{tabular}
+};
+%\draw[->,ultra thick](a)--(b);
+\draw [->,very thick] (4.60,0.82) -- (14.5,0.82) -- (14.5,-2.5);
+\draw [->,very thick] (4.6,0.251) -- (12,0.251) -- (12,-2.5);
+\draw [->,very thick] (4.6,-.250) -- (8,-.25) -- (8,-2.5);
+\draw [->,very thick] 		 (3,-0.965) -- (3,-2);
+%\draw [->,very thick] (4.25,-1.02) -- (6.2,-1.02) -- (6.2,-2.5);
+
+%\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2.5);
+%\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2.5);
+\end{tikzpicture}
+ \caption{Equation notation I.}\label{tab:SumUpFormulation1}
+\end{table}	
+
+%%%%%%%%%%%%%%% table 2
+\begin{table}[!h]
+
+\begin{tikzpicture}[right]
+\node (a) at (0,0)
+{
+
+\begin{tabular}{|c|}
+\hline
+   \textbf{Comment and context}\\ \hline  
+  \textbf{First definition}  \\\hline
+	\textbf{Definition}   \\\hline %\vdots
+   \textbf{Variable name} \\ \hline
+\end{tabular}
+};
+
+\node[yshift=-10.89cm,xshift=-0.005cm] (b) at (a.south) 
+{
+\begin{tabular}{l | m{0.35\linewidth} | m{0.195\linewidth} | m{0.150\linewidth} |   }
+\hline
+\toprule
+
+ \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $m$}  	& Is equal to the number of points in the grid $G$ & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline  \hline
+
+ \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $B$}  		& Is  the list of the points $g_i$ from the grid $G$ which are covered & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
+
+   \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$p_i$}  &	Is the weight of the point $g_i$ on the grid $G$ &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}					  \tabularnewline \hline  
+  
+    \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$P$}  &	Is the list of  $p_i$ which contain the
+weighting of the area   &	Section	:\ref{sec:Grid}     &	Only the Section \ref{sec:Grid}		  \tabularnewline \hline
+
+   \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$G'$}  & Is the list of point $g_i$ (grid similar then $G$)  with the non-interesting zones removed  &	Section	:\ref{sec:Grid}    &	The following section  \tabularnewline  \hline
+
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$U$}  &	The zones without interest to be covered noted the set $U $. $U\in G$ &	Section	:\ref{sec:Grid}    &	Only the Section \ref{sec:Grid}   \tabularnewline \hline
+
+ \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$(x,y, z)$}  & Camera position  &	Section	:\ref{sec:CamerasDefinition}  &	All   \tabularnewline \hline
+
+    \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$(\alpha,\beta, \gamma)$}  & Three degrees of freedom for the camera orientation: the rotation in pan, tilt, and roll angles  &	Section	:\ref{sec:CamerasDefinition}  &	All   \tabularnewline  \hline
+
+   \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$f$}  &	The focal lens &	Section	:\ref{sec:CamerasDefinition}    &	Following sections   \tabularnewline  \hline
+
+ \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$v$}  & Is the input camera with the usefull camera properties  &	Section	:\ref{sec:CamerasDefinition}  &	All  \tabularnewline \hline
+
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$Obj_l$}  &	The $l^{th}$ object in the scene &	Section	:\ref{sec:CamerasDefinition}     &	Only the Section \ref{sec:CamerasDefinition}	  \tabularnewline  \hline  
+
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$f(...)$} & The function is in charge to compute a camera projection     &	Section	:\ref{sec:CamerasDefinition}    &	Following sections	 \tabularnewline  \hline
+
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$Wr \times Hr$}  &	Is the size of the rectangle projection of the camera in width and height  &	Section	:\ref{sec:CamerasDefinition}     &	Following sections							  \tabularnewline \hline 
+
+    \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$S_w \times S_h$}  &	Is the size of the camera sensor in width and height  &	Section	:\ref{sec:CamerasDefinition}    &	Following sections	 \tabularnewline \hline
+
+\rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $V$}  		& Represents a solution. $V$ contain all individual positions and orientations of the set of cameras for a predefined focal length, sensor size and related map depending on the problem	 & Sub-section	:\ref{sec:parameterToOptimize}  & 	Only the Section \ref{sec:parameterToOptimize}	   						  \tabularnewline \hline 
+
+\rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $Vs$}  		& Represents an acceptable solution which respect the set of constraint & Sub-section	:\ref{sec:parameterToOptimize}  & 	Only the Section \ref{sec:parameterToOptimize}	   						  \tabularnewline \hline 
+
+
+
+    
+ 
+
+  
+\end{tabular}
+};
+%\draw[->,ultra thick](a)--(b);
+\draw [->,very thick] (4.60,0.82) -- (14.5,0.82) -- (14.5,-1.96);
+\draw [->,very thick] (4.6,0.251) -- (12,0.251) -- (12,-1.96);
+\draw [->,very thick] (4.6,-.250) -- (8,-.25) -- (8,-1.96);
+\draw [->,very thick] 		 (3,-0.965) -- (3,-1.96);
+%\draw [->,very thick] (4.25,-1.02) -- (6.2,-1.02) -- (6.2,-2);
+
+%\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
+%\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2);
+\end{tikzpicture}
+ \caption{Equation notation II.}\label{tab:SumUpFormulation1}
+\end{table}	
+
+%%%%%%%%%%%%%%% table 3 
+
+\begin{table}[!h]
+
+\begin{tikzpicture}[right]
+\node (a) at (0,0)
+{
+
+\begin{tabular}{|c|}
+\hline
+   \textbf{Comment and context}\\ \hline  
+  \textbf{First definition}  \\\hline
+	\textbf{Definition}   \\\hline %\vdots
+   \textbf{Variable name} \\ \hline
+\end{tabular}
+};
+
+\node[yshift=-9.49cm,xshift=-0.005cm] (b) at (a.south) 
+{
+\begin{tabular}{l | m{0.35\linewidth} | m{0.195\linewidth} | m{0.150\linewidth} |   }
+\hline
+\toprule
+
+\rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$W$}   		& Size of the boundaries of the area to cover in width	 & Sub-section :\ref{sec:MapBoundaries}       & 	All   \tabularnewline \hline 
+
+\rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$H$}   		& Size of the boundaries of the area to cover in height	 & Sub-section :\ref{sec:MapBoundaries}    & 	All  \tabularnewline  \hline 
+
+\rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\epsilon$}   		& Is the soft constraint  & Sub-section :\ref{sec:ConstraintTypesSoftHard}    & Only the Sub-section	\ref{sec:ConstraintTypesSoftHard}    					     \tabularnewline   	\hline 
+
+\rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\varepsilon '$}   		& Is the hard constraint & Sub-section :\ref{sec:ConstraintTypesSoftHard}    & 	Only the Sub-section \ref{sec:ConstraintTypesSoftHard}    						     \tabularnewline  \hline
+ 
+ \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$C(Vs)$}  &	The cost functions to evaluate the area coverage which includes the constraints &	Section	:\ref{sec:costFun}   &	Following sections \tabularnewline  \hline 
+
+ \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$n$}  &	The number of cameras in the network &	Section	:\ref{sec:parameterToOptimize}     &	Following sections  \tabularnewline  \hline
+
+ \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$N$}  &	The number of cameras in the network &	Section	:\ref{sec:OptimizationComplexity}     &	Only the Section \ref{sec:OptimizationComplexity} and \ref{sec:inconclusiveResults}  \tabularnewline \hline 
+
+ \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$Sp$}  & Is the search space size for one camera &	Section	:\ref{sec:OptimizationComplexity}     &	Only the Section \ref{sec:OptimizationComplexity} and \ref{sec:inconclusiveResults}  \tabularnewline \hline 
+
+\rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $V_k$}  	& Velocity  of a  particle of the $k$th iteration 
+ & Section	:\ref{sec:PSOdetail}  & 	Only the Section \ref{sec:PSOdetail}  \tabularnewline \hline 
+    	
+  \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$P_i$}  &	Best solution of a particle &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}  \tabularnewline  \hline
+ 
+\rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $P_g$}  		& The best solution from the swarm   & Section	:\ref{sec:PSOdetail}  & 	Only the Section \ref{sec:PSOdetail}  \tabularnewline  \hline
+ 
+   \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\omega$}  & Is the inertia of the swarm &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}  \tabularnewline \hline
+ 
+    \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$b1$ and $b2$}  &	Is random value between 0 and $\phi_g$ for $b_1$ or  $\phi_p$ for $b_2$ &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail} \tabularnewline \hline 
+
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$X_k$}  &	Is the $k^{th}$ particle which includes this own position at the current time &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}  \tabularnewline \hline
+  
+  
+\end{tabular}
+};
+%\draw[->,ultra thick](a)--(b);
+\draw [->,very thick] (4.60,0.82) -- (14.5,0.82) -- (14.5,-2.16);
+\draw [->,very thick] (4.6,0.251) -- (12,0.251) -- (12,-2.16);
+\draw [->,very thick] (4.6,-.250) -- (8,-.25) -- (8,-2.16);
+\draw [->,very thick] 		 (3,-0.965) -- (3,-2.16);
+%\draw [->,very thick] (4.25,-1.02) -- (6.2,-1.02) -- (6.2,-2);
+
+%\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
+%\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2);
+\end{tikzpicture}
+ \caption{Equation notation III.}\label{tab:SumUpFormulation1}
+\end{table}	
+
+%%%%%%%%%%%%%%% table 4
+\begin{table}[!h]
+
+\begin{tikzpicture}[right]
+\node (a) at (0,0)
+{
+
+\begin{tabular}{|c|}
+\hline
+   \textbf{Comment and context}\\ \hline  
+  \textbf{First definition}  \\\hline
+	\textbf{Definition}   \\\hline %\vdots
+   \textbf{Variable name} \\ \hline
+\end{tabular}
+};
+
+\node[yshift=-6.981cm,xshift=-1.5cm] (b) at (a.south) 
+{
+\begin{tabular}{l | m{0.35\linewidth} | m{0.205\linewidth} | m{0.150\linewidth} |   }
+\hline
+\toprule
+
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$A_{room}$}  &	Area of the room (length $\times$ width) &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}					  \tabularnewline  \hline
+  
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$A_{Wall}$}  &	Area of the obstacle like wall (length $\times$ width) &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline  \hline
+
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$A_{Cam}$}  &	Area covers by the camera in the maximum size of $z$ &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline \hline
+
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\mbox{NWayPoint}$}  &	Number of waypoints &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline \hline 
+
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\mbox{Threshold Rate}$}  &	Objective threshold rate  &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline \hline
+
+    \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$S$}  &	One solution of waypoints set  &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline \hline
+
+   \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$evalCost$}  &	Cost function     &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}   \tabularnewline \hline 
+
+  \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\alpha_i$}  &  Is an angle of the curve in the trajectory as in Figure \figref{fig:trajectoirAlpha}	 &	Section	:\ref{sec:sorted}     &	Following sections	  \tabularnewline \hline
+
+  \rowcolor[HTML]{FFFFFF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$Size(\alpha)$}  &  Is the number of curves in all the trajectory	 &	Section	:\ref{sec:sorted}     &	Following sections  \tabularnewline \hline
+ 
+ \rowcolor[HTML]{E9E9EF} 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $Distance$}  	& Is the distance of the path & Section	:\ref{par:CPPestimation}  & 	Following sections   \tabularnewline \hline
+
+\end{tabular}
+};
+%\draw[->,ultra thick](a)--(b);
+\draw [->,very thick] (4.60,0.82) -- (14.5,0.82) -- (14.5,-3.16);
+\draw [->,very thick] (4.6,0.251) -- (12,0.251) -- (12,-3.16);
+\draw [->,very thick] (4.6,-.250) -- (8,-.25) -- (8,-3.16);
+\draw [->,very thick] 		 (3,-0.965) -- (3,-3.16);
+%\draw [->,very thick] (4.25,-1.02) -- (6.2,-1.02) -- (6.2,-2);
+
+%\draw [->,very thick] (-1,0) -- (1,0) -- (1,-2);
+%\draw [->,very thick] (-1,-0.5) -- (0,-0.5) -- (0,-2);
+\end{tikzpicture}
+ \caption{Equation notation IV.}\label{tab:SumUpFormulation1}
+\end{table}	
+
 \include{content/chapter_0/intro}
 %\chapter{Introduction}
 %  
@@ -609,27 +943,27 @@ FoV - Field of View \\
 %%--------------------
 %% Appendixes
 \appendix
-\part{Annexes}
+\part{Appendices}
 % index 
 % PTZ = Pan, Tilt and Zoom cameras  also called PTZ  (9 page) \\
 % $k$-coverage where $k$ represent the number of useful cameras, to cover some regions of the area.\\
 % The Art Gallery Problem (AGP) is a theoretical and historical problem closely related than
 %the camera positioning.
 %\include{content/Glosaire/glossaire}
-\chapter{ Annexes}
+\chapter{ Appendices}
 
 
-Computation to compute the $\eta, \upsilon$. Where $\eta, \upsilon$ are the horizontal and vertical camera field of view.
-	\begin{equation} \label{eq:etaUpsilon}
- 	 \begin{split}
-		\eta = 2\times \tan^{-1} (\frac{Sw}{(2\times f)}  ) 
- 	   \\
-		\upsilon = (\frac{Sw}{Sh} )\times \eta
- 	 \end{split}
-	\end{equation}
-	The Equation \ref{eq:etaUpsilon} is to complete the Figure \ref{fig:cam_proj}.
- 
-Sum-up table for the impact of the of the low and high sampling frequency for the grid map.
+%Computation to compute the $\eta, \upsilon$. Where $\eta, \upsilon$ are the horizontal and vertical camera field of view.
+%	\begin{equation} \label{eq:etaUpsilon}
+% 	 \begin{split}
+%		\eta = 2\times \tan^{-1} (\frac{Sw}{(2\times f)}  ) 
+% 	   \\
+%		\upsilon = (\frac{Sw}{Sh} )\times \eta
+% 	 \end{split}
+%	\end{equation}
+%	The Equation \ref{eq:etaUpsilon} is to complete the Figure \ref{fig:cam_proj}.
+\section{Advantage and  disadvantage of sampling frequency}
+The impact of the sampling frequency of the grid has great importance to the computation of the cost function and consequently on the optimization process. A sum-up table for the impact of the low and high sampling frequency for the grid map is proposed in \ref{tab:samplingFrequency}.
 \begin{table}
    \begin{tabular}{ |m{0.20\linewidth}| m{0.40\linewidth} | m{0.30\linewidth} |  }
      \hline
@@ -638,12 +972,12 @@ Sum-up table for the impact of the of the low and high sampling frequency for th
 							 & Give more precision on the cameras poses& \tabularnewline \hline  
 	  \Emph{Low sampling frequency }	      	 & Faster computation 	& Bad coverage estimation				 	 	\tabularnewline \hline
  
-   \end{tabular} \caption{Sum-up of the low and high sampling frequancy adaventage or disadvantage. } \label{tab:samplingFrequency}
+   \end{tabular} \caption{Sum-up of the low and high sampling frequency advantage or disadvantage. } \label{tab:samplingFrequency}
  \end{table}
 
 
 
-\begin{mfigures}[!]{Path plan for maximizing the covered area. The area is covered  with 15 and 30 waypoints and several cost function has been tested}{fig:TorCPP} \centering
+\begin{mfigures}[!]{Path plans for maximizing the covered area. The area is covered  with 15 and 30 waypoints and several cost function has been tested}{fig:TorCPP} \centering
 \mfigure{width=.4\linewidth}{img/annexCPP/TorMapCPPGAPSOdist_10_costF5covrage0_552189distance5708_622087cam15.png}{Distance 5708px for 15 Waypoints with 96.22\% of coverage. Optimized with GAPSO. $\sum_{i=1}^{n}Pc_i + \frac{400\times\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 5}/400.$}{subfig:CPPTorcymapGA}
 \hspace{1cm}
 \mfigure{width=.4\linewidth}{img/annexCPP/TorMapCPPGAPSOcovrage0_761568distance2955_391933cam30.png}{Distance 2955px for 30 Waypoints with 76.15\% of coverage. Optimized with GAPSO. $\sum_{i=1}^{n}Pc_i + \frac{400\times\sum_{i=1}^{n}Pc_i}{(\frac{Distance}{N})\times 5}$}{subfig:CPPTorcymapGAPSO}
@@ -662,7 +996,7 @@ Sum-up table for the impact of the of the low and high sampling frequency for th
 %\end{mfigures}
 
 
-\section{Equation variable} 
+\section{Equation variables} 
 
 \begin{table}[!h]
 
@@ -686,56 +1020,52 @@ Sum-up table for the impact of the of the low and high sampling frequency for th
 \toprule
 
 \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$k$ and $k$-coverage}   		&	 Where $k$ represent the number of cameras useful to cover some region of the area.	 &Section :\ref{sec:FirstObjCover}     & 	All   						     \tabularnewline   \hline 	\hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$k$ and $k$-coverage}   		&	 Where $k$ represent the number of cameras useful to cover some region of the area.	 &Sub-section :\ref{subsec:AddConst}    & 	All   						     \tabularnewline   \hline 	
 \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $P$}  		&Is  a Polygon  used to represent a art galery (room).	 & Sub-section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}	   						  \tabularnewline \hline     
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $P$}  		&Is  a Polygon  used to represent an art galery (room).	 & Sub-section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}	   						  \tabularnewline \hline     \hline
  \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$n$}  &	Number of vertice of $P$ &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}					  \tabularnewline  \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$n$}  &	Number of vertices of $P$ &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}					  \tabularnewline  \hline
 \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $v_i$}  		&Is  the $i^{th}$ vertice of the polygon $P$	 & Section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}	   						  \tabularnewline  \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $v_i$}  		&Is  the $i^{th}$ vertices of the polygon $P$	 & Section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}	   						  \tabularnewline  \hline
     	
   \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$x_i$}  &	Is the $i^{th}$  guard (coordinate position in $P$) &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$x_i$}  &	Is the $i^{th}$  guard (coordinate position in $P$) &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}		 \tabularnewline \hline
  
 \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $y$}  		&Is a point $y \in P$  & Section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}	   						  \tabularnewline   \hline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $y$}  		&Is a point $y \in P$  & Section	:\ref{sec:AGPdef}  & 	Only the Section \ref{sec:AGP}  \tabularnewline   \hline  
  
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$X$}  &	Is set with the minimum number of guards $X$ useful to fully cover the polygons $P$ &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}					  \tabularnewline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$X$}  &	Is set to the minimum number of guards $X$ useful to fully cover the polygons $P$ &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}		  \tabularnewline \hline \hline
  
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$g$}  &	Is the number of guard $x$ need it to cover $P$ to have a set $X=\{x_1…x_i…. x_g\}$ &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}		  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$g$}  &	Is the number of guard $x$ need it to cover $P$ to have a set $X=\{x_1…x_i…. x_g\}$ &	Section	:\ref{sec:AGPdef}     &	Only the Section \ref{sec:AGP}	  \tabularnewline \hline \hline
 
     \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$x$}  &	Sensor posesition &	Section	:\ref{sec:WSNstateOfArt}     &	Only the Section \ref{sec:WSNstateOfArt}				  \tabularnewline  \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$x$}  &	Sensor posesition &	Section	:\ref{sec:WSNstateOfArt}     &	Only the Section \ref{sec:WSNstateOfArt}		  \tabularnewline  \hline
 
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$r$}  &	Sensor power radus  &	Section	:\ref{sec:WSNstateOfArt}     &	Only the Section \ref{sec:WSNstateOfArt}				  \tabularnewline \hline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$r$}  &	Sensor power radus  &	Section	:\ref{sec:WSNstateOfArt}     &	Only the Section \ref{sec:WSNstateOfArt}		  \tabularnewline \hline \hline
 
     \rowcolor[HTML]{FFFFFF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\vec{x}$}  & Input vector and possible solution &	Section	:{sec:GeneralEAform}     &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline
 
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$f(\vec{x})$}  & Cost fonction to evaluate the $\vec{x}$ answer &	Section	:{sec:GeneralEAform}     &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$f(\vec{x})$}  & Cost function to evaluate the $\vec{x}$ answer &	Section	:{sec:GeneralEAform}     &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline
 
     \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\vec{X}$}  & Global optimum solution &	Section	:{sec:GeneralEAform}   &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\vec{X}$}  & Global optimum solution &	Section	:{sec:GeneralEAform}   &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline  
 
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$f(\vec{x})$}  & Cost fonction to evaluate the $\vec{x}$ answer &	Section	:{sec:GeneralEAform}     &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$f(\vec{x})$}  & Cost function to evaluate the $\vec{x}$ answer &	Section	:{sec:GeneralEAform}     &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline
 
     \rowcolor[HTML]{FFFFFF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$E$}  & Set of $m$ constraints composed by $e_j$ for the $j^{th}$ constraint function &	Section	:{sec:GeneralEAform}     &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline
 
-    \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$F(\vec{x})$}  & Cost fonction  with include to evaluate the $\vec{x}$ answer &	Section	:{sec:GeneralEAform}     &	Only the Section \ref{sec:GeneralEAform}	 \tabularnewline \hline
-
-
   \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$G$}  &	Is an occupation grid of the area &	Section	:\ref{sec:Grid}     &	All				  \tabularnewline \hline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$G$}  &	Is an occupation grid of the area &	Section	:\ref{sec:Grid}     &	All	  \tabularnewline \hline  
  
  \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $g_i$}  		& The i$^th$ point of the grid $G$ should be covered by a camera & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $g_i$}  		& The i$^th$ point of the grid $G$ should be covered by a camera & Section	:\ref{sec:Grid}  & 	All	  \tabularnewline \hline
 
 
   
@@ -780,50 +1110,50 @@ Sum-up table for the impact of the of the low and high sampling frequency for th
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $m$}  	& Is equal to the number of points in the grid $G$ & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline  \hline
 
  \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $B$}  		& Is  the list of the point $g_i$ form the grid $G$ which are covered & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $B$}  		& Is  the list of the points $g_i$ from the grid $G$ which are covered & Section	:\ref{sec:Grid}  & 	All	    \tabularnewline \hline
 
    \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$p_i$}  &	Is the weight of the point $g_i$ on the grid $G$ &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}					  \tabularnewline \hline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$p_i$}  &	Is the weight of the point $g_i$ on the grid $G$ &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}					  \tabularnewline \hline  
   
     \rowcolor[HTML]{FFFFFF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$P$}  &	Is the list of  $p_i$ which contain the
 weighting of the area   &	Section	:\ref{sec:Grid}     &	Only the Section \ref{sec:Grid}		  \tabularnewline \hline
 
    \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$G'$}  & Is the list of point $g_i$ (grid similar then $G$)  with the non-interesting zones removed  &	Section	:\ref{sec:Grid}    &	The following section  \tabularnewline \hline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$G'$}  & Is the list of point $g_i$ (grid similar then $G$)  with the non-interesting zones removed  &	Section	:\ref{sec:Grid}    &	The following section  \tabularnewline  \hline
 
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$U$}  &	The zones without interest to be covered noted with the set $U $. $U\in G$ &	Section	:\ref{sec:Grid}    &	Only the Section \ref{sec:Grid}   \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$U$}  &	The zones without interest to be covered noted the set $U $. $U\in G$ &	Section	:\ref{sec:Grid}    &	Only the Section \ref{sec:Grid}   \tabularnewline \hline
 
  \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$(x,y, z)$}  & Camera position  &	Section	:\ref{sec:CamerasDefinition}  &	All 					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$(x,y, z)$}  & Camera position  &	Section	:\ref{sec:CamerasDefinition}  &	All   \tabularnewline \hline
 
     \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$(\alpha,\beta, \gamma)$}  & Three degrees of freedom for the camera orientation  orientation: with the  the rotation in pan, tilt, and roll angles  &	Section	:\ref{sec:CamerasDefinition}  &	All 					  \tabularnewline \hline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$(\alpha,\beta, \gamma)$}  & Three degrees of freedom for the camera orientation: the rotation in pan, tilt, and roll angles  &	Section	:\ref{sec:CamerasDefinition}  &	All   \tabularnewline  \hline
 
    \rowcolor[HTML]{E9E9EF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$f$}  &	The focal lens &	Section	:\ref{sec:CamerasDefinition}    &	Following sections   \tabularnewline  \hline
 
  \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$v$}  & Is the input camera with the usefull camera properties  &	Section	:\ref{sec:CamerasDefinition}  &	All 					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$v$}  & Is the input camera with the usefull camera properties  &	Section	:\ref{sec:CamerasDefinition}  &	All  \tabularnewline \hline
 
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$Obj_l$}  &	The $l^{th}$ object in the scene. &	Section	:\ref{sec:CamerasDefinition}     &	Only the Section \ref{sec:CamerasDefinition}					  \tabularnewline  \hline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$Obj_l$}  &	The $l^{th}$ object in the scene &	Section	:\ref{sec:CamerasDefinition}     &	Only the Section \ref{sec:CamerasDefinition}	  \tabularnewline  \hline  
 
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$f(...)$} & The function is in charge to compute a camera projection     &	Section	:\ref{sec:CamerasDefinition}    &	Following sections			  \tabularnewline  \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$f(...)$} & The function is in charge to compute a camera projection     &	Section	:\ref{sec:CamerasDefinition}    &	Following sections	 \tabularnewline  \hline
 
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$Wr \times Hr$}  &	Is the size of the rectangle projection of the camera in width and height  &	Section	:\ref{sec:CamerasDefinition}     &	Following sections							  \tabularnewline \hline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$Wr \times Hr$}  &	Is the size of the rectangle projection of the camera in width and height  &	Section	:\ref{sec:CamerasDefinition}     &	Following sections							  \tabularnewline \hline 
 
     \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$Sw \times Sh$}  &	Is the size of the camera sensor in width  	and height  &	Section	:\ref{sec:CamerasDefinition}    &	Following sections				  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$S_w \times S_h$}  &	Is the size of the camera sensor in width and height  &	Section	:\ref{sec:CamerasDefinition}    &	Following sections	 \tabularnewline \hline
 
 \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $V$}  		& Represents a solution. $V$ contain all individual positions and orientations of the set of cameras for a predefined focal length, sensor size and related map depending on the problem	 & Sub-section	:\ref{sec:parameterToOptimize}  & 	Only the Section \ref{sec:parameterToOptimize}	   						  \tabularnewline \hline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $V$}  		& Represents a solution. $V$ contain all individual positions and orientations of the set of cameras for a predefined focal length, sensor size and related map depending on the problem	 & Sub-section	:\ref{sec:parameterToOptimize}  & 	Only the Section \ref{sec:parameterToOptimize}	   						  \tabularnewline \hline 
 
 \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $Vs$}  		& Represents an acceptable solution which respectthe set of constraint & Sub-section	:\ref{sec:parameterToOptimize}  & 	Only the Section \ref{sec:parameterToOptimize}	   						  \tabularnewline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $Vs$}  		& Represents an acceptable solution which respect the set of constraint & Sub-section	:\ref{sec:parameterToOptimize}  & 	Only the Section \ref{sec:parameterToOptimize}	   						  \tabularnewline \hline 
 
 
 
@@ -870,47 +1200,47 @@ weighting of the area   &	Section	:\ref{sec:Grid}     &	Only the Section \ref{se
 \toprule
 
 \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$W$}   		& Size of the boundarie of the area to cover in width	 & Sub-section :\ref{sec:MapBoundaries}       & 	All   						     \tabularnewline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$W$}   		& Size of the boundaries of the area to cover in width	 & Sub-section :\ref{sec:MapBoundaries}       & 	All   \tabularnewline \hline 
 
 \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$H$}   		& Size of the boundarie of the area to cover in height	 & Sub-section :\ref{sec:MapBoundaries}    & 	All   						     \tabularnewline  	\hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$H$}   		& Size of the boundaries of the area to cover in height	 & Sub-section :\ref{sec:MapBoundaries}    & 	All    \tabularnewline  	\hline 
 
 \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\epsilon$}   		& Is the soft constraint  & Sub-section :\ref{sec:ConstraintTypesSoftHard}    & Only the Sub-section	\ref{sec:ConstraintTypesSoftHard}    					     \tabularnewline   	\hline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\epsilon$}   		& Is the soft constraint  & Sub-section :\ref{sec:ConstraintTypesSoftHard}    & Only the Sub-section	\ref{sec:ConstraintTypesSoftHard}    					     \tabularnewline   	\hline 
 
 \rowcolor[HTML]{E9E9EF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\varepsilon '$}   		& Is the hard constraint & Sub-section :\ref{sec:ConstraintTypesSoftHard}    & 	Only the Sub-section \ref{sec:ConstraintTypesSoftHard}    						     \tabularnewline  \hline
  
  \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$C(Vs)$}  &	The cost function to evaluate the area coverage which include the constraints &	Section	:\ref{sec:costFun}   &	Following sections	  \tabularnewline  \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$C(Vs)$}  &	The cost functions to evaluate the area coverage which includes the constraints &	Section	:\ref{sec:costFun}   &	Following sections	  \tabularnewline  \hline 
 
  \rowcolor[HTML]{E9E9EF} 
 \multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$n$}  &	The number of cameras in the network &	Section	:\ref{sec:parameterToOptimize}     &	Following sections		  \tabularnewline  \hline
 
  \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$N$}  &	The number of cameras in the network &	Section	:\ref{sec:OptimizationComplexity}     &	Only the Section \ref{sec:OptimizationComplexity} and \ref{sec:inconclusiveResults}			  \tabularnewline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$N$}  &	The number of cameras in the network &	Section	:\ref{sec:OptimizationComplexity}     &	Only the Section \ref{sec:OptimizationComplexity} and \ref{sec:inconclusiveResults}  \tabularnewline \hline 
 
  \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$Sp$}  & Is the search space size for one cameras &	Section	:\ref{sec:OptimizationComplexity}     &	Only the Section \ref{sec:OptimizationComplexity} and \ref{sec:inconclusiveResults}			  \tabularnewline \hline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$Sp$}  & Is the search space size for one camera &	Section	:\ref{sec:OptimizationComplexity}     &	Only the Section \ref{sec:OptimizationComplexity} and \ref{sec:inconclusiveResults}	  \tabularnewline \hline 
 
 \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $V_k$}  		& Velocity  of a  particlule at the $k$th iteration 
- & Section	:\ref{sec:PSOdetail}  & 	Only the Section \ref{sec:PSOdetail}	   						  \tabularnewline \hline 
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $V_k$}  	& Velocity  of a  particle of the $k$th iteration 
+ & Section	:\ref{sec:PSOdetail}  & 	Only the Section \ref{sec:PSOdetail}  \tabularnewline \hline 
     	
   \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$P_i$}  &	Best solution of a particle &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}					  \tabularnewline  \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$P_i$}  &	Best solution of a particle &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}  \tabularnewline  \hline
  
 \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $P_g$}  		& The best solution from the swarm   & Section	:\ref{sec:PSOdetail}  & 	Only the Section \ref{sec:PSOdetail}	   						  \tabularnewline  \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF} $P_g$}  		& The best solution from the swarm   & Section	:\ref{sec:PSOdetail}  & 	Only the Section \ref{sec:PSOdetail}  \tabularnewline  \hline
  
    \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\omega$}  &	is the inertia of the swarm &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\omega$}  & Is the inertia of the swarm &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}  \tabularnewline \hline
  
     \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$b1$ and $b2$}  &	is random value between 0 and $\phi_g$ for $b_1$ or  $\phi_p$ for $b_2$ &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}					  \tabularnewline \hline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$b1$ and $b2$}  &	Is random value between 0 and $\phi_g$ for $b_1$ or  $\phi_p$ for $b_2$ &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}					  \tabularnewline \hline \hline
 
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$X_k$}  &	Is the $k^{th}$ particule which include this own position at the current time &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$X_k$}  &	Is the $k^{th}$ particle which includes this own position at the current time &	Section	:\ref{sec:PSOdetail}     &	Only the Section \ref{sec:PSOdetail}					  \tabularnewline \hline
   
   
 \end{tabular}
@@ -951,31 +1281,34 @@ weighting of the area   &	Section	:\ref{sec:Grid}     &	Only the Section \ref{se
 \toprule
 
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$A_{room}$}  &	Area of the Room (length $\times$ width) &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}					  \tabularnewline  \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$A_{room}$}  &	Area of the room (length $\times$ width) &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}					  \tabularnewline  \hline
   
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$A_{Wall}$}  &	area of the obstacle like wall (length $\times$ width) &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline  \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$A_{Wall}$}  &	Area of the obstacle like wall (length $\times$ width) &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline  \hline
 
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$A_{Cam}$}  &	Area cover by the camera in the maximum size of $z$ &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}		  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$A_{Cam}$}  &	Area covers by the camera in the maximum size of $z$ &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline \hline
 
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\mbox{NWayPoint}$}  &	Number of waypoints &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}					  \tabularnewline \hline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\mbox{NWayPoint}$}  &	Number of waypoints &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline \hline 
+
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\mbox{Threshold Rate}$}  &	Objective threshold rate  &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}		  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$\mbox{Threshold Rate}$}  &	Objective threshold rate  &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline \hline
+
     \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$S$}  &	One solution of waypoints set  &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$S$}  &	One solution of waypoints set  &	Section	:\ref{sec:NmbWaypoint}     &	Only the Section \ref{sec:NmbWaypoint}  \tabularnewline \hline
+
    \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$evalCost$}  &	Cost function     &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}		  \tabularnewline \hline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$evalCost$}  &	Cost function     &	Section	:\ref{sec:NmbWaypoint}    &	Only the Section \ref{sec:NmbWaypoint}   \tabularnewline \hline 
 
   \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\alpha_i$}  &  Is an angle of curve in the trajectory as in Figure \figref{fig:trajectoirAlpha}	 &	Section	:\ref{sec:sorted}     &	Following sections					  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF}$\alpha_i$}  &  Is an angle of the curve in the trajectory as in Figure \figref{fig:trajectoirAlpha}	 &	Section	:\ref{sec:sorted}     &	Following sections	  \tabularnewline \hline
 
   \rowcolor[HTML]{FFFFFF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$Size(\alpha)$}  &  Is the number of curves in all the trajectory	 &	Section	:\ref{sec:sorted}     &	Following sections				  \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{FFFFFF}$Size(\alpha)$}  &  Is the number of curves in all the trajectory	 &	Section	:\ref{sec:sorted}     &	Following sections  \tabularnewline \hline
  
  \rowcolor[HTML]{E9E9EF} 
-\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $Distance$}  	& Is the distance of the path & Section	:\ref{par:CPPestimation}  & 	Following sections		    \tabularnewline \hline
+\multicolumn{1}{l|}{\cellcolor[HTML]{E9E9EF} $Distance$}  	& Is the distance of the path & Section	:\ref{par:CPPestimation}  & 	Following sections   \tabularnewline \hline
 
 \end{tabular}
 };

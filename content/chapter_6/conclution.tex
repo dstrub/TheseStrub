@@ -27,8 +27,8 @@ Notably, the size of the path plan or the number of camera positions has to be m
 
 During this thesis, coverage path planning problem is solved with new adaptive methods. The new methods introduced have been developed based on all the work carried out previously. 
 About the coverage path planning a naive idea is to apply a sweeping inside the area to cover. This method can be efficient in numerous cases but may have many disadvantages as, the size of the path usually longer
-or the low robustness of this method to the additional constraints (as a path in 3 dimensions, complex area, trajectory constraint, etc.). In fact, the different methods based on sweeping are workable but non really optimised and rigid to numerous constraints. \\
-The proposed solution is a two steps optimisation, by splitting the problem of coverage path planning into two sub-problems : 
+or the low robustness of this method to the additional constraints (as a path in 3 dimensions, complex area, trajectory constraint, etc.). In fact, the different methods based on sweeping are workable but non really optimized and rigid to numerous constraints. \\
+The proposed solution is a two steps optimization, by splitting the problem of coverage path planning into two sub-problems : 
 \begin{itemize}
 \item The waypoints positioning 
 \item The path planning passing by the previously founded waypoints
@@ -44,7 +44,7 @@ An acceptable solution is the solution which maximizes the coverage and minimize
 In the state of the art the camera positioning which is  strongly related to waypoints positioning is mainly solved by applying different algorithms of optimization. \\ 
 %The set of waypoints poses is directly related to the camera positioning. In the state of the art, the principal solutions applied is traditionally to optimize the problem of camera positioning.\\ 
 %The set of waypoints positioning is closely related to the camera positioning. In the state of the art the principal solutions applied to optimize the problem of camera positioning.\\
-Among them the evolutionary algorithm family and in particular the PSO (Particular Swarm Optimisation) is the most commonly used and most promising.
+Among them the evolutionary algorithm family and in particular the PSO (Particular Swarm Optimization) is the most commonly used and most promising.
  The PSO may offer a fast solution which is flexible and  can be easily tuned for different constraints.
   In addition  to the great potential of PSO, another algorithm is introduced and compared to provide fine results for our problems.
 The GA (Genetic Algorithms) from the same family than PSO, has been under estimated to optimize the waypoints positioning. During this thesis, the GA has been extensively investigated. 

@@ -89,7 +89,7 @@ The Evolutionary Algorithm (EA) is a big family of algorithms and they include m
 \item Bio inspired. 
 \item Use random (not fully deterministic).
 \item Based on population. 
-\item Evolve a set of solutions to optimise a given problem.
+\item Evolve a set of solutions to optimize a given problem.
 \end{description}
 These definition are not the strict characteristics for all the EA. They are rather the most common element of the major part of the vast EA family. %The EA family include several  sub-categories as in Table \ref{tab:EAlist}. In the following  part the EA is approach more in details, first a brief historic of the EA. 
  
@@ -222,12 +222,12 @@ Thus, that means the cost function $F$ has to include  the set of constraint $E$
 %\end{equation}  
  $F$ is the cost function, which include the constraints, to evaluate a solution $\vec{x}$ to optimize the problem. \\
 The EA manage the optimization of the problem based on the cost function $F(\vec{x})$ by applying different meta-heuristic. 
-The meta-heuristic use different methodologies to optimize an initial solution. The optimisation is more or less global depending than the algorithm applied. 
+The meta-heuristic use different methodologies to optimize an initial solution. The optimization is more or less global depending than the algorithm applied. 
 Mainly the optimization methods are based on the generate new sets of solutions. The new sets is made by evolving the previous sets of solutions. A set of solutions is also called population. %try to optimize an initial solutions based on the generation of a population of solutions. 
 Where a population is defined as $pop=\{\vec{x_1}, ...,\vec{x_p}  \}$ with $p$ is the number of individual in the population. 
 %The EA are not obviously use in the convex problem 
 The solution found by the EA is not necessarily the global optimum and for some type of problem (as Np-hard) it is impossible to confirm it. \\
-The risk in this case is to try to optimize infinitely. To avoid the infinite optimisation the end has to be fixed depending then some stopping criterion.
+The risk in this case is to try to optimize infinitely. To avoid the infinite optimization the end has to be fixed depending then some stopping criterion.
 %Instead to control the end of the optimization for do not indefinitely loop, a stopping criteria need to be taken in account. 
 
 \subsection{Stopping criteria}
@@ -240,7 +240,7 @@ To  determine a stoping criteria  the proposed solutions in the following part a
 
 % Therefore even if the global optimal solution is reached it is impossible to be assured of it. 
 The EA are mostly efficient in the problems with many local minima. Nevertheless, due to numbers and size of the local minima it can be difficult to ensure if a solution is the global optimum. 
-To know if the global optimal is reached, the method applied must be sure that no other solution can be better. Therefore, the solution found must be always exactly the same or equivalent in term of cost. The optimisation process must be reproducible (same input gives the same output).\\
+To know if the global optimal is reached, the method applied must be sure that no other solution can be better. Therefore, the solution found must be always exactly the same or equivalent in term of cost. The optimization process must be reproducible (same input gives the same output).\\
  Only the deterministic method can insure to have a global optimum solution  if it is applicable as for convex problem. The convex problem has only one global optimal and no local minima. \\% Using a algorithm from the EA family do not authorize such insurance due to the randomness effect proper to the EA.\\ %manly due to the impossibility to reproduce every time the same result in the same condition due to the randomness effect proper to the EA family.
   The EA optimize a solution to be better as possible (not the optimum). Because the uncertainty of the EA optimization it is impossible to call the solution founded as global optimum.
 %  That can be in some case the same than the global optimum but because of the uncertainty, it is impossible to call global optimal it is just the better solution founded.  
@@ -248,7 +248,7 @@ To know if the global optimal is reached, the method applied must be sure that n
 % methode non deterministe donc imponsible de connaitre la solution optimal donc commen sarrété.
 %How to know if a solution is the better solution and related to
 %In many case the optimal solution cannot be reach and a stopping criteria should be defined. Manly 3 possible way are communally use.
-Consequently, how to determine when is time to stop the optimisation. Because at some points, it is useless to continue the optimization, the best solution has been founded or the optimization is lock in some deep locals optimum.% and a stopping criteria should be defined.\\ 
+Consequently, how to determine when is time to stop the optimization. Because at some points, it is useless to continue the optimization, the best solution has been founded or the optimization is lock in some deep locals optimum.% and a stopping criteria should be defined.\\ 
  To determine the stopping criterion three possible way are communally used:\\
 \begin{itemize}
 \item  \textbf{Fixed time criterion}: is to stop the algorithm after a fixed numbers of iterations or time limit. The limit is measured in term of time computing, also the numbers of iteration must be fixed by the user. The main interest of this method is to control the computation time of the problem which require a solution in a determined time (as for a real time). The risk of this method is to stop before finding an efficient solution. \\
@@ -259,21 +259,21 @@ The advantage of this stopping criteria is to can stop before the convergence wi
 The inconvenient is to stop too early. In fact, if the update criteria is not properly chosen the optimization  may stop at the beginning.   \\
 To use this stopping criterion a correct number of iterations has to  be selected. 
 It must be sufficient to give time when the meta-heuristic is lock local minima. 
-A long time lock in local minima may append mostly at the early time of the optimisation due to the too good initialisation or in the late optimisation time (when the solution is already well optimized).\\
+A long time lock in local minima may append mostly at the early time of the optimization due to the too good initialisation or in the late optimization time (when the solution is already well optimized).\\
  %In contrary a stopping criterion with a too big number of iteration became use less. In the worst case, the convergence point will be reached  before the too big number of iterations.
 %si la meilieur solution est pas ammélioré 
 
 \item \textbf{Convergence criterion}: Is to stop the algorithm by waiting the convergence point. The convergence is reached when the actual population is composed by a set of identical solutions. That means the same solution has been founded by all the individuals of the population. \\
  The best solution found push the other to evolve in the same direction, by contagion all the individual of the population evolves to reach the convergence point. \\ 
- This solution found during the optimisation process is supposed to be the best one. In this case, the population has been converging to an optimized solution.% At least no better solution can be found during this optimization.\\
+ This solution found during the optimization process is supposed to be the best one. In this case, the population has been converging to an optimized solution.% At least no better solution can be found during this optimization.\\
 \end{itemize}
 %These 3 criterion are the more commune, but depending the problem other criteria can be found with more or less a priori on the problem.\\
 
  The stopping criteria presented can be a combination of the three methods to have an efficient and flexible solution as presented in the following example :\\
 The mixed stopping criteria has to combine a fix time criteria and the update criteria.
-The advantage of the fixed time criteria is to avoid the case of an almost infinite optimisation loop append, due to an impossible convergence.%(which leave a good room for manoeuvre to reach the convergence), 
+The advantage of the fixed time criteria is to avoid the case of an almost infinite optimization loop append, due to an impossible convergence.%(which leave a good room for manoeuvre to reach the convergence), 
 \\ %The fix time criteria is fix widely to leave the manoeuvre to reach the convergence. \\ 
-Combined with the update criteria the other advantage is to can stop the optimisation before to reach the complete convergence and before to reach the time criteria limit.\\
+Combined with the update criteria the other advantage is to can stop the optimization before to reach the complete convergence and before to reach the time criteria limit.\\
 The combination of these stopping criterion, always provide a solution optimize in a reasonable time (fast, efficient and time predictable for the worst case). 
 
 % Tout la population a la meme solution
@@ -405,13 +405,13 @@ The 4 coding method presented are not the only potential coding, there are the m
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cost function }\label{sec:CostFunctionGA}
-	The cost function or some time called fitness function has an essential role in the optimization process.  The aim of this function is tantamount to quantify the quality of one solution. This point is primary to the GA and in most of the optimization process using meta-heuristic. The cost Function is an compass the meta-heuristic during the  optimisation. 
-	The cost function is dependent then the problem and should be design or redesign depending on each specific  problem. Once the cost function is designed for a problem they can be used to test different other algorithms of optimisation with requires also a cost function. 
+	The cost function or some time called fitness function has an essential role in the optimization process.  The aim of this function is tantamount to quantify the quality of one solution. This point is primary to the GA and in most of the optimization process using meta-heuristic. The cost Function is an compass the meta-heuristic during the  optimization. 
+	The cost function is dependent then the problem and should be design or redesign depending on each specific  problem. Once the cost function is designed for a problem they can be used to test different other algorithms of optimization with requires also a cost function. 
 	Because the cost function is exactly the same that becomes easier to compare the results from different algorithms as is discussed in \cite{79*franccois2001} and also in the chapter \ref{sec:GAvsPSO}.%[GA VS PSO 5.2 ] 
 	Once conceived the cost function is considered as a black box by the optimization algorithm and encloses most of the complexity of the problem. Obviously if the cost function is not designed correctly with all the constraints and the objective, the optimization will fail.\\
 
 \paragraph*{Multi objectives}
-The cost functions are traditionally made-up for  problems with only one objective, but in the recent years several solutions have been adapted for multi objective. The goal is to optimize a problem with few sub-objectives included. These sub-objectives can be at some points contradictory and a trade off must be done during the optimisation process, based on the rating made by the cost function. \\
+The cost functions are traditionally made-up for  problems with only one objective, but in the recent years several solutions have been adapted for multi objective. The goal is to optimize a problem with few sub-objectives included. These sub-objectives can be at some points contradictory and a trade off must be done during the optimization process, based on the rating made by the cost function. \\
  The cost function for Multi Objective Problem (MOP) is discussed in the survey of Zhou et al. \cite{75*zhou2011}. In Zhou et al. \cite{75*zhou2011} one of the ways to solve the MOP is to adapt a classic mono objective algorithm in multi by customizing the cost function. The customization of the cost function propose a way to evaluate a solution not depending than one objective but with all of them combined in the same function instead of several cost function. 
  Also other solutions are discussed in \cite{75*zhou2011} like using coefficients for order the objective priority or by reducing the problem into several sub-problems. \\ %  reference pas naive car  ce sons celle qui seron utiliser par la suite
 
@@ -420,10 +420,10 @@ The goal is to satisfy the objective(s) while taking into account the constraint
  Previously in the chromosome (\ref{par:Chromosomes}) the strong constraint was established by the coding, especially by imposing limits in the real coding or using indirect coding, but it is feasible to impose some soft constraints in addition to the system by adding the rule in cost function. The rule corresponding to the constraint is helping the optimization to do the good choice not by imposing strong constraint but by affecting "bad points" or "good points" depending on the constraints. \\
  The soft constraints can appear a bit useless, but there can be a good trade-off between two contradictory objectives and some other strong constraints, also a soft constraint can be easier to implement and faster in term of time computation compared than a hard constraint.  
 
-\paragraph*{Optimisation and time computation}
+\paragraph*{Optimization and time computation}
 The cost function should be designed carefully and have to pay special attention to the time computing. Indeed the hight frequency call of the function may generate some heavy slowdowns. \\
 The cost function has a special importance in the optimization process to  the rating of all the individuals at every generation. If we consider a GA with 100 individuals (it is a common number of individuals  not to much and  generally enough) and a convergence after 100 generation (it is good minimum in order to avoid a premature convergence), in this case the cost function will be call at minima 10 000 time. Due  to this important factor it is primordial to carefully design the cost function as is specified in \cite{70*arabas1994}.\\
-It is common to have several thousands or billion calls of the cost function during the optimisation process.
+It is common to have several thousands or billion calls of the cost function during the optimization process.
   Hence the importance to have a function timeliness and economic in resource. \\
 Even the cost of this function must be the most accurate, in some cases like in \cite{95*miller1995}, a complex calculation or noise can affect the reliability of the cost function which will be impacted on the quality of optimized solution but despite the noise and the weakness of the cost function the GA can optimize and give a solution. But it is advisable to have a function accurate and reliable as possible to have an efficient solution.\\
  To conclude with, the importance of the cost function is a major piece of the GA and the choice of the design of cost function associate to the chromosome representation will affect the result but also the setup of the GA and can generate some lock. \\
@@ -463,7 +463,7 @@ Like that, chose the appropriate the size of the population is not trivial at al
 
 % What is the selection mode? \\
  The selection mode is  the method  used to select in a population the individuals the most able to reproduce. It is an important key point corresponding to the natural selection in the Darwin theories. \\
-The choice of the selection mode is primordial and affect greatly the quality and the speed of the optimisation process. This choice needs to be done depending than the problem. A selection mode applied on a specific problem  can be efficient (in term of answer quality and time convergence)  but  the same  selection mode applied on  a completely different problem can be inefficient for it.  The selection mode must be selected or adapted for each kind of problem. To choose the selection mode no magic  bullet, the testing of different method has to be done.\\
+The choice of the selection mode is primordial and affect greatly the quality and the speed of the optimization process. This choice needs to be done depending than the problem. A selection mode applied on a specific problem  can be efficient (in term of answer quality and time convergence)  but  the same  selection mode applied on  a completely different problem can be inefficient for it.  The selection mode must be selected or adapted for each kind of problem. To choose the selection mode no magic  bullet, the testing of different method has to be done.\\
 One of the objective of the selection mode is to keep enough variety in the population to avoid an untimely  convergence. Also too much variety in the population and especially not a the beginning may artificially delaying the convergence. A good selection mode has to trade off between too elitist selection (not enough variety) and a too permissive selection (too much variety). \\
 A multitude of selection mode has been developed during the time (few of them have been listed in \cite{123*owais2008}). Make a choice among this wide list of possibility is difficult. The selection mode among the most common  or representative is  presented:    \\
 
@@ -598,9 +598,9 @@ Also the GA has been studied for decades and many variant were developed over th
 To evaluate the  performance of a set-up the quality of this answer is used but also the speed of convergence in term of number of generation, and also the variety of the chromosome at each generation until the convergence. 
 The variety is one of the factor useful to explain the convergence speed and the answer quality.
 The variety is almost opposite of the convergence. It is when the chromosome  are all very different in the same generation but also generation after generation. A high variety is ideal at the beginning because this allows the optimization browse the search space and potentially help to jump the local minima. 
- As example if the finally solution is lock in a local minima after a to fast convergence that mean not enough variety has been introduce during the optimisation.
+ As example if the finally solution is lock in a local minima after a to fast convergence that mean not enough variety has been introduce during the optimization.
 
-During the choice of the ideal parameters for GA the variety is an important element to preserved and more at the beginning of the optimisation to browse the search space.\\
+During the choice of the ideal parameters for GA the variety is an important element to preserved and more at the beginning of the optimization to browse the search space.\\
  
 However the GA stay complex to configure because of all these parameters to have a good answer quality in a reasonable period of convergence. Many aspect need to be adapted depending to the problem, constraint, size of the search space and … .  \\ 
 Using the simple GA that mean configure a set of parameters. The parameters can be formalized as a vector like in \cite{71*grefenstette1986}. This formulation is especially  efficient test numerous settings. 
