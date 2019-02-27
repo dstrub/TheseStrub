@@ -107,7 +107,7 @@
 %% The second mandatory parameter is the date of the PhD defense.
 %% The third mandatory parameter is the reference number given by
 %% the University Library after the PhD defense.
-\declarethesis[]{Coverage path planning based on waypoints optimization, with evolutionary algorithms.}{04 April 2018}{1}
+\declarethesis[]{Coverage path planning based on waypoint optimization, with evolutionary algorithms.}{09 may 2019}{1}
  
 %%--------------------
 %% Set the author of the PhD thesis
@@ -117,7 +117,7 @@
 %% Add a member of the jury
 %% \addjury{Firstname}{Lastname}{Role in the jury}{Position}
 \addjury{Pascal }{Vasseur}{Rapporteur}{Professor at LITIS, UNIROUEN, UNIHAVRE, INSA,  76000 Rouen, France }
-\addjury{Xivi}{Cufí}{Rapporteur}{Professor at  VICOROB, University of Girona, 17071 Girona, Spain }
+\addjury{Xevi}{Cufí}{Rapporteur}{Professor at  VICOROB, University of Girona, 17071 Girona, Spain }
 \addjury{Samia}{Ainouz}{Examinateur}{Assistant Professor at LITIS, UNIROUEN, UNIHAVRE, INSA, 76000 Rouen, France}
 \addjury{Franck}{Marzani}{Examinateur}{ Professor at ImViA ,University  of  Burgundy,  21000  Dijon, France} 
 \addjury{David}{Fofi}{Directeur de thèse}{Professor at ImViA ,University  of  Burgundy, 71200  Le  Creusot,  France}
@@ -130,21 +130,13 @@
  
 %%--------------------
 %% Set the English abstract
-\thesisabstract[english]{The aims to optimize the coverage of a
-given area from a set of views to allow a complete mosaicking.
-Among the investigated methods to find the best camera
-positions, two of them are studied, namely the Particle Swarm
-Optimization (PSO) and the Genetic Algorithms (GA). After
-having performed experiments to compare the algorithms, the
-hybridization of GA and PSO is investigated. To validate the
-proposed method, it is simulated area of irregular shapes with
-the cameras mounted on a Unmanned Aerial Vehicles (UAVs).
-V-REP is used to simulate the UAVs in an indoor environment
-and satellite images are used for a large outdoor area. The
-simulation validates the efficiency of the proposed method to
-find the optimal position of cameras. Then by using the images
-acquired it is possible to monitor the area and to compute a
-full mosaic of it. }
+\thesisabstract[english]{The goal of this paper is to optimize the coverage of a vast and complex
+area such that its mosaic image can be created. To find the best waypoints, two
+methods have been investigated: Particle Swarm Optimization (PSO) and Genetic
+Algorithms (GA). Our investigation proved that GA is a better method due to
+its performance and adaptability. After having performed experiments to compare the algorithms, a hybridization of GA and PSO is investigated.
+ The proposed method can be applied on large areas with irregular shapes, such as agricultural fields, and it provides a minimized number of waypoints that must be flown over by the Unmanned Aerial Vehicle (UAV). The experiments were made to simulate the flight of the UAV in an indoor environment, and the images generated during the simulated flight have been used to show the final mosaic. The proposed method is also applied in the vast outdoor area using satellite images to visualize the final result of the coverage path planning. The experiments validate the efficiency of the proposed method for finding the number and the poses of the waypoints. The solution proposed to approach the problem of coverage path planning is rather different than the state
+of the art by dividing the Coverage Path Planning on independent sub-problems to optimize and then using GA and later on GAPSO. }
  
 %%--------------------
 %% Set the English keywords. They only appear if
@@ -372,32 +364,40 @@ full mosaic of it. }
 %% at the beginning of the document. This chapter has not a chapter
 %% number (using the "star-ed" version of \chapter) to prevent it to
 %% be in the table of contents
-\chapter*{Remerciements}
-Ce fut un long est quelque peut arrassent travaillé qui n'aurait pu etre possible sans l'aide de nombreuse personne  qu'il me faut remercier.
-Bien sûr parmi les premières personnes à remercier figurent mes encadrants sans qui tous sa n'aurai put être possible.
+\chapter*{Acknowledgement}
+%Ce fut un long est quelque peut arrassent travaillé qui n'aurait pu etre possible sans l'aide de nombreuse personne  qu'il me faut remercier.
+%Bien sûr parmi les premières personnes à remercier figurent mes encadrants sans qui tous sa n'aurai put être possible.
+%
+%David Fofi qui a toujours de bon conseil pour régler la quantité astronomique de problème qui ce sont succédés durant cette thèse, toujours disponible, et d'un précieux soutient à tout moment.  \\
+%Olivier Morel que je me dois de remercier pour son investissement et son professionnalisme.\\
+%Naufal bin saad qui fut d'une aide précieuse  pour comprendre  les uses et coutumes des très fond de l'administration de l'UTP.
 
-David Fofi qui a toujours de bon conseil pour régler la quantité astronomique de problème qui ce sont succédés durant cette thèse, toujours disponible, et d'un précieux soutient à tout moment.  \\
-Olivier Morel que je me dois de remercier pour son investissement et son professionnalisme.\\
-Naufal bin saad qui fut d'une aide précieuse  pour comprendre  les uses et coutumes des très fond de l'administration de l'UTP.
+It was a long and somewhat laborious process which could not have been possible without the help of many people whom I have to thank.
+Of course, among the first people to thank are my supervisors, without whom all this would not have been possible.
 
-I need to thanks a lot Alexandra Elbakyan for the  creation  of Sci-hub. Sci-hub  offer at any researcher the ability to do their works and to share the humanity advance.
+David Fofi who always has good advices to solve the astronomical amount of problems that occurred during this thesis. Thanks for always being  available, smiley and a precious support.  \\
+Olivier Morel whom I must thank for his investment and professionalism. \\
+Naufal Bin Saad who was a valuable help in understanding the habits and customs of the UTP and Malaysia.
+
+I would also like to thank the rapporteurs Professor Pascal Vasseur  and Doctor Xev\'i  Cufi assistant professor a as well as the members of the jury Doctor Samia Ainouz  and  Professor Franck Marzani. 
+
+I need to thanks a lot Alexandra Elbakyan for the creation  of Sci-hub. Sci-hub offer at any researcher the ability to do their works and to share the humanity advance.
 
 I also has to  thanks many friend which help a lot for many thing:
 
-Guillaume and Mojed  for their friendship and good advice
-
-Aamir Shahzad the my guide in the maze of UTP.\\
-Annick le berre and Pierre Hary  for their precious friendship and obstinacy taught them a more appropriate English.\\
+Guillaume and Mojdeh  for their friendship and good advices.\\
+Aamir Shahzad my guide in the maze of UTP.\\
+Annick le berre and Pierre Hary  for their precious friendship and obstinacy teaching me a more appropriate English.\\
 Cansen for his motivation and obstinacy in always wanting to do better.\\
 Nirbhay and Pham  for their kindness and support.\\
 Tilman for introducing me to computer vision.\\
 
-Quelque autre persone à remercier ; Some other people to thanks:\\ 
-  Mark N ; Nathan C; Nathan P; Abir ; Goh ; Rishu ; Marwan ; Tom son; Maguie ; Mamounia \& Papili; Nathalie C; Mc Desiré; O Aubreton; la famille Bertuca; Mme Cabot;Fabrice M ;Marc B; Toufia; Ilyes; Zawawie ; 
+Some other people to thanks:\\ 
+  Mark N ; Nathan C; Nathan P; Abir ; Goh ; Rishu ; Marwan ; Tom son; Maguie ; Mamounia \& Papili; Nathalie C; Desiré; O Aubreton; Bertuca family; Mrs Cabot;Fabrice M ;Marc B; Toufia; Ilyes; Zawawie ; 
 
 
 
-Pour conclure  les remerciements  je tiens à remercier  ma famille ( Regis, Marie Chrisitne et Charlotte) pour leur soutien constant dans cette épopée que fut cette  thèse.  
+Pour conclure et en français;  je tiens à remercier  ma famille ( Regis, Marie Christine et Charlotte) pour leur soutiens constant dans cette épopée que fut cette  thèse.  
 % my family to have always trust in my ability despite the reality :)
   %\ding{65,164}  \ding{65} \ding{164} %http://julien.coron.chez.com/languages/latex/dingbat/
 %%--------------------
