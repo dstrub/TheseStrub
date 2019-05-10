@@ -4,16 +4,23 @@
 
 
 %\section{The origin}
-The project of self camera organisation has been initiated by a partnership between the CISIR and the previously called Le2i and since January 2019 ImVia. The project has to aim to develop a smart system composed by camera mounted on UAVs. The system has to be available to self-organize and auto-adapt to a dynamic environment. Concretely the aim of the system is to has  cooperation work between UAVs, to detect security issue in a complex and dynamic environment. This initial project is ambition and full of technical lock. To be realistic  this project must be resized and the research have to be focussed.%  lock and must be resized to begin. 
+The project of self camera organization has been initiated by a partnership between the CISIR and the previously called Le2i and since January 2019 ImVia. The project aims to develop a smart system composed by camera mounted on UAVs. The system has to be available to self-organize and auto-adapt to a dynamic environment. Concretely the system should act as a base to perform cooperation work between UAVs, to detect security issues in a complex and dynamic environment. This initial project is ambitious and contains numerous technical locks. To be realistic, this project must be resized and the research have to be focused.%  lock and must be resized to begin. 
 
 The project start with a basic idea to develop a smart system composed by a camera mounted on a UAV. 
-The first step, is to manage the different positions of a UAV, inside the area to control. The aim here is to find the best viewpoints  for the surveillance. To monitor correctly the area, the viewpoints selected must cover the quasi totality  of  the environment.\\
-For that is important to find the relevant waypoints and create a shorter path passing by all of then in order to can efficiently control a given zone. Our concern here is to find the strategic positions for the waypoints, to control the area despite the environmental constraints. The constraint can be various as discussed in detail in the following sections (the shape of the area, the UAV limitation, the image qualities requirement, are some example of constraints). 
-Estimating efficiently the path plan with strategic waypoints poses is an important technical lock for create a complete and autonomous system of smart cameras mounted on UAVs. So far no optimal solution has been found. Nevertheless, some solution has been applied (see Section \ref{chap:stateOfTheArt}) depending then different constraints but all of the solution proposed in the literature are imperfect and can be upgraded. \\
-In order to propose a novel approach for estimating the best path planning for UAV under constraints. The solution  propose are taking this complex problem and split it in sub-part. 
+The first step, is to manage the different positions of a UAV, inside the area to control. The goal here is to find the best viewpoints  for the surveillance. To monitor correctly the area, the viewpoints selected must cover the quasi totality  of  the environment.\\
+It is important to find the relevant waypoints and create a shorter path passing by all of them in order to efficiently control and monitor a given zone. Our concern here is to find the strategic positions for the waypoints in order to control the area despite the environmental constraints. The constraints can be various as discussed in details in the following sections (the shape of the area, the UAV limitations, the image quality requirements, are some example of constraints). 
+Estimating efficiently the path plan with strategic waypoints poses is an important technical constraint to create a complete and autonomous system of smart cameras mounted on UAVs. So far, no optimal solution has been found. Nevertheless, some solutions have been applied (see Section \ref{chap:stateOfTheArt}) depending on different constraints, but all of those proposed in the literature are imperfect and can be upgraded. \\
+In order to propose a novel approach for estimating the best path planning for UAV under constraints, the proposed solutions are taking this complex problem and split it into sub-parts. 
 
-The first sub-part is to estimate the position of each waypoints and the second part is to compute a path passing by the waypoints previously founded. Despite the apparent simplicity of the proposed solution numerous problem appear nobly the difficulty to find the optimal position for all the waypoints. \\
-Estimating the best waypoints position is finally similar then cameras positioning. The major part of this these is focus on finding the best cameras positionning (or waypoints) which is an open challenge. In the second time, the path planning passing by the waypoints is addressed with include the estimated number of waypoints.
+%It is important to find the relevant waypoints and create a shorter path passing by all of then in order to can efficiently control a given zone. Our concern here is to find the strategic positions for the waypoints, to control the area despite the environmental constraints. The constraint can be various as discussed in detail in the following sections (the shape of the area, the UAV limitation, the image qualities requirement, are some example of constraints). 
+%Estimating efficiently the path plan with strategic waypoints poses is an important technical lock for create a complete and autonomous system of smart cameras mounted on UAVs. So far no optimal solution has been found. Nevertheless, some solution has been applied (see Section \ref{chap:stateOfTheArt}) depending then different constraints but all of the solution proposed in the literature are imperfect and can be upgraded. \\
+%In order to propose a novel approach for estimating the best path planning for UAV under constraints. The solution  propose are taking this complex problem and split it in sub-part. 
+
+The first sub-part is the estimation of the position of each waypoints and the second part is the computation of a path going through all the waypoints previously deduced. Despite the apparent simplicity of the proposed solution, numerous problems appears such as the difficulty to find the optimal position for all the waypoints. \\
+Estimating the best waypoint positions is finally similar to cameras positioning. The major part of this topic is focused on finding the best cameras positionning (or waypoints) which is an open challenge. The path planning passing by the waypoints is addressed with inclusion of the estimated number of waypoints.
+The results presented in this thesis were published for peer-review in international conferences such as  URAI 2016  and IV 2017. 
+
+
 
 
 
@@ -27,8 +34,8 @@ Estimating the best waypoints position is finally similar then cameras positioni
 %   once this important work  done  the next step is to estimate a  path passing by all this waypoint which is essential to can cover an complex area   with  the mimnimum of one camera mounted on UAV 
 \section{Camera positioning }\label{sec:camerasPositioning}
 
-The first step for solving the problem of camera positioning, i.e. how to estimate an optimal viewpoint selection to ensure an acceptable coverage. It is known that an efficient camera positioning is a bottleneck in many applications, as for example in the video surveillance field \cite{11*herrera2012,12*soto2009,18*ding2012,151*zhao2013,84*xu2011}, where an efficient camera positioning is essential to monitor correctly an area.  
-The following section will deal with the question of: 
+The first step of the problem  is to solve  the camera positioning, i.e. how to estimate an optimal viewpoint selection to ensure an acceptable coverage. It is known that an efficient camera positioning is a bottleneck in many applications, as for example in the video surveillance field \cite{11*herrera2012,12*soto2009,18*ding2012,151*zhao2013,84*xu2011}, where an efficient camera positioning is essential to monitor correctly an area.  
+The following section will deal with the questions: 
 \begin{itemize}
 \item[-]What is a good position and orientation for a camera (i.e. a good camera pose)?
 \item[-]What are the purposes of the application requiring camera positioning?
@@ -38,14 +45,14 @@ These questions have already been investigated and some solutions have been prop
 
 
 \subsection{Efficient pose in a camera network: challenges and objectives}
-The first point to address is defining the pose of the camera (or set of cameras). In computer vision, the pose of a camera is composed of its position in space and orientation (or looking direction), i.e. of 3 translations and 3 rotations in a world coordinate frame. The second point to be addressed is how to define a "good" or "optimal" camera pose(s)?\\
+The first point to address is the definition of camera poses (or set of cameras). In computer vision, the pose of a camera is composed of its position in space and orientation (or viewing direction), i.e. 3 translations and 3 rotations in a world coordinate frame. The second point to be addressed is how to define a "good" or "optimal" camera pose(s)?\\
  To do so, it is essential to identify the purposes, tasks and priorities of the application: 
  \begin{itemize}
  \item [-] What is the final goal?
  \item [-] What are the important features for the application (e.g. to track an object, to have a high-resolution mapping, etc.)?
  \item [-] What are the shooting conditions and physical constraints?
  \end{itemize}
-   All of these aspects will have an incidence on the definition and formalization of a "good camera poses". For instance, in \cite{22*zhao2008}, the purpose is to detect tags placed on people torso which forces the camera to be positioned at a certain height with a looking direction almost parallel to the ground; on the contrary, in \cite{146*li2011}, a camera is mounted on a UAV to monitor a vast outdoor area, which forces it to have a looking direction almost perpendicular to the ground. 
+   All of these aspects will have an incidence on the definition and formalization of a "good camera pose". For instance, in \cite{22*zhao2008}, the purpose is to detect tags placed on people torso which forces the camera to be positioned at a certain height with a viewing direction almost parallel to the ground; on the contrarily, in \cite{146*li2011}, a camera is mounted on a UAV to monitor a vast outdoor area, which forces the viewing direction almost perpendicular to the ground. 
 
 %It is important to do not confuse the finality and the objectives. For example video surveillance is the finality but the coverage of an area or the target tracking, it is required to have an efficient surveillance. The coverage is one of the objectives the most interesting and the most common about cameras positioning.
 % !!!!!!!!!
@@ -56,17 +63,17 @@ The first point to address is defining the pose of the camera (or set of cameras
 %To have a clever and efficient cameras positioning system different aspects must be studied. First, to pose efficiently a set of cameras it is useful to know what does it mean efficient for the camera pose. To do that the objective of the cameras network have to be defined clearly. 
 
 %The objectives  vary and depending than the finality the cameras position is greatly affected.
-These two articles share the same objective, i.e. to get the best possible coverage of an area, but since the constraints and secondary objectives they must comply with are different (e.g. number of cameras, resolution, luminosity, tracking, etc.), it leads to different formulation and approach. 
+These two articles share the same objective, i.e. to get the best possible coverage of an area. But because of the constraints and secondary objectives (e.g. number of cameras, resolution, luminosity, tracking, etc.), it leads to different formulations and approaches. 
 
-The next sections of this theses focuses on positioning the camera to maximize the viewing areas. The viewing area or coverage rate of the area is directly related to the estimated position of each camera and their orientation. To get the best coverage, it is essential to find the best pose for each camera, depending on the constraints and possible secondary goals.\\
+The next sections of this thesis focuses on positioning the camera to maximize the viewing areas. The viewing area or coverage rate of the area is directly related to the estimated position of each camera and their orientation. To get the best coverage, it is essential to find the best pose for each camera, depending on the constraints and possible secondary goals.\\
 %(!!!! The finality and thus the secondary objective greatly, have an important influence on the camera positioning.!!!!!)
 
 The camera positioning for maximizing  the coverage rate is an open challenge studied this last decade and still open. 
-In the following chapters we will introduce  the problem and some of the more interesting solution studied in the literature.
-The research of the last decades  shows the complexity of the problem in its plurality and the solutions that have been provided to try to fix it.\\
-Thanks to the literature the problem complexity and the multiplicity of constraints is studied. In fact it will appear the importance of the constraints depending then the solution proposed and the importance of well targeted constraints for the problem formulation and the solutions adopted. \\
-Based on state of the art  in the chapter \ref{chap:stateOfTheArt} a sharp problem formulation is proposed adapted to the UAVs constraints in the chapter \ref{chap:formulation} and the algorithms provided to answer it in the chapter \ref{chap:EA}. \\
-The last chapters of this theses is dedicated to our solution and the experimental results obtained by simulations of complex area in first time for waypoints positioning in chapter \ref{chap:waypointPoseExp}, followed by the coverage path planning in the chapter \ref{chap:Coverage path planning problem}.
+In the following chapters we will introduce the problem and some of the most interesting solutions studied in the literature.
+The research of the last decades  shows the complexity of the problem in its plurality and the solutions that have been proposed.\\
+Thanks to the literature, the problem complexity and the multiplicity of constraints is an open problem. In fact it will reveal the importance of the constraints depending on the solution proposed and the importance of well defined constraints for the problem formulation and the solutions adopted. \\
+Based on state of the art  in the chapter \ref{chap:stateOfTheArt}, a precise problem formulation is proposed adapted to the UAVs constraints in the chapter \ref{chap:formulation} and the algorithms proposed  will be explained  in the chapter \ref{chap:EA}. \\
+The last chapters of this thesis is dedicated to our proposed solution and the experimental results obtained by simulations of complex area; first for waypoints positioning in chapter \ref{chap:waypointPoseExp}, followed by the coverage path planning in the chapter \ref{chap:Coverage path planning problem}.
  
 %Camera positioning for maximizing the coverage rate has been studied these past decades, using many different approaches. The following sub-section will provide an overview of different ways of defining the coverage drawn from the literature.
 
